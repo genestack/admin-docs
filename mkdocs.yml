@@ -1,5 +1,5 @@
 site_name: Open Data Manager Documentation
-site_url: https://mctep.github.io/mkdocs-example/
+site_url: https://genestack.github.io/documentation
 
 nav:
   - Home: index.md
