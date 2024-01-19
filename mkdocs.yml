@@ -9,8 +9,8 @@ nav:
   - Users:
       - Users creation: users/user-creation.md
   - Templates:
-      - Create or update template: templates/create-or-update-template.md
-      - Delete template: templates/delete-template.md
+      - Create or update template: odm-templates/create-or-update-template.md
+      - Delete template: odm-templates/delete-template.md
 
 theme:
   name: material
