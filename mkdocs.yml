@@ -8,6 +8,9 @@ nav:
       - Genestack auxiliary scripts: packages-to-install/genestack-auxiliary-scripts.md
   - Users:
       - Users creation: users/user-creation.md
+  - Templates:
+      - Create or update template: templates/create-or-update-template.md
+      - Delete template: templates/delete-template.md
 
 theme:
   name: material
