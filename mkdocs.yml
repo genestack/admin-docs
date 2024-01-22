@@ -17,6 +17,15 @@ nav:
           - Sharing study: working-with-study/sharing-study.md
           - Deleting study: working-with-study/deleting-study.md
           - Loading from GEO: working-with-study/loading-from-geo.md
+    - Dictionaries and ontologies:
+          - Default dictionaries: dictionaries-and-ontologies/default-dictionaries.md
+          - Exporting ontologies from ODM: dictionaries-and-ontologies/exporting-ontologies-from-odm.md
+          - Creating new dictionary: dictionaries-and-ontologies/creating-new-dictionary.md
+          - Loading new ontology:
+                - dictionaries-and-ontologies/loading-new-ontology.md
+                - CSV dictionary format: dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format.md
+    - Data Retrieving: data-retrieving.md
+    - Training Materials: training-materials.md
 
 theme:
     name: material
