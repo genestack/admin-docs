@@ -97,6 +97,6 @@ The template json file is validated in ODM against an internal schema: [template
     Please note that no value bounds can be set up currently.
 
 5. Dictionaries (controlled vocabularies which validate against lists of terms) can be specified for a metadata attribute using the `dictionaryName` key.
-   See [loading new ontology](../../03.%20Dictionaries%20and%20ontologies/Loading%20new%20ontology).
+   See [loading new ontology](../dictionaries-and-ontologies/loading-new-ontology.md).
 6. For full details refer to the [template_schema.json](template_schema.json) file.
 7. The order of the attributes in the template json file is preserved in the template in ODM.
