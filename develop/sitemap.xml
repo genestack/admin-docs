@@ -6,6 +6,41 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://genestack.github.io/documentation/develop/data-retrieving/</loc>
+         <lastmod>2024-01-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://genestack.github.io/documentation/develop/training-materials/</loc>
+         <lastmod>2024-01-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://genestack.github.io/documentation/develop/dictionaries-and-ontologies/creating-new-dictionary/</loc>
+         <lastmod>2024-01-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://genestack.github.io/documentation/develop/dictionaries-and-ontologies/default-dictionaries/</loc>
+         <lastmod>2024-01-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://genestack.github.io/documentation/develop/dictionaries-and-ontologies/exporting-ontologies-from-odm/</loc>
+         <lastmod>2024-01-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://genestack.github.io/documentation/develop/dictionaries-and-ontologies/loading-new-ontology/</loc>
+         <lastmod>2024-01-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://genestack.github.io/documentation/develop/dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format/</loc>
+         <lastmod>2024-01-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://genestack.github.io/documentation/develop/odm-templates/create-or-update-template/</loc>
          <lastmod>2024-01-22</lastmod>
          <changefreq>daily</changefreq>
