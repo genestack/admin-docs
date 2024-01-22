@@ -261,6 +261,26 @@
   
 
       
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../working-with-study/uploading-study/" class="md-tabs__link">
+          
+  
+    
+  
+  Working with study
+
+        </a>
+      </li>
+    
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -653,6 +673,170 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Working with study
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Working with study
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working-with-study/uploading-study/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uploading study
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working-with-study/curation-script/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Curation script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working-with-study/sharing-study/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sharing study
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working-with-study/deleting-study/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deleting study
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working-with-study/loading-from-geo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Loading from GEO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -746,7 +930,7 @@
 <h2 id="instructions">Instructions<a class="headerlink" href="#instructions" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Download or create a template json file (see Requirements). Templates are collections of fields with rules determining whether the field is required, which dictionary to use (if any) etc.
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[
+    <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    {
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>     &quot;dataType&quot;:&quot;genestack:sampleObject&quot;,
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>     &quot;name&quot;:&quot;Organism&quot;,
@@ -759,14 +943,16 @@
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>]
 </span></code></pre></div></li>
 <li>Download the template settings json file (see Requirements)</li>
-<li>Use a text editor to edit the template settings file and change the path to match where you have put your template json file</li>
-</ol>
+<li>
+<p>Use a text editor to edit the template settings file and change the path to match where you have put your template json file</p>
 <p><code>"template_path": "/PATHTOTEMPLATEFILE/Default_ODM_Template.json",</code></p>
-<ol>
-<li>Run the <code>odm-update-template</code> script:
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>odm-update-template -H GENESTACK_ENDPOINT_ADDR /PATHTOSETTINGSFILE/default_ODM_template_settings.json
+</li>
+<li>
+<p>Run the <code>odm-update-template</code> script:
+    <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>odm-update-template -H GENESTACK_ENDPOINT_ADDR /PATHTOSETTINGSFILE/default_ODM_template_settings.json
 </span></code></pre></div>
-   Where <code>GENESTACK_ENDPOINT_ADDR</code> is the URL of the Genestack platform.</li>
+    Where <code>GENESTACK_ENDPOINT_ADDR</code> is the URL of the Genestack platform.</p>
+</li>
 </ol>
 <h2 id="template_settingsjson">Template_settings.json<a class="headerlink" href="#template_settingsjson" title="Permanent link">&para;</a></h2>
 <p>This file controls certain parameters of the template file:</p>
@@ -781,24 +967,24 @@
 <p>The template json file is validated in ODM against an internal schema: <a href="../template_schema.json">template_schema.json</a></p>
 <ol>
 <li>A single template file contains the properties (keys) for the metadata of study, sample and expression objects together.</li>
-<li>For each object type (study, samples, libraries and so on) a specific dataType should be used:</li>
-</ol>
+<li>
+<p>For each object type (study, samples, libraries and so on) a specific dataType should be used:</p>
 <p>Study: <code>dataType = "study"</code></p>
 <p>Samples: <code>dataType = "genestack:sampleObject"</code></p>
 <p>Expression (both Transcriptomics and Proteomics): <code>dataType = "genestack:transcriptomicsParent"</code></p>
-<ol>
-<li>The <code>Accession</code> property is mandatory for each type of object. The following values should be set for each dataType section:</li>
-</ol>
+</li>
+<li>
+<p>The <code>Accession</code> property is mandatory for each type of object. The following values should be set for each dataType section:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>name = &quot;genestack:accession&quot;,
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>metainfoType = &quot;com.genestack.api.metainfo.StringValue&quot;,
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>isRequired = true,
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>isReadOnly = true
 </span></code></pre></div>
 <p>It is recommended to include properties having <code>isRequired = true</code> into the template file. Please also check out
-   the <code>description</code> property attribute: some properties might be required for certain functionality.</p>
-<ol>
-<li>The values accepted for each metadata attribute are given by the <code>metainfoType</code> key, and must be one of the following values:</li>
-</ol>
+the <code>description</code> property attribute: some properties might be required for certain functionality.</p>
+</li>
+<li>
+<p>The values accepted for each metadata attribute are given by the <code>metainfoType</code> key, and must be one of the following values:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>&quot;com.genestack.api.metainfo.IntegerValue&quot;,
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>&quot;com.genestack.api.metainfo.DecimalValue&quot;,
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>&quot;com.genestack.api.metainfo.StringValue&quot;,
@@ -812,9 +998,11 @@
 <li>for values of type DATE or TIME use <code>"com.genestack.api.metainfo.DateTimeValue"</code>.</li>
 </ul>
 <p>Please note that no value bounds can be set up currently.</p>
-<ol>
-<li>Dictionaries (controlled vocabularies which validate against lists of terms) can be specified for a metadata attribute using the <code>dictionaryName</code> key.
-   See <a href="../../03.%20Dictionaries%20and%20ontologies/Loading%20new%20ontology">loading new ontology</a>.</li>
+</li>
+<li>
+<p>Dictionaries (controlled vocabularies which validate against lists of terms) can be specified for a metadata attribute using the <code>dictionaryName</code> key.
+   See <a href="../../03.%20Dictionaries%20and%20ontologies/Loading%20new%20ontology">loading new ontology</a>.</p>
+</li>
 <li>For full details refer to the <a href="../template_schema.json">template_schema.json</a> file.</li>
 <li>The order of the attributes in the template json file is preserved in the template in ODM.</li>
 </ol>

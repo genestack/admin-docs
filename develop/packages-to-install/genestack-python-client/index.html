@@ -261,6 +261,26 @@
   
 
       
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../working-with-study/uploading-study/" class="md-tabs__link">
+          
+  
+    
+  
+  Working with study
+
+        </a>
+      </li>
+    
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -673,6 +693,170 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Working with study
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Working with study
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working-with-study/uploading-study/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uploading study
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working-with-study/curation-script/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Curation script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working-with-study/sharing-study/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sharing study
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working-with-study/deleting-study/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deleting study
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working-with-study/loading-from-geo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Loading from GEO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -785,38 +969,36 @@
 <h3 id="install-the-client-and-bind-a-user">Install the client and bind a user<a class="headerlink" href="#install-the-client-and-bind-a-user" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
-<p>Start a console/terminal and install Genestack Python client:
+<p>Start a console/terminal and install Genestack Python client:</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Install the latest version</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">      </span>--extra-index-url<span class="w"> </span>https://public-nexus.devops.gs.team/repository/pypi-releases/simple<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span>genestack-client
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span>--extra-index-url<span class="w"> </span>https://public-nexus.devops.gs.team/repository/pypi-releases/simple<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span>genestack-client
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># OR: Install a specific version starting from 1.53.12, usually the same as ODM version, e.g. 1.54.0</span>
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">      </span>--extra-index-url<span class="w"> </span>https://public-nexus.devops.gs.team/repository/pypi-releases/simple<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span>genestack-client<span class="o">==</span><span class="m">1</span>.53.12
-</span></code></pre></div></p>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span>--extra-index-url<span class="w"> </span>https://public-nexus.devops.gs.team/repository/pypi-releases/simple<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span>genestack-client<span class="o">==</span><span class="m">1</span>.53.12
+</span></code></pre></div>
 </li>
 <li>
-<p>Obtain a token for your Genestack user by logging in to ODM and clicking on the profile link under the username. 
-   See an example for Public user below:</p>
-</li>
-</ol>
+<p>Obtain a token for your Genestack user by logging in to ODM and clicking on the profile link under the username.</p>
+<p>See an example for Public user below:</p>
 <p><img alt="GetToken" src="../Token.png" /></p>
-<p>You need to click on the "Create new token" button, so you will receive an email with a link to your token. 
-   Please open the link in the email and save the token for future needs.</p>
-<ol>
+<p>You need to click on the "Create new token" button, so you will receive an email with a link to your token.
+Please open the link in the email and save the token for future needs.</p>
+</li>
 <li>
-<p>Set up your account with the Genestack Python client from a console
-   <div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>genestack-user-setup<span class="w"> </span>-H<span class="w"> </span>https://domain_name/frontend
-</span></code></pre></div></p>
+<p>Set up your account with the Genestack Python client from a console</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>genestack-user-setup<span class="w"> </span>-H<span class="w"> </span>https://domain_name/frontend
+</span></code></pre></div>
 </li>
 <li>
 <p>Type ‘add’ to enter a new user, enter an alias for the user.</p>
 </li>
 <li>Enter the host name, which should be of the format: https://domain_name/frontend.</li>
 <li>Then select authentication method by token (1) and input the content of the token you received in step 2:
-   <div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="m">1</span><span class="o">)</span><span class="w"> </span>by<span class="w"> </span>token
+    <div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="m">1</span><span class="o">)</span><span class="w"> </span>by<span class="w"> </span>token
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="m">2</span><span class="o">)</span><span class="w"> </span>by<span class="w"> </span>email<span class="w"> </span>and<span class="w"> </span>password
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Select<span class="w"> </span>authentication:<span class="w"> </span><span class="m">1</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Host:<span class="w"> </span>https://domain_name/frontend

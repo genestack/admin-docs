@@ -261,6 +261,26 @@
   
 
       
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../working-with-study/uploading-study/" class="md-tabs__link">
+          
+  
+    
+  
+  Working with study
+
+        </a>
+      </li>
+    
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -631,6 +651,170 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Working with study
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Working with study
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working-with-study/uploading-study/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uploading study
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working-with-study/curation-script/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Curation script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working-with-study/sharing-study/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sharing study
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working-with-study/deleting-study/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deleting study
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working-with-study/loading-from-geo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Loading from GEO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -695,25 +879,27 @@
 <li>Python 3</li>
 <li>pip</li>
 <li>Genestack Python client installed and setup with a user account/token.
-  See <a href="../../packages-to-install/genestack-python-client/">how to setup Genestack Python client</a></li>
+    See <a href="../../packages-to-install/genestack-python-client/">how to setup Genestack Python client</a></li>
 <li>Auxiliary scripts installed.
-  See <a href="../../packages-to-install/genestack-auxiliary-scripts/">how to install Genestack auxiliary scripts</a></li>
+    See <a href="../../packages-to-install/genestack-auxiliary-scripts/">how to install Genestack auxiliary scripts</a></li>
 <li>A users.tsv file, for example: <a href="../users.tsv">users.tsv</a></li>
 </ul>
 <h2 id="instructions">Instructions<a class="headerlink" href="#instructions" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Edit <a href="../users.tsv">users.tsv</a> file in the text editor and replace the example users with your own users - one line per user, detailing email and name, separated by a tab.</li>
-<li>Run the script below and follow its login instructions, replacing the host name with the address of the instance the script will apply:</li>
-</ol>
-<p><code>$ odm-create-users -H localhost:8080</code>\
-   or use the -u parameter and the user alias created when setting up the Genestack client</p>
+<li>
+<p>Run the script below and follow its login instructions, replacing the host name with the address of the instance the script will apply:</p>
+<p><code>$ odm-create-users -H localhost:8080</code><br/>
+or use the -u parameter and the user alias created when setting up the Genestack client</p>
 <p><code>$ odm-create-users -u your_alias</code></p>
-<ol>
-<li>The script will create new users and print out their passwords, for example:</li>
-</ol>
+</li>
+<li>
+<p>The script will create new users and print out their passwords, for example:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>  alice@alphacorp.com    uNgp4F6C    Alice
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  bob@alphacorp.com      xI3AOf2h    Bob
 </span></code></pre></div>
+</li>
+</ol>
 
 
 

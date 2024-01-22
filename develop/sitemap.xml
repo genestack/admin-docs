@@ -2,32 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://genestack.github.io/documentation/develop/</loc>
-         <lastmod>2024-01-19</lastmod>
+         <lastmod>2024-01-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/odm-templates/create-or-update-template/</loc>
-         <lastmod>2024-01-19</lastmod>
+         <lastmod>2024-01-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/odm-templates/delete-template/</loc>
-         <lastmod>2024-01-19</lastmod>
+         <lastmod>2024-01-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/packages-to-install/genestack-auxiliary-scripts/</loc>
-         <lastmod>2024-01-19</lastmod>
+         <lastmod>2024-01-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/packages-to-install/genestack-python-client/</loc>
-         <lastmod>2024-01-19</lastmod>
+         <lastmod>2024-01-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/users/user-creation/</loc>
-         <lastmod>2024-01-19</lastmod>
+         <lastmod>2024-01-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://genestack.github.io/documentation/develop/working-with-study/curation-script/</loc>
+         <lastmod>2024-01-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://genestack.github.io/documentation/develop/working-with-study/deleting-study/</loc>
+         <lastmod>2024-01-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://genestack.github.io/documentation/develop/working-with-study/loading-from-geo/</loc>
+         <lastmod>2024-01-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://genestack.github.io/documentation/develop/working-with-study/sharing-study/</loc>
+         <lastmod>2024-01-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://genestack.github.io/documentation/develop/working-with-study/uploading-study/</loc>
+         <lastmod>2024-01-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
