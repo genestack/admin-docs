@@ -4,8 +4,8 @@ These scripts provide various auxiliary functions to simplify the work with Omic
 
 ## Requirements
 
-- Python 3
-- pip
+-   Python 3
+-   pip
 
 ## Instructions
 
