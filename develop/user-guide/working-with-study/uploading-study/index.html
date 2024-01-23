@@ -1,0 +1,1794 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://genestack.github.io/documentation/develop/user-guide/working-with-study/uploading-study/">
+      
+      
+        <link rel="prev" href="../../templates/delete-template/">
+      
+      
+        <link rel="next" href="../curation-script/">
+      
+      
+      <link rel="icon" href="../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.4">
+    
+    
+      
+        <title>Uploading study - Open Data Manager Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-to-load-and-share-a-study-samples-and-associated-data-via-async-loading" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Open Data Manager Documentation" class="md-header__button md-logo" aria-label="Open Data Manager Documentation" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Open Data Manager Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Uploading study
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../packages-to-install/genestack-python-client/" class="md-tabs__link">
+          
+  
+    
+  
+  User guide
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Open Data Manager Documentation" class="md-nav__button md-logo" aria-label="Open Data Manager Documentation" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    Open Data Manager Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    User guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            User guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Packages to install
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Packages to install
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../packages-to-install/genestack-python-client/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Genestack python client
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../packages-to-install/genestack-auxiliary-scripts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Genestack auxiliary scripts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Users
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Users
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../users/user-creation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Users creation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Templates
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Templates
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/create-or-update-template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create or update template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/delete-template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Delete template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Working with study
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Working with study
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Uploading study
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Uploading study
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restrictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restrictions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#link-all-to-all" class="md-nav__link">
+    <span class="md-ellipsis">
+      Link all to all
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#study-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      Study name
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#importing-a-cross-reference-mapping-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Importing a cross-reference mapping file
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Versioning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#study-with-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Study with expressions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#study-with-libraries-and-preparations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Study with libraries and preparations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#study-with-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Study with variants
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#argi-study-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Argi study example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../curation-script/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Curation script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sharing-study/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sharing study
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deleting-study/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deleting study
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loading-from-geo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Loading from GEO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Dictionaries and ontologies
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Dictionaries and ontologies
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dictionaries-and-ontologies/default-dictionaries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Default dictionaries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dictionaries-and-ontologies/exporting-ontologies-from-odm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exporting ontologies from ODM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dictionaries-and-ontologies/creating-new-dictionary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating new dictionary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5_4" id="__nav_2_5_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Loading new ontology
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Loading new ontology
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dictionaries-and-ontologies/loading-new-ontology/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to load custom dictionaries (ontologies)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSV dictionary format
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-retrieving/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Retrieving
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training-materials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Training Materials
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restrictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restrictions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#link-all-to-all" class="md-nav__link">
+    <span class="md-ellipsis">
+      Link all to all
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#study-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      Study name
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#importing-a-cross-reference-mapping-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Importing a cross-reference mapping file
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Versioning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#study-with-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Study with expressions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#study-with-libraries-and-preparations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Study with libraries and preparations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#study-with-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Study with variants
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#argi-study-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Argi study example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="how-to-load-and-share-a-study-samples-and-associated-data-via-async-loading">How to load and share a study, samples and associated data via async loading<a class="headerlink" href="#how-to-load-and-share-a-study-samples-and-associated-data-via-async-loading" title="Permanent link">&para;</a></h1>
+<p>This article explains how to load studies via script and share them with the organisation (via GUI).
+More information about supported files can be found also in <a href="https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/supported-formats.html">the user
+guide</a>.</p>
+<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Python 3</li>
+<li>pip</li>
+<li>Having <code>pandas</code> library installed. We recommend using the latest version available.</li>
+<li>Genestack Python client installed. See <a href="../../packages-to-install/genestack-python-client/">how to setup Genestack python client</a></li>
+<li>Auxiliary scripts installed. See <a href="../../packages-to-install/genestack-auxiliary-scripts/">how to install Genestack auxiliary scripts</a></li>
+<li>All files with object metadata and data are hosted and available via URLs, e.g. <code>http://data_source/study.csv</code> or file:
+    <code>///local_data/data_source/study.csv</code> for the case when you need to load data to ODM from a local machine on which ODM
+    is installed.</li>
+<li><a href="requirements-for-data-loaded-to-odm.pdf">Requirements for Data Loaded to ODM</a></li>
+</ul>
+<h2 id="restrictions">Restrictions<a class="headerlink" href="#restrictions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The script does not allow to load of several studies via one run.</li>
+<li>The script does not provide functionality to load data to ODM from local computer</li>
+</ul>
+<h2 id="instructions">Instructions<a class="headerlink" href="#instructions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Open a terminal and run a command to display help</li>
+</ul>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>odm-import-data<span class="w"> </span>-h
+</span></code></pre></div>
+<ul>
+<li>Run the script with the below parameters:<ul>
+<li><code>-t, --token</code>: your API token <strong>or</strong></li>
+<li><code>-at, --access-token</code>: Your Access (Bearer Token), provided by third party</li>
+<li><code>-H, --host, -srv, --server</code>: address of the host, e.g. https://odm.genestack.com/</li>
+<li><code>-s,--study</code>: URL of the study file (or -sa: accession of an existing study)</li>
+<li><code>-sm,--samples</code>: URL of the samples file or accession of existing samples file to be linked</li>
+<li><code>-lb, --libraries</code>: URL of the libraries file or accession of existing libraries file to be linked</li>
+<li><code>-pr, --preparations</code>: URL of hosted preparations file or accession of existing preparations file to be linked</li>
+<li><code>-e,--expression</code>: URL of any tabular data file (not only expression data) except Gene Variant or Flow Cytometry</li>
+<li><code>-em,--expression-metadata</code>: URL of any tabular metadata file (not only expression data) except Gene Variant or Flow Cytometry</li>
+<li><code>-v, --variant</code>: URL of the variants data file</li>
+<li><code>-vm, --variant-metadata</code>: URL of the variants metadata file</li>
+<li><code>-f, --flow-cytometry</code>: URL of the flow cytometry data file</li>
+<li><code>-fm, --flow-cytometry-metadata</code>: URL of the flow cytometry metadata file</li>
+<li><code>-tmpl, --template</code>: accession of a template to validate against, if not specified "template marked as default" is
+    used;</li>
+</ul>
+</li>
+</ul>
+<p>Additional optional parameters:</p>
+<ul>
+<li>
+<p>to include a gene-transcript mapping file:</p>
+<ul>
+<li><code>-mpf / mapping-file</code> - link to mapping file</li>
+<li><code>-mpfm / mapping-file-metadata</code> - link to metadata file for the mapping file</li>
+<li><code>-mpfa / mapping-file-accession</code> - accession of the existing mapping file</li>
+</ul>
+</li>
+<li>
+<p>rules for uploading mapping files are described in the section below “Importing a cross-reference mapping file“</p>
+</li>
+<li>to allow the loading of a duplicate of the study: the data from the links has already been previously loaded into ODM
+    and for testing purposes, you need to load this data again - <code>--allow-duplicates</code></li>
+<li>to link all entities of the study according to the data model used: data model with and without libraries and
+    preparations - <code>-lata, --link-all-to-all</code>. Additional rules are described in the section below “Link all to all“</li>
+<li>to enable debug mode - <code>--debug</code></li>
+<li>to allow the script to continue even if linking errors occurred between study
+    entities - <code>-ile, --ignore-linking-errors</code></li>
+<li>to recognize first <code>N</code> columns in expression file as feature attributes: <code>-nfa [N]</code>
+    or <code>--number-of-feature-attributes [N]</code></li>
+<li>to identify multiple measurement in expression file and use a character <code>:</code> to distinguish the
+    sample/library/preparation name from the measurement name in column headers: <code>-ms ':'</code>
+    or <code>--measurement-separator ':'</code></li>
+<li>to specify the uploaded data as a data class <code>C</code>: <code>-dc 'C'</code> or <code>--data-class 'C'</code><ul>
+<li>The following options are available: <code>Bulk transcriptomics</code>, <code>Single cell transcriptomics</code>, <code>Differential abundance (FC, pval, etc.)</code>, <code>Pathway analysis</code>, <code>Proteomics</code>, <code>Single cell proteomics</code>, <code>Metabolomics</code>, <code>Epigenomics</code>, <code>DNA methylation</code>, <code>Chemoinformatics</code>, <code>Imaging features</code>, <code>Gene panel data</code>, <code>Biomarker data</code>, <code>Physical measures</code>, <code>Blood counts</code>, <code>Other body fluid counts</code>, <code>Nanopore</code>, <code>Gene variant (VCF)</code>, <code>Flow Cytometry</code>, <code>Other</code></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="data-model">Data model<a class="headerlink" href="#data-model" title="Permanent link">&para;</a></h2>
+<p>The script supports 2 data models:
+<img alt="Data Model" src="data-model.png" /></p>
+<ul>
+<li>Study - Samples - Omics data:<ul>
+<li>the script uses this data model if no parameters are specified for libraries or preparations loading;</li>
+</ul>
+</li>
+<li>Study - Samples - Libraries/Preparations - Omics data.<ul>
+<li>the script uses this data model if parameters for libraries or preparations loading are specified;</li>
+<li>omics data can be linked only to libraries or preparations;</li>
+<li>only expression data (the parameters --expression and --expression-metadata) is supported.</li>
+</ul>
+</li>
+</ul>
+<p>The script works sequentially, linking the object with the previous one according to the data model. Below you can find
+examples to demonstrate different combinations:</p>
+<p><em>Example 1</em></p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>odm-import-data<span class="w"> </span>--token<span class="w"> </span><span class="o">[</span>token<span class="o">]</span><span class="w"> </span>-H<span class="w"> </span><span class="o">[</span>HOST<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>--study<span class="w"> </span>http://data_source/study.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>--samples<span class="w"> </span>http://data_source/samples_1.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>--expression<span class="w"> </span>http://data_source/expression_1.gct<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span>--expression-metadata<span class="w"> </span>http://data_source/expression_metadata_1.gct.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span>--expression<span class="w"> </span>http://data_source/expression_2.gct<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span>--expression-metadata<span class="w"> </span>http://data_source/expression_metadata_2.gct.tsv
+</span></code></pre></div>
+<ul>
+<li><code>samples_1</code> will be linked to <code>study</code></li>
+<li><code>expression_1</code> will be linked to <code>samples_1</code></li>
+<li><code>expression_2</code> will be linked to <code>samples_1</code></li>
+</ul>
+<p><em>Example 2</em></p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>odm-import-data<span class="w"> </span>--token<span class="w"> </span><span class="o">[</span>token<span class="o">]</span><span class="w"> </span>-H<span class="w"> </span><span class="o">[</span>HOST<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>--study<span class="w"> </span>http://data_source/study.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>--samples<span class="w"> </span>http://data_source/samples_1.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--libraries<span class="w"> </span>http://data_source/libraries_1.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>--expression<span class="w"> </span>http://data_source/expression_1.gct<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span>--expression-metadata<span class="w"> </span>http://data_source/expression_metadata_1.gct.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span>--preparations<span class="w"> </span>http://data_source/preparations_1.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span>--expression<span class="w"> </span>http://data_source/expression_2.gct<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span>--expression-metadata<span class="w"> </span>http://data_source/expression_metadata_2.gct.tsv
+</span></code></pre></div>
+<ul>
+<li><code>samples_1</code> will be linked to <code>study</code></li>
+<li><code>libraries_1</code> will be linked to <code>samples_1</code></li>
+<li><code>expression_1</code> will be linked to <code>libraries_1</code></li>
+<li><code>preparations_1</code> will be linked to <code>samples_1</code></li>
+<li><code>expression_2</code> will be linked to <code>preparations_1</code></li>
+</ul>
+<p><em>Example 3</em></p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>odm-import-data<span class="w"> </span>--token<span class="w"> </span><span class="o">[</span>token<span class="o">]</span><span class="w"> </span>-H<span class="w"> </span><span class="o">[</span>HOST<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--study<span class="w"> </span>http://data_source/study.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--samples<span class="w"> </span>http://data_source/samples_1.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span>--samples<span class="w"> </span>http://data_source/samples_2.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span>--libraries<span class="w"> </span>http://data_source/libraries_1.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span>--preparations<span class="w"> </span>http://data_source/preparations_1.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span>--expression<span class="w"> </span>http://data_source/expression_1.gct<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span>--expression-metadata<span class="w"> </span>http://data_source/expression_metadata_1.gct.tsv
+</span></code></pre></div>
+<ul>
+<li><code>samples_1</code> will be linked to <code>study</code></li>
+<li><code>samples_2</code> will be linked to <code>study</code></li>
+<li><code>libraries_1</code> will be linked to <code>samples_2</code></li>
+<li><code>preparations_1</code> will be linked to <code>samples_2</code></li>
+<li><code>expression_1</code> will be linked to <code>preparations_1</code></li>
+</ul>
+<h2 id="link-all-to-all">Link all to all<a class="headerlink" href="#link-all-to-all" title="Permanent link">&para;</a></h2>
+<p>The <code>-lata</code> parameter allows to bypass the restriction of sequential linking of objects. The behaviour of the script
+with the specified <code>-lata</code> parameter depends on the used data model:</p>
+<ol>
+<li>If there are only samples in the script → the script tries to link all omics data to all samples;</li>
+<li>If there are libraries or preparations in the script the linking works by steps:<ul>
+<li>the script tries to link all libraries and all preparations to all samples;</li>
+<li>the script tries to link all omics data to all libraries and preparations.</li>
+</ul>
+</li>
+</ol>
+<p><em>Example 1 without --link-all-to-all</em></p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>odm-import-data<span class="w"> </span>--token<span class="w"> </span><span class="o">[</span>token<span class="o">]</span><span class="w"> </span>-H<span class="w"> </span><span class="o">[</span>HOST<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span>--study<span class="w"> </span>http://data_source/study.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span>--samples<span class="w"> </span>http://data_source/samples_1.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span>--samples<span class="w"> </span>http://data_source/samples_2.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span>--expression<span class="w"> </span>http://data_source/expression_1.gct<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span>--expression-metadata<span class="w"> </span>http://data_source/expression_metadata_1.gct.tsv
+</span></code></pre></div>
+<ul>
+<li><code>samples_1</code> will be linked to <code>study</code></li>
+<li><code>samples_2</code> will be linked to <code>study</code></li>
+<li><code>expression_1</code> will be linked only to <code>samples_2</code></li>
+</ul>
+<p><em>Example 2 with --link-all-to-all</em></p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>odm-import-data<span class="w"> </span>--token<span class="w"> </span><span class="o">[</span>token<span class="o">]</span><span class="w"> </span>-H<span class="w"> </span><span class="o">[</span>HOST<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span>--study<span class="w"> </span>http://data_source/study.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span>--samples<span class="w"> </span>http://data_source/samples_1.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span>--samples<span class="w"> </span>http://data_source/samples_2.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span>--expression<span class="w"> </span>http://data_source/expression_1.gct<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span>--expression-metadata<span class="w"> </span>http://data_source/expression_metadata_1.gct.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span>--link-all-to-all
+</span></code></pre></div>
+<ul>
+<li><code>samples_1</code> will be linked to <code>study</code></li>
+<li><code>samples_2</code> will be linked to <code>study</code></li>
+<li><code>expression_1</code> will be linked to <code>samples_1</code> and <code>samples_2</code></li>
+</ul>
+<p><em>Example 3 with libraries</em></p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>odm-import-data<span class="w"> </span>--token<span class="w"> </span><span class="o">[</span>token<span class="o">]</span><span class="w"> </span>-H<span class="w"> </span><span class="o">[</span>HOST<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span>--study<span class="w"> </span>http://data_source/study.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span>--samples<span class="w"> </span>http://data_source/samples_1.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span>--samples<span class="w"> </span>http://data_source/samples_2.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span>--libraries<span class="w"> </span>http://data_source/libraries_1.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span>--preparations<span class="w"> </span>http://data_source/preparations_1.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span>--expression<span class="w"> </span>http://data_source/expression_1.gct<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span>--expression-metadata<span class="w"> </span>http://data_source/expression_metadata_1.gct.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span>--link-all-to-all
+</span></code></pre></div>
+<ul>
+<li><code>samples_1</code> will be linked to <code>study</code></li>
+<li><code>samples_2</code> will be linked to <code>study</code></li>
+<li><code>libraries_1</code> will be linked to <code>samples_1</code> and <code>samples_2</code></li>
+<li><code>preparations_1</code> will be linked to <code>samples_1</code> and <code>samples_2</code></li>
+<li><code>expression_1</code> will be linked to <code>preparations_1</code> and <code>libraries_1</code></li>
+</ul>
+<h2 id="study-name">Study name<a class="headerlink" href="#study-name" title="Permanent link">&para;</a></h2>
+<p>By default, the Study Title field in the study metadata file will be used to set the name of the study, or if no field
+is present, it will be set to 'New Study'. You can rename studies via ODM GUI.</p>
+<h2 id="importing-a-cross-reference-mapping-file">Importing a cross-reference mapping file<a class="headerlink" href="#importing-a-cross-reference-mapping-file" title="Permanent link">&para;</a></h2>
+<p>The parameters “mpf” and “mpfm” are used to create a new mapping file with metadata and its linkage with an expression
+group. The parameter “mpfa” is used for linkage expression groups with an existing mapping file.</p>
+<p>How to specify the parameters:</p>
+<ol>
+<li>You can only specify both “mpf” and “mpfm” at the same time as loading expression data. Otherwise, an error will be
+   given: “mapping file is supported with expression matrices only”</li>
+<li>You can only specify “mpfa” at the same time as loading expression data. Otherwise, an error will be given: “mapping
+   file is supported with expression matrices only”</li>
+<li>The user can’t specify “mpfm” without “mpf”. Otherwise, an error message is given: “the parameter “mpf” for mapping
+   file loading is missing”</li>
+<li>For the sample group, you can specify either option 1 (one pair of “mpfm” and “mpf”) or option 2 (“mpfa”). Otherwise,
+   an error message is given: "only one mapping file is expected. check the value of parameters “mpf” or “mpfa”".</li>
+<li>
+<p>The parameters “mpf”, “mpfm” and “mpfa” must be after the parameters for loading expression data, for example:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>odm-import-data<span class="w"> </span>--token<span class="w"> </span><span class="o">[</span>token<span class="o">]</span><span class="w"> </span>-H<span class="w"> </span><span class="o">[</span>HOST<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span>--study<span class="w"> </span>http://data_source/study.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span>--samples<span class="w"> </span>http://data_source/samples_1.csv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span>--expression<span class="w"> </span>http://data_source/expression_1.gct<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span>--expression-metadata<span class="w"> </span>http://data_source/expression_metadata_1.gct.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span>--expression<span class="w"> </span>http://data_source/expression_2.gct<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span>--expression-metadata<span class="w"> </span>http://data_source/expression_metadata_2.gct.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span>--mapping-file<span class="w"> </span>http://data_source/mapping.txt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span>--mapping-file-metadata<span class="w"> </span>http://data_source/mapping_metadata.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span>--template<span class="w"> </span>GSF0000000<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span>--allow-duplicates
+</span></code></pre></div>
+</li>
+<li>
+<p>If <code>link-all-to-all</code> is specified the script tries to link mapping file to all expression data that was specified.</p>
+</li>
+<li>Only one mapping file can be specified along with <code>link-all-to-all</code>.</li>
+</ol>
+<h2 id="versioning">Versioning<a class="headerlink" href="#versioning" title="Permanent link">&para;</a></h2>
+<p>The script now enables users to update existing omics data files (e.g. GCT, VCF files). This is done by appending the
+accession of the existing data file to be updated in square brackets to the data file URL (see below). Previous versions
+of the data files are kept and are still available, but the active version will be set to the most recently uploaded.</p>
+<p><em>Example:</em></p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>odm-import-data<span class="w"> </span>--token<span class="w"> </span><span class="o">[</span>token<span class="o">]</span><span class="w"> </span>-H<span class="w"> </span><span class="o">[</span>HOST<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span>--study-accession<span class="w"> </span>GSF994039<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span>--samples<span class="w"> </span>GSF994040<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span>--expression<span class="w"> </span>http://exampl.com/expression.gct<span class="o">[</span>GSF994565<span class="o">]</span><span class="w">  </span><span class="se">\</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span>--expression-metadata<span class="w"> </span>http://exampl.com/expression_metadata.tsv<span class="w">  </span><span class="se">\</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span>--variant<span class="w"> </span>http://exampl.com/variations.vcf<span class="o">[</span>GSF994700<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span>--variant-metadata<span class="w"> </span>http://exampl.com/variant_metadata.tsv
+</span></code></pre></div>
+<p>As a result of the above, the data files linked to study <code>GSF994039</code> and samples <code>GSF994040</code> will be updated:</p>
+<ul>
+<li>Expression file as the next version of <code>GSF994565</code></li>
+<li>Variant file as the next version of <code>GSF994700</code></li>
+</ul>
+<p>Updating data file versions only works for data files linked to existing studies and samples, you cannot create a new
+study or new samples file at the same time as updating a data file version.</p>
+<div class="admonition info info">
+<p class="admonition-title">Info</p>
+<p>If you get errors importing data but aren’t sure why you can add the <code>--debug</code> argument to generate more detailed help information - at the end of this is the message from the server, which might tell you something about your input files.</p>
+</div>
+<h2 id="other-examples">Other examples<a class="headerlink" href="#other-examples" title="Permanent link">&para;</a></h2>
+<p>Here you can find some predefined examples for study importing.</p>
+<h3 id="study-with-expressions">Study with expressions<a class="headerlink" href="#study-with-expressions" title="Permanent link">&para;</a></h3>
+<p>You can use <a href="examples/study-samples-omics.zip">study-samples-omics.zip</a> archive. This archive contains:</p>
+<ul>
+<li><code>Test.study.tsv</code> — study metadata file;</li>
+<li><code>Test.samples.tsv</code> — samples metadata file;</li>
+<li><code>Test.expression.gct.tsv</code> — expression metadata file;</li>
+<li><code>Test.expression.gct</code> — expression data file.</li>
+</ul>
+<p>Firstly you need to upload files to data source and get links to these files. And then import a study:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>odm-import-data<span class="w"> </span>--token<span class="w"> </span><span class="o">[</span>token<span class="o">]</span><span class="w"> </span>-H<span class="w"> </span><span class="o">[</span>HOST<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>--study<span class="w"> </span>http://data_source/Test.study.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span>--samples<span class="w"> </span>http://data_source/Test.samples.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span>--expression-metadata<span class="w"> </span>http://data_source/Test.expression.gct.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span>--expression<span class="w"> </span>http://data_source/Test.expression.gct
+</span></code></pre></div>
+<h3 id="study-with-libraries-and-preparations">Study with libraries and preparations<a class="headerlink" href="#study-with-libraries-and-preparations" title="Permanent link">&para;</a></h3>
+<p>You can use <a href="examples/study-samples-libraries-omics.zip">study-samples-libraries-omics.zip</a> archive. This archive contains:</p>
+<ul>
+<li><code>Test.study.tsv</code> — study metadata file;</li>
+<li><code>Test.samples.tsv</code> — samples metadata file;</li>
+<li><code>Test.libraries.tsv</code> — libraries metadata file;</li>
+<li><code>Test.preparations.tsv</code> — preparations metadata file;</li>
+<li><code>Test.expression.gct.tsv</code> — expression metadata file;</li>
+<li><code>Test.expression.gct</code> — expression data file.</li>
+</ul>
+<p>Firstly you need to upload files to data source and get links to these files. And then import a study:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>odm-import-data<span class="w"> </span>--token<span class="w"> </span><span class="o">[</span>token<span class="o">]</span><span class="w"> </span>-H<span class="w"> </span><span class="o">[</span>HOST<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span>--study<span class="w"> </span>http://data_source/Test.study.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span>--samples<span class="w"> </span>http://data_source/Test.samples.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span>--libraries<span class="w"> </span>http://data_source/Test.libraries.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">  </span>--preparations<span class="w"> </span>http://data_source/Test.preparations.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span>--expression-metadata<span class="w"> </span>http://data_source/Test.expression.gct.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span>--expression<span class="w"> </span>http://data_source/Test.expression.gct
+</span></code></pre></div>
+<h3 id="study-with-variants">Study with variants<a class="headerlink" href="#study-with-variants" title="Permanent link">&para;</a></h3>
+<p>You can use <a href="examples/study-variants.zip">study-variants.zip</a> archive. This archive contains:</p>
+<ul>
+<li><code>Example.study.tsv</code> — study metadata file;</li>
+<li><code>Example.samples.tsv</code> — samples metadata file;</li>
+<li><code>Example.expression.gct.tsv</code> — expression metadata file;</li>
+<li><code>Example.expression.gct</code> — expression data file;</li>
+<li><code>Example.gx-dummy.tsv</code> — variants metadata file;</li>
+<li><code>Example.gx-dummy.vcf</code> — variants data file.</li>
+</ul>
+<p>Firstly you need to upload files to data source and get links to these files. And then import a study:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>odm-import-data<span class="w"> </span>--token<span class="w"> </span><span class="o">[</span>token<span class="o">]</span><span class="w"> </span>-H<span class="w"> </span><span class="o">[</span>HOST<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span>--study<span class="w"> </span>http://data_source/Example.study.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span>--samples<span class="w"> </span>http://data_source/Example.samples.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span>--expression-metadata<span class="w"> </span>http://data_source/Example.expression.gct.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span>--expression<span class="w"> </span>http://data_source/Example.expression.gct
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span>--variant-metadata<span class="w"> </span>http://data_source/Example.gx-dummy.tsv
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">  </span>--variant<span class="w"> </span>http://data_source/Example.gx-dummy.vcf
+</span></code></pre></div>
+<h3 id="argi-study-example">Argi study example<a class="headerlink" href="#argi-study-example" title="Permanent link">&para;</a></h3>
+<p>You can use <a href="examples/argi-study-example.zip">argi-study-example.zip</a> archive. This archive contains:</p>
+<ul>
+<li><code>arabidopsis.gct</code> — expression data file;</li>
+<li><code>arabidopsis_sample_metadata_uncurated.tsv</code> - samples metadata file;</li>
+<li><code>arabidopsis_study.tsv</code> — study metadata file.</li>
+</ul>
+<p>Firstly you need to upload files to data source and get links to these files. And then import a study:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>odm-import-data<span class="w"> </span>--token<span class="w"> </span><span class="o">[</span>token<span class="o">]</span><span class="w"> </span>-H<span class="w"> </span><span class="o">[</span>HOST<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span>--study<span class="w"> </span>http://data_source/arabidopsis_study.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span>--samples<span class="w"> </span>http://data_source/arabidopsis_sample_metadata_uncurated.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span>--expression<span class="w"> </span>http://data_source/arabidopsis.gct
+</span></code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../templates/delete-template/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Delete template">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Delete template
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../curation-script/" class="md-footer__link md-footer__link--next" aria-label="Next: Curation script">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Curation script
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.c011b7c0.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.7389ff0e.min.js"></script>
+      
+    
+  </body>
+</html>
