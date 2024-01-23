@@ -30,7 +30,7 @@ odm-import-data -h
 ```
 
 -   Run the script with the below parameters:
-    -   `-t, --token`: your API token **or**
+    -   `-t, --token`: your API token <br/> OR <br/>
     -   `-at, --access-token`: Your Access (Bearer Token), provided by third party
     -   `-H, --host, -srv, --server`: address of the host, e.g. https://odm.genestack.com/
     -   `-s,--study`: URL of the study file (or -sa: accession of an existing study)
