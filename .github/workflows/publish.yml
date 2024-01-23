@@ -1,37 +1,37 @@
 name: Publish documentation version
 on:
-  push:
-    branches:
-      - "v*.*"
-      - "v*.*.*"
-      - "develop"
+    push:
+        branches:
+            - "release/*.*"
+            - "release/*.*.*"
+            - "develop"
 permissions:
-  contents: write
+    contents: write
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Configure Git Credentials
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      - uses: actions/setup-python@v4
-        with:
-          python-version: 3.x
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
-      - uses: actions/cache@v3
-        with:
-          key: mkdocs-material-${{ env.cache_id }}
-          path: .cache
-          restore-keys: |
-            mkdocs-material-
-      - run: pip install mkdocs-material
-      - run: pip install mike
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
-      - run: mike deploy --push --update-aliases ${{ steps.extract_branch.outputs.branch }} latest
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: Configure Git Credentials
+              run: |
+                  git config user.name github-actions[bot]
+                  git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+            - uses: actions/setup-python@v4
+              with:
+                  python-version: 3.x
+            - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+            - uses: actions/cache@v3
+              with:
+                  key: mkdocs-material-${{ env.cache_id }}
+                  path: .cache
+                  restore-keys: |
+                      mkdocs-material-
+            - run: pip install mkdocs-material
+            - run: pip install mike
+            - name: Extract branch name
+              shell: bash
+              run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/} | sed 's|release/||')"
+              id: extract_branch
+            - run: mike deploy --push --update-aliases ${{ steps.extract_branch.outputs.branch }} latest
