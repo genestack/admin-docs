@@ -1,6 +1,0 @@
-{
-  "template_path": "templates/Default_ODM_Template.json",
-  "template_name": "Default Template",
-  "replace": true,
-  "mark_default": true
-}
