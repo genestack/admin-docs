@@ -3,29 +3,30 @@ site_url: https://genestack.github.io/documentation
 
 nav:
     - Home: index.md
-    - Packages to install:
-          - Genestack python client: packages-to-install/genestack-python-client.md
-          - Genestack auxiliary scripts: packages-to-install/genestack-auxiliary-scripts.md
-    - Users:
-          - Users creation: users/user-creation.md
-    - Templates:
-          - Create or update template: odm-templates/create-or-update-template.md
-          - Delete template: odm-templates/delete-template.md
-    - Working with study:
-          - Uploading study: working-with-study/uploading-study.md
-          - Curation script: working-with-study/curation-script.md
-          - Sharing study: working-with-study/sharing-study.md
-          - Deleting study: working-with-study/deleting-study.md
-          - Loading from GEO: working-with-study/loading-from-geo.md
-    - Dictionaries and ontologies:
-          - Default dictionaries: dictionaries-and-ontologies/default-dictionaries.md
-          - Exporting ontologies from ODM: dictionaries-and-ontologies/exporting-ontologies-from-odm.md
-          - Creating new dictionary: dictionaries-and-ontologies/creating-new-dictionary.md
-          - Loading new ontology:
-                - dictionaries-and-ontologies/loading-new-ontology.md
-                - CSV dictionary format: dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format.md
-    - Data Retrieving: data-retrieving.md
-    - Training Materials: training-materials.md
+    - User guide:
+          - Packages to install:
+                - Genestack python client: user-guide/packages-to-install/genestack-python-client.md
+                - Genestack auxiliary scripts: user-guide/packages-to-install/genestack-auxiliary-scripts.md
+          - Users:
+                - Users creation: user-guide/users/user-creation.md
+          - Templates:
+                - Create or update template: user-guide/templates/create-or-update-template.md
+                - Delete template: user-guide/templates/delete-template.md
+          - Working with study:
+                - Uploading study: user-guide/working-with-study/uploading-study.md
+                - Curation script: user-guide/working-with-study/curation-script.md
+                - Sharing study: user-guide/working-with-study/sharing-study.md
+                - Deleting study: user-guide/working-with-study/deleting-study.md
+                - Loading from GEO: user-guide/working-with-study/loading-from-geo.md
+          - Dictionaries and ontologies:
+                - Default dictionaries: user-guide/dictionaries-and-ontologies/default-dictionaries.md
+                - Exporting ontologies from ODM: user-guide/dictionaries-and-ontologies/exporting-ontologies-from-odm.md
+                - Creating new dictionary: user-guide/dictionaries-and-ontologies/creating-new-dictionary.md
+                - Loading new ontology:
+                      - user-guide/dictionaries-and-ontologies/loading-new-ontology.md
+                      - CSV dictionary format: user-guide/dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format.md
+          - Data Retrieving: user-guide/data-retrieving.md
+          - Training Materials: user-guide/training-materials.md
 
 theme:
     name: material
