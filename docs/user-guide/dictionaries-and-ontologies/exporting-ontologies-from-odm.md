@@ -8,7 +8,7 @@
    ![3](exporting-ontologies-from-odm/3.png)
 1. You will see all the attributes, including which are associated with Dictionaries and you can square the list of Dictionaries used.
 1. To get source-file of ontology, you will need accession (e.g. `GSF000041`)
-1. Then you will need to go to the File Manager by a direct link:\
+1. Then you will need to go to the File Manager by a direct link:<br/>
    `[your_host]/frontend/endpoint/application/run/genestack/filebrowser`
 1. Put ontology Accession in the search field and click on the search button. You will see templates which use this dictionary and the dictionary itself. <br/>
    ![7](exporting-ontologies-from-odm/7.png)

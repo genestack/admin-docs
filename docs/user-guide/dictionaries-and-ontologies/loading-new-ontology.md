@@ -37,9 +37,9 @@ Run the following command from your terminal:
 odm-update-dictionary -u YOUR_ALIAS_FOR_USER --file_with_dictionaries /FULL_PATH_TO_THE_DICTIONARIES_JSON_FILE/dictionaries.json
 ```
 
-`-u` [optional] parameter should contain the alias for the user you set up with the Genestack python client previously. \
-`-H [hostname]` [optional] hostname for the environment being used; you can use either -u or -H. \
-`--file_with_dictionaries` parameter should contain full path to the `dictionaries.json` file - replace `FULL_PATH_TO_THE_DICTIONARIES_JSON_FILE` with this path. \
+`-u` [optional] parameter should contain the alias for the user you set up with the Genestack python client previously.<br/>
+`-H [hostname]` [optional] hostname for the environment being used; you can use either `-u` or `-H`.<br/>
+`--file_with_dictionaries` parameter should contain full path to the `dictionaries.json` file - replace `FULL_PATH_TO_THE_DICTIONARIES_JSON_FILE` with this path.<br/>
 or run
 
 ```shell
