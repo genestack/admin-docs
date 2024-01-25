@@ -27,6 +27,7 @@ nav:
                       - CSV dictionary format: user-guide/dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format.md
           - Data Retrieving: user-guide/data-retrieving.md
           - Training Materials: user-guide/training-materials.md
+    - Release notes: release-notes.md
 
 theme:
     name: material
