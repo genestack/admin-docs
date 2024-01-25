@@ -1,0 +1,5326 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://genestack.github.io/documentation/develop/release-notes/">
+      
+      
+        <link rel="prev" href="../user-guide/training-materials/">
+      
+      
+      
+      <link rel="icon" href="../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.5">
+    
+    
+      
+        <title>Release notes - Open Data Manager Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#release-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Open Data Manager Documentation" class="md-header__button md-logo" aria-label="Open Data Manager Documentation" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Open Data Manager Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Release notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../user-guide/packages-to-install/genestack-python-client/" class="md-tabs__link">
+          
+  
+    
+  
+  User guide
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Release notes
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Open Data Manager Documentation" class="md-nav__button md-logo" aria-label="Open Data Manager Documentation" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    Open Data Manager Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    User guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            User guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Packages to install
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Packages to install
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/packages-to-install/genestack-python-client/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Genestack python client
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/packages-to-install/genestack-auxiliary-scripts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Genestack auxiliary scripts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Users
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Users
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/users/user-creation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Users creation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Templates
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Templates
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/templates/create-or-update-template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create or update template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/templates/delete-template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Delete template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Working with study
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Working with study
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/working-with-study/uploading-study/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uploading study
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/working-with-study/curation-script/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Curation script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/working-with-study/sharing-study/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sharing study
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/working-with-study/deleting-study/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deleting study
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/working-with-study/loading-from-geo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Loading from GEO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Dictionaries and ontologies
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Dictionaries and ontologies
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/dictionaries-and-ontologies/default-dictionaries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Default dictionaries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/dictionaries-and-ontologies/exporting-ontologies-from-odm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exporting ontologies from ODM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/dictionaries-and-ontologies/creating-new-dictionary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating new dictionary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5_4" id="__nav_2_5_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Loading new ontology
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Loading new ontology
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/dictionaries-and-ontologies/loading-new-ontology/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to load custom dictionaries (ontologies)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSV dictionary format
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/data-retrieving/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Retrieving
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/training-materials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Training Materials
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Release notes
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Release notes
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#155-open-data-manager-2023-winter-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.55 Open Data Manager 2023 Winter Release
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.55 Open Data Manager 2023 Winter Release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-major-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed Major Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Changes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#154-open-data-manager-2023-summer-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.54 Open Data Manager 2023 Summer Release
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.54 Open Data Manager 2023 Summer Release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#all-users-expanded-data-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      [All users] Expanded Data Capabilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curators-enhanced-data-uploading" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Curators] Enhanced Data Uploading
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-api-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Advanced] API Improvements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curators-gui-adjustments" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Curators] GUI Adjustments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#researchers-enhanced-data-browsing-and-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Researchers] Enhanced Data Browsing and Export
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-api-retrieval-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Advanced] API Retrieval Improvements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issue" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known Issue
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#152" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.52
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.52">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gui-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      GUI features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GUI features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curators-revoking-access-to-a-study" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Curators] Revoking access to a study
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curators-removing-a-multivalue-while-editing-samples-in-metadata-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Curators] Removing a multivalue while editing samples in Metadata Editor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Changes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#151" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.51
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.51">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues-in-the-metadata-curation-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues in the metadata curation process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues-in-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues in API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#150" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.50
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.50">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#149" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.49
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.49">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#148" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.48
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.48">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#147" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.47
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.47">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#146" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.46
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.46">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#145" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.45
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.45">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#144" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.44
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.44">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#143" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.43
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.43">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#142" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.42
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.42">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#141" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.41
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.41">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#140" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.40
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.40">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#139-10-august-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.39 (10 August 2021)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.39 (10 August 2021)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-changes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      API changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#138-28-june-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.38 (28 June 2021)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.38 (28 June 2021)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#137-25-may-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.37 (25 May 2021)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.37 (25 May 2021)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#136-27-april-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.36 (27 April 2021)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.36 (27 April 2021)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#135-30-march-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.35 (30 March 2021)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.35 (30 March 2021)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-changes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      API changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#134-5-march-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.34 (5 March 2021)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.34 (5 March 2021)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-changes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      API changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#133-27-jan-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.33 (27 Jan 2021)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.33 (27 Jan 2021)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#132-30-dec-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.32 (30 Dec 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.32 (30 Dec 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-changes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      API changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#131-11-nov-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.31 (11 Nov 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.31 (11 Nov 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#130-16-oct-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.30 (16 Oct 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.30 (16 Oct 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#129-21-sep-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.29 (21 Sep 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.29 (21 Sep 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#128-8-sep-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.28 (8 Sep 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.28 (8 Sep 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-restful-api-endpoints-for-asynchronous-linking" class="md-nav__link">
+    <span class="md-ellipsis">
+      New RESTful API endpoints for asynchronous linking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1271-11-aug-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.27.1 (11 Aug 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.27.1 (11 Aug 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#127-7-aug-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.27 (7 Aug 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.27 (7 Aug 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features-in-this-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      New features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1261-15-jul-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.26.1 (15 Jul 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.26.1 (15 Jul 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#126-7-jul-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.26 (7 Jul 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.26 (7 Jul 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features-in-this-release_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      New features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#125-25-jun-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.25 (25 Jun 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.25 (25 Jun 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features-in-this-release_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      New features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#124-8-jun-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.24 (8 Jun 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.24 (8 Jun 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features-in-this-release_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      New features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-housekeepingadmin-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      New housekeeping/admin features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#123-27-may-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.23 (27 May 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.23 (27 May 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features-in-this-release_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      New features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-housekeepingadmin-features-in-this-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      New housekeeping/admin features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#122-7-may-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.22 (7 May 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.22 (7 May 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features-in-this-release_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      New features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#155-open-data-manager-2023-winter-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.55 Open Data Manager 2023 Winter Release
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.55 Open Data Manager 2023 Winter Release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-major-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed Major Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Changes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#154-open-data-manager-2023-summer-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.54 Open Data Manager 2023 Summer Release
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.54 Open Data Manager 2023 Summer Release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#all-users-expanded-data-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      [All users] Expanded Data Capabilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curators-enhanced-data-uploading" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Curators] Enhanced Data Uploading
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-api-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Advanced] API Improvements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curators-gui-adjustments" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Curators] GUI Adjustments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#researchers-enhanced-data-browsing-and-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Researchers] Enhanced Data Browsing and Export
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-api-retrieval-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Advanced] API Retrieval Improvements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issue" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known Issue
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#152" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.52
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.52">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gui-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      GUI features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GUI features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curators-revoking-access-to-a-study" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Curators] Revoking access to a study
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curators-removing-a-multivalue-while-editing-samples-in-metadata-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Curators] Removing a multivalue while editing samples in Metadata Editor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Changes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#151" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.51
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.51">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues-in-the-metadata-curation-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues in the metadata curation process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues-in-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues in API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#150" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.50
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.50">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#149" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.49
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.49">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#148" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.48
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.48">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#147" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.47
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.47">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#146" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.46
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.46">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#145" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.45
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.45">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#144" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.44
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.44">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#143" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.43
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.43">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#142" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.42
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.42">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#141" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.41
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.41">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#140" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.40
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.40">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#139-10-august-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.39 (10 August 2021)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.39 (10 August 2021)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-changes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      API changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#138-28-june-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.38 (28 June 2021)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.38 (28 June 2021)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#137-25-may-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.37 (25 May 2021)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.37 (25 May 2021)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#136-27-april-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.36 (27 April 2021)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.36 (27 April 2021)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#135-30-march-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.35 (30 March 2021)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.35 (30 March 2021)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-changes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      API changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#134-5-march-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.34 (5 March 2021)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.34 (5 March 2021)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-changes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      API changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#133-27-jan-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.33 (27 Jan 2021)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.33 (27 Jan 2021)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#132-30-dec-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.32 (30 Dec 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.32 (30 Dec 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-changes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      API changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#131-11-nov-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.31 (11 Nov 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.31 (11 Nov 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#130-16-oct-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.30 (16 Oct 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.30 (16 Oct 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#129-21-sep-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.29 (21 Sep 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.29 (21 Sep 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#128-8-sep-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.28 (8 Sep 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.28 (8 Sep 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-restful-api-endpoints-for-asynchronous-linking" class="md-nav__link">
+    <span class="md-ellipsis">
+      New RESTful API endpoints for asynchronous linking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1271-11-aug-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.27.1 (11 Aug 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.27.1 (11 Aug 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#127-7-aug-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.27 (7 Aug 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.27 (7 Aug 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features-in-this-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      New features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1261-15-jul-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.26.1 (15 Jul 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.26.1 (15 Jul 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#126-7-jul-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.26 (7 Jul 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.26 (7 Jul 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features-in-this-release_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      New features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#125-25-jun-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.25 (25 Jun 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.25 (25 Jun 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features-in-this-release_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      New features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#124-8-jun-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.24 (8 Jun 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.24 (8 Jun 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features-in-this-release_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      New features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-housekeepingadmin-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      New housekeeping/admin features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#123-27-may-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.23 (27 May 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.23 (27 May 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features-in-this-release_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      New features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-housekeepingadmin-features-in-this-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      New housekeeping/admin features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#122-7-may-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.22 (7 May 2020)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.22 (7 May 2020)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features-in-this-release_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      New features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="release-notes">Release notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Target users</p>
+<p><strong>Curators</strong> - users who add new data into ODM and are responsible for the data harmonization and curation. That includes creating and defining metadata templates, mapping metadata and temples, and data updates.</p>
+<p><strong>Researchers</strong> - users who access ODM to identify a batch of data suitable for further research and analysis. That includes search, data browsing and export.</p>
+<p><strong>Advanced</strong> - users who can utilize advanced API functionalities for user management and data management.</p>
+<p><strong>Admins</strong> - users who manage organization in ODM, its user and groups.</p>
+</div>
+<h2 id="155-open-data-manager-2023-winter-release">1.55 Open Data Manager 2023 Winter Release<a class="headerlink" href="#155-open-data-manager-2023-winter-release" title="Permanent link">&para;</a></h2>
+<h3 id="new-features">New Features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>[Curators, Advanced, Admin] Manage Data</strong><ul>
+<li><strong>New Swagger Page</strong>: Introducing new endpoints for managing detached objects and deleting objects in ODM.<ul>
+<li><code>GET/detached-objects</code>: Identifies detached data objects (Samples, Libraries, Preparations, Tabular Data, VCF, and Flow Cytometry data) that are not linked to other objects, aiding in clean-up after incomplete data uploads or deletions.</li>
+<li><code>DELETE/data</code>: Facilitates cascade deletion of selected objects from ODM. For instance, deleting a Study also removes all linked objects (Samples, Libraries, Tabular Data, VCF, etc.). Access restricted to users with <code>MANAGE_ORGANIZATION</code> and <code>ACCESS_ALL_DATA</code> permissions.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>[Curators] Data Uploading Enhancements in GUI</strong><ul>
+<li><strong>Enhanced Tabular Data Handling</strong>: Supports specifying a separator character in file column headers for distinguishing between sample names and measurement types.</li>
+<li><strong>Advanced Options</strong>:<ul>
+<li><strong>Skip Zeroes (Sparse Data Matrix)</strong>: Option to ignore cells with '0' values to optimize performance for datasets common in single-cell technologies.</li>
+</ul>
+</li>
+<li><strong>Pre-validation</strong>: All data files uploaded from the local computer undergo a formatting compliance check before uploading.</li>
+<li><strong>File Attachment Updates</strong>: If an attached file already exists in ODM, the system offers options to overwrite or rename the file.</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixed-major-issues">Fixed Major Issues<a class="headerlink" href="#fixed-major-issues" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>GUI Issues</strong>:</p>
+<ul>
+<li>[Curators] Fixed the issue where Bulk Replace doesn't replace some empty values in the Metadata Editor.</li>
+<li>[Curators] Resolved incorrect behavior when copying/reassigning string values to integer/decimal types.</li>
+<li>[Curators] Addressed the issue preventing the import of Sample Metadata to a Study with existing attached files or failed tabular data uploads.</li>
+<li>[Users] Corrected the issue with incorrect data file names in export archives.</li>
+</ul>
+</li>
+<li>
+<p><strong>Scripts and API Issues</strong>:</p>
+<ul>
+<li>[Curators, Advanced] Fixed the error occurring during the simultaneous upload of multiple files with over 2000 samples.</li>
+<li>[Curators, Advanced] Resolved the issue where the curation script does not publish changes.</li>
+<li>[Curators, Advanced] Aligned the behavior of the curation script with GUI functionality, particularly for the "Re-assign" feature.</li>
+<li>[Advanced] Addressed issues with streaming data endpoints, including excessive log entries, incomplete results under high demand, and malfunctioning with custom attribute-linked Tabular Data.</li>
+<li>[Advanced] Fixed errors related to long IP addresses and unexpected errors with Access Token requests.</li>
+</ul>
+</li>
+</ul>
+<h3 id="other-changes">Other Changes<a class="headerlink" href="#other-changes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Data Archive Removal</strong>: All export data archives previously generated in the ODM GUI will be deleted. New export archives can be generated on demand.</li>
+<li><strong>Custom SSE-KMS Key</strong>: Introduced the ability to specify a custom SSE-KMS key for data uploading in the ODM GUI.</li>
+</ul>
+<hr/>
+
+<h2 id="154-open-data-manager-2023-summer-release">1.54 Open Data Manager 2023 Summer Release<a class="headerlink" href="#154-open-data-manager-2023-summer-release" title="Permanent link">&para;</a></h2>
+<p>ODM – renamed to <strong>Open</strong> Data Manager.</p>
+<h3 id="all-users-expanded-data-capabilities">[All users] Expanded Data Capabilities<a class="headerlink" href="#all-users-expanded-data-capabilities" title="Permanent link">&para;</a></h3>
+<p>ODM now supports TSV-formatted data frames. This expansion beyond GCT 1.2, VCF, and FCS formats enables the upload of diverse data types such as proteomics, metabolomics, epigenomics, and analysis results. This requires adherence to the data frame specifications provided in the <a href="https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/supported-formats.html#tabular-data">User Guide</a>.</p>
+<p>Simply put, your data file can now accommodate multiple columns defining the measured feature and more than one measurement column per sample.</p>
+<p>Example of Mass Spectrometry data: Feature columns can encompass: <code>Gene Name</code>, <code>Protein Name</code>, <code>Peptide sequence</code>, <code>PTM site</code>, <code>M/Z ratio</code>, <code>Retention time</code>, etc. Measurements per sample may include: <code>Signal intensity</code>, <code>Signal quality</code>, etc.</p>
+<p>Data upload is possible via the GUI/API, and querying can be executed via the API (see details below).</p>
+<h3 id="curators-enhanced-data-uploading">[Curators] Enhanced Data Uploading<a class="headerlink" href="#curators-enhanced-data-uploading" title="Permanent link">&para;</a></h3>
+<p>The revised data uploading function is available as a <strong>BETA</strong> version in both the API and GUI. This feature will be improved in upcoming releases.</p>
+<h3 id="advanced-api-improvements">[Advanced] API Improvements<a class="headerlink" href="#advanced-api-improvements" title="Permanent link">&para;</a></h3>
+<p>At present, uploading of TSV-formatted data is executed through Expression endpoints, with future releases introducing new endpoints for this operation.</p>
+<p>Utilize the following endpoints to upload TSV or bulk transcriptomics data in GCT 1.2:</p>
+<p><code>post/expression/gct</code></p>
+<p><code>post/import/expression</code></p>
+<p>We've added two new parameters for these endpoints (detailed descriptions available on corresponding Swagger pages):</p>
+<ul>
+<li><code>numberOfFeatureAttributes</code> - to specify the number of feature columns in the file.</li>
+<li><code>dataClass</code> - to denote the data type (e.g., proteomics, metabolomics, etc.).</li>
+</ul>
+<h3 id="curators-gui-adjustments">[Curators] GUI Adjustments<a class="headerlink" href="#curators-gui-adjustments" title="Permanent link">&para;</a></h3>
+<p>The <code>Create new study</code> button has been relocated to the center of the screen.</p>
+<p><img alt="Dashboard" src="1.54-dashboard.png" /></p>
+<p>The <code>Add Data (BETA)</code> button has been incorporated into the new Data tab (further details about the tab below).</p>
+<figure>
+<p><img alt="Add data button" src="1.54-add-data-button.png" width="360" /></p>
+</figure>
+<p>You now have the ability to import TSV, GCT, VCF, or FCS data from your local computer or via a direct link.</p>
+<figure>
+<p><img alt="Define your data dialog" src="1.54-data-dialog.png" width="480" /></p>
+</figure>
+<p>Moreover, this button can also be used to attach any file to the study.</p>
+<figure>
+<p><img alt="Attach file dialog" src="1.54-data-dialog-attach-file.png" width="480" /></p>
+</figure>
+<p>Please refer to the <a href="https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/import-samples-spreadsheet.html#import-data-beta">User Guide</a> for more information on these functionalities.</p>
+<p>The Metadata Editor now includes an option to add new custom fields for Study and Data metadata.</p>
+<figure>
+<p><img alt="Add another attribute button" src="1.54-add-another-attribute.png" width="280" /></p>
+</figure>
+<h3 id="researchers-enhanced-data-browsing-and-export">[Researchers] Enhanced Data Browsing and Export<a class="headerlink" href="#researchers-enhanced-data-browsing-and-export" title="Permanent link">&para;</a></h3>
+<p>The <code>Signal Type</code> filter has been replaced with the Data Class filter, which represents all available data types across studies.</p>
+<figure>
+<p><img alt="Data Classes" src="1.54-data-classes.png" width="320" /></p>
+</figure>
+<p>The <code>Signal Type</code> column has been removed from the main study browser panel.</p>
+<p>The Expression/Variant/Flow Cytometry tabs have been removed from the Metadata Editor page.</p>
+<p>A new <code>Data</code> tab has been added to the Metadata Editor page. This tab displays a list of all data files uploaded for the study, organized by their respective <code>Data Class</code> parameter (selected during file upload) on the left panel.</p>
+<figure>
+<p><img alt="Files panel" src="1.54-files-panel.png" width="320" /></p>
+</figure>
+<p>Clicking on a file enables metadata editing [Curators only] and browsing.</p>
+<p>The metadata now includes four mandatory read-only fields that are auto-generated:</p>
+<ul>
+<li>Data Class - the data type selected during file upload.</li>
+<li>Features (string) - string feature column names present in the file (e.g., <code>Gene Name</code>).</li>
+<li>Features (numeric) - numeric feature column names present in the file (e.g., <code>M/Z ratio</code>).</li>
+<li>Value (numeric) - measurement types if more than one measurement is available per sample/library/preparation (e.g., <code>Fold Change</code>, <code>p-value</code>).
+    <br/><img alt="Data settings" src="1.54-data-settings.png" width="300" /></li>
+</ul>
+<p>These fields are implemented to make the content of these files visible and searchable for data science users. We strongly advise against editing these fields in the template editor, as it could make these files inaccessible. If data is uploaded in the GCT format, <code>Features (string)</code>, <code>Features (numeric)</code>, and <code>Value (numeric)</code> fields are left empty (due to the standard structure of GCT files).</p>
+<h3 id="advanced-api-retrieval-improvements">[Advanced] API Retrieval Improvements<a class="headerlink" href="#advanced-api-retrieval-improvements" title="Permanent link">&para;</a></h3>
+<p>The uploaded data can be searched and extracted using the API endpoint. Similar to the uploading process, data retrieval is performed through Expression parameters of Omics queries (Integration group), with future releases set to introduce new endpoints for this operation.</p>
+<figure>
+<p><img alt="Swagger endpoints" src="1.54-swagger.png" width="640" /></p>
+</figure>
+<p>Each endpoint of Omics queries now has two updated parameters:</p>
+<ul>
+<li>In the <code>responseFormat</code> parameter, use the <code>multi_values</code> value to extract data in the new format. If your data has multiple features/measurements, they will be extracted in full. If the parameter is unspecified, the output returns only the first feature column and the first measurement per sample. This modification was introduced to maintain backward compatibility for applications built for GCT data extraction.</li>
+<li><code>exQuery</code> has been enhanced and now supports flexible searches across files of any content. Search parameters in <code>exQuery</code> include options for feature and measurement filtering:<ul>
+<li>To search by feature (feature keyword), specify the required column name, e.g., <code>feature.Genes="ZNF814"</code>.</li>
+<li>To search by measurement type (value keyword), specify the required column name, e.g., <code>value.intensity &gt; A</code>.</li>
+</ul>
+</li>
+</ul>
+<p>New search capabilities include exact matches, multiple matches, range filtering, substring search, search by missing values, and more. Please refer to the corresponding endpoint descriptions in Swagger for details.</p>
+<h3 id="known-issue">Known Issue<a class="headerlink" href="#known-issue" title="Permanent link">&para;</a></h3>
+<p>If more than one file with the same name and extension is imported or attached via <code>Add Data (BETA)</code> button, then <code>Export</code> of the entire Study in one archive does not work.</p>
+<p>Do not import/attach files with exactly the same name (and extension) to avoid this issue.
+In case, two files with the same names were uploaded, you need to download them one by one.</p>
+<figure>
+<p><img alt="Export data" src="1.54-export.png" width="420" /></p>
+</figure>
+<hr/>
+
+<h2 id="152">1.52<a class="headerlink" href="#152" title="Permanent link">&para;</a></h2>
+<h3 id="gui-features">GUI features<a class="headerlink" href="#gui-features" title="Permanent link">&para;</a></h3>
+<h4 id="curators-revoking-access-to-a-study">[Curators] Revoking access to a study<a class="headerlink" href="#curators-revoking-access-to-a-study" title="Permanent link">&para;</a></h4>
+<p>Added an ability to unshare a study (revoke access to a study) from a certain user group in Metadata Editor. The feature is available only to the study owner.</p>
+<figure>
+<p><img alt="Revoking access" src="1.52-revoking-access.png" width="400" /></p>
+</figure>
+<h4 id="curators-removing-a-multivalue-while-editing-samples-in-metadata-editor">[Curators] Removing a multivalue while editing samples in Metadata Editor<a class="headerlink" href="#curators-removing-a-multivalue-while-editing-samples-in-metadata-editor" title="Permanent link">&para;</a></h4>
+<p>Users can manually remove one of the values in a row with multiple values while editing a metadata sample in Metadata Editor. Previously, multi-valued "No Value" rows were automatically removed only after a new version of the sample metadata was published.</p>
+<figure>
+<p><img alt="Remove value" src="1.52-remove-value.png" width="320" /></p>
+</figure>
+<h4 id="fixed-issues">Fixed issues<a class="headerlink" href="#fixed-issues" title="Permanent link">&para;</a></h4>
+<p>[Curators].[Metadata Editor] Sometimes sample attributes (with attached dictionaries) with empty values are marked in Metadata Editor as invalid.</p>
+<p>[Curators].[Metadata Editor] When multi-value rows in the composite sample attributes have no value, they are merged and not shown in Metadata Editor. In the example, there are "Compound Treatment/Compound", "Compound Treatment/Dose", and "Compound Treatment/Unit"; it is impossible to determine which "Dose" values correspond to a proper "Compound".</p>
+<figure>
+<p><img alt="Multi-values. Before fixing the issue" src="1.52-multivalues-before-fix.png" width="420" />
+  </p>
+<figcaption>Before fixing the issue</figcaption>
+</figure>
+<figure>
+<p><img alt="Multi-values. After fixing the issue" src="1.52-multivalues-after-fix.png" width="420" />
+  </p>
+<figcaption>After fixing the issue</figcaption>
+</figure>
+<p>[Curators].[Metadata Editor] The default dictionary "Cell type" can not be used during the validation of the samples in Metadata Editor. Also, this dictionary cannot be reloaded into ODM.</p>
+<p>[Curators].[Metadata Editor] Incorrect sample count is shown on the bulk replace attribute editor dialogue.</p>
+<p>[Curators].[Template Editor] The exported json file with template attributes contains only the fields visible in the Template Editor. We have removed the outdated "isSingle" attribute from the file, which could lead to errors when reloading the template to ODM.</p>
+<h3 id="api-changes">API Changes<a class="headerlink" href="#api-changes" title="Permanent link">&para;</a></h3>
+<h4 id="fixed-issues_1">Fixed issues<a class="headerlink" href="#fixed-issues_1" title="Permanent link">&para;</a></h4>
+<p>[Advanced users] An issue with more than one AND operator in the omics metadata filters.</p>
+<hr/>
+
+<h2 id="151">1.51<a class="headerlink" href="#151" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release" title="Permanent link">&para;</a></h3>
+<p><strong>API. Updating the feature of the data upload via NFS</strong> [Curators, Advanced].</p>
+<details class="example">
+<summary>Click here to expand</summary>
+<p>Сurators can import study files from a locally mounted Network File Storage (NFS) to ODM with "write" OR "read-only" access permission. There is no need to configure the “write” permission for the files, as it was before.</p>
+</details>
+<p><strong>Authentication in API via access token of an identity provider</strong> [Curators, Advanced].</p>
+<details class="example">
+<summary>Click here to expand</summary>
+<p>ODM API and the "import_ODM_data.py" script allow authentication with a Genestack API token OR with an access token of another identity provider. To specify a custom access token, use the "Authorization" header; to set the Genestack API token, use the "Genestack-Api-Token" header.</p>
+<p>Note: access token takes precedence, meaning that if both tokens are supplied, the access token will be used for processing the request. The expansion fully supports Azure Active Directory access tokens. For a different custom Identity Provider, please test ODM API beforehand.</p>
+</details>
+<p><strong>Linking samples and omics data by any custom key via API</strong> [Curators, Advanced].</p>
+<details class="example">
+<summary>Click here to expand</summary>
+<p>Previously: samples from metadata and omics data files could be linked only using the "Sample Source Id" attribute as a reference. Now curators can choose any sample metadata attribute (column) as a reference to link samples.</p>
+<p>Notes: only template attributes can be used for the linkage; if the value of the sample attribute for the linking changes, the relationship between samples and omics data is not updated automatically. More details about this feature you can find in the swagger, the endpoint <code>POST/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}</code>, <code>linkingAttribute</code> parameter.</p>
+</details>
+<h3 id="fixed-issues-in-the-metadata-curation-process">Fixed issues in the metadata curation process<a class="headerlink" href="#fixed-issues-in-the-metadata-curation-process" title="Permanent link">&para;</a></h3>
+<p>[Curators] Fixed: a template attribute with invalid metadata is marked as "non-template" when a curator is editing sample metadata in Metadata Editor via the bulk replace.</p>
+<p>[Curators] Fixed: a formatting error appears for the study metadata view-only mode when the text in an attribute is not transferred to the next row.</p>
+<p>[Curators] Fixed: other minor bugs in Template Editor and Metadata Editor.</p>
+<h3 id="fixed-issues-in-api">Fixed issues in API<a class="headerlink" href="#fixed-issues-in-api" title="Permanent link">&para;</a></h3>
+<p>[Advanced] Fixed: the API endpoint GET/omics/expression/streamed-data does not return a proper error when a user specifies a wrong accession of the signal group in the groupAccession parameter. Now the endpoint returns an error 404 Not Found with the message <code>"Group 'N' could not be found"</code>.</p>
+<hr/>
+
+<h2 id="150">1.50<a class="headerlink" href="#150" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_1">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_1" title="Permanent link">&para;</a></h3>
+<p><strong>SCIM API for managing users and groups in ODM via Azure Active Directory</strong> [Admins].</p>
+<details class="example">
+<summary>Click here to expand</summary>
+<p>We have added SCIM API endpoints that allow the organization admin to manage users and user groups in ODM via Azure Active Directory. You can find all information about these endpoints and their limitations in Swagger in the "Manage Organization" section. Active Directory and ODM integration via SCIM endpoints instruction is located in the admin guides.</p>
+<p>Since the API endpoints have been developed according to the SCIM 2.0 specification, you can use them with any identity provider that supports working with SCIM. But since each identity provider has custom specifications, we recommend the solution pre-testing.</p>
+<p>We recommend calling user and group synchronization in Active Directory on behalf of the user with the "Manage Groups" permission so that the user can see and edit all groups on the instance, regardless of whether the user is a member of the groups or not.</p>
+</details>
+<p><strong>Quick start guide videos are added across ODM</strong> [Curators, Researchers].</p>
+<details class="example">
+<summary>Click here to expand</summary>
+<p>Each page contains a button that leads to a video explaining how to work with the page and the related main concepts. In addition, a welcome pop-up appears after the first login. The pop-up contains a link to the Quick Start Guide help page and all videos. Now users can get acquainted with the possibilities of ODM even faster and more conveniently on their own.</p>
+</details>
+<h3 id="fixed-issues_2">Fixed issues<a class="headerlink" href="#fixed-issues_2" title="Permanent link">&para;</a></h3>
+<p>[Curators] The import_ODM_data.py script incorrectly handled unexpected server responses from URL provided with <code>--server</code>: server is down for any reason or a user mistake. Now the script returns an error with clear instructions.</p>
+<hr/>
+
+<h2 id="149">1.49<a class="headerlink" href="#149" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_2">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The ability to load files to ODM from a local machine with installed ODM via NFS is added. To load files to ODM, users should use Job API endpoints for async loading, e.g., <code>POST /import/expression</code> with <code>"source": "LOCAL"</code>. Loading mapping files from a local machine via <code>POST /xrefsets</code> is not supported.</li>
+<li>The <code>main()</code> function is added to the <code>import_ODM_data.py</code> script.</li>
+<li>Dictionaries without any term can be loaded to ODM. And if such a dictionary is assigned to an attribute in the template, this attribute is treated as a free text attribute in Metadata Editor. Any text that the user enters is valid.</li>
+</ul>
+<h3 id="fixed-issues_3">Fixed issues<a class="headerlink" href="#fixed-issues_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fixed: Sometimes, a wrong sample count is displayed in the Study Browser after importing a study to ODM.</li>
+</ul>
+<h3 id="known-issues">Known issues<a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: There is no automatic formatting of numeric values, they will be displayed as strings – aligned to left instead of right.</li>
+<li>The study browser may continue to show and search facet values from objects that have been unlinked from studies.</li>
+</ul>
+<hr/>
+
+<h2 id="148">1.48<a class="headerlink" href="#148" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_3">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>API endpoints for working with user accounts have been introduced, all endpoints require the "Manage organisation" permission (user should be Admin in ODM):<ul>
+<li><code>GET /groups</code>: the endpoint returns a list of non-deleted user groups in which the user is a member of the group. Users can be filtered by their attributes, e.g. by <code>displayName</code>;</li>
+<li>User accounts can be created and updated using <code>POST /users</code> endpoint;</li>
+<li>Attributes of a specific user account can be updated by <code>PATCH /users/{id}</code> endpoint.</li>
+</ul>
+</li>
+<li>Improvements in the Metadata Editor:<ul>
+<li>Attribute description and its data type are shown in the attribute menu and the bulk replace dialogue;</li>
+<li>Share-study dialogue was redesigned. When a user shares a study with a new group, the user can see a list of the groups with which this study has already been shared.</li>
+</ul>
+</li>
+<li>A new permission “Manage groups” was implemented, it allows to retrieve all user groups.</li>
+<li>Improvements in API:<ul>
+<li>Performance is improved for the cases of a significant amount of patch requests (with disabled metadata versioning on the instance);</li>
+<li>Optimization of omics query results in faster queries, and the system stability (less memory per processor is used, etc.).</li>
+</ul>
+</li>
+<li>The code quality and maintainability of the import_ODM_data.py python script for data loading to ODM have been improved:<ul>
+<li>All argument keys use dashes consistently, e.g. <code>--mapping-file</code>. Arguments with underscores are still supported, e.g. <code>--mapping_file</code>;</li>
+<li>User can load large files with preparations and libraries (&gt;10 000 rows) via the <code>Import_ODM_data.py</code> script since the script uses async API for data loading.</li>
+</ul>
+</li>
+<li>The documentation covering <code>update_templates.py</code> script has been updated.</li>
+</ul>
+<h3 id="fixed-issues_4">Fixed issues<a class="headerlink" href="#fixed-issues_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fixed: querying signal runs via <code>GET /expression/runs/by/group/{id}</code> returns incorrect "total" in pagination info.</li>
+</ul>
+<h3 id="known-issues_1">Known issues<a class="headerlink" href="#known-issues_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: There is no automatic formatting of numeric values, they will be displayed as strings – aligned to left instead of right.</li>
+<li>The study browser may continue to show and search facet values from objects that have been unlinked from studies.</li>
+</ul>
+<hr/>
+
+<h2 id="147">1.47<a class="headerlink" href="#147" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_4">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The "Description" field is added for attributes in Template Editor. The field can be used to store a brief explanation of what each attribute was intended for, examples of values, etc. The maximum length of the description is 500 characters.</li>
+<li>Attribute descriptions, which provide a brief explanation of what each attribute was intended for, examples of values, etc., are added in Metadata Editor. A description of each attribute can be edited in the study template.</li>
+<li>The "Description" attribute is supported in the python script for loading templates.</li>
+<li>Curate libraries and preparations metadata using the curation script.</li>
+</ul>
+<h3 id="fixed-issues_5">Fixed issues<a class="headerlink" href="#fixed-issues_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fixed: dates are displayed in milliseconds in the view mode of Metadata (e.g., <code>"1638448612812"</code> instead of <code>"December 2, 2021"</code>).</li>
+<li>Fixed: when a new template is created using the Duplicate function of the Template Editor, the page does not indicate whether the new template has been generated.</li>
+</ul>
+<h3 id="known-issues_2">Known issues<a class="headerlink" href="#known-issues_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: There is no automatic formatting of numeric values, they will be displayed as strings – aligned to left instead of right.</li>
+<li>The study browser may continue to show and search facet values from objects that have been unlinked from studies.</li>
+</ul>
+<hr/>
+
+<h2 id="146">1.46<a class="headerlink" href="#146" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_5">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>When the user switches between editing and viewing modes in the Metadata Editor, the selected filters are saved (there is no need to choose and apply them again).</li>
+<li>Visual distinction highlight of template vs. non-template attributes is added to all tabs of the Metadata Editor.</li>
+<li>More effortless study curation when changing the applied template or applying a new template that causes a change in the attribute data types. Previously: if e.g., the <code>age</code> field is a <code>string</code> attribute, it is changed to become an <code>integer</code> attribute in a new applied template. This attribute's previously valid values were marked as <code>invalid</code>, so the user had to edit each value.<br/>
+    Currently: the user can call a mass conversion of the value types according to the applied template.<br/>
+    The following type conversions are supported: <code>Text</code> -&gt; <code>Integer</code>, <code>Text</code> -&gt; <code>Decimal</code>.</li>
+<li>The user confirmation request was added to the Template Editor for the attribute removal from the template. It avoids accidental removal of the attribute or changing the validation rules used in studies.</li>
+<li>MySQL version has been upgraded to <code>8.0.28</code> to avoid vulnerabilities in the previous version.</li>
+<li>ClickHouse is updated from <code>21.8</code> to <code>21.12</code>. The ClickHouse logs are more straightforward. Investigating ClickHouse problems has become easier.</li>
+</ul>
+<h3 id="fixed-issues_6">Fixed issues<a class="headerlink" href="#fixed-issues_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fixed: the application returns an error when adding a new facet in the "Configure facets" application with underscores in the name (e.g., <code>Study_Type</code> instead of <code>StudyType</code>), and saving the changes.</li>
+<li>Fixed: an incorrect number is displayed in the counter on the Samples tab in Metadata Editor after applying filters.</li>
+<li>Fixed: switching from the edit mode to the view mode causes an error "Page unresponsive" while working with a study with more than 10k+ samples in Metadata Editor.</li>
+<li>Fixed: The filters in the Metadata Editor were not updated while the user was editing the sample attributes. E.g., the user filters samples by <code>Disease = Asthma</code>; updates the value of one of the attributes from <code>Asthma</code> to <code>Cancer</code> and does not publish changes; then the sample is continued to be returned in filters by <code>Disease = Asthma</code>.</li>
+<li>Fixed: the user needs to refresh the page in the Metadata Editor to publish the changes.</li>
+<li>Fixed: The user receives an error message when reassigning an attribute to a column with integer values on the Samples tab in Metadata Editor.</li>
+<li>Fixed: Obsolete dictionaries were not highlighted in red in the Template Editor application; the user could have mistakenly selected an outdated dictionary for an attribute.</li>
+</ul>
+<h3 id="known-issues_3">Known issues<a class="headerlink" href="#known-issues_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: There is no automatic formatting of numeric values, they will be displayed as strings – aligned to left instead of right.</li>
+<li>The study browser may continue to show and search facet values from objects that have been unlinked from studies.</li>
+</ul>
+<hr/>
+
+<h2 id="145">1.45<a class="headerlink" href="#145" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_6">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Solr <code>8.11.1</code> version is updated to resolve the <code>log4j</code> vulnerability.</li>
+<li>
+<p>Full-text and facet search for studies via API endpoint <code>POST /integration/fulltext/search/studies</code>. The endpoint allows searching for studies by study metadata and all linked objects' metadata (e.g., samples, libraries, preparations, omics metadata). Examples:</p>
+<p>a) find all studies where the term "cancer" occurs in the data, e.g., in samples or the study description;</p>
+<p>b) find all studies by a specific facet <code>"Disease" = "Asthma"</code> (the endpoint performs search only across facets defined in the "Configure facets "application).</p>
+<p>The endpoint returns:</p>
+<ul>
+<li>a list of studies with the metadata summary;</li>
+<li>a list of facet objects with counts (the same list of facets shown in the "Study Browser" application).</li>
+</ul>
+</li>
+<li>
+<p>Asynchronous loading of files with "preparation" information via API endpoint <code>POST /import/preparations</code> to upload files with more than 10k rows.</p>
+</li>
+<li>The performance of filters in Metadata Editor in edit mode was improved (1.5 times faster processing on the Genestack test environment). The exact time difference depends on the instance settings and the connection provider.</li>
+<li>Ability to copy values and reassign attributes for both template and non-template attributes in Metadata Editor.</li>
+<li>The <code>import_ODM_data</code> python script now supports versions of Omics data files. Thus, the user can upload a new omics data file to an existing study using the "import_ODM_data" python script as the next version of the previously uploaded file. The solution has limitations described in the python script documentation.</li>
+<li>Synchronous uploading performance of samples via the API endpoint <code>POST /samples</code> was improved (2.7 times faster processing on the Genestack test environment). The exact time difference depends on the instance settings and the connection provider. Now optional "Warning" attribute with the results of sample validation for the applied template is not returned in the response body.</li>
+<li>The deprecated endpoint for loading cross-reference (xref) mapping files <code>POST ​/import​/transcript-mapping</code> method has been removed; the endpoint call returns an error. For cross-reference mapping files loading user can use <code>POST /xrefsets</code>.</li>
+<li>The "View Logs" button is removed from the Export page.</li>
+</ul>
+<h3 id="fixed-issues_7">Fixed issues<a class="headerlink" href="#fixed-issues_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Breaking changes!</strong> The method <code>get_parents_by_study</code> was renamed to <code>get_groups_by_study</code> in Python and R SDK. If your application uses the methods <code>get_parents_by_study</code>, rename all the method usages to <code>get_groups_by_study</code>. If your application does not use R or Python SDK, no changes are required.</li>
+<li>If the mapping file contains duplicates, the endpoint loads only unique rows. A warning regarding duplicates is returned in the response body, e.g., "The loaded file includes three duplicate rows that were skipped". Previously, when the user loaded mapping files with duplicate rows via <code>POST /xrefsets</code>, the endpoint stopped the file loading on the first duplicate and did not return the warning message. The user did not know whether the entire file was loaded or not.</li>
+<li>When a user applies another template to a study in Metadata Editor, the new validation rules are immediately applied. It allows the user to see the actual data, the actual set of required attributes, and the actual status of the data validation. Previously, the user needed to refresh the page to enable it.</li>
+<li>Fixed: when a user adds and removes the multi-value field in Study Metadata, the error is returned.</li>
+<li>R SDK documentation is improved:<ul>
+<li>An example "include "parameter value is added to the description.</li>
+<li>Clients receive an exception when passing unknown parameters in functions.</li>
+</ul>
+</li>
+<li>Fixed: API endpoints for removing links between objects return code <code>204</code> if the specified object of a wrong type or there was no link between objects. The endpoints return <code>404</code> with a message corresponding to the case. Affected <code>DELETE</code> endpoints:<ul>
+<li><code>/integration/link/sample/{sourceId}/to/study/{targetId}</code></li>
+<li><code>/integration/link/sample/group/{sourceId}/to/study/{targetId}</code></li>
+<li><code>/integration/link/library/{sourceId}/to/sample/{targetId}</code></li>
+<li><code>/integration/link/library/group/{sourceId}/to/sample/group/{targetId}</code></li>
+<li><code>/integration/link/preparation/{sourceId}/to/sample/{targetId}</code></li>
+<li><code>/integration/link/preparation/group/{sourceId}/to/sample/group/{targetId}</code></li>
+</ul>
+</li>
+<li>Fixed: the swagger page does not become unresponsive when the user calls the endpoint <code>GET /sampleCurator/samples</code> without specified <code>pageLimit</code>, and there are more than 2000 samples.</li>
+</ul>
+<h3 id="known-issues_4">Known issues<a class="headerlink" href="#known-issues_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: There is no automatic formatting of numeric values, they will be displayed as strings – aligned to left instead of right.</li>
+<li>The study browser may continue to show and search facet values from objects that have been unlinked from studies.</li>
+</ul>
+<hr/>
+
+<h2 id="144">1.44<a class="headerlink" href="#144" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Deployment note</p>
+<p>Versions from <code>1.42</code> onwards use a new schema for core ClickHouse tables. The previously released version <code>1.41</code> includes migration scripts so deployment of <code>1.41</code> and completion of this migration job must have taken place before deploying any version from <code>1.42</code> onwards.</p>
+</div>
+<h3 id="newupdated-features-in-this-release_7">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Filters in the Metadata Editor are now applied faster.</li>
+<li>The Metadata Editor allows scrolling across the table.</li>
+<li>Ontology-aware search for RDF-formatted ontologies: When using the search bar in the Study Browser exact and related synonyms are added to the search query by default (where the user’s query matches a term from an ontology). Users can also extend the results of a query by toggling inclusion of all child (descending) terms.</li>
+<li>Study Browser results summaries now include metadata from these additional fields: <code>Data Species</code>, <code>Species Name</code>, <code>Sample Type</code> and <code>Disease Status</code>.</li>
+<li>Users can load libraries data objects asynchronously via a new endpoint <code>POST /import/libraries</code>. The endpoint returns a <code>jobExecId</code>, and the results can be checked via the Job operations endpoint.</li>
+</ul>
+<h3 id="fixed-issues_8">Fixed issues<a class="headerlink" href="#fixed-issues_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Critical security vulnerability was fixed in <code>log4j</code>.</li>
+<li>Fixed exporting omics data where metadata versioning feature is enabled.</li>
+<li>Edit mode in the Metadata Editor no longer causes timeouts with large (50,000) samples tables.</li>
+<li>Reassigning attribute now correctly deletes the source column from view mode as well as from edit mode in the Metadata Editor.</li>
+<li>Metadata Editor now has correct filters descriptions when values are updated.</li>
+<li>Links are recognized and clickable in the view mode of the study metadata tab.</li>
+<li>Users now see the correct facets values for bulk replace after discarding changes.</li>
+<li>The correct number of available samples is shown after filtering.</li>
+<li>Incorrect use of the template was fixed for Bulk replace in Library/Preparation metadata.</li>
+<li>Fixed a problem with unpublished versions after turning on metadata versioning feature.</li>
+<li>Curation script works for Variant, Expression and Flow Cytometry metadata as well as for tabs <code>Study</code> and <code>Samples</code></li>
+<li>Loading of <code>vcf</code> files with values <code>nan</code> was fixed</li>
+</ul>
+<h3 id="known-issues_5">Known issues<a class="headerlink" href="#known-issues_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: There is no automatic formatting of numeric values, they will be displayed as strings – aligned to left instead of right.</li>
+<li>The study browser may continue to show and search facet values from objects that have been unlinked from studies.</li>
+</ul>
+<hr/>
+
+<h2 id="143">1.43<a class="headerlink" href="#143" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Deployment note</p>
+<p>Versions from <code>1.42</code> onwards use a new schema for core ClickHouse tables. The previously released version <code>1.41</code> includes migration scripts so deployment of <code>1.41</code> and completion of this migration job must have taken place before deploying any version from <code>1.42</code> onwards.</p>
+</div>
+<h3 id="newupdated-features-in-this-release_8">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Full text search in the Study Browser now supports ontology expansion - if a search term matches a term from an ontology in RDF format then it is possible to extend the query to include child terms (those with the <code>subClassOf</code> property), up to a limit of 30,000 child terms (and synonyms).</li>
+<li>Full text search now automatically includes exact and related synonyms (<code>hasRelatedSynonym</code> or <code>hasExactSynonym</code> in the RDF)</li>
+<li>There is a new <code>roundDigits</code> request parameter for the /streamed-data endpoint. By default <code>roundDigits = 4</code></li>
+</ul>
+<h3 id="fixed-issues_9">Fixed issues<a class="headerlink" href="#fixed-issues_9" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: Renaming a study via the contextual menu now creates a new version (if metadata versioning is enabled).</li>
+<li>Users who singed in using SSO (<code>OAuth2</code>) now can re-sign in via one click again after being logged out due to security reasons.</li>
+<li>Now it is possible to undo (<kbd>ctrl+z</kbd>) and redo (<kbd>ctrl+shift+z</kbd>) manual changes to metadata.</li>
+<li>The metadata validation summary now correctly reports valid metadata when all metadata is valid.</li>
+<li><code>UserEndpoint</code> APIs return latest draft (staging) versions of signals metadata when versioning feature is disabled, ensuring users get the latest version of the data.</li>
+<li>Swagger endpoints have had some extraneous descriptions removed.</li>
+<li>Swagger description for <code>GET /omics/expression/streamed-data</code> has been improved.</li>
+</ul>
+<h3 id="known-issues_6">Known issues<a class="headerlink" href="#known-issues_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: There is no automatic formatting of numeric values, they will be displayed as strings – aligned to left instead of right.</li>
+<li>The study browser may continue to show and search facet values from objects that have been unlinked from studies.</li>
+</ul>
+<hr/>
+
+<h2 id="142">1.42<a class="headerlink" href="#142" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Deployment note</p>
+<p>Versions from <code>1.42</code> onwards use a new schema for core ClickHouse tables. The previously released version <code>1.41</code> includes migration scripts so deployment of <code>1.41</code> and completion of this migration job must have taken place before deploying any version from <code>1.42</code> onwards.</p>
+</div>
+<h3 id="newupdated-features-in-this-release_9">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_9" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata versioning is available as a beta feature. To enable it see the administration guide. By default it is not enabled.</li>
+<li>The <code>POST /task/publish-versions</code> API endpoint was added to support metadata versioning.</li>
+</ul>
+<h3 id="fixed-issues_10">Fixed issues<a class="headerlink" href="#fixed-issues_10" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: Applying a new template is now reflected immediately without needing a page refresh.</li>
+<li>Metadata Editor: Copying/previewing sample accessions now work correctly with pagination.</li>
+<li>A bug with session tokens after a server restart has been fixed.</li>
+<li>Adding samples via <code>POST /integration​/link​/sample​/group​/…​/to​/study​/…</code> now correctly shares these samples with the same permissions as the study being added to.</li>
+<li>The Uberon ontology now successfully initiates on instances with HTTP(S) proxies.</li>
+</ul>
+<h3 id="known-issues_7">Known issues<a class="headerlink" href="#known-issues_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: There is no automatic formatting of numeric values, they will be displayed as strings – aligned to left instead of right.</li>
+<li>The study browser may continue to show and search facet values from objects that have been unlinked from studies.</li>
+</ul>
+<hr/>
+
+<h2 id="141">1.41<a class="headerlink" href="#141" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Deployment note</p>
+<p>This release contains a periodic job which automatically migrates core ClickHouse tables (<code>ExpressionDataByRun</code>, <code>ExpressionDataByGene</code>) to a new schema. It is mandatory to let this job finish before installing future releases (<code>1.42</code> etc.) as they will not support the old schema. The job is finished when the backend logs contain the messages: <code>Migration of data for table {} finished</code>, where <code>{}</code> is <code>ExpressionDataByRun</code> and <code>ExpressionDataByGene</code>.</p>
+</div>
+<h3 id="newupdated-features-in-this-release_10">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_10" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Minor dashboard text changes</li>
+<li>The Template Editor URL has changed to a Base URL of: <code>frontend/endpoint/application/run/genestack/web/templates</code><br/>
+    Redirects are in place for the previous URL.</li>
+<li>Improved use of server resources (disk space in particular)</li>
+<li>Improved performance of omics data queries</li>
+</ul>
+<h3 id="fixed-issues_11">Fixed issues<a class="headerlink" href="#fixed-issues_11" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: Fixed an issue filtering by invalid values works for Integer/Date data types. Now users can use date/integer values for filtering even if they are invalid according to the template</li>
+<li>Metadata Editor: Dictionary terms are now correctly highlighted after changing template.</li>
+<li>An Expression data query performance degradation bug has been fixed</li>
+<li>Patch API calls now work on large sample numbers</li>
+<li>Omics queries: Filtering of variants by INFO fields in text format is working now, e.g. <code>vxQuery = info_VT=INDEL</code></li>
+</ul>
+<h3 id="known-issues_8">Known issues<a class="headerlink" href="#known-issues_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: There is no automatic formatting of numeric values, they will be displayed as strings – aligned to left instead of right.</li>
+<li>The study browser may continue to show and search facet values from objects that have been unlinked from studies</li>
+<li>The curation helper script doesn't work for Variant, Expression and Flow Cytometry objects, only for studies and samples</li>
+</ul>
+<hr/>
+
+<h2 id="140">1.40<a class="headerlink" href="#140" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p>Customers should update their SSL settings to use a <code>2048-bit</code> or greater DH cipher</p>
+</div>
+<h3 id="newupdated-features-in-this-release_11">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_11" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Study Browser: Added a syntax cheatsheet that describes how to use advanced full-text search capabilities</li>
+<li>Metadata Editor: Added a new export button to export all data/metadata of a study</li>
+<li>Export: Exports now include a readme detailing the files contained in the archive</li>
+<li>API endpoints: A <code>400</code> http code is now returned when an unknown parameter is supplied to any endpoint</li>
+</ul>
+<h3 id="fixed-issues_12">Fixed issues<a class="headerlink" href="#fixed-issues_12" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: Fixed an issue editing fields at the bottom of the window</li>
+<li>Study browser: Fixed saved bookmark icons</li>
+<li>Omics data files are exported with the same extensions that they were imported with</li>
+</ul>
+<h3 id="known-issues_9">Known issues<a class="headerlink" href="#known-issues_9" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: There is no automatic formatting of numeric values, they will be displayed as strings – aligned to left instead of right.</li>
+<li>The study browser may continue to show and search facet values from objects that have been unlinked from studies</li>
+<li>The curation helper script doesn't work for Variant, Expression and Flow Cytometry objects, only for studies and samples</li>
+</ul>
+<hr/>
+
+<h2 id="139-10-august-2021">1.39 (10 August 2021)<a class="headerlink" href="#139-10-august-2021" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_12">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_12" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: The special 'Not applicable' and 'Not reported' values are now available in autocomplete suggestions</li>
+<li>Metadata Editor: When filters are being recalculated there is now a loading indicator</li>
+<li>Metadata Editor: S3 links are clickable in the non-curator view</li>
+<li>A new configuration parameter <code>additionalJwksUris</code> was introduced to the OAuth provider properties file. This allows the user to specify a list of additional JWKS URIs that can be used for checking token signatures.</li>
+</ul>
+<h3 id="api-changes_1">API changes<a class="headerlink" href="#api-changes_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Values accepted by the <code>returnedMetadataFields</code> parameter (for all endpoints that can return metadata) have changed (previous values still currently work for backwards compatibility). The values are now:<ul>
+<li><code>minimal_data</code> - return only metadata in accordance with the default template</li>
+<li><code>extended_data_included</code> (previously: <code>template</code>) - return metadata in accordance with the applied template</li>
+<li><code>original_data_included</code> (previously: <code>all</code>) - return all metadata attributes</li>
+</ul>
+</li>
+<li>Endpoints returning dictionary (controlled vocabulary) terms can now also return the identifier for that dictionary term (by supplying the value <code>term_id</code> to the <code>include</code> parameter).</li>
+</ul>
+<h3 id="fixed-issues_13">Fixed issues<a class="headerlink" href="#fixed-issues_13" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: After importing new samples from a spreadsheet the values are available to replace in the bulk replace dialog right away without needing to refresh the page</li>
+<li>Metadata Editor: In the non-curator view it is now possible to filter samples by values with the type <code>date</code>.</li>
+<li>The API behaviour for xrefsets endpoints was improved:<ul>
+<li>The endpoints <code>POST /xrefsets</code> and <code>DELETE ​/xrefsets​/{id}</code> returns <code>403 “Not enough permissions to work with the xrefset”</code> if a user is not a member of the Curator Group.</li>
+<li>The endpoint <code>GET /xrefsets/{id}/metadata</code> returns <code>400</code> Bad request if a user passes invalid object’s ID (anything apart from Genestack accession).</li>
+</ul>
+</li>
+</ul>
+<h3 id="known-issues_10">Known issues<a class="headerlink" href="#known-issues_10" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: There is no automatic formatting of numeric values, they will be displayed as strings – aligned to left instead of right.</li>
+<li>The study browser may continue to show and search facet values from objects that have been unlinked from studies</li>
+<li>The curation helper script doesn't work for Variant, Expression and Flow Cytometry objects, only for studies and samples</li>
+</ul>
+<hr/>
+
+<h2 id="138-28-june-2021">1.38 (28 June 2021)<a class="headerlink" href="#138-28-june-2021" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_13">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_13" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The Metadata Editor has several new features:<ul>
+<li>Absence of values is indicated with a specific <code>No value</code> in italics</li>
+<li>Columns are resizable</li>
+<li>We have introduced special <code>Not applicable</code> and <code>Not reported</code> values that are always valid regardless of template rules</li>
+<li>Autocomplete suggestions for <code>Not applicable</code> and <code>Not reported</code> values have been added to the bulk replace dialog</li>
+<li>The bulk replacement dialog will now reveal full values when you hover over them</li>
+<li>Removed explicit manual pagination from metadata table. Users can scroll samples table infinitely</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixed-issues_14">Fixed issues<a class="headerlink" href="#fixed-issues_14" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fixed an issue when a user without curator permissions has no way to explore an applied template from the Metadata Editor</li>
+<li>Fixed an issue with removing filters when no samples match them</li>
+<li>A bug in omics/expression/data after deleting a xref mapping file was fixed</li>
+</ul>
+<h3 id="known-issues_11">Known issues<a class="headerlink" href="#known-issues_11" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Metadata Editor: There is no automatic formatting of numeric values, they will be displayed as strings – aligned to left instead of right.</li>
+<li>The study browser may continue to show and search facet values from objects that have been unlinked from studies</li>
+<li>The curation helper script doesn't work for Variant, Expression and Flow Cytometry objects, only for studies and samples</li>
+</ul>
+<hr/>
+
+<h2 id="137-25-may-2021">1.37 (25 May 2021)<a class="headerlink" href="#137-25-may-2021" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_14">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_14" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The Users and Permissions page has been updated with a new look and feel. You can use the contextual menu to deactivate/activate particular users</li>
+<li>Error logs/code/other text have improved security</li>
+<li>The URL of the “Groups” page has changed to <code>/frontend/endpoint/application/run/genestack/web/groups</code></li>
+<li>Instances with Arvados integration: Arvados hosts are shown in user profiles, and can be clicked on to open Arvados Workbench</li>
+<li>Instances with Arvados integration: Arvados error messages have been improved</li>
+</ul>
+<h3 id="fixed-issues_15">Fixed issues<a class="headerlink" href="#fixed-issues_15" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Instances with Arvados integration: A problem with importing studies via the Arvados importer GUI has been fixed.</li>
+</ul>
+<h3 id="known-issues_12">Known issues<a class="headerlink" href="#known-issues_12" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The study browser may continue to show and search facet values from objects that have been unlinked from studies</li>
+<li>The curation helper script doesn't work for Variant, Expression and Flow Cytometry objects, only for studies and samples</li>
+</ul>
+<hr/>
+
+<h2 id="136-27-april-2021">1.36 (27 April 2021)<a class="headerlink" href="#136-27-april-2021" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_15">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_15" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Users have the option to expand the Bulk Replace dialogue so the values to be replaced are not truncated</li>
+<li>Swagger help page descriptions have been improved</li>
+</ul>
+<h3 id="fixed-issues_16">Fixed issues<a class="headerlink" href="#fixed-issues_16" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Swagger descriptions of some endpoint page limits have been corrected</li>
+<li>Sorting using the cursor on omics endpoints now works correctly</li>
+</ul>
+<h3 id="known-issues_13">Known issues<a class="headerlink" href="#known-issues_13" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The study browser may continue to show and search facet values from objects that have been unlinked from studies</li>
+<li>The curation helper script doesn't work for Variant, Expression and Flow Cytometry objects, only for studies and samples</li>
+</ul>
+<hr/>
+
+<h2 id="135-30-march-2021">1.35 (30 March 2021)<a class="headerlink" href="#135-30-march-2021" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_16">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_16" title="Permanent link">&para;</a></h3>
+<ul>
+<li>All user accounts will now appear in the users list, including technical superuser accounts</li>
+<li>The organization name will no longer be displayed in the interfaces</li>
+<li>The option to sign in with Okta is now available</li>
+<li>Several pages interfaces have been moved to a new framework</li>
+</ul>
+<h3 id="api-changes_2">API changes<a class="headerlink" href="#api-changes_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Swagger help page descriptions have been improved</li>
+</ul>
+<h3 id="fixed-issues_17">Fixed issues<a class="headerlink" href="#fixed-issues_17" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Filters now work for multi-values in the metadata editor</li>
+<li>Bulk-replace operations in the metadata editor now occur in parallel (replacing <code>A,B</code> with <code>A-&gt;B</code> and <code>B-&gt;C</code> will now result in <code>B,C</code> not <code>C,C</code>)</li>
+<li>Corrected error messages for permissions related failures</li>
+<li>Gene dictionaries now initialise correctly</li>
+<li><code>GET omics/samples</code> no longer fails with the error <code>incorrect cursor format</code></li>
+<li>Cursor pagination works correctly in omics/samples with no filters</li>
+</ul>
+<h3 id="known-issues_14">Known issues<a class="headerlink" href="#known-issues_14" title="Permanent link">&para;</a></h3>
+<ul>
+<li>It is not possible to import public studies since the superloader module has been removed. This functionality will be considered in the future</li>
+<li>The study browser may continue to show and search facet values from objects that have been unlinked from studies</li>
+<li>The curation helper script doesn't work for Variant, Expression and Flow Cytometry objects, only for studies and samples</li>
+</ul>
+<hr/>
+
+<h2 id="134-5-march-2021">1.34 (5 March 2021)<a class="headerlink" href="#134-5-march-2021" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_17">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_17" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The URL for the Study Browser has been changed</li>
+<li>Imported templates and dictionaries are shared with everyone by default</li>
+<li>The default template can be edited - <strong>this change requires the default template be selected again when <code>1.34</code> is first deployed</strong>.</li>
+<li>The <code>import_ODM_data</code> script now returns the jobExecutionIdentifier to users so imports can be monitors</li>
+<li>Organization properties have been moved to a configuration file</li>
+</ul>
+<h3 id="api-changes_3">API changes<a class="headerlink" href="#api-changes_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Depreciated API endpoints have been removed</li>
+</ul>
+<h3 id="fixed-issues_18">Fixed issues<a class="headerlink" href="#fixed-issues_18" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fixed an error with xref mapping</li>
+<li>Fixed an issue deleting studies via the <code>studyCurator</code> endpoints</li>
+<li>Fixed an issue causing invalid sample filter counts when there are invalid field values</li>
+<li>Improved error descriptions for the helper script <code>create_users.py</code></li>
+</ul>
+<h3 id="known-issues_15">Known issues<a class="headerlink" href="#known-issues_15" title="Permanent link">&para;</a></h3>
+<ul>
+<li>It is not possible to import public studies since the superloader module has been removed. This functionality will be considered in the future</li>
+<li>The study browser may continue to show and search facet values from objects that have been unlinked from studies</li>
+<li>Filters in the samples table in Metadata Editor do not work for multi-value fields</li>
+<li>The curation helper script doesn't work for Variant, Expression and Flow Cytometry objects, only for studies and samples</li>
+</ul>
+<hr/>
+
+<h2 id="133-27-jan-2021">1.33 (27 Jan 2021)<a class="headerlink" href="#133-27-jan-2021" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_18">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_18" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>NEW METADATA OBJECT TYPES</strong>: Libraries and Preparations have been added as additional types of objects which users can import, link, edit and query. These optional single sources of truth contain information about how samples for transcriptomics and proteomics studies respectively have been prepared, and are supported with the usual suite of validation and curation tools in ODM</li>
+<li><strong>NEW ENDPOINTS</strong>: <code>/libraries</code> and <code>/preparations</code> (which can be found under <code>libraryUser/Curator</code> and <code>preparationUser/Curator</code> in swagger) have been added to support importing, linking, editing and querying libraries and preparations</li>
+<li>Gene-transcript mapping has been generalised to cross-reference mapping and endpoints have been renamed <code>/xrefsets</code>, which can be found under the <strong>reference-data</strong> section in swagger. These endpoints have also been extended for more flexible functionality</li>
+<li>There is a new user permission <code>CONFIGURE_FACETS</code>. Users with this permission can configure the facets that are displayed in the Study Browser</li>
+<li>The module for importing public studies has been removed</li>
+</ul>
+<h3 id="fixed-issues_19">Fixed issues<a class="headerlink" href="#fixed-issues_19" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fixed some issues and issue help text for the /xrefsets (was gene-transcript mapping) endpoints</li>
+</ul>
+<h3 id="known-issues_16">Known issues<a class="headerlink" href="#known-issues_16" title="Permanent link">&para;</a></h3>
+<ul>
+<li>NEW: It is not possible to import public studies since the superloader module has been removed. This functionality will be considered in the future</li>
+<li>The study browser may continue to show and search facet values from objects that have been unlinked from studies</li>
+<li>Filters in the samples table in Metadata Editor do not work for multi-value fields</li>
+<li>The curation helper script doesn't work for Variant, Expression and Flow Cytometry objects, only for studies and samples</li>
+</ul>
+<hr/>
+
+<h2 id="132-30-dec-2020">1.32 (30 Dec 2020)<a class="headerlink" href="#132-30-dec-2020" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_19">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_19" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The group roles have been simplified to just group administrator and sharing member</li>
+<li>The auto-complete dropdown no longer displays <code>searching...</code>, it shows auto-complete matches or an explicit <code>search for &lt;input value&gt;</code> option instead</li>
+<li>Starting ODM for the first time or when no data is currently available now displays a more user-friendly page</li>
+<li>Facet value sorting in the Study Browser has been improved to prevent ordering switching too much when selecting multiple data types</li>
+<li>Adding new files to a study now automatically shares them with the same permissions as the study</li>
+<li>New files added to a study automatically have the study template applied to them</li>
+<li>The Python client (used by some helper scripts) is now based on Python 3</li>
+</ul>
+<h3 id="fixed-issues_20">Fixed issues<a class="headerlink" href="#fixed-issues_20" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Additional improvements have been made to asynchronous data loading services (ETL), in particular when loading large expression files</li>
+<li>Improved error messages when attempting to link objects with no matching Sample Source IDs in the samples table</li>
+<li>Performance in the Study Browser has been improved when there are lots of different facet values</li>
+<li>The share studies option now forces selection from existing groups rather than free text</li>
+<li>Copying dictionary names in the Template Editor now works correctly</li>
+<li>Search text in the Groups application is preserved when making changes to a user’s role</li>
+<li>Fixed an issue exporting expression data that came from an S3 source</li>
+</ul>
+<h3 id="api-changes_4">API changes<a class="headerlink" href="#api-changes_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added a new parameter <code>returnedMetadataFields</code> to integration endpoints. This parameter controls the amount of metadata that is returned from integration queries. By default, curator endpoints return all available metadata and user endpoints return metadata only for template fields.</li>
+</ul>
+<h3 id="known-issues_17">Known issues<a class="headerlink" href="#known-issues_17" title="Permanent link">&para;</a></h3>
+<ul>
+<li>NEW: The study browser may continue to show and search facet values from objects that have been unlinked from studies</li>
+<li>There are currently some issues loading data from GEO</li>
+<li>Filters in the samples table in Metadata Editor do not work for multi-value fields</li>
+<li>The curation helper script doesn't work for Variant, Expression and Flow Cytometry objects, only for studies and samples</li>
+</ul>
+<hr/>
+
+<h2 id="131-11-nov-2020">1.31 (11 Nov 2020)<a class="headerlink" href="#131-11-nov-2020" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_20">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_20" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added a user permission <code>MANAGE_ORGANIZATION</code> which can be toggled in the Users and Organization application. This replaces the previous (fixed) organization administrator role.</li>
+<li>API endpoints for linking (<code>POST /integration/link/*</code>) now better handle situations where a user is importing data for some samples but not all.</li>
+</ul>
+<h3 id="fixed-issues_21">Fixed issues<a class="headerlink" href="#fixed-issues_21" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Several improvements have been made to asynchronous data loading services (ETL)</li>
+</ul>
+<h3 id="known-issues_18">Known issues<a class="headerlink" href="#known-issues_18" title="Permanent link">&para;</a></h3>
+<ul>
+<li>NEW: There are currently some issues loading data from GEO</li>
+<li>Filters in the samples table in Metadata Editor do not work for multi-value fields</li>
+<li>The curation helper script doesn't work for Variant, Expression and Flow Cytometry objects, only for studies and samples</li>
+</ul>
+<hr/>
+
+<h2 id="130-16-oct-2020">1.30 (16 Oct 2020)<a class="headerlink" href="#130-16-oct-2020" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_21">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_21" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Variant API queries can now be done against multiple variants</li>
+<li>A template can now be chosen as the default template through the GUI</li>
+<li>Pagination of query results for the <code>omics/*/data</code> endpoints now uses the cursor parameter instead of <code>pageoffset</code>. Results returned include a <code>cursor</code> tag. Repeat your query and supply this tag to the cursor parameter to obtain the next page of results and a new cursor tag. When no more results are available the return will be empty.</li>
+<li><code>Pageoffset</code> pagination is now depreciated for <code>omics/*/data</code> endpoints</li>
+</ul>
+<h3 id="fixed-issues_22">Fixed issues<a class="headerlink" href="#fixed-issues_22" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fixed an issue preventing non-curator users who had manage templates permissions from exploring templates via the Metadata Editor</li>
+</ul>
+<h3 id="known-issues_19">Known issues<a class="headerlink" href="#known-issues_19" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Filters in the samples table in Metadata Editor do not work for multi-value fields</li>
+<li>The curation helper script doesn't work for Variant, Expression and Flow Cytometry objects, only for studies and samples</li>
+</ul>
+<hr/>
+
+<h2 id="129-21-sep-2020">1.29 (21 Sep 2020)<a class="headerlink" href="#129-21-sep-2020" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_22">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_22" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Client-specific features</li>
+<li>Much improved single cell study loading</li>
+<li>Faster performance on single cell omics (up to 2x faster) and streaming (up to 10x faster) queries</li>
+</ul>
+<h3 id="fixed-issues_23">Fixed issues<a class="headerlink" href="#fixed-issues_23" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fixed an issue causing slow performance of the <code>sampleUser</code> endpoint</li>
+<li>Previous streaming data export issue has been resolved</li>
+</ul>
+<h3 id="known-issues_20">Known issues<a class="headerlink" href="#known-issues_20" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Filters in the samples table in Metadata Editor do not work for multi-value fields</li>
+<li>The curation helper script doesn't work for Variant, Expression and Flow Cytometry objects, only for studies and samples</li>
+</ul>
+<hr/>
+
+<h2 id="128-8-sep-2020">1.28 (8 Sep 2020)<a class="headerlink" href="#128-8-sep-2020" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_23">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_23" title="Permanent link">&para;</a></h3>
+<ul>
+<li>New user interface for groups administration</li>
+<li>Improved data handling performance</li>
+<li>New asynchronous linking service endpoints are available. See below for a list of endpoints, and the swagger documentation for further usage details</li>
+<li>The Python helper script for loading data to ODM has been updated to use the asynchronous REST APIs for better handling of large datasets</li>
+</ul>
+<h3 id="fixed-issues_24">Fixed issues<a class="headerlink" href="#fixed-issues_24" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Linking group files for large datasets via REST API should avoid client timeouts when using the new asynchronous linking service</li>
+</ul>
+<h3 id="known-issues_21">Known issues<a class="headerlink" href="#known-issues_21" title="Permanent link">&para;</a></h3>
+<ul>
+<li>NEW: Filters in the samples table in Metadata Editor do not work for multi-value fields</li>
+<li>NEW: There is a known issue with streaming data export</li>
+<li>The curation helper script doesn't work for Variant, Expression and Flow Cytometry objects, only for studies and samples</li>
+</ul>
+<h3 id="new-restful-api-endpoints-for-asynchronous-linking">New RESTful API endpoints for asynchronous linking<a class="headerlink" href="#new-restful-api-endpoints-for-asynchronous-linking" title="Permanent link">&para;</a></h3>
+<p>For creating links between objects:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>POST​ /links
+</span></code></pre></div>
+<p>For finding links between objects:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>GET /links
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>POST /links/get-batch
+</span></code></pre></div>
+<p>For deleting existing links:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>DELETE /links
+</span></code></pre></div>
+<p>There are two additional endpoints that can be queried for information on data-types and possible links between them:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>GET /data-types
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>GET /data-types/links
+</span></code></pre></div>
+<hr/>
+
+<h2 id="1271-11-aug-2020">1.27.1 (11 Aug 2020)<a class="headerlink" href="#1271-11-aug-2020" title="Permanent link">&para;</a></h2>
+<h3 id="fixed-issues_25">Fixed issues<a class="headerlink" href="#fixed-issues_25" title="Permanent link">&para;</a></h3>
+<p>The status code returned when calling various endpoints that retrieve or delete a non-existing file will now return <code>404</code> rather than <code>400</code>. Various other small fixes have been made to the swagger documentation as well.</p>
+<hr/>
+
+<h2 id="127-7-aug-2020">1.27 (7 Aug 2020)<a class="headerlink" href="#127-7-aug-2020" title="Permanent link">&para;</a></h2>
+<h3 id="new-features-in-this-release">New features in this release<a class="headerlink" href="#new-features-in-this-release" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>GENE-TRANSCRIPT MAPPING</strong>: ODM can now work with gene-transcript mapping files. Users are able to load a mapping file, link it to expression matrices and search for genes and transcripts in mapping files to retrieve correspondingly mapped transcripts/genes.</li>
+</ul>
+<h3 id="fixed-issues_26">Fixed issues<a class="headerlink" href="#fixed-issues_26" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The curation helper script has several improvements:<ul>
+<li>When a value is mapped to a new attribute name a copy is no longer kept under the old attribute name.</li>
+<li>Non-template attributes that have no values remaining after a mapping are removed.</li>
+<li>Multi-value mappings now work correctly.</li>
+<li>Whitespace values are no longer substituted, preventing a possible data corruption issue.</li>
+</ul>
+</li>
+</ul>
+<h3 id="known-issues_22">Known issues<a class="headerlink" href="#known-issues_22" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The curation helper script doesn't work for Variant, Expression and Flow Cytometry objects, only for studies and samples</li>
+</ul>
+<hr/>
+
+<h2 id="1261-15-jul-2020">1.26.1 (15 Jul 2020)<a class="headerlink" href="#1261-15-jul-2020" title="Permanent link">&para;</a></h2>
+<h3 id="fixed-issues_27">Fixed issues<a class="headerlink" href="#fixed-issues_27" title="Permanent link">&para;</a></h3>
+<p>We fixed a bug in external dictionary synchronisation where new dictionaries were appended to existing ones in the system. Now the new dictionaries (containing changes compared to previous versions) update the existing ones. For dictionaries which have seen no changes, they are skipped by external dictionary service sync.</p>
+<hr/>
+
+<h2 id="126-7-jul-2020">1.26 (7 Jul 2020)<a class="headerlink" href="#126-7-jul-2020" title="Permanent link">&para;</a></h2>
+<h3 id="new-features-in-this-release_1">New features in this release<a class="headerlink" href="#new-features-in-this-release_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>FURTHER CURATION SCRIPT IMPROVEMENTS</strong>: The curation script now handles measurements which contain units properly and includes various bug fixes for edge cases. The script has also been generalised to remove customer-specific jargon or settings.</li>
+<li><strong>PREVIEW OF LONG VALUES IN THE SAMPLE TABLE</strong>: In some studies which have long values in the sample metadata table, the values were previously truncated and for read-only users, there was no mechanism for the user to see the full value on the user interface. Now a user can simply double-click at a cell of the sample table and a preview box will appear to reveal the full value.</li>
+</ul>
+<h3 id="known-issues_23">Known issues<a class="headerlink" href="#known-issues_23" title="Permanent link">&para;</a></h3>
+<ul>
+<li>It is not possible to curate studies loaded by the Superloader from GEO.</li>
+<li>The curation script substitutes sample metadata values which are comprised of whitespaces only (i.e. resembling blank values) with terms from the dictionary in the <code>rule.json</code> file. This can potentially corrupt data because the substitution is not easily detected to be rectified.</li>
+<li>Regular (non-curator) users do not have rights to edit templates or change template assignment for a study, even if they have the "Manage template" permission box checked in the "Users and organization" application because being a curator is a pre-requisite of such rights.</li>
+</ul>
+<hr/>
+
+<h2 id="125-25-jun-2020">1.25 (25 Jun 2020)<a class="headerlink" href="#125-25-jun-2020" title="Permanent link">&para;</a></h2>
+<h3 id="new-features-in-this-release_2">New features in this release<a class="headerlink" href="#new-features-in-this-release_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>NEW RELEASE NOTES LINK</strong>: We have added links to public release notes in the dashboard footer and left-hand-side dock menu, so users can refer to the notes for new features, fixed bugs and known bugs/limitations.</li>
+<li><strong>CURATION SCRIPT IMPROVEMENTS</strong>: The python curation script has been updated to support use cases for curating multi-value fields in sample metadata (e.g. when one sample was treated by two different drugs in the same time point). We also took the opportunity to remove some hardcoded curation rules in the code which are no longer valid and rewrote many error or warning messages so they're more user-friendly and include actionable suggestions for fixing errors</li>
+</ul>
+<h3 id="fixed-issues_28">Fixed issues<a class="headerlink" href="#fixed-issues_28" title="Permanent link">&para;</a></h3>
+<ul>
+<li>We have fixed a few bugs in the "Superloader" tool for loading data from NCBI Gene Expression Omnibus (GEO), so it's now possible to load again microarray studies (both metadata and indexed data, the latter subject to the files deposited at GEO), as well as sequencing studies (metadata only).</li>
+</ul>
+<h3 id="known-issues_24">Known issues<a class="headerlink" href="#known-issues_24" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>NEW</strong>: It is not possible to curate studies loaded by superloader from GEO.</li>
+<li><strong>NEW</strong>: The curation script currently throws an error and does not proceed with curation when it cannot detect the default template that's used implicitly by an API-loaded study ("implicitly" because the data-loading user did not specify the template for the study and the system falls back on to the default template). This does not lead to data corruption.</li>
+<li><strong>NEW</strong>: The curation script substitutes sample metadata values which are comprised of whitespaces only (i.e. resembling blank values) with terms from the dictionary in the <code>rule.json</code> file. This can potentially corrupt data because the substitution is not easily detected to be rectified.</li>
+<li>Regular (non-curator) users do not have rights to edit templates or change template assignment for a study, even if they have the "Manage template" permission box checked in the "Users and organization" application because being a curator is a pre-requisite of such rights.</li>
+<li>Changes in the template-control status of an attribute are applied properly now due to the bug fix in release <code>1.23</code>, albeit sometimes with 20-30 seconds' delay, which in the curation workflow is sometimes not too noticeable and definitely not a blocker().</li>
+<li>As the result of using a different hashing algorithm to preserve the order of facets in the URL, Study Browser URLs bookmarked prior to the <code>1.23</code> release will no longer be valid.</li>
+</ul>
+<hr/>
+
+<h2 id="124-8-jun-2020">1.24 (8 Jun 2020)<a class="headerlink" href="#124-8-jun-2020" title="Permanent link">&para;</a></h2>
+<h3 id="new-features-in-this-release_3">New features in this release<a class="headerlink" href="#new-features-in-this-release_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>ASYNCHRONOUS DATA LOADING API ENDPOINTS</strong>: A new extract-transform-load (ETL) service has been rolled out which allows for asynchronous import of study, samples and signals files to ODM via new RESTful API endpoints without HTTP time-outs even for large studies with thousands of samples. Using these endpoints, a user submits a data-loading request and receives a (job execution) identifier for the job that is processed in the background. The identifier can be used to query the job's status and retrieve the result when the request processing is completed. Please see the list of new endpoints at the end of these notes for this release, and the Swagger documentation for API usage.</li>
+<li><strong>"ACCESSIBLE TO ALL" STUDY BROWSER FACET</strong>: Previously, studies shared with all members of an organisation could be found via the "Shared with me" facet in the study browser, which was not intuitive to our users. We have tweaked the logic of the facets so such studies can now be found under the facet called "For all at &lt;organisation name&gt;".</li>
+<li><strong>ODM VERSION SHOWN ON THE FOOTER</strong>: Previously it was not possible to see the current ODM version number when a user logged on to ODM on the graphical user interface (GUI). This caused inconvenience when a user could not specify the ODM version used when trying to report an error or an observation about the GUI. From this release onward, the version number is shown in the Dashboard footer and left-hand-side shortcut dock.</li>
+</ul>
+<h3 id="new-housekeepingadmin-features">New housekeeping/admin features<a class="headerlink" href="#new-housekeepingadmin-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>CLICKHOUSE UPGRADE TO VERSION 20.4</strong>: This upgrade fixes a memory leak issue.</li>
+</ul>
+<h3 id="fixed-issues_29">Fixed issues<a class="headerlink" href="#fixed-issues_29" title="Permanent link">&para;</a></h3>
+<ul>
+<li>We fixed a labelling issue in the Study Browser's facet breadcrumb trail, where the facet "Study status" should have been called "Curation Status".</li>
+</ul>
+<h3 id="known-issues_25">Known issues<a class="headerlink" href="#known-issues_25" title="Permanent link">&para;</a></h3>
+<p>(No new issues in this release)</p>
+<ul>
+<li>Regular (non-curator) users do not have rights to edit templates or change template assignment for a study, even if they have the "Manage template" permission box checked in the "Users and organization" application because being a curator is a pre-requisite of such rights.</li>
+<li>The Metadata Editor page shows "infinite" loading if the Bulk Replace operation is triggered on a new attribute that is introduced after applying a new template to the study (can be fixed by page refresh).</li>
+<li>Changes in the template-controlled status of an attribute are applied due to the bug fix (see Fixed Issue number 2 in the section above), albeit sometimes with 20-30 seconds' delay, which in the curation workflow is sometimes not too noticeable and definitely not a blocker.</li>
+<li>API user endpoints currently get staging (draft) version of data from any SPoT/HDAP using the API, instead of the last committed version, while searching by metadata. However, users will get the last committed version if retrieving SPoT/HDAP objects directly via the ID.</li>
+<li>Cursor pagination in the API works incorrectly for expression data.</li>
+</ul>
+<p><strong>New RESTful API endpoints for loading and linking study, samples and expression/variant/flow cytometry signals:</strong></p>
+<p>For loading study, samples and signals:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>POST​ /import​/study
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>POST ​/import​/samples
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>POST ​/import​/variant
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>POST ​/import​/expression
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>POST ​/import​/flow-cytometry
+</span></code></pre></div>
+<p>For linking signal groups to sample groups:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>POST or DELETE ​/integration​/link​/expression​/group​/{sourceId}​/to​/sample​/group​/{targetId}
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>POST or DELETE ​/integration​/link​/flow-cytometry​/group​/{sourceId}​/to​/sample​/group​/{targetId}
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>POST or DELETE /integration/link/variant/group/{sourceId}/to/sample/group/{targetId}
+</span></code></pre></div>
+<p>For initiating, monitoring or stopping an asynchronous job:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>GET ​/{jobExecId}​/info
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>GET ​/{jobExecId}​/output
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>PUT ​/{jobExecId}​/restart
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>PUT ​/{jobExecId}​/stop
+</span></code></pre></div>
+<hr/>
+
+<h2 id="123-27-may-2020">1.23 (27 May 2020)<a class="headerlink" href="#123-27-may-2020" title="Permanent link">&para;</a></h2>
+<h3 id="new-features-in-this-release_4">New features in this release<a class="headerlink" href="#new-features-in-this-release_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>MORE GRANULARITY IN TEMPLATE MANAGEMENT</strong>: Previously, users belonging to the "curators" group all have the rights to manage templates in an organisation. By "manage", we mean editing an existing template, duplicating an existing one, and also assigning a different template as the organisation's default. From this release onward, we delineate the roles of curators and template managers with more granularity. Curators will not be template managers, unless they have been granted the permission to by their organisation's administrator.</li>
+<li><strong>NEW "USERS AND ORGANIZATION" APPLICATION</strong>: Previously known as "Manage Users", we took the opportunity to update its look-and-feel and improve its functionalities while adding the new "Manage template" permission granularity. Key improvements include clearly indicating the administrators in the organisation and adding a built-in search bar so users can search for a colleague by name or email address. Please also note that from this release onward, an organisational administrator is also prohibited from revoking his/her own admin rights, to ensure at least one other administrator in the organisation is aware of and approves this resignation.</li>
+<li><strong>STUDY BROWSER'S APPLIED FILTERS DISPLAYED AS INDIVIDUALLY REMOVABLE TAGS</strong>: This is an enhancement of the Study Browser search experience. Facets selected by the user will now appear as tags above the search results, showing a trail of the facet options. Each filter option can be conveniently removed via the tags as if the user has unchecked the facet option. The Study Browser URL contains a hash that remembers the facets and the order they're applied, so a user can share the URL with a colleague to recreate the same set of search criteria. Please note: as the result of using a different hashing algorithm to preserve the order of facets in the URL, Study Browser URLs bookmarked prior to this release will no longer be valid.</li>
+<li><strong>SWIFTSTACK INTEGRATION</strong>: For customers who use Swiftstack to store data that is later ingested into Genestack, in order for Genestack to access this data, temporary (or pre-signed) URLs can be generated before feeding them into Genestack. For the temporary URLs to be generated, a functionality was implemented for a technical user to access the shared folder on Swiftstack.</li>
+</ul>
+<h3 id="new-housekeepingadmin-features-in-this-release">New housekeeping/admin features in this release<a class="headerlink" href="#new-housekeepingadmin-features-in-this-release" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>NEW STATUS FLAG TO TRACK EXPRESSION DATA INDEXING</strong>: As the volume and complexity of expression data grow, we have improved ODM's error-handling when indexing expression data. A status flag is now set in the ODM’s database, with the “failed” status reflecting internal exceptions from the expression data indexer during indexing, while the status “ok” marks the end of indexing (if process is completed without errors). An organisation's administrator or system admin can use this flag to quickly identify expression studies with corrupted indices and re-index them in a targeted way, without having to wipe the whole index and reindex all data from scratch.</li>
+</ul>
+<h3 id="fixed-issues_30">Fixed issues<a class="headerlink" href="#fixed-issues_30" title="Permanent link">&para;</a></h3>
+<ul>
+<li>We identified a general bug that prevented many graphical user interface applications from reusing resources and caching data properly, resulting in performance penalties. We have fixed this bug and overall the interface is more responsive. The most noticeable improvement is in the Metadata Editor application.</li>
+<li>For a template that is in active use (i.e. applied to a study), if a sample attribute is removed from the template, we expect the attribute to be kept in the study and shown as a non-template-controlled field. This behaviour was broken, but fixed in this release.</li>
+<li>Improved SAML error messages: the system now correctly parses the status of the IdP response and displays more user-friendly error messages.</li>
+<li>For MEX-format single-cell data, <code>NaN</code> values in <code>.mtx</code> expression matrices used to result in errors which terminate the data indexing process. We have fixed this now so <code>NaN</code> or any non-numeric values in .mtx files will be skipped by the system, and the frequency of such skipped entries is recorded in a log file for debugging purposes.</li>
+</ul>
+<h3 id="known-issues_26">Known issues<a class="headerlink" href="#known-issues_26" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>NEW</strong>: regular (non-curator) users do not have rights to edit templates or change template assignment for a study, even if they have the "Manage template" permission box checked in the "Users and organization" application because being a curator is a pre-requisite of such rights.</li>
+<li><strong>NEW</strong>: The Metadata Editor page shows "infinite" loading if the Bulk Replace operation is triggered on a new attribute that is introduced after applying a new template to the study (can be fixed by page refresh).</li>
+<li><strong>NEW</strong>: Changes in the template-controlled status of an attribute are applied due to the bug fix (see Fixed Issue number 2 in the section above), albeit sometimes with 20-30 seconds' delay, which in the curation workflow is sometimes not too noticeable and definitely not a blocker.</li>
+<li><strong>NEW</strong>: As the result of using a different hashing algorithm to preserve the order of facets in the URL, Study Browser URLs bookmarked prior to this release will no longer be valid.</li>
+<li>API user endpoints currently get staging (draft) version of data from any SPoT/HDAP using the API, instead of the last committed version, while searching by metadata. However, users will get the last committed version if retrieving SPoT/HDAP objects directly via the ID.</li>
+<li>Cursor pagination in the API works incorrectly for expression data.</li>
+</ul>
+<hr/>
+
+<h2 id="122-7-may-2020">1.22 (7 May 2020)<a class="headerlink" href="#122-7-may-2020" title="Permanent link">&para;</a></h2>
+<h3 id="new-features-in-this-release_5">New features in this release<a class="headerlink" href="#new-features-in-this-release_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>NEW NAVIGATION PANEL IN "MANGE GROUPS" APP</strong>: For organisations with many groups or groups with many members, the app's page can get really long and it was cumbersome to scroll precisely to the group of interest. The new navigation panel solves this by allowing users to jump to the group needed.</li>
+<li><strong>VCF.ZIP SUPPORT</strong>: The vcf indexer used to work with only <code>vcf.gz</code> files. From this release onward, we start supporting zip-compressed vcf files too.</li>
+</ul>
+<h3 id="fixed-issues_31">Fixed issues<a class="headerlink" href="#fixed-issues_31" title="Permanent link">&para;</a></h3>
+<ul>
+<li>In Metadata Editor's bulk replace feature, values in boolean fields can't be replaced or left blank in some cases. This is now fixed.</li>
+<li>In Metadata Editor's bulk replace feature, replacing blank values sometimes failed. In addition, sample counts for blank values inside the bulk replace dialogue were often miscalculated. These bugs related to blank values have been fixed.</li>
+<li>There was an issue with URLs pointing to ODM pages returning an error during opening if they end with a <code>/</code> character. The cause of this error was not obvious to the user (even though it was relatively easy to remove the slash). This is now fixed so the ending slash wouldn't hinder links being opened.</li>
+</ul>
+<h3 id="known-issues_27">Known issues<a class="headerlink" href="#known-issues_27" title="Permanent link">&para;</a></h3>
+<ul>
+<li>API user endpoints currently get staging (draft) version of data from any SPoT/HDAP using the API, instead of the last committed version, while searching by metadata. However, users will get the last committed version if retrieving SPoT/HDAP objects directly via the ID.</li>
+<li>Cursor pagination in the API works incorrectly for expression data.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../user-guide/training-materials/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Training Materials">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Training Materials
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c18c5fb9.min.js"></script>
+      
+    
+  </body>
+</html>

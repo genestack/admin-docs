@@ -2,92 +2,97 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://genestack.github.io/documentation/develop/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://genestack.github.io/documentation/develop/release-notes/</loc>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/user-guide/data-retrieving/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/user-guide/training-materials/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/user-guide/dictionaries-and-ontologies/creating-new-dictionary/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/user-guide/dictionaries-and-ontologies/default-dictionaries/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/user-guide/dictionaries-and-ontologies/exporting-ontologies-from-odm/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/user-guide/dictionaries-and-ontologies/loading-new-ontology/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/user-guide/dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/user-guide/packages-to-install/genestack-auxiliary-scripts/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/user-guide/packages-to-install/genestack-python-client/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/user-guide/templates/create-or-update-template/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/user-guide/templates/delete-template/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/user-guide/users/user-creation/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/user-guide/working-with-study/curation-script/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/user-guide/working-with-study/deleting-study/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/user-guide/working-with-study/loading-from-geo/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/user-guide/working-with-study/sharing-study/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/user-guide/working-with-study/uploading-study/</loc>
-         <lastmod>2024-01-24</lastmod>
+         <lastmod>2024-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
