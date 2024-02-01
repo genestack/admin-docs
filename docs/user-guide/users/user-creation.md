@@ -1,12 +1,14 @@
+# Users creation
+
 ## Requirements
 
--   Python 3
--   pip
--   Genestack Python client installed and setup with a user account/token.
+- Python 3
+- pip
+- Genestack Python client installed and setup with a user account/token.
     See [how to setup Genestack Python client](../packages-to-install/genestack-python-client.md)
--   Auxiliary scripts installed.
+- Auxiliary scripts installed.
     See [how to install Genestack auxiliary scripts](../packages-to-install/genestack-auxiliary-scripts.md)
--   A users.tsv file, for example: [users.tsv](users.tsv)
+- A users.tsv file, for example: [users.tsv](users.tsv)
 
 ## Instructions
 
@@ -20,7 +22,7 @@
 
 3. The script will create new users and print out their passwords, for example:
 
-    ```
+    ```text
       alice@alphacorp.com    uNgp4F6C    Alice
       bob@alphacorp.com      xI3AOf2h    Bob
     ```

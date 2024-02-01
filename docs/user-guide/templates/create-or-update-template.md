@@ -6,18 +6,19 @@ Loaded templates are available to all users on the instance.
 
 ## Requirements
 
--   Python 3
--   pip
--   The user should have the "Set up templates" permission and API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
--   Genestack Python client installed. See [how to setup Genestack python client](../packages-to-install/genestack-python-client.md)
--   Auxiliary scripts installed. See [how to install Genestack auxiliary scripts](../packages-to-install/genestack-auxiliary-scripts.md)
--   A template settings json file, e.g.: [default_ODM_template_settings.json](default_ODM_template_settings.json)
--   A template json file, e.g.: [Default_ODM_Template.json](Default_ODM_Template.json)
+- Python 3
+- pip
+- The user should have the "Set up templates" permission and API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
+- Genestack Python client installed. See [how to setup Genestack python client](../packages-to-install/genestack-python-client.md)
+- Auxiliary scripts installed. See [how to install Genestack auxiliary scripts](../packages-to-install/genestack-auxiliary-scripts.md)
+- A template settings json file, e.g.: [default_ODM_template_settings.json](default_ODM_template_settings.json)
+- A template json file, e.g.: [Default_ODM_Template.json](Default_ODM_Template.json)
 
 ## Instructions
 
 1. Download or create a template json file (see Requirements). Templates are collections of fields with rules determining whether the field is required, which dictionary to use (if any) etc.
-    ```
+
+    ```text
     [
         {
          "dataType":"genestack:sampleObject",
@@ -30,22 +31,25 @@ Loaded templates are available to all users on the instance.
         }
     ]
     ```
+
 2. Download the template settings json file (see Requirements)
 3. Use a text editor to edit the template settings file and change the path to match where you have put your template json file
 
     `"template_path": "/PATHTOTEMPLATEFILE/Default_ODM_Template.json",`
 
 4. Run the `odm-update-template` script:
-    ```
+
+    ```shell
     odm-update-template -H GENESTACK_ENDPOINT_ADDR /PATHTOSETTINGSFILE/default_ODM_template_settings.json
     ```
+
     Where `GENESTACK_ENDPOINT_ADDR` is the URL of the Genestack platform.
 
 ## Template_settings.json
 
 This file controls certain parameters of the template file:
 
-```
+```text
 {
     "template_path": "Default_ODM_Template.json", //template path/file name
     "template_name": "Default Template", //name of the template
@@ -69,7 +73,7 @@ The template json file is validated in ODM against an internal schema: [template
 
 3. The `Accession` property is mandatory for each type of object. The following values should be set for each dataType section:
 
-    ```
+    ```text
     name = "genestack:accession",
     metainfoType = "com.genestack.api.metainfo.StringValue",
     isRequired = true,
@@ -81,7 +85,7 @@ The template json file is validated in ODM against an internal schema: [template
 
 4. The values accepted for each metadata attribute are given by the `metainfoType` key, and must be one of the following values:
 
-    ```
+    ```text
     "com.genestack.api.metainfo.IntegerValue",
     "com.genestack.api.metainfo.DecimalValue",
     "com.genestack.api.metainfo.StringValue",

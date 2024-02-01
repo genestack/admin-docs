@@ -4,7 +4,7 @@ Dictionaries can be loaded to ODM in CSV, JSON, OWL, OBO or TTL formats. In orde
 
 For example:
 
-```
+```text
 Label
 g
 kg
@@ -16,5 +16,4 @@ Example of .csv file:
 [body_weight_unit.csv](body_weight_unit.csv)
 
 !!! note
-
     Please note that values in dictionary always have String format in ODM, even if they are numbers.

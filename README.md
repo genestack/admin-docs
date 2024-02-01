@@ -25,6 +25,24 @@ To serve documentation on localhost:
 mkdocs serve
 ```
 
+## Linting
+
+We use [pre-commit](https://pre-commit.com/) as a tool to maintain a unified documentation standard.
+
+[This module](https://github.com/igorshubovych/markdownlint-cli) with [these rule sets](https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md) is used for linting documentation.
+
+Install
+
+  ```sh
+  brew install pre-commit
+  ```
+
+Run
+
+  ```sh
+  pre-commit run -a
+  ```
+
 ## Deployment
 
 Deployment latest version is configured via Github Actions.

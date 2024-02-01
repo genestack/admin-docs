@@ -14,23 +14,23 @@ You can install small libraries for each ODM endpoint.
 
 Current libraries list:
 
--   study_curator
--   study_user
--   sample_curator
--   sample_user
--   library_curator
--   library_user
--   preparation_curator
--   preparation_user
--   variant_curator
--   variant_user
--   expression_curator
--   expression_user
--   flow-cytometry_curator
--   flow-cytometry_user
--   integration_curator
--   integration_user
--   tasks
+- study_curator
+- study_user
+- sample_curator
+- sample_user
+- library_curator
+- library_user
+- preparation_curator
+- preparation_user
+- variant_curator
+- variant_user
+- expression_curator
+- expression_user
+- flow-cytometry_curator
+- flow-cytometry_user
+- integration_curator
+- integration_user
+- tasks
 
 Example of library installation:
 
@@ -67,7 +67,7 @@ Script to search through samples and display them in table format:
 
 The output:
 
-```
+```text
   genestack:accession Sample Source ID Sample Name Organism     Sex  Disease   Age Age Unit Tissue Cell Type  ... Family.ID Donor Treatment/Treatment Name Specimen Type Tissue or Cell Type Sample Source Continental Group Code Sample Type Population Code Sample ID Continental Group
 0           GSF136813          HG00096        None     None    Male  Healthy  None     None   None      None  ...   HG00096                    Not treated           LCL               Blood         NHGRI                    EUR         DNA             GBR   HG00096       "European "
 1           GSF136814          HG00097        None     None  Female  Healthy  None     None   None      None  ...   HG00097                    Not treated           LCL               Blood         NHGRI                    EUR         DNA             GBR   HG00097       "European "
@@ -141,7 +141,7 @@ samplesObject$content$data[1:5]
 
 The output (shorten):
 
-```
+```text
   genestack:accession Sample Source ID Sample Name Organism     Sex
 1           GSF136813          HG00096        None     None    Male
 2           GSF136814          HG00097        None     None  Female
