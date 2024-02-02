@@ -1,5 +1,5 @@
 # External Services
 
-- As a storage solution for raw data, you can use S3 with native support, as well as any NFS (mounted directories).
-- For sending emails, you will need an SMTP server.
-- For SSO (Single Sign-On) functionality, you will need an Identity Provider.
+- As a storage solution for the source data ODM supports [S3](https://en.wikipedia.org/wiki/Amazon_S3) and any Distribute File System that can be represented in Kubernetes as a StorageClass with RWM attribute. e.g. ([NFS](https://en.wikipedia.org/wiki/Network_File_System), [EFS](https://en.wikipedia.org/wiki/Amazon_Elastic_File_System))
+- For notifications and secure tokens distribution SMTP service is required.
+- For SSO (Single Sign-On) functionality an Identity Provider is required.
