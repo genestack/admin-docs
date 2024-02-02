@@ -45,6 +45,7 @@ nav:
                 - Okta: deployment-and-configuration/single-sign-on/openid/okta.md
             - SAML:
                 - Google Workspace: deployment-and-configuration/single-sign-on/saml/google.md
+                - Okta: deployment-and-configuration/single-sign-on/saml/okta.md
             - SCIM:
                 - Microsoft Azure: deployment-and-configuration/single-sign-on/scim/azure.md
         - Helm:
