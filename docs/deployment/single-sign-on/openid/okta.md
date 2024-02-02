@@ -2,7 +2,7 @@
 
 This section explains how to integrate ODM with Okta to use Okta as OpenID Connect provider.
 
-[Official documentation](https://help.okta.com/en-us/content/topics/apps/apps_app_integration_wizard_oidc.html)
+[Official documentation](https://help.okta.com/en-us/content/topics/apps/apps_app_integration_wizard_oidc.htm)
 
 ## Launch the Wizard
 
@@ -26,7 +26,7 @@ This section explains how to integrate ODM with Okta to use Okta as OpenID Conne
 
     - **Sign-in redirect URIs**: `https://ODM-HOST/frontend/endpoint/okta/back`
 
-2. Next, you can follow the [official instructions](https://help.okta.com/en-us/content/topics/apps/apps_app_integration_wizard_oidc.html).
+2. Next, you can follow the [official instructions](https://help.okta.com/en-us/content/topics/apps/apps_app_integration_wizard_oidc.htm).
 
 ## Configure OIDC settings
 
