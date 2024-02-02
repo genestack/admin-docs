@@ -10,15 +10,6 @@
     - [AWS ACM](https://aws.amazon.com/certificate-manager/)
     - [AWS Route53](https://aws.amazon.com/route53/)
 
-## Deployment
-
-You can use any convenient way for you to create resources in AWS.
-
-- CloudFormation
-- Terraform
-- Pulumi
-- Manual creation
-
 ## Recommended steps for creating AWS resources
 
 1. Create [S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html).

@@ -12,15 +12,6 @@
 
     At the moment this setup can only work with a Azure Files mount in a pods.
 
-## Deployment
-
-You can use any convenient way for you to create resources in Azure.
-
-- ARM templates
-- Terraform
-- Pulumi
-- Manual creation
-
 ## Recommended steps for AKS configuration
 
 1. Deploy [AzureFile CSI Driver](https://github.com/kubernetes-sigs/azurefile-csi-driver).
