@@ -14,9 +14,18 @@ If something does not work please feel free to contact with developers.
 
 ## Development
 
+Install venv
+
+```shell
+rm -rf venv
+python3 -m venv venv
+source venv/bin/activate
+```
+
+Install dependencies
+
 ```sh
-pip install mkdocs-material
-pip install mike
+python3 -m pip install -r requirements.txt
 ```
 
 To serve documentation on localhost:
