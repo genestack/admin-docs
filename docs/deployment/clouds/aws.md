@@ -10,11 +10,9 @@
     - [AWS ACM](https://aws.amazon.com/certificate-manager/)
     - [AWS Route53](https://aws.amazon.com/route53/)
 
-## Recommended steps for creating AWS resources
+## Steps for creating AWS resources
 
 1. Create [S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html).
-
-    - S3 bucket can be private.
 
     - You can use the S3 bucket only from one region, it is recommended to use a common region with EKS.
 
