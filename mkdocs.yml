@@ -29,30 +29,30 @@ nav:
         - Training Materials: user-guide/training-materials.md
     - Release notes: release-notes.md
     - Deployment and configuration:
-        - Technical Release Notes: deployment-and-configuration/release-notes/release-notes.md
+        - Technical Release Notes: deployment/release-notes/release-notes.md
         - Requirements:
-            - Kubernetes: deployment-and-configuration/requirements/kubernetes.md
-            - Hardware: deployment-and-configuration/requirements/hardware.md
-            - External Services: deployment-and-configuration/requirements/external-services.md
+            - Kubernetes: deployment/requirements/kubernetes.md
+            - Hardware: deployment/requirements/hardware.md
+            - External Services: deployment/requirements/external-services.md
         - Clouds:
-            - Amazon WEB Services (AWS): deployment-and-configuration/clouds/aws.md
-            - Microsoft Azure: deployment-and-configuration/clouds/azure.md
+            - Amazon WEB Services (AWS): deployment/clouds/aws.md
+            - Microsoft Azure: deployment/clouds/azure.md
         - Single Sign-On:
-            - About SSO in ODM: deployment-and-configuration/single-sign-on/sso.md
+            - About SSO in ODM: deployment/single-sign-on/sso.md
             - OpenID:
-                - Microsoft Azure: deployment-and-configuration/single-sign-on/openid/azure.md
-                - Google Workspace: deployment-and-configuration/single-sign-on/openid/google.md
-                - Okta: deployment-and-configuration/single-sign-on/openid/okta.md
+                - Microsoft Azure: deployment/single-sign-on/openid/azure.md
+                - Google Workspace: deployment/single-sign-on/openid/google.md
+                - Okta: deployment/single-sign-on/openid/okta.md
             - SAML:
-                - Google Workspace: deployment-and-configuration/single-sign-on/saml/google.md
+                - Google Workspace: deployment/single-sign-on/saml/google.md
             - SCIM:
-                - Microsoft Azure: deployment-and-configuration/single-sign-on/scim/azure.md
+                - Microsoft Azure: deployment/single-sign-on/scim/azure.md
         - Helm:
-            - How to deploy: deployment-and-configuration/helm/how-to-deploy.md
+            - How to deploy: deployment/helm/how-to-deploy.md
         - Troubleshooting:
-            - AWS S3: deployment-and-configuration/troubleshooting/aws-s3.md
-            - Azure SSO: deployment-and-configuration/troubleshooting/azure-sso.md
-            - Azure SCIM: deployment-and-configuration/troubleshooting/azure-scim.md
+            - AWS S3: deployment/troubleshooting/aws-s3.md
+            - Azure SSO: deployment/troubleshooting/azure-sso.md
+            - Azure SCIM: deployment/troubleshooting/azure-scim.md
 
 theme:
     name: material

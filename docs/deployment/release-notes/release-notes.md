@@ -1,4 +1,4 @@
-# Technical release notes
+# Release notes
 
 ## Version 1.56
 
