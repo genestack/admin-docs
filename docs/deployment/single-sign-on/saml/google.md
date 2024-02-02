@@ -1,6 +1,6 @@
 # Google Workspace setup
 
-This section explains how to integrate ODM with Google Workspace to use Google as SAML Identity provider.
+This section explains how to integrate ODM with Google Workspace to use Google as SAML service provider.
 
 [Official documentation](https://apps.google.com/supportwidget/articlehome?article_url=https%3A%2F%2Fsupport.google.com%2Fa%2Fanswer%2F6087519&assistant_id=generic-unu&product_context=6087519&product_name=UnuFlow&trigger_context=a)
 
@@ -126,4 +126,4 @@ You need to create the necessary certificates for ODM.
     5. Update the Helm chart with the provided information.
 
 !!! tip ""
-    Now you can configure ODM to use Google as SAML Identity provider. You can find configuration examples in the Helm chart.
+    Now you can configure ODM to use Google as SAML service provider. You can find configuration examples in the Helm chart.
