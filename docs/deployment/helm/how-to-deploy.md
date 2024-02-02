@@ -6,23 +6,20 @@
 
 - Helm 3+
 
-- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) for downloading Helm chart
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) for getting permissions to download Helm chart
 
 ## Deployment Information
 
 - All main ODM settings are presented in the Deployment Helm Chart.
 
-- To deploy ODM, you need a `StorageClass` and `IngressClass`.
+- To deploy ODM `StorageClass` and `IngressClass` have to be configured in Kubernetes Cluster.
 
-- If you are using Prometheus Operator, then you can set up automatic collection of metrics through parameter
-`serviceMonitor` in the Deployment Helm Chart.
+- To enable automatic metrics collection when using Prometheus Operator, configure the `serviceMonitor` parameter in the Helm Chart.
 
-- We provide a tool to automatically update credentials from the [ECR](https://aws.amazon.com/ecr/)
-(in it we store our images), but you can use your own.
+- We provide a tool that automates the process of updating credentials for [ECR](https://aws.amazon.com/ecr/), where our container images are hosted.
+This tool ensures seamless access to ECR by handling credential rotation.
 
-    - It should be remembered that the ECR password is given for 12 hours.
-
-- If you are using an external data mount (for example NFS), then you must create a PVC in Kubernetes before deploying.
+    - It's important to note that the ECR password is valid for a duration of 12 hours.
 
 ## Deployment process
 
@@ -38,16 +35,20 @@
 3. Download Helm Chart (use the latest version)
 
     ```shell
-    helm pull oci://091468197733.dkr.ecr.us-east-1.amazonaws.com/genestack/chart/odm --version "1.56.0"
+    helm pull oci://091468197733.dkr.ecr.us-east-1.amazonaws.com/genestack/chart/odm
     ```
 
-4. Unzip the archive and navigate to the directory.
+4. Untar the archive.
 
-5. Make changes to file `example-values/recommendations.yaml` according to your infrastructure and requirements.
+    ```shell
+    tar xvf odm-*.tgz
+    ```
+
+5. Take a look to a default `values.yaml` and to a `odm/example-values` directory, the most general file in there is `recomendations.yaml`, make changes according to your infrastructure and requirements in separate file, e.g. `custom-values.yaml`.
 
 6. Deploy
 
     ```shell
-    helm upgrade -i odm --atomic --debug --timeout 4000s --create-namespace -n odm \
-    -f example-values/recommendations.yaml ./
+    # In this example odm used as a release name, also as a namespace name
+    helm upgrade -i odm --create-namespace -n odm -f custom-values.yaml ./
     ```
