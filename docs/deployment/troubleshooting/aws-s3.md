@@ -1,5 +1,7 @@
 # Problems with S3
 
+## Func-file service
+
 - `Can't (re-)connect to: https://bucket-name.s3.eu-west-1.amazonaws.com/file-name ... Access Denied` - This error indicates that there is an issue with:
 
     - Access to S3.

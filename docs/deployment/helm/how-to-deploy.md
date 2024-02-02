@@ -50,7 +50,8 @@ This tool ensures seamless access to ECR by handling credential rotation.
 
 6. Deploy
 
+    - In this example odm used as a release name, also as a namespace name
+
     ```shell
-    # In this example odm used as a release name, also as a namespace name
     helm upgrade -i odm --create-namespace -n odm -f custom-values.yaml ./
     ```

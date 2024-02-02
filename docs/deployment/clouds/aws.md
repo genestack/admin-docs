@@ -1,8 +1,8 @@
-# Amazon WEB Services (AWS)
+# Amazon Web Services (AWS)
 
 ## Required types of resources
 
-- [AWS S3 bucket](https://aws.amazon.com/s3/)
+- [AWS S3 Bucket](https://aws.amazon.com/s3/)
 - [AWS IAM](https://aws.amazon.com/iam/) user with bucket access above (programmatic access)
 - [AWS EKS](https://aws.amazon.com/eks/)
     - [AWS EBS](https://aws.amazon.com/ebs/)
@@ -12,11 +12,11 @@
 
 ## Steps for creating AWS resources
 
-1. Create [S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html).
+1. Create [S3 Bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html).
 
-    - You can use the S3 bucket only from one region, it is recommended to use a common region with EKS.
+    - You can use the S3 Bucket only from one region, it is recommended to use a common region with EKS.
 
-    - The S3 bucket can use KMS or default S3 encryption.
+    - The S3 Bucket can use KMS or default S3 encryption.
 
     - You need to configure CORS, you can find an example here [CORS configuration for S3](#configuration-examples)
 
