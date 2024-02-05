@@ -27,7 +27,11 @@ nav:
                 - CSV dictionary format: user-guide/dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format.md
         - Data Retrieving: user-guide/data-retrieving.md
         - Training Materials: user-guide/training-materials.md
-    - Release notes: release-notes.md
+    - Release notes:
+        - v1.50 - v1.59: release-notes/v1.50-v1.59.md
+        - v1.40 - v1.49: release-notes/v1.40-v1.49.md
+        - v1.30 - v1.39: release-notes/v1.30-v1.39.md
+        - v1.20 - v1.29: release-notes/v1.20-v1.29.md
     - Deployment and configuration:
         - Release Notes:
             - v1.50 - v1.59: deployment/release-notes/v1.50-v1.59.md
