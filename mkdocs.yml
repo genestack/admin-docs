@@ -29,11 +29,12 @@ nav:
         - Training Materials: user-guide/training-materials.md
     - Release notes: release-notes.md
     - Deployment and configuration:
-        - Release Notes: deployment/release-notes/release-notes.md
+        - Release Notes:
+            - v1.50 - v1.59: deployment/release-notes/v1.50-v1.59.md
         - Requirements:
             - Kubernetes: deployment/requirements/kubernetes.md
             - Hardware: deployment/requirements/hardware.md
-            - External Services: deployment/requirements/external-services.md
+            - External services: deployment/requirements/external-services.md
         - Clouds:
             - Amazon Web Services (AWS): deployment/clouds/aws.md
             - Microsoft Azure: deployment/clouds/azure.md
