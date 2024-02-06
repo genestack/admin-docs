@@ -2,11 +2,11 @@
 
 ## Requirements
 
--   Python 3
--   pip
--   The user should be a member of Curator group and have API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
--   Genestack Python client installed. See [how to setup Genestack python client](../packages-to-install/genestack-python-client.md)
--   Auxiliary scripts installed. See [how to install Genestack auxiliary scripts](../packages-to-install/genestack-auxiliary-scripts.md)
+- Python 3
+- pip
+- The user should be a member of Curator group and have API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
+- Genestack Python client installed. See [how to setup Genestack python client](../packages-to-install/genestack-python-client.md)
+- Auxiliary scripts installed. See [how to install Genestack auxiliary scripts](../packages-to-install/genestack-auxiliary-scripts.md)
 
 ## Instructions
 

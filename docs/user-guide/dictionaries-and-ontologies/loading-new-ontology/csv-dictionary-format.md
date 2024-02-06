@@ -5,7 +5,7 @@ List files consist of a header line containing label or name,label. Followed by 
 
 Example label only dictionary: [TherapeuticArea_Vocabulary1.csv](csv-dictionary-format/TherapeuticArea_Vocabulary1.csv)
 
-```
+```text
 label
 """Cardiovascular, Renal and Metabolism [CVRM]"""
 Gastrointestinal [GI]
@@ -21,7 +21,7 @@ Vaccines [VA]
 
 Example name,label dictionary: [TherapeuticArea_Vocabulary2.csv](csv-dictionary-format/TherapeuticArea_Vocabulary2.csv)
 
-```
+```text
 name,label
 [CVRM],"""Cardiovascular, Renal and Metabolism"""
 [GI],Gastrointestinal

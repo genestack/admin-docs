@@ -4,10 +4,10 @@ This article describes how to delete templates in ODM.
 
 ## Requirements
 
--   Python 3
--   pip
--   Genestack Python client installed. See [how to setup Genestack python client](../packages-to-install/genestack-python-client.md)
--   Auxiliary scripts installed. See [how to install Genestack auxiliary scripts](../packages-to-install/genestack-auxiliary-scripts.md)
+- Python 3
+- pip
+- Genestack Python client installed. See [how to setup Genestack python client](../packages-to-install/genestack-python-client.md)
+- Auxiliary scripts installed. See [how to install Genestack auxiliary scripts](../packages-to-install/genestack-auxiliary-scripts.md)
 
 !!!warning
 
@@ -20,7 +20,9 @@ This article describes how to delete templates in ODM.
 
 1. Before a template deletion all the studies which have this template set should be manually changed: another template which is not going to be deleted should be applied (for example, Default template). Apply template manually via the UI.
 2. Run delete template script and follow its login instructions, replacing the host name with the name of the instance the script will apply to. The script will print “Success” or an error stacktrace in case of an error.
+
     ```shell
     odm-delete-template --accession GSF244345 -H GENESTACK_ENDPOINT_ADDR
     ```
+
     Where `GENESTACK_ENDPOINT_ADDR` is the URL of the Genestack platform.

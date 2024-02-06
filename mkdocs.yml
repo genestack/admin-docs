@@ -4,30 +4,61 @@ site_url: https://genestack.github.io/documentation
 nav:
     - Home: index.md
     - User guide:
-          - Packages to install:
-                - Genestack python client: user-guide/packages-to-install/genestack-python-client.md
-                - Genestack auxiliary scripts: user-guide/packages-to-install/genestack-auxiliary-scripts.md
-          - Users:
-                - Users creation: user-guide/users/user-creation.md
-          - Templates:
-                - Create or update template: user-guide/templates/create-or-update-template.md
-                - Delete template: user-guide/templates/delete-template.md
-          - Working with study:
-                - Uploading study: user-guide/working-with-study/uploading-study.md
-                - Curation script: user-guide/working-with-study/curation-script.md
-                - Sharing study: user-guide/working-with-study/sharing-study.md
-                - Deleting study: user-guide/working-with-study/deleting-study.md
-                - Loading from GEO: user-guide/working-with-study/loading-from-geo.md
-          - Dictionaries and ontologies:
-                - Default dictionaries: user-guide/dictionaries-and-ontologies/default-dictionaries.md
-                - Exporting ontologies from ODM: user-guide/dictionaries-and-ontologies/exporting-ontologies-from-odm.md
-                - Creating new dictionary: user-guide/dictionaries-and-ontologies/creating-new-dictionary.md
-                - Loading new ontology:
-                      - user-guide/dictionaries-and-ontologies/loading-new-ontology.md
-                      - CSV dictionary format: user-guide/dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format.md
-          - Data Retrieving: user-guide/data-retrieving.md
-          - Training Materials: user-guide/training-materials.md
-    - Release notes: release-notes.md
+        - Packages to install:
+            - Genestack python client: user-guide/packages-to-install/genestack-python-client.md
+            - Genestack auxiliary scripts: user-guide/packages-to-install/genestack-auxiliary-scripts.md
+        - Users:
+            - Users creation: user-guide/users/user-creation.md
+        - Templates:
+            - Create or update template: user-guide/templates/create-or-update-template.md
+            - Delete template: user-guide/templates/delete-template.md
+        - Working with study:
+            - Uploading study: user-guide/working-with-study/uploading-study.md
+            - Curation script: user-guide/working-with-study/curation-script.md
+            - Sharing study: user-guide/working-with-study/sharing-study.md
+            - Deleting study: user-guide/working-with-study/deleting-study.md
+            - Loading from GEO: user-guide/working-with-study/loading-from-geo.md
+        - Dictionaries and ontologies:
+            - Default dictionaries: user-guide/dictionaries-and-ontologies/default-dictionaries.md
+            - Exporting ontologies from ODM: user-guide/dictionaries-and-ontologies/exporting-ontologies-from-odm.md
+            - Creating new dictionary: user-guide/dictionaries-and-ontologies/creating-new-dictionary.md
+            - Loading new ontology:
+                - user-guide/dictionaries-and-ontologies/loading-new-ontology.md
+                - CSV dictionary format: user-guide/dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format.md
+        - Data Retrieving: user-guide/data-retrieving.md
+        - Training Materials: user-guide/training-materials.md
+    - Release notes:
+        - v1.50 - v1.59: release-notes/v1.50-v1.59.md
+        - v1.40 - v1.49: release-notes/v1.40-v1.49.md
+        - v1.30 - v1.39: release-notes/v1.30-v1.39.md
+        - v1.20 - v1.29: release-notes/v1.20-v1.29.md
+    - Deployment and configuration:
+        - Release Notes:
+            - v1.50 - v1.59: deployment/release-notes/v1.50-v1.59.md
+        - Requirements:
+            - Kubernetes: deployment/requirements/kubernetes.md
+            - Hardware: deployment/requirements/hardware.md
+            - External services: deployment/requirements/external-services.md
+        - Clouds:
+            - Amazon Web Services (AWS): deployment/clouds/aws.md
+            - Microsoft Azure: deployment/clouds/azure.md
+        - Single Sign-On:
+            - About SSO in ODM: deployment/single-sign-on/sso.md
+            - OpenID:
+                - Microsoft Azure: deployment/single-sign-on/openid/azure.md
+                - Google Workspace: deployment/single-sign-on/openid/google.md
+                - Okta: deployment/single-sign-on/openid/okta.md
+            - SAML:
+                - Google Workspace: deployment/single-sign-on/saml/google.md
+                - Okta: deployment/single-sign-on/saml/okta.md
+            - SCIM:
+                - Microsoft Azure: deployment/single-sign-on/scim/azure.md
+        - Helm:
+            - How to deploy: deployment/helm/how-to-deploy.md
+        - Troubleshooting:
+            - AWS S3: deployment/troubleshooting/aws-s3.md
+            - Azure SSO: deployment/troubleshooting/azure-sso.md
+            - Azure SCIM: deployment/troubleshooting/azure-scim.md
 
 theme:
     name: material
@@ -75,19 +106,19 @@ markdown_extensions:
     - attr_list
     - md_in_html
     - pymdownx.highlight:
-          anchor_linenums: true
-          line_spans: __span
-          pygments_lang_class: true
+        anchor_linenums: true
+        line_spans: __span
+        pygments_lang_class: true
     - pymdownx.inlinehilite
     - pymdownx.snippets
     - pymdownx.tabbed:
           alternate_style: true
     - tables
     - pymdownx.superfences:
-          custom_fences:
-              - name: mermaid
-                class: mermaid
-                format: !!python/name:pymdownx.superfences.fence_code_format
+        custom_fences:
+            - name: mermaid
+              class: mermaid
+              format: !!python/name:pymdownx.superfences.fence_code_format
     - footnotes
     - pymdownx.critic
     - pymdownx.caret
@@ -95,12 +126,12 @@ markdown_extensions:
     - pymdownx.mark
     - pymdownx.tilde
     - pymdownx.emoji:
-          emoji_index: !!python/name:material.extensions.emoji.twemoji
-          emoji_generator: !!python/name:material.extensions.emoji.to_svg
+        emoji_index: !!python/name:material.extensions.emoji.twemoji
+        emoji_generator: !!python/name:material.extensions.emoji.to_svg
     - def_list
     - pymdownx.tasklist:
-          custom_checkbox: true
+        custom_checkbox: true
     - codehilite
     - pymdownx.tabbed
     - toc:
-          permalink: true
+        permalink: true

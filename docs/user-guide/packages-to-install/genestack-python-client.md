@@ -1,11 +1,11 @@
-## How to set up the Genestack Python client
+# How to set up the Genestack Python client
 
 This article explains how to set up the Genestack Python client with a user and token, which then can be used by other scripts.
 
 ## Requirements
 
--   Python 3
--   pip
+- Python 3
+- pip
 
 ## Instructions
 
@@ -43,6 +43,7 @@ This article explains how to set up the Genestack Python client with a user and 
 4. Type ‘add’ to enter a new user, enter an alias for the user.
 5. Enter the host name, which should be of the format: https://domain_name/frontend.
 6. Then select authentication method by token (1) and input the content of the token you received in step 2:
+
     ```shell
     1) by token
     2) by email and password
@@ -50,15 +51,16 @@ This article explains how to set up the Genestack Python client with a user and 
     Host: https://domain_name/frontend
     Please specify Genestack API token for "my_user":
     ```
+
 7. Type ‘quit' to exit the user-setup.
 
-### To check the existing version, and view all available console commands, type:
+### To check the existing version, and view all available console commands, type
 
 ```shell
 python3 -m pip show --verbose genestack-client
 ```
 
-### You can always remove the package with a help of this command:
+### You can always remove the package with a help of this command
 
 ```shell
 python3 -m pip uninstall genestack-client

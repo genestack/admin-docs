@@ -1,3 +1,5 @@
+# Curation script
+
 ## Introduction
 
 This script allows the curation of metadata by transforming incorrect metadata values
@@ -7,12 +9,13 @@ assist in the matching process.
 
 ## Requirements
 
--   Python 3
--   pip
--   The user should be a member of Curator group and have API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
--   Genestack Python client installed. See [how to setup Genestack python client](../packages-to-install/genestack-python-client.md)
--   Auxiliary scripts installed. See [how to install Genestack auxiliary scripts](../packages-to-install/genestack-auxiliary-scripts.md)
--   File with curation rules. How to correctly write such file is described [below](#metadata-mapping-rules).
+- Python 3
+- pip
+- The user should be a member of Curator group and have API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
+- Genestack Python client installed. See [how to setup Genestack python client](../packages-to-install/genestack-python-client.md)
+- Auxiliary scripts installed. See [how to install Genestack auxiliary scripts](../packages-to-install/genestack-auxiliary-scripts.md)
+- File with curation rules. How to correctly write such file is described [below](#metadata-mapping-rules).
+
     **Example**: [rules.json](curation-script/rules.json) written for sample metadata [samples.tsv](curation-script/samples.tsv).
 
 ## Curation script usage
@@ -80,14 +83,14 @@ to map them to a "curated" value (using a synonym-aware dictionary or custom rul
 target key. Values are case-sensitive.
 The valid attributes for the metainfo mapper are as follows:
 
--   <b>dictionary</b> (string, optional) - the name of a public Genestack dictionary used as a source of valid terms - if
+- <b>dictionary</b> (string, optional) - the name of a public Genestack dictionary used as a source of valid terms - if
     specified mappings are not found in a supplied dictionary then a warning is given in the logs;
--   <b>genestack_key</b> (string, mandatory) - target metainfo key (e.g. ‘Sex’);
--   <b>object_type</b> (string, mandatory) - the specific data object being targeted (e.g. 'study' or 'sample', must be
+- <b>genestack_key</b> (string, mandatory) - target metainfo key (e.g. ‘Sex’);
+- <b>object_type</b> (string, mandatory) - the specific data object being targeted (e.g. 'study' or 'sample', must be
     lowercase.)
--   <b>raw_keys</b> (list of strings, mandatory) - comma separated list of names of the raw (ie from import) metadata
+- <b>raw_keys</b> (list of strings, mandatory) - comma separated list of names of the raw (ie from import) metadata
     keys in which raw values will be looked up (e.g. ‘sourceData:ae.sample.Characteristics [Sex]’);
--   <b>rules</b> (object of strings, optional) - rules to map raw values to terms from dictionaries/ontologies; if you
+- <b>rules</b> (object of strings, optional) - rules to map raw values to terms from dictionaries/ontologies; if you
     want some value to be ignored (in the case of uninformative or invalid metadata values, for instance) for a specific
     metadata field, you can specify null in the argument rules. This field is ignored if a dictionary is supplied.
     For example, below is a JSON rules file to define custom mapping rules for the "Sex" metainfo attribute. This will
@@ -177,19 +180,19 @@ Example of using the mapper with units:
 ]
 ```
 
--   **Sample A:**
+- **Sample A:**
 
-    -   _Before_: `"Parameter Value[Dose]"=7 ug/ml`
-    -   _After_: `"Treatment/dose/value"=7, "Treatment/dose/unit"=microgram per millilitre`
+    - _Before_: `"Parameter Value[Dose]"=7 ug/ml`
+    - _After_: `"Treatment/dose/value"=7, "Treatment/dose/unit"=microgram per millilitre`
 
--   **Sample B:**
+- **Sample B:**
 
-    -   _Before_: `"Parameter Value[Dose]"=7 ug per ml`
-    -   _After_: `"Treatment/dose/value"=7, "Treatment/dose/unit"=ug per ml`
+    - _Before_: `"Parameter Value[Dose]"=7 ug per ml`
+    - _After_: `"Treatment/dose/value"=7, "Treatment/dose/unit"=ug per ml`
 
--   **Sample C:**
-    -   _Before_: `"Parameter Value[Dose]"=7ug/ml`
-    -   _After_: `"Treatment/dose/value"=7ug/ml, "Treatment/dose/unit"=null`
+- **Sample C:**
+    - _Before_: `"Parameter Value[Dose]"=7ug/ml`
+    - _After_: `"Treatment/dose/value"=7ug/ml, "Treatment/dose/unit"=null`
 
 Before:
 
@@ -509,7 +512,7 @@ the logs. The `overwrite` flag does not affect this behaviour.
 If multiple rules for the same attribute are found, the attribute’s curation is skipped. The warning message is
 displayed in the logs:
 
-```
+```text
 We detected multiple, potentially conflicting substitution rules for attribute(s) X, Y that involve changing the
 attribute(s) title and/or values. The attribute(s) is(are) skipped and please check your rules.
 ```

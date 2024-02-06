@@ -14,9 +14,18 @@ If something does not work please feel free to contact with developers.
 
 ## Development
 
+Install venv
+
+```shell
+rm -rf venv
+python3 -m venv venv
+source venv/bin/activate
+```
+
+Install dependencies
+
 ```sh
-pip install mkdocs-material
-pip install mike
+python3 -m pip install -r requirements.txt
 ```
 
 To serve documentation on localhost:
@@ -24,6 +33,24 @@ To serve documentation on localhost:
 ```sh
 mkdocs serve
 ```
+
+## Linting
+
+We use [pre-commit](https://pre-commit.com/) as a tool to maintain a unified documentation standard.
+
+[This module](https://github.com/igorshubovych/markdownlint-cli) with [these rule sets](https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md) is used for linting documentation.
+
+Install
+
+  ```sh
+  brew install pre-commit
+  ```
+
+Run
+
+  ```sh
+  pre-commit run -a
+  ```
 
 ## Deployment
 
