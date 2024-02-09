@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.7">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.8">
     
     
       
@@ -1185,13 +1185,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#155-open-data-manager-2023-winter-release" class="md-nav__link">
+  <a href="#156-open-data-manager-2024-february-release" class="md-nav__link">
     <span class="md-ellipsis">
-      1.55 Open Data Manager 2023 Winter Release
+      1.56 Open Data Manager 2024 February Release
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1.55 Open Data Manager 2023 Winter Release">
+    <nav class="md-nav" aria-label="1.56 Open Data Manager 2024 February Release">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1214,6 +1214,48 @@
         
           <li class="md-nav__item">
   <a href="#other-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Changes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#155-open-data-manager-2023-winter-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.55 Open Data Manager 2023 Winter Release
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.55 Open Data Manager 2023 Winter Release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-major-issues_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed Major Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-changes_1" class="md-nav__link">
     <span class="md-ellipsis">
       Other Changes
     </span>
@@ -2465,13 +2507,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#155-open-data-manager-2023-winter-release" class="md-nav__link">
+  <a href="#156-open-data-manager-2024-february-release" class="md-nav__link">
     <span class="md-ellipsis">
-      1.55 Open Data Manager 2023 Winter Release
+      1.56 Open Data Manager 2024 February Release
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1.55 Open Data Manager 2023 Winter Release">
+    <nav class="md-nav" aria-label="1.56 Open Data Manager 2024 February Release">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2494,6 +2536,48 @@
         
           <li class="md-nav__item">
   <a href="#other-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Changes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#155-open-data-manager-2023-winter-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.55 Open Data Manager 2023 Winter Release
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.55 Open Data Manager 2023 Winter Release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-major-issues_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed Major Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-changes_1" class="md-nav__link">
     <span class="md-ellipsis">
       Other Changes
     </span>
@@ -2763,8 +2847,36 @@
 <p><strong>Advanced</strong> - users who can utilize advanced API functionalities for user management and data management.</p>
 <p><strong>Admins</strong> - users who manage organization in ODM, its user and groups.</p>
 </div>
-<h2 id="155-open-data-manager-2023-winter-release">1.55 Open Data Manager 2023 Winter Release<a class="headerlink" href="#155-open-data-manager-2023-winter-release" title="Permanent link">&para;</a></h2>
+<h2 id="156-open-data-manager-2024-february-release">1.56 Open Data Manager 2024 February Release<a class="headerlink" href="#156-open-data-manager-2024-february-release" title="Permanent link">&para;</a></h2>
 <h3 id="new-features">New Features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>[Advanced] Usage Tracking</strong>: this feature allows to collect metrics and statistics organised in dashboards on Genestack side. Information for particular instance can be requested from Genestack. Currently available metrics are:<ul>
+<li>Number of users with “Activated” status.</li>
+<li>Number of API calls broken down by API labels.</li>
+<li>Average length of UI sessions.</li>
+<li>Number of Studies.</li>
+<li>Number of metadata objects and groups for Samples, Libraries, and Preparations.</li>
+<li>Number of data objects broken down by Data Classes.</li>
+</ul>
+</li>
+<li><strong>Data Class labels</strong> per Study are reintroduces from Study Browser view.</li>
+<li><strong>[Curators] Data upload via GUI</strong>: gct/generic data/vcf/facs data can be associated with any sample metadata attribute from template (except the key genestack:accession) when uploading data via Metadata Editor. This prevents users from need to edit original data to meet the rules of ODM data model.</li>
+<li><strong>Templates</strong>: Ability to rename template when duplicating it.</li>
+</ul>
+<h3 id="fixed-major-issues">Fixed Major Issues<a class="headerlink" href="#fixed-major-issues" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>GUI Issues</strong>:<ul>
+<li>Fixed error message when linking data to Sample metadata attribute with empty values in Study.</li>
+</ul>
+</li>
+</ul>
+<h3 id="other-changes">Other Changes<a class="headerlink" href="#other-changes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Tasks Page</strong>: redesigned Task Manager is available from GUI.</li>
+<li><strong>Python SDK, R SDK</strong> are not published in the release.</li>
+</ul>
+<h2 id="155-open-data-manager-2023-winter-release">1.55 Open Data Manager 2023 Winter Release<a class="headerlink" href="#155-open-data-manager-2023-winter-release" title="Permanent link">&para;</a></h2>
+<h3 id="new-features_1">New Features<a class="headerlink" href="#new-features_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>[Curators, Advanced, Admin] Manage Data</strong><ul>
 <li><strong>New Swagger Page</strong>: Introducing new endpoints for managing detached objects and deleting objects in ODM.<ul>
@@ -2785,7 +2897,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="fixed-major-issues">Fixed Major Issues<a class="headerlink" href="#fixed-major-issues" title="Permanent link">&para;</a></h3>
+<h3 id="fixed-major-issues_1">Fixed Major Issues<a class="headerlink" href="#fixed-major-issues_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
 <p><strong>GUI Issues</strong>:</p>
@@ -2807,7 +2919,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="other-changes">Other Changes<a class="headerlink" href="#other-changes" title="Permanent link">&para;</a></h3>
+<h3 id="other-changes_1">Other Changes<a class="headerlink" href="#other-changes_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Data Archive Removal</strong>: All export data archives previously generated in the ODM GUI will be deleted. New export archives can be generated on demand.</li>
 <li><strong>Custom SSE-KMS Key</strong>: Introduced the ability to specify a custom SSE-KMS key for data uploading in the ODM GUI.</li>
@@ -3070,7 +3182,7 @@ In case, two files with the same names were uploaded, you need to download them 
     <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.caa56a14.min.js"></script>
+      <script src="../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
       
     
   </body>
