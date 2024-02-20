@@ -19,10 +19,10 @@ python3 -m pip install \
       --extra-index-url https://public-nexus.devops.gs.team/repository/pypi-releases/simple \
       genestack-auxiliary-scripts
 
-# OR: Install a specific version starting from 1.53.12, usually the same as ODM version, e.g. 1.54.0
+# OR: Install a specific version starting from 1.53.12, usually the same as ODM version, e.g. 1.56.1
 python3 -m pip install \
       --extra-index-url https://public-nexus.devops.gs.team/repository/pypi-releases/simple \
-      genestack-auxiliary-scripts==1.53.12
+      genestack-auxiliary-scripts==1.56.1
 ```
 
 ### To check the existing version, and view all available console commands, type
