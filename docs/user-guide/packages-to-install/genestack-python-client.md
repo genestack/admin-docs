@@ -19,10 +19,10 @@ This article explains how to set up the Genestack Python client with a user and 
         --extra-index-url https://public-nexus.devops.gs.team/repository/pypi-releases/simple \
         genestack-client
 
-    # OR: Install a specific version starting from 1.53.12, usually the same as ODM version, e.g. 1.54.0
+    # OR: Install a specific version starting from 1.53.12, usually the same as ODM version, e.g. 1.56.1
     python3 -m pip install \
         --extra-index-url https://public-nexus.devops.gs.team/repository/pypi-releases/simple \
-        genestack-client==1.53.12
+        genestack-client==1.56.1
     ```
 
 2. Obtain a token for your Genestack user by logging in to ODM and clicking on the profile link under the username.
@@ -37,18 +37,18 @@ This article explains how to set up the Genestack Python client with a user and 
 3. Set up your account with the Genestack Python client from a console
 
     ```shell
-    genestack-user-setup -H https://domain_name/frontend
+    genestack-user-setup -H https://domain_name/
     ```
 
 4. Type ‘add’ to enter a new user, enter an alias for the user.
-5. Enter the host name, which should be of the format: https://domain_name/frontend.
+5. Enter the host name, which should be of the format: https://domain_name/.
 6. Then select authentication method by token (1) and input the content of the token you received in step 2:
 
     ```shell
     1) by token
     2) by email and password
     Select authentication: 1
-    Host: https://domain_name/frontend
+    Host: https://domain_name/
     Please specify Genestack API token for "my_user":
     ```
 
