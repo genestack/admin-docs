@@ -7,8 +7,8 @@ This article describes how to prepare a series matrix file from GEO to be loaded
 - Python 3
 - pip
 - Having `pandas` library installed. We recommend using the latest version available.
-- Genestack Python client installed. See [how to setup Genestack python client](../packages-to-install/genestack-python-client.md)
-- Auxiliary scripts installed. See [how to install Genestack auxiliary scripts](../packages-to-install/genestack-auxiliary-scripts.md)
+- Genestack Python client installed. See [how to setup Genestack python client](../tools/genestack-python-client.md)
+- Auxiliary scripts installed. See [how to install Genestack auxiliary scripts](../tools/genestack-auxiliary-scripts.md)
 - Data file from GEO, for example [GSE29746_series_matrix.txt](loading-from-geo/GSE29746_series_matrix.txt)
 
 ## Instructions

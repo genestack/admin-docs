@@ -4,9 +4,9 @@ site_url: https://genestack.github.io/documentation
 nav:
     - Home: index.md
     - Usage:
-        - Packages to install:
-            - Genestack python client: usage/packages-to-install/genestack-python-client.md
-            - Genestack auxiliary scripts: usage/packages-to-install/genestack-auxiliary-scripts.md
+        - Tools:
+            - Genestack python client: usage/tools/genestack-python-client.md
+            - Genestack auxiliary scripts: usage/tools/genestack-auxiliary-scripts.md
         - Users:
             - Users creation: usage/users/user-creation.md
         - Templates:
