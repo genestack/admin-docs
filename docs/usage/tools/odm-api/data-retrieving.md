@@ -1,4 +1,4 @@
-# Usage of Python and R SDK
+# Usage of Python and R API-SDK
 
 ODM APIs empower you to do large-scale, cross-study, and cross-omics analysis on-the-fly.
 The ODM OpenAPI Specification can be reviewed at `GENESTACK_ENDPOINT_ADDR/swagger/helper/`,
@@ -6,45 +6,8 @@ where `GENESTACK_ENDPOINT_ADDR` is the URL of the Genestack platform.
 
 In addition to that you can also use Python and R SDKs, so you can write your own script, notebook or application.
 
-## Python SDK
-
-### How to install
-
-You can install small libraries for each ODM endpoint.
-
-Current libraries list:
-
-- study_curator
-- study_user
-- sample_curator
-- sample_user
-- library_curator
-- library_user
-- preparation_curator
-- preparation_user
-- variant_curator
-- variant_user
-- expression_curator
-- expression_user
-- flow-cytometry_curator
-- flow-cytometry_user
-- integration_curator
-- integration_user
-- tasks
-
-Example of library installation:
-
-```shell
-# Install the latest version
-python3 -m pip install \
-      --extra-index-url https://public-nexus.devops.gs.team/repository/pypi-releases/simple \
-      sample_curator
-
-# OR: Install a specific version starting from 1.53.12, usually the same as ODM version, e.g. 1.54.0
-python3 -m pip install \
-      --extra-index-url https://public-nexus.devops.gs.team/repository/pypi-releases/simple \
-      sample_curator==1.53.12
-```
+## Requirements
+- Installed odm-sdk. See [Installation odm-sdk](./installation.md)
 
 ### Example of usage
 

@@ -26,9 +26,11 @@ nav:
                     - Loading new ontology:
                         - usage/tools/odm-sdk/dictionaries-and-ontologies/loading-new-ontology.md
                         - CSV dictionary format: usage/tools/odm-sdk/dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format.md
+            - odm-api:
+                  - Installation: usage/tools/odm-api/installation.md
+                  - Data Retrieving: usage/tools/odm-api/data-retrieving.md
         - UI:
-              - Training Materials: usage/ui/training-materials.md
-        - Data Retrieving: usage/data-retrieving.md
+            - Training Materials: usage/ui/training-materials.md
         - Release notes:
             - v1.50 - v1.59: usage/release-notes/v1.50-v1.59.md
             - v1.40 - v1.49: usage/release-notes/v1.40-v1.49.md
