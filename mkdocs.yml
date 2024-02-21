@@ -5,7 +5,9 @@ nav:
     - Home: index.md
     - Usage:
         - Tools:
-            - Genestack python client: usage/tools/genestack-python-client.md
+            - odm-sdk:
+                - Installation: usage/tools/odm-sdk/installation.md
+                - Configuration: usage/tools/odm-sdk/configuration.md
         - Users:
             - Users creation: usage/users/user-creation.md
         - Templates:

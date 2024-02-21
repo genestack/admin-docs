@@ -4,10 +4,8 @@ This article describes how to prepare a series matrix file from GEO to be loaded
 
 ## Requirements
 
-- Python 3
-- pip
+- Configured odm-sdk. See [Configured odm-sdk](../tools/odm-sdk/configuration)
 - Having `pandas` library installed. We recommend using the latest version available.
-- Genestack Python client installed. See [how to setup Genestack python client](../tools/genestack-python-client.md)
 - Data file from GEO, for example [GSE29746_series_matrix.txt](loading-from-geo/GSE29746_series_matrix.txt)
 
 ## Instructions

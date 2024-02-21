@@ -9,10 +9,8 @@ assist in the matching process.
 
 ## Requirements
 
-- Python 3
-- pip
+- Configured odm-sdk. See [Configured odm-sdk](../tools/odm-sdk/configuration)
 - The user should be a member of Curator group and have API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
-- Genestack Python client installed. See [how to setup Genestack python client](../tools/genestack-python-client.md)
 - File with curation rules. How to correctly write such file is described [below](#metadata-mapping-rules).
 
     **Example**: [rules.json](curation-script/rules.json) written for sample metadata [samples.tsv](curation-script/samples.tsv).

@@ -6,10 +6,8 @@ guide](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/suppor
 
 ## Requirements
 
-- Python 3
-- pip
+- Configured odm-sdk. See [Configured odm-sdk](../tools/odm-sdk/configuration)
 - Having `pandas` library installed. We recommend using the latest version available.
-- Genestack Python client installed. See [how to setup Genestack python client](../tools/genestack-python-client.md)
 - All files with object metadata and data are hosted and available via URLs, e.g. `http://data_source/study.csv` or file:
     `///local_data/data_source/study.csv` for the case when you need to load data to ODM from a local machine on which ODM
     is installed.

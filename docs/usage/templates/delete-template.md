@@ -4,9 +4,7 @@ This article describes how to delete templates in ODM.
 
 ## Requirements
 
-- Python 3
-- pip
-- Genestack Python client installed. See [how to setup Genestack python client](../tools/genestack-python-client.md)
+- Configured odm-sdk. See [Configured odm-sdk](../tools/odm-sdk/configuration)
 
 !!!warning
 

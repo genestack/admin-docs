@@ -2,10 +2,8 @@
 
 ## Requirements
 
-- Python 3
-- pip
+- Configured odm-sdk. See [Configured odm-sdk](../tools/odm-sdk/configuration)
 - The user should be a member of Curator group and have API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
-- Genestack Python client installed. See [how to setup Genestack python client](../tools/genestack-python-client.md)
 
 ## Instructions
 
