@@ -3,30 +3,30 @@ site_url: https://genestack.github.io/documentation
 
 nav:
     - Home: index.md
-    - User guide:
+    - Usage:
         - Packages to install:
-            - Genestack python client: user-guide/packages-to-install/genestack-python-client.md
-            - Genestack auxiliary scripts: user-guide/packages-to-install/genestack-auxiliary-scripts.md
+            - Genestack python client: usage/packages-to-install/genestack-python-client.md
+            - Genestack auxiliary scripts: usage/packages-to-install/genestack-auxiliary-scripts.md
         - Users:
-            - Users creation: user-guide/users/user-creation.md
+            - Users creation: usage/users/user-creation.md
         - Templates:
-            - Create or update template: user-guide/templates/create-or-update-template.md
-            - Delete template: user-guide/templates/delete-template.md
+            - Create or update template: usage/templates/create-or-update-template.md
+            - Delete template: usage/templates/delete-template.md
         - Working with study:
-            - Uploading study: user-guide/working-with-study/uploading-study.md
-            - Curation script: user-guide/working-with-study/curation-script.md
-            - Sharing study: user-guide/working-with-study/sharing-study.md
-            - Deleting study: user-guide/working-with-study/deleting-study.md
-            - Loading from GEO: user-guide/working-with-study/loading-from-geo.md
+            - Uploading study: usage/working-with-study/uploading-study.md
+            - Curation script: usage/working-with-study/curation-script.md
+            - Sharing study: usage/working-with-study/sharing-study.md
+            - Deleting study: usage/working-with-study/deleting-study.md
+            - Loading from GEO: usage/working-with-study/loading-from-geo.md
         - Dictionaries and ontologies:
-            - Default dictionaries: user-guide/dictionaries-and-ontologies/default-dictionaries.md
-            - Exporting ontologies from ODM: user-guide/dictionaries-and-ontologies/exporting-ontologies-from-odm.md
-            - Creating new dictionary: user-guide/dictionaries-and-ontologies/creating-new-dictionary.md
+            - Default dictionaries: usage/dictionaries-and-ontologies/default-dictionaries.md
+            - Exporting ontologies from ODM: usage/dictionaries-and-ontologies/exporting-ontologies-from-odm.md
+            - Creating new dictionary: usage/dictionaries-and-ontologies/creating-new-dictionary.md
             - Loading new ontology:
-                - user-guide/dictionaries-and-ontologies/loading-new-ontology.md
-                - CSV dictionary format: user-guide/dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format.md
-        - Data Retrieving: user-guide/data-retrieving.md
-        - Training Materials: user-guide/training-materials.md
+                - usage/dictionaries-and-ontologies/loading-new-ontology.md
+                - CSV dictionary format: usage/dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format.md
+        - Data Retrieving: usage/data-retrieving.md
+        - Training Materials: usage/training-materials.md
     - Release notes:
         - v1.50 - v1.59: release-notes/v1.50-v1.59.md
         - v1.40 - v1.49: release-notes/v1.40-v1.49.md
