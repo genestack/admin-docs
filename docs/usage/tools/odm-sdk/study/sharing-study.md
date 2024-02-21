@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Configured odm-sdk. See [Configured odm-sdk](../configuration)
+- Configured odm-sdk. See [Configured odm-sdk](../configuration.md)
 - The user should be a member of Curator group and have API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
 
 ## Instructions
