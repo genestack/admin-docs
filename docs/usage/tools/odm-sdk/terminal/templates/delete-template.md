@@ -4,7 +4,7 @@ This article describes how to delete templates in ODM.
 
 ## Requirements
 
-- Configured odm-sdk. See [Configured odm-sdk](../configuration.md)
+- Configured odm-sdk. See [Configured odm-sdk](../../configuration.md)
 
 !!!warning
 
