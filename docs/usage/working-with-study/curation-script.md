@@ -13,7 +13,6 @@ assist in the matching process.
 - pip
 - The user should be a member of Curator group and have API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
 - Genestack Python client installed. See [how to setup Genestack python client](../tools/genestack-python-client.md)
-- Auxiliary scripts installed. See [how to install Genestack auxiliary scripts](../tools/genestack-auxiliary-scripts.md)
 - File with curation rules. How to correctly write such file is described [below](#metadata-mapping-rules).
 
     **Example**: [rules.json](curation-script/rules.json) written for sample metadata [samples.tsv](curation-script/samples.tsv).

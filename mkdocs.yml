@@ -6,7 +6,6 @@ nav:
     - Usage:
         - Tools:
             - Genestack python client: usage/tools/genestack-python-client.md
-            - Genestack auxiliary scripts: usage/tools/genestack-auxiliary-scripts.md
         - Users:
             - Users creation: usage/users/user-creation.md
         - Templates:

@@ -6,8 +6,6 @@
 - pip
 - Genestack Python client installed and setup with a user account/token.
     See [how to setup Genestack Python client](../tools/genestack-python-client.md)
-- Auxiliary scripts installed.
-    See [how to install Genestack auxiliary scripts](../tools/genestack-auxiliary-scripts.md)
 - A users.tsv file, for example: [users.tsv](users.tsv)
 
 ## Instructions
