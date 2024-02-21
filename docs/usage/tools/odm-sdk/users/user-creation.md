@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Configured odm-sdk. See [Configured odm-sdk](../tools/odm-sdk/configuration)
+- Configured odm-sdk. See [Configured odm-sdk](../configuration)
 - A users.tsv file, for example: [users.tsv](users.tsv)
 
 ## Instructions

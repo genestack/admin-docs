@@ -4,7 +4,7 @@ This article describes how to prepare a series matrix file from GEO to be loaded
 
 ## Requirements
 
-- Configured odm-sdk. See [Configured odm-sdk](../tools/odm-sdk/configuration)
+- Configured odm-sdk. See [Configured odm-sdk](../configuration)
 - Having `pandas` library installed. We recommend using the latest version available.
 - Data file from GEO, for example [GSE29746_series_matrix.txt](loading-from-geo/GSE29746_series_matrix.txt)
 

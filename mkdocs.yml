@@ -8,24 +8,24 @@ nav:
             - odm-sdk:
                 - Installation: usage/tools/odm-sdk/installation.md
                 - Configuration: usage/tools/odm-sdk/configuration.md
-        - Users:
-            - Users creation: usage/users/user-creation.md
-        - Templates:
-            - Create or update template: usage/templates/create-or-update-template.md
-            - Delete template: usage/templates/delete-template.md
-        - Working with study:
-            - Uploading study: usage/working-with-study/uploading-study.md
-            - Curation script: usage/working-with-study/curation-script.md
-            - Sharing study: usage/working-with-study/sharing-study.md
-            - Deleting study: usage/working-with-study/deleting-study.md
-            - Loading from GEO: usage/working-with-study/loading-from-geo.md
-        - Dictionaries and ontologies:
-            - Default dictionaries: usage/dictionaries-and-ontologies/default-dictionaries.md
-            - Exporting ontologies from ODM: usage/dictionaries-and-ontologies/exporting-ontologies-from-odm.md
-            - Creating new dictionary: usage/dictionaries-and-ontologies/creating-new-dictionary.md
-            - Loading new ontology:
-                - usage/dictionaries-and-ontologies/loading-new-ontology.md
-                - CSV dictionary format: usage/dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format.md
+                - Work with users:
+                    - Users creation: usage/tools/odm-sdk/users/user-creation.md
+                - Work with templates:
+                    - Create or update template: usage/tools/odm-sdk/templates/create-or-update-template.md
+                    - Delete template: usage/tools/odm-sdk/templates/delete-template.md
+                - Work with study:
+                    - Uploading study: usage/tools/odm-sdk/study/uploading-study.md
+                    - Curation script: usage/tools/odm-sdk/study/curation-script.md
+                    - Sharing study: usage/tools/odm-sdk/study/sharing-study.md
+                    - Deleting study: usage/tools/odm-sdk/study/deleting-study.md
+                    - Loading from GEO: usage/tools/odm-sdk/study/loading-from-geo.md
+                - Work with dictionaries and ontologies:
+                    - Default dictionaries: usage/tools/odm-sdk/dictionaries-and-ontologies/default-dictionaries.md
+                    - Exporting ontologies from ODM: usage/tools/odm-sdk/dictionaries-and-ontologies/exporting-ontologies-from-odm.md
+                    - Creating new dictionary: usage/tools/odm-sdk/dictionaries-and-ontologies/creating-new-dictionary.md
+                    - Loading new ontology:
+                        - usage/tools/odm-sdk/dictionaries-and-ontologies/loading-new-ontology.md
+                        - CSV dictionary format: usage/tools/odm-sdk/dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format.md
         - Data Retrieving: usage/data-retrieving.md
         - Training Materials: usage/training-materials.md
         - Release notes:

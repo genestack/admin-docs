@@ -1,7 +1,7 @@
 # Initial configuration of odm-sdk
 
 ## Requirements
-- Installed odm-sdk. See [Installation odm-sdk](./installation)
+- Installed odm-sdk. See [Installation odm-sdk](./installation.md)
 
 ## Instructions
 
