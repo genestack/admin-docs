@@ -1,11 +1,12 @@
 # Initial configuration of odm-sdk
 
 ## Requirements
+
 - Installed odm-sdk. See [Installation odm-sdk](./installation.md)
 
 ## Instructions
 
-### Configure:
+### Configure
 
 1. Obtain a token by logging in to ODM and clicking on the profile link under the username.
 
@@ -33,4 +34,5 @@
     Host: https://domain_name/
     Please specify Genestack API token for "my_user":
     ```
+
 6. Type ‘quit' to exit the user-setup.

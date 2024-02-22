@@ -7,7 +7,7 @@
 
 ## Instructions
 
-### Install:
+### Install
 
 1. Start a console/terminal:
 
@@ -20,7 +20,6 @@
     ```
 
    To install a specific version of a package, simply append the version number to the package reference in the command. For example: `odm-sdk==1.56.1`
-
 
 ### To check the existing version, and view all available console commands, type
 

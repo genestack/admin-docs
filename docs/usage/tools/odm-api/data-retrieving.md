@@ -7,6 +7,7 @@ where `GENESTACK_ENDPOINT_ADDR` is the URL of the Genestack platform.
 In addition to that you can also use Python and R SDKs, so you can write your own script, notebook or application.
 
 ## Requirements
+
 - Installed odm-sdk. See [Installation odm-sdk](./installation.md)
 
 ### Example of usage
