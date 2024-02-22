@@ -39,8 +39,6 @@ nav:
             - v1.30 - v1.39: usage/release-notes/v1.30-v1.39.md
             - v1.20 - v1.29: usage/release-notes/v1.20-v1.29.md
     - Deployment:
-        - Release Notes:
-            - v1.50 - v1.59: deployment/release-notes/v1.50-v1.59.md
         - Requirements:
             - Kubernetes: deployment/requirements/kubernetes.md
             - Hardware: deployment/requirements/hardware.md
@@ -65,7 +63,8 @@ nav:
             - AWS S3: deployment/troubleshooting/aws-s3.md
             - Azure SSO: deployment/troubleshooting/azure-sso.md
             - Azure SCIM: deployment/troubleshooting/azure-scim.md
-
+        - Release Notes:
+              - v1.50 - v1.59: deployment/release-notes/v1.50-v1.59.md
 theme:
     name: material
     palette:
