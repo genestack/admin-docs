@@ -1,4 +1,4 @@
-# Installation odm-api
+# Installation of generated Python API Client
 
 ## Requirements
 
