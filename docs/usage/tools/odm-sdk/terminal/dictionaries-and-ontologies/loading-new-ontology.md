@@ -6,10 +6,7 @@ This article explains how to load custom dictionaries (ontologies) in ODM.
 
 ## Requirements
 
-- Python 3
-- pip
-- Genestack Python client installed. See [how to setup Genestack python client](../packages-to-install/genestack-python-client.md)
-- Auxiliary scripts installed. See [how to install Genestack auxiliary scripts](../packages-to-install/genestack-auxiliary-scripts.md)
+- Configured odm-sdk. See [Configured odm-sdk](../../configuration.md)
 - A file describing dictionaries, e.g.: [dictionaries.json](loading-new-ontology/dictionaries.json)
 - One or more dictionaries in CSV, JSON, OWL, OBO or TTL formats, hosted at FTP or HTTP web addresses, see [dictionary example](http://purl.obolibrary.org/obo/go.owl)
 
