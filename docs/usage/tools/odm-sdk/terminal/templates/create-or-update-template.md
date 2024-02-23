@@ -6,11 +6,8 @@ Loaded templates are available to all users on the instance.
 
 ## Requirements
 
-- Python 3
-- pip
+- Configured odm-sdk. See [Configured odm-sdk](../../configuration.md)
 - The user should have the "Set up templates" permission and API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
-- Genestack Python client installed. See [how to setup Genestack python client](../packages-to-install/genestack-python-client.md)
-- Auxiliary scripts installed. See [how to install Genestack auxiliary scripts](../packages-to-install/genestack-auxiliary-scripts.md)
 - A template settings json file, e.g.: [default_ODM_template_settings.json](default_ODM_template_settings.json)
 - A template json file, e.g.: [Default_ODM_Template.json](Default_ODM_Template.json)
 
