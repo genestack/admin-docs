@@ -14,12 +14,10 @@
 2. Install the latest version using pip:
 
     ```shell
-    python3 -m pip install \
-        --extra-index-url https://public-nexus.devops.gs.team/repository/pypi-releases/simple \
-        odm-api
+    python3 -m pip install odm-api
     ```
 
-   To install a specific version of a package, simply append the version number to the package reference in the command. For example: `odm-api==1.56.1`
+   To install a specific version of a package, simply append the version number to the package reference in the command. For example: `odm-api==1.57.0`
 
 ### To check the existing version, and view all available console commands, type
 

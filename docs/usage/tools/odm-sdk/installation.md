@@ -14,9 +14,7 @@
 2. Install the latest version using pip:
 
     ```shell
-    python3 -m pip install \
-        --extra-index-url https://public-nexus.devops.gs.team/repository/pypi-releases/simple \
-        odm-sdk
+    python3 -m pip install odm-sdk
     ```
 
    To install a specific version of a package, simply append the version number to the package reference in the command. For example: `odm-sdk==1.56.1`

@@ -1,10 +1,8 @@
 # Usage of generated Python API Client
 
 ODM APIs empower you to do large-scale, cross-study, and cross-omics analysis on-the-fly.
-The ODM OpenAPI Specification can be reviewed at `GENESTACK_ENDPOINT_ADDR/swagger/helper/`,
-where `GENESTACK_ENDPOINT_ADDR` is the URL of the Genestack platform.
-
-In addition to that you can also use Python and R SDKs, so you can write your own script, notebook or application.
+The ODM OpenAPI Specification can be reviewed at `ODM_HOSTNAME/swagger/helper/`,
+where `ODM_HOSTNAME` is the URL of the ODM.
 
 ## Requirements
 
@@ -15,17 +13,20 @@ In addition to that you can also use Python and R SDKs, so you can write your ow
 Script to search through samples and display them in table format:
 
 ```python
-    import os
     import pandas as pd
     import odm_api
-
-    os.environ['PRED_SPOT_HOST'] = 'GENESTACK_ENDPOINT_ADDR'
-    os.environ['PRED_SPOT_TOKEN'] = 'GENESTACK_TOKEN'
-    os.environ['PRED_SPOT_VERSION'] = 'default-released'
-
-    api = odm_api.SampleSPoTApiAsCurator()
+    
+    configuration = odm_api.Configuration(
+        host="ODM_HOSTNAME",
+        api_key={'Genestack-API-Token': 'ODM_TOKEN'}
+    )
+    
+    api = odm_api.SampleSPoTAsCuratorApi(
+        api_client=odm_api.ApiClient(configuration=configuration)
+    )
+    
     query = '"Disease"="Healthy" OR "Disease"="Alzheimer Disease"'
-    samples = api.search_samples(filter=query, page_offset=0)
+    samples = api.search_samples_as_curator(filter=query, page_offset=0)
     print(pd.DataFrame.from_dict(samples.data[:5]))
 ```
 
