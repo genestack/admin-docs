@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.10">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.11">
     
     
       
@@ -2665,14 +2665,13 @@
 </ul>
 <h3 id="example-of-usage">Example of usage<a class="headerlink" href="#example-of-usage" title="Permanent link">&para;</a></h3>
 <p>Script to search through samples and display them in table format:</p>
-<div class="language-R highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">Sys.setenv</span><span class="p">(</span><span class="n">PRED_SPOT_HOST</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;GENESTACK_ENDPOINT_ADDR&#39;</span><span class="p">,</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">           </span><span class="n">PRED_SPOT_TOKEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;GENESTACK_TOKEN&#39;</span><span class="p">,</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">           </span><span class="n">PRED_SPOT_VERSION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;default-released&#39;</span><span class="p">)</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nf">library</span><span class="p">(</span><span class="n">odm_api</span><span class="p">)</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">query</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;&quot;Disease&quot;=&quot;Healthy&quot; OR &quot;Disease&quot;=&quot;Alzheimer Disease&quot;&#39;</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">samplesObject</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">odm_api</span><span class="o">::</span><span class="nf">SampleSPoTApiAsCurator_search_samples</span><span class="p">(</span><span class="n">filter</span><span class="o">=</span><span class="n">query</span><span class="p">)</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">samplesObject</span><span class="o">$</span><span class="n">content</span><span class="o">$</span><span class="n">data</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]</span>
+<div class="language-R highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">library</span><span class="p">(</span><span class="n">odmApi</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">api_instance</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">SampleSPoTAsCuratorApi</span><span class="o">$</span><span class="nf">new</span><span class="p">()</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">api_instance</span><span class="o">$</span><span class="n">api_client</span><span class="o">$</span><span class="n">api_keys</span><span class="p">[</span><span class="s">&quot;Genestack-API-Token&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;ODM_TOKEN&#39;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">api_instance</span><span class="o">$</span><span class="n">api_client</span><span class="o">$</span><span class="n">base_path</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;https://ODM_HOSTNAME&#39;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">query</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;&quot;Disease&quot;=&quot;Healthy&quot; OR &quot;Disease&quot;=&quot;Alzheimer Disease&quot;&#39;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">api_instance</span><span class="o">$</span><span class="nf">SearchSamplesAsCurator</span><span class="p">(</span><span class="n">filter</span><span class="o">=</span><span class="n">query</span><span class="p">,</span><span class="w"> </span><span class="n">response_format</span><span class="o">=</span><span class="s">&quot;term_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">returned_metadata_fields</span><span class="o">=</span><span class="s">&quot;minimal_data&quot;</span><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">result</span><span class="o">$</span><span class="n">content</span><span class="o">$</span><span class="n">data</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]</span>
 </span></code></pre></div>
 <p>The output (shorten):</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>  genestack:accession Sample Source ID Sample Name Organism     Sex
@@ -2681,11 +2680,6 @@
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>3           GSF136815          HG00099        None     None  Female
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>4           GSF136816          HG00100        None     None  Female
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>5           GSF136817          HG00101        None     None    Male
-</span></code></pre></div>
-<p><strong>Note:</strong> To successfully run the example you might need to install additional packages such as
-<code>R6</code> and <code>httr</code>. You can do it with a commands like this:</p>
-<div class="language-R highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#39;R6&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">repos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;http://cran.us.r-project.org&quot;</span><span class="p">)</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#39;httr&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">repos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;http://cran.us.r-project.org&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 
 
