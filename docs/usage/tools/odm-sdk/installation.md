@@ -17,7 +17,7 @@
     python3 -m pip install odm-sdk
     ```
 
-   To install a specific version of a package, simply append the version number to the package reference in the command. For example: `odm-sdk==1.56.1`
+   To install a specific version of a package, simply append the version number to the package reference in the command. For example: `odm-sdk==1.57.0`
 
 ### To check the existing version, and view all available console commands, type
 
