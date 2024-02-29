@@ -34,13 +34,6 @@ Space is used as a separator in case of multiple studies. Example:
 odm-curate-study --rules rules.json GSF000100 GSF000200 -H GENESTACK_ENDPOINT_ADDR
 ```
 
-You can specify a template for the curation with the --template parameter. If not specified the default template for the
-organisation is used.
-
-```bash
-odm-curate-study --rules <rules.json> <study accession(s)> --template <template accession> -H GENESTACK_ENDPOINT_ADDR
-```
-
 If the template specified for the curation differs from the template already associated with the study then the study is
 not curated and a warning is given in the logs.
 To explore the full list of supported arguments use the following command:
@@ -67,7 +60,7 @@ odm-curate-study --rules <rules.json> --overwrite <study accession> -H GENESTACK
 Example usage for acting on study GSF123456:
 
 ```bash
-odm-curate-study --rules rules.json --template GSF100000 --overwrite GSF123456 -H GENESTACK_ENDPOINT_ADDR
+odm-curate-study --rules rules.json --overwrite GSF123456 -H GENESTACK_ENDPOINT_ADDR
 ```
 
 ## Metadata mapping rules
@@ -87,12 +80,9 @@ The valid attributes for the metainfo mapper are as follows:
     lowercase.)
 - <b>raw_keys</b> (list of strings, mandatory) - comma separated list of names of the raw (ie from import) metadata
     keys in which raw values will be looked up (e.g. ‘sourceData:ae.sample.Characteristics [Sex]’);
-- <b>rules</b> (object of strings, optional) - rules to map raw values to terms from dictionaries/ontologies; if you
-    want some value to be ignored (in the case of uninformative or invalid metadata values, for instance) for a specific
-    metadata field, you can specify null in the argument rules. This field is ignored if a dictionary is supplied.
+- <b>rules</b> (object of strings, optional) - rules to map raw values to terms from dictionaries/ontologies.
     For example, below is a JSON rules file to define custom mapping rules for the "Sex" metainfo attribute. This will
-    copy
-    data from a column (`sourceData:ae.sample.Characteristics [Sex]`) to the correct one (`Sex`)
+    copy data from a column (`sourceData:ae.sample.Characteristics [Sex]`) to the correct one (`Sex`)
 
 ```json
 [
@@ -140,8 +130,8 @@ After:
 | female  |
 | unknown |
 
-Finally, a dictionary can be supplied in the rules. If the original value matches to one of the term's synonyms it will
-be replaced with the preferred term. The mapping rules will be ignored if a dictionary is supplied for the field.
+Finally, a dictionary can be supplied in the rules. If the value (first mapped by rules) matches to one of the term's
+synonyms it will be replaced with the preferred term.
 
 ```json
 [
@@ -501,17 +491,15 @@ After:
 
 ## Read only attributes
 
-Attributes set as read only in the template associated with the study cannot be curated, and a warning is produced in
+Attributes set as read only in the template associated with the study cannot be curated, and a warning is displayed in
 the logs. The `overwrite` flag does not affect this behaviour.
 
 ## Multiple rules for a single attribute
 
-If multiple rules for the same attribute are found, the attribute’s curation is skipped. The warning message is
-displayed in the logs:
+If multiple rules for the same attribute are found the warning message is displayed in the logs:
 
 ```text
-We detected multiple, potentially conflicting substitution rules for attribute(s) X, Y that involve changing the
-attribute(s) title and/or values. The attribute(s) is(are) skipped and please check your rules.
+Multiple curation rules were detected for the attribute X.
 ```
 
 [//]: # "This block is currently not supported, see ODM-9665 for the details"
