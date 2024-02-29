@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../../../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.11">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.12">
     
     
       
@@ -2866,26 +2866,22 @@ You must also supply a rules file, which specifies the rules for mapping.</p>
 <p>Space is used as a separator in case of multiple studies. Example:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>odm-curate-study<span class="w"> </span>--rules<span class="w"> </span>rules.json<span class="w"> </span>GSF000100<span class="w"> </span>GSF000200<span class="w"> </span>-H<span class="w"> </span>GENESTACK_ENDPOINT_ADDR
 </span></code></pre></div>
-<p>You can specify a template for the curation with the --template parameter. If not specified the default template for the
-organisation is used.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>odm-curate-study<span class="w"> </span>--rules<span class="w"> </span>&lt;rules.json&gt;<span class="w"> </span>&lt;study<span class="w"> </span>accession<span class="o">(</span>s<span class="o">)</span>&gt;<span class="w"> </span>--template<span class="w"> </span>&lt;template<span class="w"> </span>accession&gt;<span class="w"> </span>-H<span class="w"> </span>GENESTACK_ENDPOINT_ADDR
-</span></code></pre></div>
 <p>If the template specified for the curation differs from the template already associated with the study then the study is
 not curated and a warning is given in the logs.
 To explore the full list of supported arguments use the following command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>odm-curate-study<span class="w"> </span>-h
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>odm-curate-study<span class="w"> </span>-h
 </span></code></pre></div>
 <p>You can test a curation rule before applying it with the --dry-run parameter. This will connect to the server and report
 matches in the task output log (see later) but not actually change any data.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>odm-curate-study<span class="w"> </span>--rules<span class="w"> </span>&lt;rules.json&gt;<span class="w"> </span>--dry-run<span class="w"> </span>&lt;study<span class="w"> </span>accession&gt;<span class="w"> </span>-H<span class="w"> </span>GENESTACK_ENDPOINT_ADDR
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>odm-curate-study<span class="w"> </span>--rules<span class="w"> </span>&lt;rules.json&gt;<span class="w"> </span>--dry-run<span class="w"> </span>&lt;study<span class="w"> </span>accession&gt;<span class="w"> </span>-H<span class="w"> </span>GENESTACK_ENDPOINT_ADDR
 </span></code></pre></div>
 <p>By default, if the target key already contains information it will not be overwritten and a warning will be noted in the
 logs, however you can force this using the --overwrite flag. This does not affect attributes set as 'read-only' in the
 template.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>odm-curate-study<span class="w"> </span>--rules<span class="w"> </span>&lt;rules.json&gt;<span class="w"> </span>--overwrite<span class="w"> </span>&lt;study<span class="w"> </span>accession&gt;<span class="w"> </span>-H<span class="w"> </span>GENESTACK_ENDPOINT_ADDR
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>odm-curate-study<span class="w"> </span>--rules<span class="w"> </span>&lt;rules.json&gt;<span class="w"> </span>--overwrite<span class="w"> </span>&lt;study<span class="w"> </span>accession&gt;<span class="w"> </span>-H<span class="w"> </span>GENESTACK_ENDPOINT_ADDR
 </span></code></pre></div>
 <p>Example usage for acting on study GSF123456:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>odm-curate-study<span class="w"> </span>--rules<span class="w"> </span>rules.json<span class="w"> </span>--template<span class="w"> </span>GSF100000<span class="w"> </span>--overwrite<span class="w"> </span>GSF123456<span class="w"> </span>-H<span class="w"> </span>GENESTACK_ENDPOINT_ADDR
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>odm-curate-study<span class="w"> </span>--rules<span class="w"> </span>rules.json<span class="w"> </span>--overwrite<span class="w"> </span>GSF123456<span class="w"> </span>-H<span class="w"> </span>GENESTACK_ENDPOINT_ADDR
 </span></code></pre></div>
 <h2 id="metadata-mapping-rules">Metadata mapping rules<a class="headerlink" href="#metadata-mapping-rules" title="Permanent link">&para;</a></h2>
 <p>The curation application uses a <code>rules.json</code> file which defines the mapping rules using the <code>--rules &lt;rule_file&gt;</code>
@@ -2903,35 +2899,32 @@ The valid attributes for the metainfo mapper are as follows:</p>
     lowercase.)</li>
 <li><b>raw_keys</b> (list of strings, mandatory) - comma separated list of names of the raw (ie from import) metadata
     keys in which raw values will be looked up (e.g. ‘sourceData:ae.sample.Characteristics [Sex]’);</li>
-<li><b>rules</b> (object of strings, optional) - rules to map raw values to terms from dictionaries/ontologies; if you
-    want some value to be ignored (in the case of uninformative or invalid metadata values, for instance) for a specific
-    metadata field, you can specify null in the argument rules. This field is ignored if a dictionary is supplied.
+<li><b>rules</b> (object of strings, optional) - rules to map raw values to terms from dictionaries/ontologies.
     For example, below is a JSON rules file to define custom mapping rules for the "Sex" metainfo attribute. This will
-    copy
-    data from a column (<code>sourceData:ae.sample.Characteristics [Sex]</code>) to the correct one (<code>Sex</code>)</li>
+    copy data from a column (<code>sourceData:ae.sample.Characteristics [Sex]</code>) to the correct one (<code>Sex</code>)</li>
 </ul>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">[</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">        </span><span class="nt">&quot;genestack_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sex&quot;</span><span class="p">,</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">        </span><span class="nt">&quot;object_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample&quot;</span><span class="p">,</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="nt">&quot;raw_keys&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sourceData:ae.sample.Characteristics [Sex]&quot;</span><span class="p">]</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">]</span>
+</span></code></pre></div>
+<p>To do the same, but also map data values to specific terms ("m" to "male", "f" to "female", "?" to "unknown"), use the
+following:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">[</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="p">{</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">        </span><span class="nt">&quot;genestack_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sex&quot;</span><span class="p">,</span>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">        </span><span class="nt">&quot;object_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample&quot;</span><span class="p">,</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">        </span><span class="nt">&quot;raw_keys&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sourceData:ae.sample.Characteristics [Sex]&quot;</span><span class="p">]</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">]</span>
-</span></code></pre></div>
-<p>To do the same, but also map data values to specific terms ("m" to "male", "f" to "female", "?" to "unknown"), use the
-following:</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">[</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="p">{</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">        </span><span class="nt">&quot;genestack_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sex&quot;</span><span class="p">,</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">        </span><span class="nt">&quot;object_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample&quot;</span><span class="p">,</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">        </span><span class="nt">&quot;raw_keys&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sourceData:ae.sample.Characteristics [Sex]&quot;</span><span class="p">],</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">        </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">            </span><span class="nt">&quot;m&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;male&quot;</span><span class="p">,</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">            </span><span class="nt">&quot;f&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;female&quot;</span><span class="p">,</span>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">            </span><span class="nt">&quot;?&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unknown&quot;</span>
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">        </span><span class="p">}</span>
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="p">]</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">        </span><span class="nt">&quot;raw_keys&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sourceData:ae.sample.Characteristics [Sex]&quot;</span><span class="p">],</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">        </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">            </span><span class="nt">&quot;m&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;male&quot;</span><span class="p">,</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">            </span><span class="nt">&quot;f&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;female&quot;</span><span class="p">,</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">            </span><span class="nt">&quot;?&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unknown&quot;</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="p">]</span>
 </span></code></pre></div>
 <p>The end result is as per the below tables.</p>
 <p>Before:</p>
@@ -2972,16 +2965,16 @@ following:</p>
 </tr>
 </tbody>
 </table>
-<p>Finally, a dictionary can be supplied in the rules. If the original value matches to one of the term's synonyms it will
-be replaced with the preferred term. The mapping rules will be ignored if a dictionary is supplied for the field.</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">[</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="p">{</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">        </span><span class="nt">&quot;genestack_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sex&quot;</span><span class="p">,</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">        </span><span class="nt">&quot;object_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample&quot;</span><span class="p">,</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">        </span><span class="nt">&quot;raw_keys&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sourceData:ae.sample.Characteristics [Sex]&quot;</span><span class="p">],</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">        </span><span class="nt">&quot;dictionary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sex&quot;</span>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="p">]</span>
+<p>Finally, a dictionary can be supplied in the rules. If the value (first mapped by rules) matches to one of the term's
+synonyms it will be replaced with the preferred term.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">[</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">        </span><span class="nt">&quot;genestack_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sex&quot;</span><span class="p">,</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">        </span><span class="nt">&quot;object_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample&quot;</span><span class="p">,</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">        </span><span class="nt">&quot;raw_keys&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sourceData:ae.sample.Characteristics [Sex]&quot;</span><span class="p">],</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">        </span><span class="nt">&quot;dictionary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sex&quot;</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="p">]</span>
 </span></code></pre></div>
 <h2 id="key_with_unit-mapper"><em>Key_with_unit</em> Mapper<a class="headerlink" href="#key_with_unit-mapper" title="Permanent link">&para;</a></h2>
 <p>If samples have a key with unit values stored in 1 attribute, e.g. <code>“Time”=”7 days”</code>, it is possible to curate the
@@ -2992,14 +2985,14 @@ first space in the <code>Unit</code> attribute (even if there are more than 1 sp
 both, using a comma separated list. If there are no spaces, everything is put in the <code>Value</code> attribute, the <code>Unit</code>
 attribute is left empty. We rely on manual curation in this case.
 Example of using the mapper with units:</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">[</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="p">{</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">        </span><span class="nt">&quot;object_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample&quot;</span><span class="p">,</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">        </span><span class="nt">&quot;genestack_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Treatment/dose/value&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Treatment/dose/unit&quot;</span><span class="p">],</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">        </span><span class="nt">&quot;raw_keys&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Value[Dose]&quot;</span><span class="p">],</span>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">        </span><span class="nt">&quot;dictionary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Units - Dose/Mass/Volume&quot;</span>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="p">]</span>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">[</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">        </span><span class="nt">&quot;object_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample&quot;</span><span class="p">,</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">        </span><span class="nt">&quot;genestack_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Treatment/dose/value&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Treatment/dose/unit&quot;</span><span class="p">],</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">        </span><span class="nt">&quot;raw_keys&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Value[Dose]&quot;</span><span class="p">],</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">        </span><span class="nt">&quot;dictionary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Units - Dose/Mass/Volume&quot;</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="p">]</span>
 </span></code></pre></div>
 <ul>
 <li>
@@ -3176,13 +3169,13 @@ Before:</p>
 application. That means that if a raw_key from the rules file is detected among the attributes, the values are
 reassigned to the corresponding genestack_key, and the original attribute raw_key is deleted.</p>
 <p>Rule:</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">[</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="p">{</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">        </span><span class="nt">&quot;genestack_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Disease&quot;</span><span class="p">,</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">        </span><span class="nt">&quot;object_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample&quot;</span><span class="p">,</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">        </span><span class="nt">&quot;raw_keys&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Illness&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;DISEASE&quot;</span><span class="p">]</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="p">]</span>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">[</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">        </span><span class="nt">&quot;genestack_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Disease&quot;</span><span class="p">,</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">        </span><span class="nt">&quot;object_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample&quot;</span><span class="p">,</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">        </span><span class="nt">&quot;raw_keys&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Illness&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;DISEASE&quot;</span><span class="p">]</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="p">]</span>
 </span></code></pre></div>
 <h3 id="case-1">Case 1<a class="headerlink" href="#case-1" title="Permanent link">&para;</a></h3>
 <p><code>raw_key</code> is a non-template attribute, <code>genestack_key</code> is a template attribute. After curation values are reassigned to
@@ -3344,13 +3337,11 @@ and preserve <code>raw_key</code> in the same state as before the curation.</p>
 </table>
 
 <h2 id="read-only-attributes">Read only attributes<a class="headerlink" href="#read-only-attributes" title="Permanent link">&para;</a></h2>
-<p>Attributes set as read only in the template associated with the study cannot be curated, and a warning is produced in
+<p>Attributes set as read only in the template associated with the study cannot be curated, and a warning is displayed in
 the logs. The <code>overwrite</code> flag does not affect this behaviour.</p>
 <h2 id="multiple-rules-for-a-single-attribute">Multiple rules for a single attribute<a class="headerlink" href="#multiple-rules-for-a-single-attribute" title="Permanent link">&para;</a></h2>
-<p>If multiple rules for the same attribute are found, the attribute’s curation is skipped. The warning message is
-displayed in the logs:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>We detected multiple, potentially conflicting substitution rules for attribute(s) X, Y that involve changing the
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>attribute(s) title and/or values. The attribute(s) is(are) skipped and please check your rules.
+<p>If multiple rules for the same attribute are found the warning message is displayed in the logs:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Multiple curation rules were detected for the attribute X.
 </span></code></pre></div>
 <h2 id="progress-logs">Progress, Logs<a class="headerlink" href="#progress-logs" title="Permanent link">&para;</a></h2>
 <p>You can track the progress of the curation process in the Genestack Task Manager:
@@ -3452,7 +3443,7 @@ displayed in the logs:</p>
     <script id="__config" type="application/json">{"base": "../../../../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      <script src="../../../../../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
       
     
   </body>
