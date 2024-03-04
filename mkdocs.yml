@@ -32,9 +32,9 @@ nav:
                   - Python:
                         - Installation: usage/tools/odm-api/python/installation.md
                         - Example: usage/tools/odm-api/python/example.md
-                  - R:
-                        - Installation: usage/tools/odm-api/r/installation.md
-                        - Example: usage/tools/odm-api/r/example.md
+#                  - R:
+#                        - Installation: usage/tools/odm-api/r/installation.md
+#                        - Example: usage/tools/odm-api/r/example.md
         - UI:
             - Training Materials: usage/ui/training-materials.md
         - Release notes:
