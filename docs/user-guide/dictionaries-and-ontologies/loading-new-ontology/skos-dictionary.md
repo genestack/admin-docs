@@ -3,14 +3,12 @@
 ODM also supports dictionaries in [SKOS](https://www.w3.org/2009/08/skos-reference/skos.html) namespace. This feature is
 useful when you
 want to organize terms in a hierarchical structure, which enables more advanced search capabilities. Both RDF/XML and
-TURTLE formats
-of dictionaries are supported. Predicated `skos:broader`, `skos:narrower` `skos:related`, `skos:definition`,
-and `skos:exactMatch` are recognized
-and utilized by ODM.
+TURTLE formats of dictionaries are supported. Predicates `skos:broader`, `skos:narrower` `skos:related`,
+`skos:definition`, and `skos:exactMatch` are recognized and utilized by ODM.
 
 ## Example of SKOS dictionary
 
-Here is an example of a short SKOS dictionary in TURTLE format:
+Here are the examples of an artificial short SKOS dictionary in TURTLE and in RDF/XML formats:
 
 <details>
 <summary>TURTLE format</summary>
@@ -29,6 +27,7 @@ Here is an example of a short SKOS dictionary in TURTLE format:
 	
 <http://vocabulary.boehringer-ingelheim.com/BodySystem/562> skos:broader <http://vocabulary.boehringer-ingelheim.com/BodySystem/104> .
 ```
+
 </details>
 
 <details>
@@ -55,8 +54,10 @@ Here is an example of a short SKOS dictionary in TURTLE format:
 
 </details>
 
-This dictionary defines two concepts: `Brain` and `Cerebral cortex`. Uploading this dictionary to ODM not only will allow you
-to assign a template attribute to have values `Brain` and `Cerebral cortex` but also will rate the full-text search results
+This dictionary defines two concepts: `Brain` and `Cerebral cortex`. Uploading this dictionary to ODM not only will
+allow you
+to assign a template attribute to have values `Brain` and `Cerebral cortex` but also will rate the full-text search
+results
 according to these relationships: if a user searches for `Brain`, the search results will also include studies that have
-`Cerebral cortex` as a value,  and vice versa: a search for `Cerebral cortex` will also include studies that have `Brain`
+`Cerebral cortex` as a value, and vice versa: a search for `Cerebral cortex` will also include studies that have `Brain`
 value, but with a lower score.
