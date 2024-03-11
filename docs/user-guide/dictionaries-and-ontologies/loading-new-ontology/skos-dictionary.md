@@ -17,14 +17,14 @@ Here are the examples of an artificial short SKOS dictionary in TURTLE and in RD
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 <http://vocabulary.boehringer-ingelheim.com/BodySystem/562>
-	a skos:Concept ;
-	skos:prefLabel "Cerebral cortex"@en .
-	
+ a skos:Concept ;
+ skos:prefLabel "Cerebral cortex"@en .
+ 
 <http://vocabulary.boehringer-ingelheim.com/BodySystem/104>
-	a skos:Concept ;
-	skos:narrower <http://vocabulary.boehringer-ingelheim.com/BodySystem/562> ;
-	skos:prefLabel "Brain"@en .
-	
+ a skos:Concept ;
+ skos:narrower <http://vocabulary.boehringer-ingelheim.com/BodySystem/562> ;
+ skos:prefLabel "Brain"@en .
+ 
 <http://vocabulary.boehringer-ingelheim.com/BodySystem/562> skos:broader <http://vocabulary.boehringer-ingelheim.com/BodySystem/104> .
 ```
 
