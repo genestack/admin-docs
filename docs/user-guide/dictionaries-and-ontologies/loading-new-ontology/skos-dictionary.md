@@ -1,8 +1,7 @@
 # Dictionaries in SKOS namespace
 
 ODM also supports dictionaries in [SKOS](https://www.w3.org/2009/08/skos-reference/skos.html) namespace. This feature is
-useful when you
-want to organize terms in a hierarchical structure, which enables more advanced search capabilities. Both RDF/XML and
+useful to organize terms in a hierarchical structure, which enables more advanced search capabilities. Both RDF/XML and
 TURTLE formats of dictionaries are supported. Predicates `skos:broader`, `skos:narrower` `skos:related`,
 `skos:definition`, and `skos:exactMatch` are recognized and utilized by ODM.
 
