@@ -8,28 +8,24 @@
       
       
       
-        <link rel="canonical" href="https://genestack.github.io/documentation/develop/usage/tools/odm-sdk/terminal/study/loading-from-geo/">
+        <link rel="canonical" href="https://genestack.github.io/documentation/develop/user-guide/dictionaries-and-ontologies/loading-new-ontology/skos-dictionary/">
       
       
-        <link rel="prev" href="../deleting-study/">
       
       
-        <link rel="next" href="../../dictionaries-and-ontologies/default-dictionaries/">
-      
-      
-      <link rel="icon" href="../../../../../../assets/favicon.ico">
+      <link rel="icon" href="../../../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
     
     
       
-        <title>Loading from GEO - Open Data Manager Documentation</title>
+        <title>Dictionaries in SKOS namespace - Open Data Manager Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../../../../../assets/stylesheets/main.7e359304.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.7e359304.min.css">
       
         
-        <link rel="stylesheet" href="../../../../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,9 +44,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -74,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#loading-from-geo" class="md-skip">
+        <a href="#dictionaries-in-skos-namespace" class="md-skip">
           Skip to content
         </a>
       
@@ -92,9 +88,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../.." title="Open Data Manager Documentation" class="md-header__button md-logo" aria-label="Open Data Manager Documentation" data-md-component="logo">
+    <a href="../../../.." title="Open Data Manager Documentation" class="md-header__button md-logo" aria-label="Open Data Manager Documentation" data-md-component="logo">
       
-  <img src="../../../../../../assets/logo.svg" alt="logo">
+  <img src="../../../../assets/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -111,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Loading from GEO
+              Dictionaries in SKOS namespace
             
           </span>
         </div>
@@ -187,7 +183,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../../.." class="md-tabs__link">
+      <a href="../../../.." class="md-tabs__link">
         
   
     
@@ -202,7 +198,11 @@
         
   
   
+  
     
+    
+      
+  
   
   
     
@@ -210,21 +210,11 @@
       
   
   
-    
-  
   
     
     
-      
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../../installation/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../../../usage/tools/odm-sdk/installation/" class="md-tabs__link">
           
   
     
@@ -256,7 +246,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../../deployment/requirements/kubernetes/" class="md-tabs__link">
+        <a href="../../../../deployment/requirements/kubernetes/" class="md-tabs__link">
           
   
     
@@ -294,9 +284,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../.." title="Open Data Manager Documentation" class="md-nav__button md-logo" aria-label="Open Data Manager Documentation" data-md-component="logo">
+    <a href="../../../.." title="Open Data Manager Documentation" class="md-nav__button md-logo" aria-label="Open Data Manager Documentation" data-md-component="logo">
       
-  <img src="../../../../../../assets/logo.svg" alt="logo">
+  <img src="../../../../assets/logo.svg" alt="logo">
 
     </a>
     Open Data Manager Documentation
@@ -311,7 +301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -328,10 +318,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -344,22 +332,19 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -370,7 +355,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Usage
@@ -381,10 +366,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -396,21 +379,18 @@
     
       
       
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
         
           
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -421,7 +401,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_1">
             <span class="md-nav__icon md-icon"></span>
             Tools
@@ -432,10 +412,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -453,11 +431,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" >
         
           
           <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
@@ -471,7 +449,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_1_1">
             <span class="md-nav__icon md-icon"></span>
             Python SDK
@@ -485,7 +463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../installation/" class="md-nav__link">
+      <a href="../../../../usage/tools/odm-sdk/installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -506,7 +484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../configuration/" class="md-nav__link">
+      <a href="../../../../usage/tools/odm-sdk/configuration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -524,10 +502,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -547,11 +523,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1_3" >
         
           
           <label class="md-nav__link" for="__nav_2_1_1_3" id="__nav_2_1_1_3_label" tabindex="0">
@@ -565,7 +541,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_1_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_1_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_1_1_3">
             <span class="md-nav__icon md-icon"></span>
             Work from terminal
@@ -623,7 +599,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../users/user-creation/" class="md-nav__link">
+      <a href="../../../../usage/tools/odm-sdk/terminal/users/user-creation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -698,7 +674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../templates/create-or-update-template/" class="md-nav__link">
+      <a href="../../../../usage/tools/odm-sdk/terminal/templates/create-or-update-template/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -719,7 +695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../templates/delete-template/" class="md-nav__link">
+      <a href="../../../../usage/tools/odm-sdk/terminal/templates/delete-template/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -745,10 +721,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -770,11 +744,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1_3_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1_3_3" >
         
           
           <label class="md-nav__link" for="__nav_2_1_1_3_3" id="__nav_2_1_1_3_3_label" tabindex="0">
@@ -788,7 +762,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_2_1_1_3_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_2_1_1_3_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_1_1_3_3">
             <span class="md-nav__icon md-icon"></span>
             Study
@@ -802,7 +776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../uploading-study/" class="md-nav__link">
+      <a href="../../../../usage/tools/odm-sdk/terminal/study/uploading-study/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -823,7 +797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../curation-script/" class="md-nav__link">
+      <a href="../../../../usage/tools/odm-sdk/terminal/study/curation-script/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -844,7 +818,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sharing-study/" class="md-nav__link">
+      <a href="../../../../usage/tools/odm-sdk/terminal/study/sharing-study/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -865,7 +839,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deleting-study/" class="md-nav__link">
+      <a href="../../../../usage/tools/odm-sdk/terminal/study/deleting-study/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -883,30 +857,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Loading from GEO
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../../usage/tools/odm-sdk/terminal/study/loading-from-geo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -915,44 +869,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      Requirements
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#instructions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Instructions
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1023,7 +939,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dictionaries-and-ontologies/default-dictionaries/" class="md-nav__link">
+      <a href="../../../../usage/tools/odm-sdk/terminal/dictionaries-and-ontologies/default-dictionaries/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1044,7 +960,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dictionaries-and-ontologies/exporting-ontologies-from-odm/" class="md-nav__link">
+      <a href="../../../../usage/tools/odm-sdk/terminal/dictionaries-and-ontologies/exporting-ontologies-from-odm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1065,7 +981,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dictionaries-and-ontologies/creating-new-dictionary/" class="md-nav__link">
+      <a href="../../../../usage/tools/odm-sdk/terminal/dictionaries-and-ontologies/creating-new-dictionary/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1134,7 +1050,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dictionaries-and-ontologies/loading-new-ontology/" class="md-nav__link">
+      <a href="../../../../usage/tools/odm-sdk/terminal/dictionaries-and-ontologies/loading-new-ontology/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1155,7 +1071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format/" class="md-nav__link">
+      <a href="../../../../usage/tools/odm-sdk/terminal/dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1176,7 +1092,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dictionaries-and-ontologies/loading-new-ontology/skos-dictionary.md" class="md-nav__link">
+      <a href="../../../../usage/tools/odm-sdk/terminal/dictionaries-and-ontologies/loading-new-ontology/skos-dictionary.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1319,7 +1235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../odm-api/python/installation/" class="md-nav__link">
+      <a href="../../../../usage/tools/odm-api/python/installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1340,7 +1256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../odm-api/python/example/" class="md-nav__link">
+      <a href="../../../../usage/tools/odm-api/python/example/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1394,20 +1310,17 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
         
           
-          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1432,7 +1345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../ui/training-materials/" class="md-nav__link">
+      <a href="../../../../usage/ui/training-materials/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1476,20 +1389,17 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
         
           
-          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1514,7 +1424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../release-notes/v1.50-v1.59/" class="md-nav__link">
+      <a href="../../../../usage/release-notes/v1.50-v1.59/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1535,7 +1445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../release-notes/v1.40-v1.49/" class="md-nav__link">
+      <a href="../../../../usage/release-notes/v1.40-v1.49/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1556,7 +1466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../release-notes/v1.30-v1.39/" class="md-nav__link">
+      <a href="../../../../usage/release-notes/v1.30-v1.39/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1577,7 +1487,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../release-notes/v1.20-v1.29/" class="md-nav__link">
+      <a href="../../../../usage/release-notes/v1.20-v1.29/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1715,7 +1625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../deployment/requirements/kubernetes/" class="md-nav__link">
+      <a href="../../../../deployment/requirements/kubernetes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1736,7 +1646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../deployment/requirements/hardware/" class="md-nav__link">
+      <a href="../../../../deployment/requirements/hardware/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1757,7 +1667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../deployment/requirements/external-services/" class="md-nav__link">
+      <a href="../../../../deployment/requirements/external-services/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1832,7 +1742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../deployment/clouds/aws/" class="md-nav__link">
+      <a href="../../../../deployment/clouds/aws/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1853,7 +1763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../deployment/clouds/azure/" class="md-nav__link">
+      <a href="../../../../deployment/clouds/azure/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1932,7 +1842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../deployment/single-sign-on/sso/" class="md-nav__link">
+      <a href="../../../../deployment/single-sign-on/sso/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2001,7 +1911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../deployment/single-sign-on/openid/azure/" class="md-nav__link">
+      <a href="../../../../deployment/single-sign-on/openid/azure/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2022,7 +1932,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../deployment/single-sign-on/openid/google/" class="md-nav__link">
+      <a href="../../../../deployment/single-sign-on/openid/google/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2043,7 +1953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../deployment/single-sign-on/openid/okta/" class="md-nav__link">
+      <a href="../../../../deployment/single-sign-on/openid/okta/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2118,7 +2028,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../deployment/single-sign-on/saml/google/" class="md-nav__link">
+      <a href="../../../../deployment/single-sign-on/saml/google/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2139,7 +2049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../deployment/single-sign-on/saml/okta/" class="md-nav__link">
+      <a href="../../../../deployment/single-sign-on/saml/okta/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2212,7 +2122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../deployment/single-sign-on/scim/azure/" class="md-nav__link">
+      <a href="../../../../deployment/single-sign-on/scim/azure/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2293,7 +2203,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../deployment/helm/how-to-deploy/" class="md-nav__link">
+      <a href="../../../../deployment/helm/how-to-deploy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2370,7 +2280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../deployment/troubleshooting/aws-s3/" class="md-nav__link">
+      <a href="../../../../deployment/troubleshooting/aws-s3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2391,7 +2301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../deployment/troubleshooting/azure-sso/" class="md-nav__link">
+      <a href="../../../../deployment/troubleshooting/azure-sso/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2412,7 +2322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../deployment/troubleshooting/azure-scim/" class="md-nav__link">
+      <a href="../../../../deployment/troubleshooting/azure-scim/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2485,7 +2395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../deployment/release-notes/v1.50-v1.59/" class="md-nav__link">
+      <a href="../../../../deployment/release-notes/v1.50-v1.59/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2541,18 +2451,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
+  <a href="#example-of-skos-dictionary" class="md-nav__link">
     <span class="md-ellipsis">
-      Requirements
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#instructions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Instructions
+      Example of SKOS dictionary
     </span>
   </a>
   
@@ -2573,26 +2474,62 @@
                   
 
 
-<h1 id="loading-from-geo">Loading from GEO<a class="headerlink" href="#loading-from-geo" title="Permanent link">&para;</a></h1>
-<p>This article describes how to prepare a series matrix file from GEO to be loaded to ODM.</p>
-<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Configured odm-sdk. See <a href="../../../configuration/">Configured odm-sdk</a></li>
-<li>Having <code>pandas</code> library installed. We recommend using the latest version available.</li>
-<li>Data file from GEO, for example <a href="GSE29746_series_matrix.txt">GSE29746_series_matrix.txt</a></li>
-</ul>
-<h2 id="instructions">Instructions<a class="headerlink" href="#instructions" title="Permanent link">&para;</a></h2>
-<p>Run the script providing the <code>GSE29746_series_matrix.txt</code> file as an argument</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>odm-geo-prepare<span class="w"> </span>GSE29746_series_matrix.txt
+<h1 id="dictionaries-in-skos-namespace">Dictionaries in SKOS namespace<a class="headerlink" href="#dictionaries-in-skos-namespace" title="Permanent link">&para;</a></h1>
+<p>ODM also supports dictionaries in <a href="https://www.w3.org/2009/08/skos-reference/skos.html">SKOS</a> namespace. This feature is
+useful to organize terms in a hierarchical structure, which enables more advanced search capabilities. Both RDF/XML and
+TURTLE formats of dictionaries are supported. Predicates <code>skos:broader</code>, <code>skos:narrower</code> <code>skos:related</code>,
+<code>skos:definition</code>, and <code>skos:exactMatch</code> are recognized and utilized by ODM.</p>
+<h2 id="example-of-skos-dictionary">Example of SKOS dictionary<a class="headerlink" href="#example-of-skos-dictionary" title="Permanent link">&para;</a></h2>
+<p>Here are the examples of an artificial short SKOS dictionary in TURTLE and in RDF/XML formats:</p>
+<details>
+<summary>TURTLE format</summary>
+
+<div class="language-ttl highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>@<span class="nv">prefix</span><span class="w"> </span><span class="nv">skos</span>:<span class="w"> </span><span class="o">&lt;</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">www</span>.<span class="nv">w3</span>.<span class="nv">org</span><span class="o">/</span><span class="mi">2004</span><span class="o">/</span><span class="mi">02</span><span class="o">/</span><span class="nv">skos</span><span class="o">/</span><span class="nv">core</span>#<span class="o">&gt;</span><span class="w"> </span>.
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="o">&lt;</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">vocabulary</span>.<span class="nv">boehringer</span><span class="o">-</span><span class="nv">ingelheim</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">BodySystem</span><span class="o">/</span><span class="mi">562</span><span class="o">&gt;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">skos</span>:<span class="nv">Concept</span><span class="w"> </span><span class="c1">;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w"> </span><span class="nv">skos</span>:<span class="nv">prefLabel</span><span class="w"> </span><span class="s2">&quot;Cerebral cortex&quot;</span>@<span class="nv">en</span><span class="w"> </span>.
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="o">&lt;</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">vocabulary</span>.<span class="nv">boehringer</span><span class="o">-</span><span class="nv">ingelheim</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">BodySystem</span><span class="o">/</span><span class="mi">104</span><span class="o">&gt;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">skos</span>:<span class="nv">Concept</span><span class="w"> </span><span class="c1">;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w"> </span><span class="nv">skos</span>:<span class="nv">narrower</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">vocabulary</span>.<span class="nv">boehringer</span><span class="o">-</span><span class="nv">ingelheim</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">BodySystem</span><span class="o">/</span><span class="mi">562</span><span class="o">&gt;</span><span class="w"> </span><span class="c1">;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w"> </span><span class="nv">skos</span>:<span class="nv">prefLabel</span><span class="w"> </span><span class="s2">&quot;Brain&quot;</span>@<span class="nv">en</span><span class="w"> </span>.
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="o">&lt;</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">vocabulary</span>.<span class="nv">boehringer</span><span class="o">-</span><span class="nv">ingelheim</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">BodySystem</span><span class="o">/</span><span class="mi">562</span><span class="o">&gt;</span><span class="w"> </span><span class="nv">skos</span>:<span class="nv">broader</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">vocabulary</span>.<span class="nv">boehringer</span><span class="o">-</span><span class="nv">ingelheim</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">BodySystem</span><span class="o">/</span><span class="mi">104</span><span class="o">&gt;</span><span class="w"> </span>.
 </span></code></pre></div>
-<p>As a result, the script creates the folder with 3 files (<a href="GSE29746.zip">example</a>), that you can use to load to ODM.
-For example:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>├──<span class="w"> </span>GSE29746
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>│<span class="w">   </span>├──<span class="w"> </span>GSE29746_expression.gct
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│<span class="w">   </span>├──<span class="w"> </span>GSE29746_samples.tsv
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│<span class="w">   </span>└──<span class="w"> </span>GSE29746_study.tsv
+
+</details>
+
+<details>
+<summary>RDF/XML format</summary>
+
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">&lt;rdf:RDF</span><span class="w"> </span><span class="na">xmlns:rdf=</span><span class="s">&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">         </span><span class="na">xmlns:skos=</span><span class="s">&quot;http://www.w3.org/2004/02/skos/core#&quot;</span><span class="nt">&gt;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">&lt;skos:Concept</span><span class="w"> </span><span class="na">rdf:about=</span><span class="s">&quot;http://vocabulary.boehringer-ingelheim.com/BodySystem/562&quot;</span><span class="nt">&gt;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="nt">&lt;skos:prefLabel</span><span class="w"> </span><span class="na">xml:lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>Cerebral<span class="w"> </span>cortex<span class="nt">&lt;/skos:prefLabel&gt;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span><span class="nt">&lt;skos:broader&gt;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">            </span><span class="nt">&lt;skos:Concept</span><span class="w"> </span><span class="na">rdf:about=</span><span class="s">&quot;http://vocabulary.boehringer-ingelheim.com/BodySystem/104&quot;</span><span class="nt">&gt;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">                </span><span class="nt">&lt;skos:narrower</span><span class="w"> </span><span class="na">rdf:resource=</span><span class="s">&quot;http://vocabulary.boehringer-ingelheim.com/BodySystem/562&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">                </span><span class="nt">&lt;skos:prefLabel</span><span class="w"> </span><span class="na">xml:lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>Brain<span class="nt">&lt;/skos:prefLabel&gt;</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">            </span><span class="nt">&lt;/skos:Concept&gt;</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">        </span><span class="nt">&lt;/skos:broader&gt;</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="nt">&lt;/skos:Concept&gt;</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="nt">&lt;/rdf:RDF&gt;</span>
 </span></code></pre></div>
-<p>Load your files to AWS S3 and then to ODM following the <a href="../uploading-study/">instructions</a></p>
+
+</details>
+
+<p>This dictionary defines two concepts: <code>Brain</code> and <code>Cerebral cortex</code>. Uploading this dictionary to ODM not only will
+allow you
+to assign a template attribute to have values <code>Brain</code> and <code>Cerebral cortex</code> but also will rate the full-text search
+results
+according to these relationships: if a user searches for <code>Brain</code>, the search results will also include studies that have
+<code>Cerebral cortex</code> as a value, and vice versa: a search for <code>Cerebral cortex</code> will also include studies that have <code>Brain</code>
+value, but with a lower score.</p>
 
 
 
@@ -2624,44 +2561,6 @@ For example:</p>
         <footer class="md-footer">
   
     
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../deleting-study/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Deleting study">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Deleting study
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../../dictionaries-and-ontologies/default-dictionaries/" class="md-footer__link md-footer__link--next" aria-label="Next: Default dictionaries">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Default dictionaries
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -2685,10 +2584,10 @@ For example:</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../../../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
       
     
   </body>
