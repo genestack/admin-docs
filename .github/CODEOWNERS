@@ -6,3 +6,5 @@
 # Python packages
 **/requirements*.txt
 
+# GitHub Actions
+.github/workflows/*
