@@ -15,6 +15,12 @@ This article describes how to delete templates in ODM.
 
 ## Instructions
 
+To explore the full list of supported arguments use the following command:
+
+```bash
+odm-delete-template -h
+```
+
 1. Before a template deletion all the studies which have this template set should be manually changed: another template which is not going to be deleted should be applied (for example, Default template). Apply template manually via the UI.
 2. Run delete template script and follow its login instructions, replacing the host name with the name of the instance the script will apply to. The script will print “Success” or an error stacktrace in case of an error.
 

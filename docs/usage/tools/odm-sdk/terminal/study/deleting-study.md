@@ -3,9 +3,15 @@
 ## Requirements
 
 - Configured odm-sdk. See [Configured odm-sdk](../../configuration.md)
-- The user should have the "Manage organisation” permission and have API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
+- The user should have the "Manage organisation” permission and have Bearer Token or API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
 
 ## Instructions
+
+To explore the full list of supported arguments use the following command:
+
+```bash
+odm-delete-study -h
+```
 
 !!!warning Warning
 

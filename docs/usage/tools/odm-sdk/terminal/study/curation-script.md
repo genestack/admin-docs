@@ -10,12 +10,18 @@ assist in the matching process.
 ## Requirements
 
 - Configured odm-sdk. See [Configured odm-sdk](../../configuration.md)
-- The user should be a member of Curator group and have API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
+- The user should be a member of Curator group and have Bearer Token or API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
 - File with curation rules. How to correctly write such file is described [below](#metadata-mapping-rules).
 
     **Example**: [rules.json](curation-script/rules.json) written for sample metadata [samples.tsv](curation-script/samples.tsv).
 
 ## Curation script usage
+
+To explore the full list of supported arguments use the following command:
+
+```bash
+odm-curate-study -h
+```
 
 Curation can be carried out by running the Python metadata curation script `odm-curate-study`.
 This can be used to perform automated curation of metadata associated with experiments and assays on Genestack.
@@ -32,14 +38,6 @@ Space is used as a separator in case of multiple studies. Example:
 
 ```bash
 odm-curate-study --rules rules.json GSF000100 GSF000200 -H GENESTACK_ENDPOINT_ADDR
-```
-
-If the template specified for the curation differs from the template already associated with the study then the study is
-not curated and a warning is given in the logs.
-To explore the full list of supported arguments use the following command:
-
-```bash
-odm-curate-study -h
 ```
 
 You can test a curation rule before applying it with the --dry-run parameter. This will connect to the server and report
