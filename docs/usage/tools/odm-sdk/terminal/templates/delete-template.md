@@ -5,6 +5,7 @@ This article describes how to delete templates in ODM.
 ## Requirements
 
 - Configured odm-sdk. See [Configured odm-sdk](../../configuration.md)
+- The user should have the "Manage organisation" permission and have Bearer Token or API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
 
 !!!warning
 
@@ -14,6 +15,12 @@ This article describes how to delete templates in ODM.
     4. The script doesn’t check the type of the file so if a study’s accession is provided instead of a template’s accession the study will be deleted. However, for deletion of studies please use the script from [how to delete a study](../study/deleting-study.md)
 
 ## Instructions
+
+To explore the full list of supported arguments use the following command:
+
+```bash
+odm-delete-template -h
+```
 
 1. Before a template deletion all the studies which have this template set should be manually changed: another template which is not going to be deleted should be applied (for example, Default template). Apply template manually via the UI.
 2. Run delete template script and follow its login instructions, replacing the host name with the name of the instance the script will apply to. The script will print “Success” or an error stacktrace in case of an error.

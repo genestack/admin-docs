@@ -8,7 +8,8 @@
 
 ### Configure
 
-1. Obtain a token by logging in to ODM and clicking on the profile link under the username.
+1. Retrieve an Access (Bearer) Token, or obtain an API token by logging into ODM and clicking the profile link under
+    the username.
 
     See an example for Public user below:
 
@@ -25,11 +26,12 @@
 
 3. Type ‘add’ to enter a new user, enter an alias for the user.
 4. Enter the host name, which should be of the format: https://domain_name/.
-5. Then select authentication method by token (1) and input the content of the token you received in step 2:
+5. Then select suitable authentication method (1 or 2) and input the content of the token you received in step 1:
 
     ```shell
     1) by token
-    2) by email and password
+    2) by access token
+    3) by email and password
     Select authentication: 1
     Host: https://domain_name/
     Please specify Genestack API token for "my_user":

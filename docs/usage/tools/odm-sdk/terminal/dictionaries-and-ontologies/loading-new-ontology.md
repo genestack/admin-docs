@@ -7,6 +7,7 @@ This article explains how to load custom dictionaries (ontologies) in ODM.
 ## Requirements
 
 - Configured odm-sdk. See [Configured odm-sdk](../../configuration.md)
+- User should have Bearer Token or API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
 - A file describing dictionaries, e.g.: [dictionaries.json](loading-new-ontology/dictionaries.json)
 - One or more dictionaries in CSV, JSON, OWL, OBO or TTL formats, hosted at FTP or HTTP web addresses, see [dictionary example](http://purl.obolibrary.org/obo/go.owl)
 
@@ -27,6 +28,12 @@ Open the `dictionaries.json` file and replace the `name`, `url` and `description
 Multiple dictionaries can be supplied by repeating the section in curly brackets.
 
 ## Running the command to import dictionaries
+
+To explore the full list of supported arguments use the following command:
+
+```bash
+odm-update-dictionary -h
+```
 
 Run the following command from your terminal:
 
