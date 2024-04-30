@@ -2774,27 +2774,25 @@ assist in the matching process.</p>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Configured odm-sdk. See <a href="../../../configuration/">Configured odm-sdk</a></li>
-<li>The user should be a member of Curator group and have API token. See <a href="https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label">Getting a Genestack API token</a></li>
+<li>The user should be a member of Curator group and have Bearer Token or API token. See <a href="https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label">Getting a Genestack API token</a></li>
 <li>
 <p>File with curation rules. How to correctly write such file is described <a href="#metadata-mapping-rules">below</a>.</p>
 <p><strong>Example</strong>: <a href="rules.json">rules.json</a> written for sample metadata <a href="samples.tsv">samples.tsv</a>.</p>
 </li>
 </ul>
 <h2 id="curation-script-usage">Curation script usage<a class="headerlink" href="#curation-script-usage" title="Permanent link">&para;</a></h2>
+<p>To explore the full list of supported arguments use the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>odm-curate-study<span class="w"> </span>-h
+</span></code></pre></div>
 <p>Curation can be carried out by running the Python metadata curation script <code>odm-curate-study</code>.
 This can be used to perform automated curation of metadata associated with experiments and assays on Genestack.
 The script takes as input the accessions of Genestack study or studies which should contain the samples to be curated.
 You must also supply a rules file, which specifies the rules for mapping.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>odm-curate-study<span class="w"> </span>--rules<span class="w"> </span>&lt;rules.json&gt;<span class="w"> </span>&lt;study<span class="w"> </span>accession<span class="o">(</span>s<span class="o">)</span>&gt;<span class="w"> </span>-H<span class="w"> </span>GENESTACK_ENDPOINT_ADDR
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>odm-curate-study<span class="w"> </span>--rules<span class="w"> </span>&lt;rules.json&gt;<span class="w"> </span>&lt;study<span class="w"> </span>accession<span class="o">(</span>s<span class="o">)</span>&gt;<span class="w"> </span>-H<span class="w"> </span>GENESTACK_ENDPOINT_ADDR
 </span></code></pre></div>
 <p>Where <code>GENESTACK_ENDPOINT_ADDR</code> is the URL of the Genestack platform.</p>
 <p>Space is used as a separator in case of multiple studies. Example:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>odm-curate-study<span class="w"> </span>--rules<span class="w"> </span>rules.json<span class="w"> </span>GSF000100<span class="w"> </span>GSF000200<span class="w"> </span>-H<span class="w"> </span>GENESTACK_ENDPOINT_ADDR
-</span></code></pre></div>
-<p>If the template specified for the curation differs from the template already associated with the study then the study is
-not curated and a warning is given in the logs.
-To explore the full list of supported arguments use the following command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>odm-curate-study<span class="w"> </span>-h
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>odm-curate-study<span class="w"> </span>--rules<span class="w"> </span>rules.json<span class="w"> </span>GSF000100<span class="w"> </span>GSF000200<span class="w"> </span>-H<span class="w"> </span>GENESTACK_ENDPOINT_ADDR
 </span></code></pre></div>
 <p>You can test a curation rule before applying it with the --dry-run parameter. This will connect to the server and report
 matches in the task output log (see later) but not actually change any data.</p>

@@ -2578,6 +2578,7 @@
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Configured odm-sdk. See <a href="../../../configuration/">Configured odm-sdk</a></li>
+<li>The user should have the "Manage organisation" permission and have Bearer Token or API token. See <a href="https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label">Getting a Genestack API token</a></li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -2589,11 +2590,14 @@
 </ol>
 </div>
 <h2 id="instructions">Instructions<a class="headerlink" href="#instructions" title="Permanent link">&para;</a></h2>
+<p>To explore the full list of supported arguments use the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>odm-delete-template<span class="w"> </span>-h
+</span></code></pre></div>
 <ol>
 <li>Before a template deletion all the studies which have this template set should be manually changed: another template which is not going to be deleted should be applied (for example, Default template). Apply template manually via the UI.</li>
 <li>
 <p>Run delete template script and follow its login instructions, replacing the host name with the name of the instance the script will apply to. The script will print “Success” or an error stacktrace in case of an error.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>odm-delete-template<span class="w"> </span>--accession<span class="w"> </span>GSF244345<span class="w"> </span>-H<span class="w"> </span>GENESTACK_ENDPOINT_ADDR
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>odm-delete-template<span class="w"> </span>--accession<span class="w"> </span>GSF244345<span class="w"> </span>-H<span class="w"> </span>GENESTACK_ENDPOINT_ADDR
 </span></code></pre></div>
 <p>Where <code>GENESTACK_ENDPOINT_ADDR</code> is the URL of the Genestack platform.</p>
 </li>

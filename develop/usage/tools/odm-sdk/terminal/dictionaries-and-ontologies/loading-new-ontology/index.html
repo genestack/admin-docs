@@ -2601,6 +2601,7 @@
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Configured odm-sdk. See <a href="../../../configuration/">Configured odm-sdk</a></li>
+<li>User should have Bearer Token or API token. See <a href="https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label">Getting a Genestack API token</a></li>
 <li>A file describing dictionaries, e.g.: <a href="dictionaries.json">dictionaries.json</a></li>
 <li>One or more dictionaries in CSV, JSON, OWL, OBO or TTL formats, hosted at FTP or HTTP web addresses, see <a href="http://purl.obolibrary.org/obo/go.owl">dictionary example</a></li>
 </ul>
@@ -2616,14 +2617,17 @@
 </span></code></pre></div>
 <p>Multiple dictionaries can be supplied by repeating the section in curly brackets.</p>
 <h2 id="running-the-command-to-import-dictionaries">Running the command to import dictionaries<a class="headerlink" href="#running-the-command-to-import-dictionaries" title="Permanent link">&para;</a></h2>
+<p>To explore the full list of supported arguments use the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>odm-update-dictionary<span class="w"> </span>-h
+</span></code></pre></div>
 <p>Run the following command from your terminal:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>odm-update-dictionary<span class="w"> </span>-u<span class="w"> </span>YOUR_ALIAS_FOR_USER<span class="w"> </span>--file_with_dictionaries<span class="w"> </span>/FULL_PATH_TO_THE_DICTIONARIES_JSON_FILE/dictionaries.json
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>odm-update-dictionary<span class="w"> </span>-u<span class="w"> </span>YOUR_ALIAS_FOR_USER<span class="w"> </span>--file_with_dictionaries<span class="w"> </span>/FULL_PATH_TO_THE_DICTIONARIES_JSON_FILE/dictionaries.json
 </span></code></pre></div>
 <p><code>-u</code> [optional] parameter should contain the alias for the user you set up with the Genestack python client previously.<br/>
 <code>-H [hostname]</code> [optional] hostname for the environment being used; you can use either <code>-u</code> or <code>-H</code>.<br/>
 <code>--file_with_dictionaries</code> parameter should contain full path to the <code>dictionaries.json</code> file - replace <code>FULL_PATH_TO_THE_DICTIONARIES_JSON_FILE</code> with this path.<br/>
 or run</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>odm-update-dictionary<span class="w"> </span>-u<span class="w"> </span>YOUR_ALIAS_FOR_USER<span class="w"> </span>--file_with_dictionaries<span class="w"> </span>dictionaries.json
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>odm-update-dictionary<span class="w"> </span>-u<span class="w"> </span>YOUR_ALIAS_FOR_USER<span class="w"> </span>--file_with_dictionaries<span class="w"> </span>dictionaries.json
 </span></code></pre></div>
 <p>if <code>dictionaries.json</code> is presented in the current working directory.</p>
 <p>Once loaded the dictionary needs to be indexed. This will occur automatically in the background but can take several minutes (~25 minutes for a 600MB ontology). The indexing task can be monitored in the tasks log.</p>

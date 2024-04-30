@@ -2615,25 +2615,28 @@
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Configured odm-sdk. See <a href="../../../configuration/">Configured odm-sdk</a></li>
-<li>The user should have the "Set up templates" permission and API token. See <a href="https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label">Getting a Genestack API token</a></li>
+<li>The user should have the "Set up templates" permission and Bearer Token or API token. See <a href="https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label">Getting a Genestack API token</a></li>
 <li>A template settings json file, e.g.: <a href="../default_ODM_template_settings.json">default_ODM_template_settings.json</a></li>
 <li>A template json file, e.g.: <a href="../Default_ODM_Template.json">Default_ODM_Template.json</a></li>
 </ul>
 <h2 id="instructions">Instructions<a class="headerlink" href="#instructions" title="Permanent link">&para;</a></h2>
+<p>To explore the full list of supported arguments use the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>odm-update-template<span class="w"> </span>-h
+</span></code></pre></div>
 <ol>
 <li>
 <p>Download or create a template json file (see Requirements). Templates are collections of fields with rules determining whether the field is required, which dictionary to use (if any) etc.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    {
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>     &quot;dataType&quot;:&quot;genestack:sampleObject&quot;,
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>     &quot;name&quot;:&quot;Organism&quot;,
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>     &quot;metainfoType&quot;:&quot;com.genestack.api.metainfo.StringValue&quot;,
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>     &quot;dictionaryName&quot;:&quot;NCBI Taxonomy&quot;,
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>     &quot;isRequired&quot;:true,
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>     &quot;isReadOnly&quot;:false,
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>     &quot;description&quot;: &quot;Key description, text of 500 characters&quot;
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    }
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>]
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>[
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    {
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>     &quot;dataType&quot;:&quot;genestack:sampleObject&quot;,
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>     &quot;name&quot;:&quot;Organism&quot;,
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>     &quot;metainfoType&quot;:&quot;com.genestack.api.metainfo.StringValue&quot;,
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>     &quot;dictionaryName&quot;:&quot;NCBI Taxonomy&quot;,
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>     &quot;isRequired&quot;:true,
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>     &quot;isReadOnly&quot;:false,
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>     &quot;description&quot;: &quot;Key description, text of 500 characters&quot;
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    }
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>]
 </span></code></pre></div>
 </li>
 <li>
@@ -2645,19 +2648,19 @@
 </li>
 <li>
 <p>Run the <code>odm-update-template</code> script:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>odm-update-template<span class="w"> </span>-H<span class="w"> </span>GENESTACK_ENDPOINT_ADDR<span class="w"> </span>/PATHTOSETTINGSFILE/default_ODM_template_settings.json
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>odm-update-template<span class="w"> </span>-H<span class="w"> </span>GENESTACK_ENDPOINT_ADDR<span class="w"> </span>/PATHTOSETTINGSFILE/default_ODM_template_settings.json
 </span></code></pre></div>
 <p>Where <code>GENESTACK_ENDPOINT_ADDR</code> is the URL of the Genestack platform.</p>
 </li>
 </ol>
 <h2 id="template_settingsjson">Template_settings.json<a class="headerlink" href="#template_settingsjson" title="Permanent link">&para;</a></h2>
 <p>This file controls certain parameters of the template file:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>{
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    &quot;template_path&quot;: &quot;Default_ODM_Template.json&quot;, //template path/file name
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    &quot;template_name&quot;: &quot;Default Template&quot;, //name of the template
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    &quot;replace&quot;: true,  //if true, will replace previous template that has the same name
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    &quot;mark_default&quot;: false //mark this template as the new default template for the organisation
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>}
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>{
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    &quot;template_path&quot;: &quot;Default_ODM_Template.json&quot;, //template path/file name
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    &quot;template_name&quot;: &quot;Default Template&quot;, //name of the template
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    &quot;replace&quot;: true,  //if true, will replace previous template that has the same name
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    &quot;mark_default&quot;: false //mark this template as the new default template for the organisation
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>}
 </span></code></pre></div>
 <h2 id="how-to-create-a-new-template-using-template_schemajson">How to create a new template using template_schema.json<a class="headerlink" href="#how-to-create-a-new-template-using-template_schemajson" title="Permanent link">&para;</a></h2>
 <p>The template json file is validated in ODM against an internal schema: <a href="../template_schema.json">template_schema.json</a></p>
@@ -2671,22 +2674,22 @@
 </li>
 <li>
 <p>The <code>Accession</code> property is mandatory for each type of object. The following values should be set for each dataType section:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>name = &quot;genestack:accession&quot;,
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>metainfoType = &quot;com.genestack.api.metainfo.StringValue&quot;,
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>isRequired = true,
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>isReadOnly = true
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>name = &quot;genestack:accession&quot;,
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>metainfoType = &quot;com.genestack.api.metainfo.StringValue&quot;,
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>isRequired = true,
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>isReadOnly = true
 </span></code></pre></div>
 <p>It is recommended to include properties having <code>isRequired = true</code> into the template file. Please also check out
 the <code>description</code> property attribute: some properties might be required for certain functionality.</p>
 </li>
 <li>
 <p>The values accepted for each metadata attribute are given by the <code>metainfoType</code> key, and must be one of the following values:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>&quot;com.genestack.api.metainfo.IntegerValue&quot;,
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>&quot;com.genestack.api.metainfo.DecimalValue&quot;,
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>&quot;com.genestack.api.metainfo.StringValue&quot;,
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>&quot;com.genestack.api.metainfo.BooleanValue&quot;,
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>&quot;com.genestack.api.metainfo.DateTimeValue&quot;,
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>&quot;com.genestack.api.metainfo.ExternalLink&quot;
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>&quot;com.genestack.api.metainfo.IntegerValue&quot;,
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>&quot;com.genestack.api.metainfo.DecimalValue&quot;,
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>&quot;com.genestack.api.metainfo.StringValue&quot;,
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>&quot;com.genestack.api.metainfo.BooleanValue&quot;,
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>&quot;com.genestack.api.metainfo.DateTimeValue&quot;,
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>&quot;com.genestack.api.metainfo.ExternalLink&quot;
 </span></code></pre></div>
 <ul>
 <li>for values like FLOAT use <code>"com.genestack.api.metainfo.DecimalValue"</code>;</li>

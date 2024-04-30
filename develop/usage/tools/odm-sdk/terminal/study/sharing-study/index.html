@@ -2577,9 +2577,12 @@
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Configured odm-sdk. See <a href="../../../configuration/">Configured odm-sdk</a></li>
-<li>The user should be a member of Curator group and have API token. See <a href="https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label">Getting a Genestack API token</a></li>
+<li>The user should be a member of Curator group and have Bearer Token or API token. See <a href="https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label">Getting a Genestack API token</a></li>
 </ul>
 <h2 id="instructions">Instructions<a class="headerlink" href="#instructions" title="Permanent link">&para;</a></h2>
+<p>To explore the full list of supported arguments use the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>odm-share-study<span class="w"> </span>-h
+</span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Please note that there are several limitations:</p>
 <ol>
@@ -2591,10 +2594,10 @@
 <li>Prepare the data for script: you need accessions of the studies you want to share and the names of the user groups with which you want to share they studies.</li>
 <li>Run the script and follow its login instructions, replacing the host name with the name of the instance the script will apply to. The script will print “Success” or an error stacktrace if there is an error.</li>
 </ol>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>odm-share-study<span class="w"> </span>--study_accession<span class="w"> </span>GSF013340<span class="w"> </span>--group_name<span class="w"> </span>GroupName<span class="w"> </span>-H<span class="w"> </span>HOST
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>odm-share-study<span class="w"> </span>--study_accession<span class="w"> </span>GSF013340<span class="w"> </span>--group_name<span class="w"> </span>GroupName<span class="w"> </span>-H<span class="w"> </span>HOST
 </span></code></pre></div>
 <p>If a group name contains spaces use quotes around group name:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>odm-share-study<span class="w"> </span>--study_accession<span class="w"> </span>GSF000745<span class="w"> </span>--group_name<span class="w"> </span><span class="s1">&#39;Group name with space&#39;</span><span class="w"> </span>-H<span class="w"> </span>HOST
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>odm-share-study<span class="w"> </span>--study_accession<span class="w"> </span>GSF000745<span class="w"> </span>--group_name<span class="w"> </span><span class="s1">&#39;Group name with space&#39;</span><span class="w"> </span>-H<span class="w"> </span>HOST
 </span></code></pre></div>
 
 
