@@ -1,0 +1,3517 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://genestack.github.io/documentation/1.57/usage/release-notes/v1.50-v1.59/">
+      
+      
+        <link rel="prev" href="../../ui/training-materials/">
+      
+      
+        <link rel="next" href="../v1.40-v1.49/">
+      
+      
+      <link rel="icon" href="../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+    
+    
+      
+        <title>v1.50 - v1.59 - Open Data Manager Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#release-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Open Data Manager Documentation" class="md-header__button md-logo" aria-label="Open Data Manager Documentation" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Open Data Manager Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              v1.50 - v1.59
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../tools/odm-sdk/installation/" class="md-tabs__link">
+          
+  
+    
+  
+  Usage
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../deployment/requirements/kubernetes/" class="md-tabs__link">
+          
+  
+    
+  
+  Deployment
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Open Data Manager Documentation" class="md-nav__button md-logo" aria-label="Open Data Manager Documentation" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    Open Data Manager Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Usage
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Usage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Python SDK
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Python SDK
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-sdk/installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-sdk/configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1_3" id="__nav_2_1_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Work from terminal
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Work from terminal
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1_3_1" id="__nav_2_1_1_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Users
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_2_1_1_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Users
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-sdk/terminal/users/user-creation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Users creation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1_3_2" id="__nav_2_1_1_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Templates
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_2_1_1_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Templates
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-sdk/terminal/templates/create-or-update-template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create or update template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-sdk/terminal/templates/delete-template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Delete template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1_3_3" id="__nav_2_1_1_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Study
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_2_1_1_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Study
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-sdk/terminal/study/uploading-study/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uploading study
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-sdk/terminal/study/curation-script/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Curation script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-sdk/terminal/study/sharing-study/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sharing study
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-sdk/terminal/study/deleting-study/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deleting study
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-sdk/terminal/study/loading-from-geo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Loading from GEO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1_3_4" id="__nav_2_1_1_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Dictionaries and ontologies
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_2_1_1_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Dictionaries and ontologies
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-sdk/terminal/dictionaries-and-ontologies/default-dictionaries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Default dictionaries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-sdk/terminal/dictionaries-and-ontologies/exporting-ontologies-from-odm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exporting ontologies from ODM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-sdk/terminal/dictionaries-and-ontologies/creating-new-dictionary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating new dictionary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1_3_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1_3_4_4" id="__nav_2_1_1_3_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Loading new ontology
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_2_1_1_3_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1_3_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Loading new ontology
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-sdk/terminal/dictionaries-and-ontologies/loading-new-ontology/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to load custom dictionaries (ontologies)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-sdk/terminal/dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSV dictionary format
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-sdk/terminal/dictionaries-and-ontologies/loading-new-ontology/skos-dictionary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SKOS dictionary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Autogenerated API clients
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Autogenerated API clients
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2_1" id="__nav_2_1_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-api/python/installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/odm-api/python/example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Example
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    UI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            UI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ui/training-materials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Training Materials
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Release notes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Release notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    v1.50 - v1.59
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    v1.50 - v1.59
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#156-open-data-manager-2024-february-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.56 Open Data Manager 2024 February Release
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.56 Open Data Manager 2024 February Release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-major-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed Major Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Changes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#155-open-data-manager-2023-winter-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.55 Open Data Manager 2023 Winter Release
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.55 Open Data Manager 2023 Winter Release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-major-issues_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed Major Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-changes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Changes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#154-open-data-manager-2023-summer-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.54 Open Data Manager 2023 Summer Release
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.54 Open Data Manager 2023 Summer Release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#all-users-expanded-data-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      [All users] Expanded Data Capabilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curators-enhanced-data-uploading" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Curators] Enhanced Data Uploading
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-api-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Advanced] API Improvements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curators-gui-adjustments" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Curators] GUI Adjustments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#researchers-enhanced-data-browsing-and-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Researchers] Enhanced Data Browsing and Export
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-api-retrieval-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Advanced] API Retrieval Improvements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issue" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known Issue
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#152" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.52
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.52">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gui-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      GUI features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GUI features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curators-revoking-access-to-a-study" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Curators] Revoking access to a study
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curators-removing-a-multivalue-while-editing-samples-in-metadata-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Curators] Removing a multivalue while editing samples in Metadata Editor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Changes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#151" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.51
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.51">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues-in-the-metadata-curation-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues in the metadata curation process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues-in-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues in API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#150" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.50
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.50">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v1.40-v1.49/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    v1.40 - v1.49
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v1.30-v1.39/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    v1.30 - v1.39
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v1.20-v1.29/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    v1.20 - v1.29
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deployment
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Requirements
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Requirements
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/requirements/kubernetes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/requirements/hardware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hardware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/requirements/external-services/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    External services
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Clouds
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Clouds
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/clouds/aws/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Amazon Web Services (AWS)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/clouds/azure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Microsoft Azure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Single Sign-On
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Single Sign-On
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/single-sign-on/sso/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About SSO in ODM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    OpenID
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            OpenID
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/single-sign-on/openid/azure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Microsoft Azure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/single-sign-on/openid/google/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google Workspace
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/single-sign-on/openid/okta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Okta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SAML
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            SAML
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/single-sign-on/saml/google/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google Workspace
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/single-sign-on/saml/okta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Okta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_4" id="__nav_3_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SCIM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            SCIM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/single-sign-on/scim/azure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Microsoft Azure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Helm
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Helm
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/helm/how-to-deploy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to deploy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Troubleshooting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/troubleshooting/aws-s3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AWS S3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/troubleshooting/azure-sso/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Azure SSO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/troubleshooting/azure-scim/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Azure SCIM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Release Notes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Release Notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/release-notes/v1.50-v1.59/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    v1.50 - v1.59
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#156-open-data-manager-2024-february-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.56 Open Data Manager 2024 February Release
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.56 Open Data Manager 2024 February Release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-major-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed Major Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Changes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#155-open-data-manager-2023-winter-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.55 Open Data Manager 2023 Winter Release
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.55 Open Data Manager 2023 Winter Release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-major-issues_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed Major Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-changes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Changes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#154-open-data-manager-2023-summer-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.54 Open Data Manager 2023 Summer Release
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.54 Open Data Manager 2023 Summer Release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#all-users-expanded-data-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      [All users] Expanded Data Capabilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curators-enhanced-data-uploading" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Curators] Enhanced Data Uploading
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-api-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Advanced] API Improvements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curators-gui-adjustments" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Curators] GUI Adjustments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#researchers-enhanced-data-browsing-and-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Researchers] Enhanced Data Browsing and Export
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-api-retrieval-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Advanced] API Retrieval Improvements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issue" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known Issue
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#152" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.52
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.52">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gui-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      GUI features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GUI features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curators-revoking-access-to-a-study" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Curators] Revoking access to a study
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curators-removing-a-multivalue-while-editing-samples-in-metadata-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      [Curators] Removing a multivalue while editing samples in Metadata Editor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Changes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#151" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.51
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.51">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues-in-the-metadata-curation-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues in the metadata curation process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues-in-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues in API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#150" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.50
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.50">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newupdated-features-in-this-release_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      New/updated features in this release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-issues_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="release-notes">Release notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Target users</p>
+<p><strong>Curators</strong> - users who add new data into ODM and are responsible for the data harmonization and curation. That includes creating and defining metadata templates, mapping metadata and temples, and data updates.</p>
+<p><strong>Researchers</strong> - users who access ODM to identify a batch of data suitable for further research and analysis. That includes search, data browsing and export.</p>
+<p><strong>Advanced</strong> - users who can utilize advanced API functionalities for user management and data management.</p>
+<p><strong>Admins</strong> - users who manage organization in ODM, its user and groups.</p>
+</div>
+<h2 id="156-open-data-manager-2024-february-release">1.56 Open Data Manager 2024 February Release<a class="headerlink" href="#156-open-data-manager-2024-february-release" title="Permanent link">&para;</a></h2>
+<h3 id="new-features">New Features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>[Advanced] Usage Tracking</strong>: this feature allows to collect metrics and statistics organised in dashboards on Genestack side. Information for particular instance can be requested from Genestack. Currently available metrics are:<ul>
+<li>Number of users with “Activated” status.</li>
+<li>Number of API calls broken down by API labels.</li>
+<li>Average length of UI sessions.</li>
+<li>Number of Studies.</li>
+<li>Number of metadata objects and groups for Samples, Libraries, and Preparations.</li>
+<li>Number of data objects broken down by Data Classes.</li>
+</ul>
+</li>
+<li><strong>Data Class labels</strong> per Study are reintroduces from Study Browser view.</li>
+<li><strong>[Curators] Data upload via GUI</strong>: gct/generic data/vcf/facs data can be associated with any sample metadata attribute from template (except the key genestack:accession) when uploading data via Metadata Editor. This prevents users from need to edit original data to meet the rules of ODM data model.</li>
+<li><strong>Templates</strong>: Ability to rename template when duplicating it.</li>
+</ul>
+<h3 id="fixed-major-issues">Fixed Major Issues<a class="headerlink" href="#fixed-major-issues" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>GUI Issues</strong>:<ul>
+<li>Fixed error message when linking data to Sample metadata attribute with empty values in Study.</li>
+</ul>
+</li>
+</ul>
+<h3 id="other-changes">Other Changes<a class="headerlink" href="#other-changes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Tasks Page</strong>: redesigned Task Manager is available from GUI.</li>
+<li><strong>Python SDK, R SDK</strong> are not published in the release.</li>
+</ul>
+<h2 id="155-open-data-manager-2023-winter-release">1.55 Open Data Manager 2023 Winter Release<a class="headerlink" href="#155-open-data-manager-2023-winter-release" title="Permanent link">&para;</a></h2>
+<h3 id="new-features_1">New Features<a class="headerlink" href="#new-features_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>[Curators, Advanced, Admin] Manage Data</strong><ul>
+<li><strong>New Swagger Page</strong>: Introducing new endpoints for managing detached objects and deleting objects in ODM.<ul>
+<li><code>GET/detached-objects</code>: Identifies detached data objects (Samples, Libraries, Preparations, Tabular Data, VCF, and Flow Cytometry data) that are not linked to other objects, aiding in clean-up after incomplete data uploads or deletions.</li>
+<li><code>DELETE/data</code>: Facilitates cascade deletion of selected objects from ODM. For instance, deleting a Study also removes all linked objects (Samples, Libraries, Tabular Data, VCF, etc.). Access restricted to users with <code>MANAGE_ORGANIZATION</code> and <code>ACCESS_ALL_DATA</code> permissions.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>[Curators] Data Uploading Enhancements in GUI</strong><ul>
+<li><strong>Enhanced Tabular Data Handling</strong>: Supports specifying a separator character in file column headers for distinguishing between sample names and measurement types.</li>
+<li><strong>Advanced Options</strong>:<ul>
+<li><strong>Skip Zeroes (Sparse Data Matrix)</strong>: Option to ignore cells with '0' values to optimize performance for datasets common in single-cell technologies.</li>
+</ul>
+</li>
+<li><strong>Pre-validation</strong>: All data files uploaded from the local computer undergo a formatting compliance check before uploading.</li>
+<li><strong>File Attachment Updates</strong>: If an attached file already exists in ODM, the system offers options to overwrite or rename the file.</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixed-major-issues_1">Fixed Major Issues<a class="headerlink" href="#fixed-major-issues_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>GUI Issues</strong>:</p>
+<ul>
+<li>[Curators] Fixed the issue where Bulk Replace doesn't replace some empty values in the Metadata Editor.</li>
+<li>[Curators] Resolved incorrect behavior when copying/reassigning string values to integer/decimal types.</li>
+<li>[Curators] Addressed the issue preventing the import of Sample Metadata to a Study with existing attached files or failed tabular data uploads.</li>
+<li>[Users] Corrected the issue with incorrect data file names in export archives.</li>
+</ul>
+</li>
+<li>
+<p><strong>Scripts and API Issues</strong>:</p>
+<ul>
+<li>[Curators, Advanced] Fixed the error occurring during the simultaneous upload of multiple files with over 2000 samples.</li>
+<li>[Curators, Advanced] Resolved the issue where the curation script does not publish changes.</li>
+<li>[Curators, Advanced] Aligned the behavior of the curation script with GUI functionality, particularly for the "Re-assign" feature.</li>
+<li>[Advanced] Addressed issues with streaming data endpoints, including excessive log entries, incomplete results under high demand, and malfunctioning with custom attribute-linked Tabular Data.</li>
+<li>[Advanced] Fixed errors related to long IP addresses and unexpected errors with Access Token requests.</li>
+</ul>
+</li>
+</ul>
+<h3 id="other-changes_1">Other Changes<a class="headerlink" href="#other-changes_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Data Archive Removal</strong>: All export data archives previously generated in the ODM GUI will be deleted. New export archives can be generated on demand.</li>
+<li><strong>Custom SSE-KMS Key</strong>: Introduced the ability to specify a custom SSE-KMS key for data uploading in the ODM GUI.</li>
+</ul>
+<hr/>
+
+<h2 id="154-open-data-manager-2023-summer-release">1.54 Open Data Manager 2023 Summer Release<a class="headerlink" href="#154-open-data-manager-2023-summer-release" title="Permanent link">&para;</a></h2>
+<p>ODM – renamed to <strong>Open</strong> Data Manager.</p>
+<h3 id="all-users-expanded-data-capabilities">[All users] Expanded Data Capabilities<a class="headerlink" href="#all-users-expanded-data-capabilities" title="Permanent link">&para;</a></h3>
+<p>ODM now supports TSV-formatted data frames. This expansion beyond GCT 1.2, VCF, and FACS formats enables the upload of diverse data types such as proteomics, metabolomics, epigenomics, and analysis results. This requires adherence to the data frame specifications provided in the <a href="https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/supported-formats.html#tabular-data">Usage</a> section.</p>
+<p>Simply put, your data file can now accommodate multiple columns defining the measured feature and more than one measurement column per sample.</p>
+<p>Example of Mass Spectrometry data: Feature columns can encompass: <code>Gene Name</code>, <code>Protein Name</code>, <code>Peptide sequence</code>, <code>PTM site</code>, <code>M/Z ratio</code>, <code>Retention time</code>, etc. Measurements per sample may include: <code>Signal intensity</code>, <code>Signal quality</code>, etc.</p>
+<p>Data upload is possible via the GUI/API, and querying can be executed via the API (see details below).</p>
+<h3 id="curators-enhanced-data-uploading">[Curators] Enhanced Data Uploading<a class="headerlink" href="#curators-enhanced-data-uploading" title="Permanent link">&para;</a></h3>
+<p>The revised data uploading function is available as a <strong>BETA</strong> version in both the API and GUI. This feature will be improved in upcoming releases.</p>
+<h3 id="advanced-api-improvements">[Advanced] API Improvements<a class="headerlink" href="#advanced-api-improvements" title="Permanent link">&para;</a></h3>
+<p>At present, uploading of TSV-formatted data is executed through Expression endpoints, with future releases introducing new endpoints for this operation.</p>
+<p>Utilize the following endpoints to upload TSV or bulk transcriptomics data in GCT 1.2:</p>
+<p><code>post/expression/gct</code></p>
+<p><code>post/import/expression</code></p>
+<p>We've added two new parameters for these endpoints (detailed descriptions available on corresponding Swagger pages):</p>
+<ul>
+<li><code>numberOfFeatureAttributes</code> - to specify the number of feature columns in the file.</li>
+<li><code>dataClass</code> - to denote the data type (e.g., proteomics, metabolomics, etc.).</li>
+</ul>
+<h3 id="curators-gui-adjustments">[Curators] GUI Adjustments<a class="headerlink" href="#curators-gui-adjustments" title="Permanent link">&para;</a></h3>
+<p>The <code>Create new study</code> button has been relocated to the center of the screen.</p>
+<p><img alt="Dashboard" src="../1.54/1.54-dashboard.png" /></p>
+<p>The <code>Add Data (BETA)</code> button has been incorporated into the new Data tab (further details about the tab below).</p>
+<figure>
+<p><img alt="Add data button" src="../1.54/1.54-add-data-button.png" width="360" /></p>
+</figure>
+<p>You now have the ability to import TSV, GCT, VCF, or FACS data from your local computer or via a direct link.</p>
+<figure>
+<p><img alt="Define your data dialog" src="../1.54/1.54-data-dialog.png" width="480" /></p>
+</figure>
+<p>Moreover, this button can also be used to attach any file to the study.</p>
+<figure>
+<p><img alt="Attach file dialog" src="../1.54/1.54-data-dialog-attach-file.png" width="480" /></p>
+</figure>
+<p>Please refer to the <a href="https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/import-samples-spreadsheet.html#import-data-beta">Usage</a> section for more information on these functionalities.</p>
+<p>The Metadata Editor now includes an option to add new custom fields for Study and Data metadata.</p>
+<figure>
+<p><img alt="Add another attribute button" src="../1.54/1.54-add-another-attribute.png" width="280" /></p>
+</figure>
+<h3 id="researchers-enhanced-data-browsing-and-export">[Researchers] Enhanced Data Browsing and Export<a class="headerlink" href="#researchers-enhanced-data-browsing-and-export" title="Permanent link">&para;</a></h3>
+<p>The <code>Signal Type</code> filter has been replaced with the Data Class filter, which represents all available data types across studies.</p>
+<figure>
+<p><img alt="Data Classes" src="../1.54/1.54-data-classes.png" width="320" /></p>
+</figure>
+<p>The <code>Signal Type</code> column has been removed from the main study browser panel.</p>
+<p>The Expression/Variant/Flow Cytometry tabs have been removed from the Metadata Editor page.</p>
+<p>A new <code>Data</code> tab has been added to the Metadata Editor page. This tab displays a list of all data files uploaded for the study, organized by their respective <code>Data Class</code> parameter (selected during file upload) on the left panel.</p>
+<figure>
+<p><img alt="Files panel" src="../1.54/1.54-files-panel.png" width="320" /></p>
+</figure>
+<p>Clicking on a file enables metadata editing [Curators only] and browsing.</p>
+<p>The metadata now includes four mandatory read-only fields that are auto-generated:</p>
+<ul>
+<li>Data Class - the data type selected during file upload.</li>
+<li>Features (string) - string feature column names present in the file (e.g., <code>Gene Name</code>).</li>
+<li>Features (numeric) - numeric feature column names present in the file (e.g., <code>M/Z ratio</code>).</li>
+<li>Value (numeric) - measurement types if more than one measurement is available per sample/library/preparation (e.g., <code>Fold Change</code>, <code>p-value</code>).
+    <br/><img alt="Data settings" src="../1.54/1.54-data-settings.png" width="300" /></li>
+</ul>
+<p>These fields are implemented to make the content of these files visible and searchable for data science users. We strongly advise against editing these fields in the template editor, as it could make these files inaccessible. If data is uploaded in the GCT format, <code>Features (string)</code>, <code>Features (numeric)</code>, and <code>Value (numeric)</code> fields are left empty (due to the standard structure of GCT files).</p>
+<h3 id="advanced-api-retrieval-improvements">[Advanced] API Retrieval Improvements<a class="headerlink" href="#advanced-api-retrieval-improvements" title="Permanent link">&para;</a></h3>
+<p>The uploaded data can be searched and extracted using the API endpoint. Similar to the uploading process, data retrieval is performed through Expression parameters of Omics queries (Integration group), with future releases set to introduce new endpoints for this operation.</p>
+<figure>
+<p><img alt="Swagger endpoints" src="../1.54/1.54-swagger.png" width="640" /></p>
+</figure>
+<p>Each endpoint of Omics queries now has two updated parameters:</p>
+<ul>
+<li>In the <code>responseFormat</code> parameter, use the <code>multi_values</code> value to extract data in the new format. If your data has multiple features/measurements, they will be extracted in full. If the parameter is unspecified, the output returns only the first feature column and the first measurement per sample. This modification was introduced to maintain backward compatibility for applications built for GCT data extraction.</li>
+<li><code>exQuery</code> has been enhanced and now supports flexible searches across files of any content. Search parameters in <code>exQuery</code> include options for feature and measurement filtering:<ul>
+<li>To search by feature (feature keyword), specify the required column name, e.g., <code>feature.Genes="ZNF814"</code>.</li>
+<li>To search by measurement type (value keyword), specify the required column name, e.g., <code>value.intensity &gt; A</code>.</li>
+</ul>
+</li>
+</ul>
+<p>New search capabilities include exact matches, multiple matches, range filtering, substring search, search by missing values, and more. Please refer to the corresponding endpoint descriptions in Swagger for details.</p>
+<h3 id="known-issue">Known Issue<a class="headerlink" href="#known-issue" title="Permanent link">&para;</a></h3>
+<p>If more than one file with the same name and extension is imported or attached via <code>Add Data (BETA)</code> button, then <code>Export</code> of the entire Study in one archive does not work.</p>
+<p>Do not import/attach files with exactly the same name (and extension) to avoid this issue.
+In case, two files with the same names were uploaded, you need to download them one by one.</p>
+<figure>
+<p><img alt="Export data" src="../1.54/1.54-export.png" width="420" /></p>
+</figure>
+<hr/>
+
+<h2 id="152">1.52<a class="headerlink" href="#152" title="Permanent link">&para;</a></h2>
+<h3 id="gui-features">GUI features<a class="headerlink" href="#gui-features" title="Permanent link">&para;</a></h3>
+<h4 id="curators-revoking-access-to-a-study">[Curators] Revoking access to a study<a class="headerlink" href="#curators-revoking-access-to-a-study" title="Permanent link">&para;</a></h4>
+<p>Added an ability to unshare a study (revoke access to a study) from a certain user group in Metadata Editor. The feature is available only to the study owner.</p>
+<figure>
+<p><img alt="Revoking access" src="../1.52/1.52-revoking-access.png" width="400" /></p>
+</figure>
+<h4 id="curators-removing-a-multivalue-while-editing-samples-in-metadata-editor">[Curators] Removing a multivalue while editing samples in Metadata Editor<a class="headerlink" href="#curators-removing-a-multivalue-while-editing-samples-in-metadata-editor" title="Permanent link">&para;</a></h4>
+<p>Users can manually remove one of the values in a row with multiple values while editing a metadata sample in Metadata Editor. Previously, multi-valued "No Value" rows were automatically removed only after a new version of the sample metadata was published.</p>
+<figure>
+<p><img alt="Remove value" src="../1.52/1.52-remove-value.png" width="320" /></p>
+</figure>
+<h4 id="fixed-issues">Fixed issues<a class="headerlink" href="#fixed-issues" title="Permanent link">&para;</a></h4>
+<p>[Curators].[Metadata Editor] Sometimes sample attributes (with attached dictionaries) with empty values are marked in Metadata Editor as invalid.</p>
+<p>[Curators].[Metadata Editor] When multi-value rows in the composite sample attributes have no value, they are merged and not shown in Metadata Editor. In the example, there are "Compound Treatment/Compound", "Compound Treatment/Dose", and "Compound Treatment/Unit"; it is impossible to determine which "Dose" values correspond to a proper "Compound".</p>
+<figure>
+<p><img alt="Multi-values. Before fixing the issue" src="../1.52/1.52-multivalues-before-fix.png" width="420" />
+  </p>
+<figcaption>Before fixing the issue</figcaption>
+</figure>
+<figure>
+<p><img alt="Multi-values. After fixing the issue" src="../1.52/1.52-multivalues-after-fix.png" width="420" />
+  </p>
+<figcaption>After fixing the issue</figcaption>
+</figure>
+<p>[Curators].[Metadata Editor] The default dictionary "Cell type" can not be used during the validation of the samples in Metadata Editor. Also, this dictionary cannot be reloaded into ODM.</p>
+<p>[Curators].[Metadata Editor] Incorrect sample count is shown on the bulk replace attribute editor dialogue.</p>
+<p>[Curators].[Template Editor] The exported json file with template attributes contains only the fields visible in the Template Editor. We have removed the outdated "isSingle" attribute from the file, which could lead to errors when reloading the template to ODM.</p>
+<h3 id="api-changes">API Changes<a class="headerlink" href="#api-changes" title="Permanent link">&para;</a></h3>
+<h4 id="fixed-issues_1">Fixed issues<a class="headerlink" href="#fixed-issues_1" title="Permanent link">&para;</a></h4>
+<p>[Advanced users] An issue with more than one AND operator in the omics metadata filters.</p>
+<hr/>
+
+<h2 id="151">1.51<a class="headerlink" href="#151" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release" title="Permanent link">&para;</a></h3>
+<p><strong>API. Updating the feature of the data upload via NFS</strong> [Curators, Advanced].</p>
+<details class="example">
+<summary>Click here to expand</summary>
+<p>Сurators can import study files from a locally mounted Network File Storage (NFS) to ODM with "write" OR "read-only" access permission. There is no need to configure the “write” permission for the files, as it was before.</p>
+</details>
+<p><strong>Authentication in API via access token of an identity provider</strong> [Curators, Advanced].</p>
+<details class="example">
+<summary>Click here to expand</summary>
+<p>ODM API and the "import_ODM_data.py" script allow authentication with a Genestack API token OR with an access token of another identity provider. To specify a custom access token, use the "Authorization" header; to set the Genestack API token, use the "Genestack-Api-Token" header.</p>
+<p>Note: access token takes precedence, meaning that if both tokens are supplied, the access token will be used for processing the request. The expansion fully supports Azure Active Directory access tokens. For a different custom Identity Provider, please test ODM API beforehand.</p>
+</details>
+<p><strong>Linking samples and omics data by any custom key via API</strong> [Curators, Advanced].</p>
+<details class="example">
+<summary>Click here to expand</summary>
+<p>Previously: samples from metadata and omics data files could be linked only using the "Sample Source Id" attribute as a reference. Now curators can choose any sample metadata attribute (column) as a reference to link samples.</p>
+<p>Notes: only template attributes can be used for the linkage; if the value of the sample attribute for the linking changes, the relationship between samples and omics data is not updated automatically. More details about this feature you can find in the swagger, the endpoint <code>POST/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}</code>, <code>linkingAttribute</code> parameter.</p>
+</details>
+<h3 id="fixed-issues-in-the-metadata-curation-process">Fixed issues in the metadata curation process<a class="headerlink" href="#fixed-issues-in-the-metadata-curation-process" title="Permanent link">&para;</a></h3>
+<p>[Curators] Fixed: a template attribute with invalid metadata is marked as "non-template" when a curator is editing sample metadata in Metadata Editor via the bulk replace.</p>
+<p>[Curators] Fixed: a formatting error appears for the study metadata view-only mode when the text in an attribute is not transferred to the next row.</p>
+<p>[Curators] Fixed: other minor bugs in Template Editor and Metadata Editor.</p>
+<h3 id="fixed-issues-in-api">Fixed issues in API<a class="headerlink" href="#fixed-issues-in-api" title="Permanent link">&para;</a></h3>
+<p>[Advanced] Fixed: the API endpoint GET/omics/expression/streamed-data does not return a proper error when a user specifies a wrong accession of the signal group in the groupAccession parameter. Now the endpoint returns an error 404 Not Found with the message <code>"Group 'N' could not be found"</code>.</p>
+<hr/>
+
+<h2 id="150">1.50<a class="headerlink" href="#150" title="Permanent link">&para;</a></h2>
+<h3 id="newupdated-features-in-this-release_1">New/updated features in this release<a class="headerlink" href="#newupdated-features-in-this-release_1" title="Permanent link">&para;</a></h3>
+<p><strong>SCIM API for managing users and groups in ODM via Azure Active Directory</strong> [Admins].</p>
+<details class="example">
+<summary>Click here to expand</summary>
+<p>We have added SCIM API endpoints that allow the organization admin to manage users and user groups in ODM via Azure Active Directory. You can find all information about these endpoints and their limitations in Swagger in the "Manage Organization" section. Active Directory and ODM integration via SCIM endpoints instruction is located in the admin guides.</p>
+<p>Since the API endpoints have been developed according to the SCIM 2.0 specification, you can use them with any identity provider that supports working with SCIM. But since each identity provider has custom specifications, we recommend the solution pre-testing.</p>
+<p>We recommend calling user and group synchronization in Active Directory on behalf of the user with the "Manage Groups" permission so that the user can see and edit all groups on the instance, regardless of whether the user is a member of the groups or not.</p>
+</details>
+<p><strong>Quick start guide videos are added across ODM</strong> [Curators, Researchers].</p>
+<details class="example">
+<summary>Click here to expand</summary>
+<p>Each page contains a button that leads to a video explaining how to work with the page and the related main concepts. In addition, a welcome pop-up appears after the first login. The pop-up contains a link to the Quick Start Guide help page and all videos. Now users can get acquainted with the possibilities of ODM even faster and more conveniently on their own.</p>
+</details>
+<h3 id="fixed-issues_2">Fixed issues<a class="headerlink" href="#fixed-issues_2" title="Permanent link">&para;</a></h3>
+<p>[Curators] The import_ODM_data.py script incorrectly handled unexpected server responses from URL provided with <code>--server</code>: server is down for any reason or a user mistake. Now the script returns an error with clear instructions.</p>
+<hr/>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../ui/training-materials/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Training Materials">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Training Materials
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../v1.40-v1.49/" class="md-footer__link md-footer__link--next" aria-label="Next: v1.40 - v1.49">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                v1.40 - v1.49
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.a7c05c9e.min.js"></script>
+      
+    
+  </body>
+</html>
