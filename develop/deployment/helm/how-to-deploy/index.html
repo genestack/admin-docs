@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
     
     
       
@@ -155,7 +155,7 @@
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -1412,24 +1412,46 @@ This tool ensures seamless access to ECR by handling credential rotation.</p>
 </span></code></pre></div>
 </li>
 <li>
-<p>Download Helm Chart (the latest version will be downloaded automatically)</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>helm<span class="w"> </span>pull<span class="w"> </span>oci://091468197733.dkr.ecr.us-east-1.amazonaws.com/genestack/chart/odm
+<p>Deploy altinity operator in Kubernetes cluster</p>
+<p>a) Recommended <code>altinity-clickhouse-operator-custom-values.yaml</code> file content:</p>
+<p><code>yaml
+configs:
+  files:
+    config.yaml:
+      watch:
+        namespaces: [".*"]
+      clickhouse:
+        access:
+          secret:
+            name: ""</code></p>
+<p>b) Download Helm-chart:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>clickhouse-operator<span class="w"> </span>https://docs.altinity.com/clickhouse-operator/
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>helm<span class="w"> </span>pull<span class="w"> </span>clickhouse-operator/altinity-clickhouse-operator
+</span></code></pre></div>
+<p>c) Untar the archive:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>tar<span class="w"> </span>xvf<span class="w"> </span>altinity-clickhouse-operator-*.tgz
+</span></code></pre></div>
+<p>d) Deploy CRDs:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>altinity-clickhouse-operator/crds/*
+</span></code></pre></div>
+<p>e) Deploy operator itself:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>helm<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>clickhouse-operator<span class="w"> </span>--create-namespace<span class="w"> </span>-n<span class="w"> </span>clickhouse-operator<span class="w"> </span>-f<span class="w"> </span>altinity-clickhouse-operator-custom-values.yaml<span class="w"> </span>./
 </span></code></pre></div>
 </li>
 <li>
-<p>Untar the archive.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>tar<span class="w"> </span>xvf<span class="w"> </span>odm-*.tgz
+<p>Deploy ODM</p>
+<p>a) Download helm-chart:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>helm<span class="w"> </span>pull<span class="w"> </span>oci://091468197733.dkr.ecr.us-east-1.amazonaws.com/genestack/chart/odm
 </span></code></pre></div>
-</li>
-<li>
-<p>Take a look to a default <code>values.yaml</code> and to a <code>odm/example-values</code> directory, the most general file in there is <code>recomendations.yaml</code>, make changes according to your infrastructure and requirements in separate file, e.g. <code>custom-values.yaml</code>.</p>
-</li>
-<li>
-<p>Deploy</p>
-<ul>
-<li>In this example odm used as a release name, also as a namespace name</li>
-</ul>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>helm<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>odm<span class="w"> </span>--create-namespace<span class="w"> </span>-n<span class="w"> </span>odm<span class="w"> </span>-f<span class="w"> </span>custom-values.yaml<span class="w"> </span>./
+<p>b) Untar the archive:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>tar<span class="w"> </span>xvf<span class="w"> </span>odm-*.tgz
+</span></code></pre></div>
+<p>c) Take a look to a default <code>values.yaml</code> and to a <code>odm/examples</code> directory, the most general file in there is <code>recomendations.yaml</code>.
+Please, make changes according to your infrastructure and requirements in separate file, e.g. <code>custom-values.yaml</code>.</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cat<span class="w"> </span>odm/examples/*.yaml
+</span></code></pre></div>
+<p>d) Run ODM deployment:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>helm<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>odm<span class="w"> </span>--create-namespace<span class="w"> </span>-n<span class="w"> </span>odm<span class="w"> </span>-f<span class="w"> </span>custom-values.yaml<span class="w"> </span>odm
 </span></code></pre></div>
 </li>
 </ol>
@@ -1528,7 +1550,7 @@ This tool ensures seamless access to ECR by handling credential rotation.</p>
     <script id="__config" type="application/json">{"base": "../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.081f42fc.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
       
     
   </body>

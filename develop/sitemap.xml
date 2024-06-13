@@ -2,92 +2,92 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://genestack.github.io/documentation/develop/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/deployment/clouds/aws/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/deployment/clouds/azure/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/deployment/helm/how-to-deploy/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/deployment/release-notes/v1.50-v1.59/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/deployment/requirements/external-services/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/deployment/requirements/hardware/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/deployment/requirements/kubernetes/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/deployment/single-sign-on/sso/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/deployment/single-sign-on/openid/azure/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/deployment/single-sign-on/openid/google/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/deployment/single-sign-on/openid/okta/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/deployment/single-sign-on/saml/google/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/deployment/single-sign-on/saml/okta/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/deployment/single-sign-on/scim/azure/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/deployment/troubleshooting/aws-s3/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/deployment/troubleshooting/azure-scim/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/deployment/troubleshooting/azure-sso/</loc>
-         <lastmod>2024-05-31</lastmod>
+         <lastmod>2024-06-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
