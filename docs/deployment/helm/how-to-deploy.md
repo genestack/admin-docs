@@ -40,24 +40,70 @@ This tool ensures seamless access to ECR by handling credential rotation.
     --password-stdin 091468197733.dkr.ecr.us-east-1.amazonaws.com
     ```
 
-3. Download Helm Chart (the latest version will be downloaded automatically)
+3. Deploy altinity operator in Kubernetes cluster
+
+    a) Recommended `altinity-clickhouse-operator-custom-values.yaml` file content:
+
+    ```yaml
+    configs:
+      files:
+        config.yaml:
+          watch:
+            namespaces: [".*"]
+          clickhouse:
+            access:
+              secret:
+                name: ""
+   ```
+
+    b) Download Helm-chart:
+
+    ```shell
+    helm repo add clickhouse-operator https://docs.altinity.com/clickhouse-operator/
+    helm pull clickhouse-operator/altinity-clickhouse-operator
+    ```
+
+    c) Untar the archive:
+
+    ```shell
+    tar xvf altinity-clickhouse-operator-*.tgz
+    ```
+
+    d) Deploy CRDs:
+
+    ```shell
+    kubectl apply -f altinity-clickhouse-operator/crds/*
+    ```
+
+    e) Deploy operator itself:
+
+    ```shell
+    helm upgrade -i clickhouse-operator --create-namespace -n clickhouse-operator -f altinity-clickhouse-operator-custom-values.yaml ./
+    ```
+
+4. Deploy ODM
+
+    a) Download helm-chart:
 
     ```shell
     helm pull oci://091468197733.dkr.ecr.us-east-1.amazonaws.com/genestack/chart/odm
     ```
 
-4. Untar the archive.
+    b) Untar the archive:
 
     ```shell
     tar xvf odm-*.tgz
     ```
 
-5. Take a look to a default `values.yaml` and to a `odm/example-values` directory, the most general file in there is `recomendations.yaml`, make changes according to your infrastructure and requirements in separate file, e.g. `custom-values.yaml`.
-
-6. Deploy
-
-    - In this example odm used as a release name, also as a namespace name
+    c) Take a look to a default `values.yaml` and to a `odm/examples` directory, the most general file in there is `recomendations.yaml`.
+    Please, make changes according to your infrastructure and requirements in separate file, e.g. `custom-values.yaml`.
 
     ```shell
-    helm upgrade -i odm --create-namespace -n odm -f custom-values.yaml ./
+    cat odm/examples/*.yaml
+    ```
+
+    d) Run ODM deployment:
+
+    ```shell
+    helm upgrade -i odm --create-namespace -n odm -f custom-values.yaml odm
     ```
