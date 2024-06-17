@@ -42,15 +42,15 @@ We use [pre-commit](https://pre-commit.com/) as a tool to maintain a unified doc
 
 Install
 
-  ```sh
-  brew install pre-commit
-  ```
+```sh
+brew install pre-commit
+```
 
 Run
 
-  ```sh
-  pre-commit run -a
-  ```
+```sh
+pre-commit run -a
+```
 
 ## Deployment
 

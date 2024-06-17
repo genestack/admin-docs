@@ -54,7 +54,7 @@ This tool ensures seamless access to ECR by handling credential rotation.
             access:
               secret:
                 name: ""
-   ```
+    ```
 
     b) Download Helm-chart:
 
