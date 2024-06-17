@@ -1,35 +1,35 @@
-site_name: Open Data Manager Documentation
+site_name: Open Data Manager Administrator Documentation
 site_url: https://genestack.github.io/documentation
 
 nav:
-    - Home: index.md
-    - Deployment:
+    - Home:
+        - index.md
         - Requirements:
-            - Kubernetes: deployment/requirements/kubernetes.md
-            - Hardware: deployment/requirements/hardware.md
-            - External services: deployment/requirements/external-services.md
+            - Kubernetes: home/requirements/kubernetes.md
+            - Hardware: home/requirements/hardware.md
+            - External services: home/requirements/external-services.md
         - Clouds:
-            - Amazon Web Services (AWS): deployment/clouds/aws.md
-            - Microsoft Azure: deployment/clouds/azure.md
+            - Amazon Web Services (AWS): home/clouds/aws.md
+            - Microsoft Azure: home/clouds/azure.md
         - Single Sign-On:
-            - About SSO in ODM: deployment/single-sign-on/sso.md
+            - About SSO in ODM: home/single-sign-on/sso.md
             - OpenID:
-                - Microsoft Azure: deployment/single-sign-on/openid/azure.md
-                - Google Workspace: deployment/single-sign-on/openid/google.md
-                - Okta: deployment/single-sign-on/openid/okta.md
+                - Microsoft Azure: home/single-sign-on/openid/azure.md
+                - Google Workspace: home/single-sign-on/openid/google.md
+                - Okta: home/single-sign-on/openid/okta.md
             - SAML:
-                - Google Workspace: deployment/single-sign-on/saml/google.md
-                - Okta: deployment/single-sign-on/saml/okta.md
+                - Google Workspace: home/single-sign-on/saml/google.md
+                - Okta: home/single-sign-on/saml/okta.md
             - SCIM:
-                - Microsoft Azure: deployment/single-sign-on/scim/azure.md
+                - Microsoft Azure: home/single-sign-on/scim/azure.md
         - Helm:
-            - How to deploy: deployment/helm/how-to-deploy.md
+            - How to deploy: home/helm/how-to-deploy.md
         - Troubleshooting:
-            - AWS S3: deployment/troubleshooting/aws-s3.md
-            - Azure SSO: deployment/troubleshooting/azure-sso.md
-            - Azure SCIM: deployment/troubleshooting/azure-scim.md
+            - AWS S3: home/troubleshooting/aws-s3.md
+            - Azure SSO: home/troubleshooting/azure-sso.md
+            - Azure SCIM: home/troubleshooting/azure-scim.md
         - Release Notes:
-              - v1.50 - v1.59: deployment/release-notes/v1.50-v1.59.md
+              - v1.50 - v1.59: home/release-notes/v1.50-v1.59.md
 theme:
     name: material
     palette:
