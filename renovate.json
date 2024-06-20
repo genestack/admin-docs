@@ -15,10 +15,6 @@
     },
     "packageRules": [
         {
-            "matchPackageNames": ["solr"],
-            "groupName": "solr"
-        },
-        {
             "description": "Automerge non-major updates",
             "matchUpdateTypes": ["minor", "patch"],
             "automerge": true
