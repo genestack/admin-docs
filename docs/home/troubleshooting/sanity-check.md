@@ -13,7 +13,7 @@
     docker run \
       --env ODM_URL=${ODM_URL} \
       --env ODM_TOKEN=${ODM_TOKEN} \
-      oci://091468197733.dkr.ecr.us-east-1.amazonaws.com/genestack/clickhouse-helper \
+      091468197733.dkr.ecr.us-east-1.amazonaws.com/genestack/clickhouse-helper \
       odm sanity > sanity-result-before.jsonl
     ```
 
@@ -25,7 +25,7 @@
     docker run \
       --env ODM_URL=${ODM_URL} \
       --env ODM_TOKEN=${ODM_TOKEN} \
-      oci://091468197733.dkr.ecr.us-east-1.amazonaws.com/genestack/clickhouse-helper \
+      091468197733.dkr.ecr.us-east-1.amazonaws.com/genestack/clickhouse-helper \
       odm sanity > sanity-result-after.jsonl
     ```
 
