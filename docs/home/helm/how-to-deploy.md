@@ -40,45 +40,24 @@ This tool ensures seamless access to ECR by handling credential rotation.
     --password-stdin 091468197733.dkr.ecr.us-east-1.amazonaws.com
     ```
 
-3. Deploy altinity operator in Kubernetes cluster
+3. Deploy ODM-OPS
 
-    a) Recommended `altinity-clickhouse-operator-custom-values.yaml` file content:
-
-    ```yaml
-    configs:
-      files:
-        config.yaml:
-          watch:
-            namespaces: [".*"]
-          clickhouse:
-            access:
-              secret:
-                name: ""
-    ```
-
-    b) Download Helm-chart:
+    a) Download helm-chart:
 
     ```shell
-    helm repo add clickhouse-operator https://docs.altinity.com/clickhouse-operator/
-    helm pull clickhouse-operator/altinity-clickhouse-operator
+    helm pull oci://091468197733.dkr.ecr.us-east-1.amazonaws.com/genestack/chart/odm-ops
     ```
 
-    c) Untar the archive:
+    b) Untar the archive:
 
     ```shell
-    tar xvf altinity-clickhouse-operator-*.tgz
+    tar xvf odm-ops-*.tgz
     ```
 
-    d) Deploy CRDs:
+    c) Run ODM-OPS deployment, excluding `crds` directory:
 
     ```shell
-    kubectl apply -f altinity-clickhouse-operator/crds/*
-    ```
-
-    e) Deploy operator itself:
-
-    ```shell
-    helm upgrade -i clickhouse-operator --create-namespace -n clickhouse-operator -f altinity-clickhouse-operator-custom-values.yaml ./
+    helm upgrade -i odm-ops --create-namespace --skip-crds -n odm-ops odm-ops
     ```
 
 4. Deploy ODM
