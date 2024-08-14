@@ -1237,6 +1237,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Clickhouse migration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#following-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Following steps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1521,6 +1536,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Clickhouse migration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#following-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Following steps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1760,7 +1790,7 @@
 <p>This version must be installed before proceeding with the next update.</p>
 </div>
 <div class="admonition tip">
-<p>Helm chart version 1.x.x</p>
+<p>Helm chart version 1.58.0</p>
 </div>
 <h3 id="clickhouse-migration">Clickhouse migration<a class="headerlink" href="#clickhouse-migration" title="Permanent link">&para;</a></h3>
 <p>In current release we moved from standalone Clickhouse container to the Clickhouse cluster that will be controlled by <a href="https://github.com/Altinity/clickhouse-operator">Altinity clickhouse operator</a>.<br />
@@ -1780,6 +1810,28 @@ We automated process of transferring data from the standalone version to the clu
 <p>Optional: We've developed <a href="../../troubleshooting/sanity-check/">a tool that checks consistency of data</a>, you could use it before and after the upgrading process and compare results of those checks just to be sure that everything went as expected</p>
 </li>
 </ul>
+<h4 id="following-steps">Following steps<a class="headerlink" href="#following-steps" title="Permanent link">&para;</a></h4>
+<ol>
+<li>
+<p>Proceed with the <a href="../../helm/how-to-deploy/#deployment-process">odm</a> installation, take itnto account:</p>
+<p>a. <code>odm-ops</code> chart will install the Altinity ClickHouse operator with pre-configured settings,</p>
+<p>b. In your custom values for <code>odm</code> chart adjust parameters for ClickHouse and Altinity ClickHouse (requests, limits, disk size +25%, etc.). We suggest to temporary increase resources for both of Clickhouses since it will reduce timing for migration.</p>
+<p>c. Resources path in values for old clickhouse is <code>clickhouse.resources</code> for the new one <code>altinity.clickhouse.installation.spec.templates.podTemplate.spec.mainContainer.resources</code></p>
+<p>d. Persistance size path for old clickhouse is <code>clickhouse.persistence.size</code> for the new one <code>altinity.clickhouse.installation.spec.templates.volumeClaimTemplate.spec.resources.requests.storage</code></p>
+</li>
+<li>
+<p>A job named <code>odm-clickhouse-helper</code> will appear in Kubernetes, and it will handle the migration.</p>
+<p>a. It's an expected behaviour to have some failed pods during this job running.</p>
+<p>b. During the ClickHouse migration, ODM will continue to operate, but all writes to ClickHouse will be queued.  </p>
+<p>c. Wait until the <code>odm-clickhouse-helper</code> job completes, indicating that the migration is done.</p>
+</li>
+<li>
+<p>Disable <code>clickhouse</code> and <code>clickhouseHelper</code> in Helm values. You can refer to the example <code>disable-old-clickhouse-after-upgrade.yaml</code>.</p>
+</li>
+<li>
+<p>Update ODM one last time with <code>helm upgrade ...</code>. This will disable the old ClickHouse.</p>
+</li>
+</ol>
 <h3 id="helm-examples-changes">Helm examples changes<a class="headerlink" href="#helm-examples-changes" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
