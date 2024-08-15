@@ -1813,17 +1813,18 @@ We automated process of transferring data from the standalone version to the clu
 <h4 id="following-steps">Following steps<a class="headerlink" href="#following-steps" title="Permanent link">&para;</a></h4>
 <ol>
 <li>
-<p>Proceed with the <a href="../../helm/how-to-deploy/#deployment-process">odm</a> installation, take itnto account:</p>
-<p>a. <code>odm-ops</code> chart will install the Altinity ClickHouse operator with pre-configured settings,</p>
+<p>(Upgrade flow) Proceed with the <a href="../../helm/how-to-deploy/#deployment-process">odm</a> installation, take itnto account:</p>
+<p>a. <code>odm-ops</code> chart will install the Altinity ClickHouse operator with pre-configured settings.</p>
 <p>b. In your custom values for <code>odm</code> chart adjust parameters for ClickHouse and Altinity ClickHouse (requests, limits, disk size +25%, etc.). We suggest to temporary increase resources for both of Clickhouses since it will reduce timing for migration.</p>
-<p>c. Resources path in values for old clickhouse is <code>clickhouse.resources</code> for the new one <code>altinity.clickhouse.installation.spec.templates.podTemplate.spec.mainContainer.resources</code></p>
-<p>d. Persistance size path for old clickhouse is <code>clickhouse.persistence.size</code> for the new one <code>altinity.clickhouse.installation.spec.templates.volumeClaimTemplate.spec.resources.requests.storage</code></p>
+<p>c. VERY IMPORTANT! Make sure that old clickhouse is NOT disabled! Path in values is <code>clickhouse.enabled</code>. By default, it's enabled.</p>
+<p>d. DO NOT apply <code>recommendations.yaml</code> file from example as is, it's recommendation ONLY for new installations!</p>
+<p>e. Resources path in values for old clickhouse is <code>clickhouse.resources</code> for the new one <code>altinity.clickhouse.installation.spec.templates.podTemplate.spec.mainContainer.resources</code></p>
+<p>f. Persistance size path for old clickhouse is <code>clickhouse.persistence.size</code> for the new one <code>altinity.clickhouse.installation.spec.templates.volumeClaimTemplate.spec.resources.requests.storage</code></p>
 </li>
 <li>
 <p>A job named <code>odm-clickhouse-helper</code> will appear in Kubernetes, and it will handle the migration.</p>
-<p>a. It's an expected behaviour to have some failed pods during this job running.</p>
-<p>b. During the ClickHouse migration, ODM will continue to operate, but all writes to ClickHouse will be queued.  </p>
-<p>c. Wait until the <code>odm-clickhouse-helper</code> job completes, indicating that the migration is done.</p>
+<p>a. During the ClickHouse migration, ODM will continue to operate, but all writes to ClickHouse will be queued.  </p>
+<p>b. Wait until the <code>odm-clickhouse-helper</code> job completes, indicating that the migration is done.</p>
 </li>
 <li>
 <p>Disable <code>clickhouse</code> and <code>clickhouseHelper</code> in Helm values. You can refer to the example <code>disable-old-clickhouse-after-upgrade.yaml</code>.</p>
