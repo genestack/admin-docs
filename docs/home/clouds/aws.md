@@ -5,10 +5,10 @@
 - [AWS S3 Bucket](https://aws.amazon.com/s3/)
 - [AWS IAM](https://aws.amazon.com/iam/) user with bucket access above (programmatic access)
 - [AWS EKS](https://aws.amazon.com/eks/)
-    - [AWS EBS](https://aws.amazon.com/ebs/)
-    - [AWS ALB](https://aws.amazon.com/elasticloadbalancing/)
-    - [AWS ACM](https://aws.amazon.com/certificate-manager/)
-    - [AWS Route53](https://aws.amazon.com/route53/)
+  - [AWS EBS](https://aws.amazon.com/ebs/)
+  - [AWS ALB](https://aws.amazon.com/elasticloadbalancing/)
+  - [AWS ACM](https://aws.amazon.com/certificate-manager/)
+  - [AWS Route53](https://aws.amazon.com/route53/)
 
 ## Steps for creating AWS resources
 

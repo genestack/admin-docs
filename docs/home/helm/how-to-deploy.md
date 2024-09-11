@@ -19,9 +19,9 @@
 - We provide a tool that automates the process of updating credentials for [ECR](https://aws.amazon.com/ecr/), where our container images are hosted.
 This tool ensures seamless access to ECR by handling credential rotation.
 
-    - It's important to note that the ECR password is valid for a duration of 12 hours.
+  - It's important to note that the ECR password is valid for a duration of 12 hours.
 
-    - If you are using [AWS EKS](https://aws.amazon.com/eks/), you do not need this tool. Access to our ECR will be provided upon request.
+  - If you are using [AWS EKS](https://aws.amazon.com/eks/), you do not need this tool. Access to our ECR will be provided upon request.
 
 - To utilize external storage solutions that are compatible with Distributed File System (DFS) within a Kubernetes environment, it is necessary to first establish a Persistent Volume Claim (PVC).
 

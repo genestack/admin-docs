@@ -4,9 +4,9 @@
 
 - [Azure FIles](https://azure.microsoft.com/en-us/products/storage/files)
 - [AKS](https://azure.microsoft.com/en-us/products/kubernetes-service/)
-    - [Azure Disk](https://azure.microsoft.com/en-us/products/storage/disks/)
-    - [Azure App Gateway](https://azure.microsoft.com/en-us/products/application-gateway/)
-    - [Azure DNS](https://azure.microsoft.com/en-us/products/dns/)
+  - [Azure Disk](https://azure.microsoft.com/en-us/products/storage/disks/)
+  - [Azure App Gateway](https://azure.microsoft.com/en-us/products/application-gateway/)
+  - [Azure DNS](https://azure.microsoft.com/en-us/products/dns/)
 
 !!! tip "Limitation"
 
