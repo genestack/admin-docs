@@ -2,78 +2,78 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://genestack.github.io/documentation/develop/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/clouds/aws/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/clouds/azure/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/helm/how-to-deploy/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/release-notes/v1.50-v1.59/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/requirements/external-services/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/requirements/hardware/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/requirements/kubernetes/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/single-sign-on/sso/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/single-sign-on/openid/azure/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/single-sign-on/openid/google/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/single-sign-on/openid/okta/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/single-sign-on/saml/google/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/single-sign-on/saml/okta/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/single-sign-on/scim/azure/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/troubleshooting/aws-s3/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/troubleshooting/azure-scim/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/troubleshooting/azure-sso/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
     <url>
          <loc>https://genestack.github.io/documentation/develop/home/troubleshooting/sanity-check/</loc>
-         <lastmod>2024-09-11</lastmod>
+         <lastmod>2024-09-16</lastmod>
     </url>
 </urlset>
