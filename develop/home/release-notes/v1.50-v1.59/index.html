@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
     
     
       
@@ -1248,6 +1248,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#increasing-memory-limits-for-func-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Increasing memory limits for func-file
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1580,6 +1589,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#increasing-memory-limits-for-func-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Increasing memory limits for func-file
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1858,7 +1876,19 @@
 <p>Background migrations, running during the <code>core</code> container startup, may take up to tens of minutes. Use the Helm <code>--timeout 30m</code> option to adjust the timeout accordingly.</p>
 <p>If the ODM service is unable to start within the allocated time, increase the <code>failureThreshold</code> value for the core container.</p>
 <h3 id="removal-of-application-container-persistent-volume">Removal of Application Container Persistent Volume<a class="headerlink" href="#removal-of-application-container-persistent-volume" title="Permanent link">&para;</a></h3>
-<p>We have removed the Persistent Volume Claim (PVC) and the necessary configuration for the application's container. This removal is safe, so there's no need for concern.</p>
+<p>We have removed the Persistent Volume Claim (PVC) and the necessary configuration for the <code>applications</code> container. This removal is safe, so there's no need for concern.</p>
+<h3 id="increasing-memory-limits-for-func-file">Increasing memory limits for func-file<a class="headerlink" href="#increasing-memory-limits-for-func-file" title="Permanent link">&para;</a></h3>
+<p>A mechanism of attaching files to studies has been extended with new data sources. Attached files are stored in an
+S3 bucket, configured for <code>applications</code> container. The <code>func-file</code> container requires additional memory
+to facilitate efficient data transfer. This is particularly critical for the parallel upload of large files
+(several gigabytes in size) from the S3 source.</p>
+<p>The default configuration works fine for sequential file uploads. To enable parallel uploads,
+please increase the <code>limits</code> for memory, as well as the <code>cRTInitialReadBufferSizeInBytes</code> parameter. Additionally,
+it is highly recommended that for JVM services, the values for the <code>requests</code> and <code>limits</code> parameters be equal.
+Take a look at the <code>odm/examples/parallel-file-upload.yaml</code> file as an example of configuration,
+demonstrating the settings required for the parallel upload of five files, each 10GB in size.
+Please contact Genestack support if you need any further help with the configuration.</p>
+<p>You can also check Amazon S3 limits here: <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/qfacts.html">https://docs.aws.amazon.com/AmazonS3/latest/userguide/qfacts.html</a>.</p>
 <h2 id="version-158">Version 1.58<a class="headerlink" href="#version-158" title="Permanent link">&para;</a></h2>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
