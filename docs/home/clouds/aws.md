@@ -18,8 +18,6 @@
 
     - The S3 Bucket can use KMS or default S3 encryption.
 
-    - You need to [configure CORS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/enabling-cors-examples.html), you can find an example here [CORS configuration for S3](#configuration-examples)
-
     - It is recommended to set up a lifecycle rule to clean up unfinished multipart uploads. Example of [AbortIncompleteMultipartUpload rule](#configuration-examples).
 
 2. Create IAM [user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html), [policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html) (it will be listed below) and [attach](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html) the policy to the user.
@@ -119,28 +117,6 @@
     - Be careful when using it, you should limit the list of zones with which it can work. And if the zone is used for something else, then make sure that it will not delete records from there.
 
 ## Configuration examples
-
-<details><summary>CORS configuration for S3</summary>
-```json
-[
-    {
-        "AllowedHeaders": [
-            "accept",
-            "accept-language",
-            "Content-Type"
-        ],
-        "AllowedMethods": [
-            "PUT"
-        ],
-        "AllowedOrigins": [
-            "https://ODM_FQDN"
-        ],
-        "ExposeHeaders": [],
-        "MaxAgeSeconds": 3000
-    }
-]
-```
-</details>
 
 <details><summary>AbortIncompleteMultipartUpload rule</summary>
 ```json
