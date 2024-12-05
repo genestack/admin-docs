@@ -17,9 +17,6 @@ nav:
                 - Microsoft Azure: home/single-sign-on/openid/azure.md
                 - Google Workspace: home/single-sign-on/openid/google.md
                 - Okta: home/single-sign-on/openid/okta.md
-            - SAML:
-                - Google Workspace: home/single-sign-on/saml/google.md
-                - Okta: home/single-sign-on/saml/okta.md
             - SCIM:
                 - Microsoft Azure: home/single-sign-on/scim/azure.md
         - Helm:
