@@ -1129,6 +1129,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Version 1.60">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rclone-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rclone Migration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1521,6 +1536,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Version 1.60">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rclone-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rclone Migration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1875,6 +1905,11 @@
 <h2 id="version-160">Version 1.60<a class="headerlink" href="#version-160" title="Permanent link">&para;</a></h2>
 <div class="admonition tip"></div>
 <p>Helm chart version 1.60.x</p>
+<h3 id="rclone-migration">Rclone Migration<a class="headerlink" href="#rclone-migration" title="Permanent link">&para;</a></h3>
+<p>The following ODM component called <code>funcFile</code> was replaced with <code>rclone</code>.</p>
+<p>As a result of this migration, the configuration of storages was moved from <code>funcFile</code> to <code>application.yaml</code> files in <code>core</code>, <code>applications</code>, and <code>funcJob</code>.
+You can find configuration examples in the "examples" directory within the Helm chart.
+Note that the configuration section <code>genestack.rclone</code> in all three of these services should be identical. For this purpose, we recommend using YAML anchors, which are also included in the examples.</p>
 <h2 id="saml-elimitaion">SAML elimitaion<a class="headerlink" href="#saml-elimitaion" title="Permanent link">&para;</a></h2>
 <p>Support of SAML was eliminated.</p>
 <h3 id="helm-configuration-changes">Helm configuration changes<a class="headerlink" href="#helm-configuration-changes" title="Permanent link">&para;</a></h3>
