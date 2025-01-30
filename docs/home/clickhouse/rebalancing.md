@@ -5,8 +5,13 @@ Rebalancing shards in ClickHouse is primarily a manual process due to inherent [
 ## Prerequisites
 
 - Ensure there are no running ODM tasks. Wait for all tasks to complete before proceeding. This step is crucial to maintain data consistency in ClickHouse.
+- Make sure that you have enought free space in clickhouse cluster, all rebalanced data should be disctibuted equally between nodes.
 - Make sure ODM version is 1.60 or higher.
 - Make sure `clickhouse-helper` version is higher than 0.30.0.
+
+## Just to be sure
+
+You can use [sanity check](../troubleshooting/sanity-check.md) just to doublecheck that data is consistent in ODM.
 
 ## Steps for Rebalancing
 
@@ -16,7 +21,10 @@ Set ODM to read-only mode to prevent any write operations during the rebalancing
 
 ```shell
 export ODM_CORE_URL=http://<ODM_CORE_HOST>:<ODM_CORE_PORT>
-docker run clickhouse-helper odm readonly --set-value=true
+docker run \
+  --env ODM_CORE_URL=${ODM_CORE_URL} \
+  091468197733.dkr.ecr.us-east-1.amazonaws.com/genestack/clickhouse-helper \
+  odm readonly --set-value=true
 ```
 
 ### 2. Redeploy Services with the New ClickHouse Database
@@ -58,7 +66,13 @@ Follow these steps:
 3. Run the `clickhouse-helper` to clone the data:
 
     ```shell
-    clickhouse-helper ch clone
+    docker run \
+    --env CH_SOURCE_URL=${CH_SOURCE_URL} \
+    --env CH_DESTINATION_URL=${CH_DESTINATION_URL} \
+    --env CH_SOURCE_DATABASE=${CH_SOURCE_DATABASE} \
+    --env CH_DESTINATION_DATABASE=${CH_DESTINATION_DATABASE} \
+    091468197733.dkr.ecr.us-east-1.amazonaws.com/genestack/clickhouse-helper \
+    ch clone
     ```
 
 ### 4. Disable ClickHouse Read-Only Mode in ODM
@@ -66,11 +80,15 @@ Follow these steps:
 Once the data cloning is complete, re-enable write operations in ODM.
 
 ```shell
-export ODM_CORE_URL=<ODM_CORE_HOST>:<ODM_CORE_PORT>
-clickhouse-helper odm readonly --set-value=false
+export ODM_CORE_URL=http://<ODM_CORE_HOST>:<ODM_CORE_PORT>
+docker run \
+  --env ODM_CORE_URL=${ODM_CORE_URL} \
+  091468197733.dkr.ecr.us-east-1.amazonaws.com/genestack/clickhouse-helper \
+  odm readonly --set-value=false
 ```
 
 ## Notes
 
 - Ensure all steps are followed in sequence to avoid data inconsistencies.
 - The `clickhouse-helper` tool is essential for simplifying the rebalancing process.
+- Remember to delete the old database from ClickHouse after the rebalancing process is complete.
