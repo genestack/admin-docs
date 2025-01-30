@@ -16,7 +16,7 @@ Set ODM to read-only mode to prevent any write operations during the rebalancing
 
 ```shell
 export ODM_CORE_URL=http://<ODM_CORE_HOST>:<ODM_CORE_PORT>
-clickhouse-helper odm readonly --set-value=true
+docker run clickhouse-helper odm readonly --set-value=true
 ```
 
 ### 2. Redeploy Services with the New ClickHouse Database
@@ -37,15 +37,29 @@ helm upgrade <release-name> <chart-name> -f values.yaml
 
 ### 3. Clone Data to the New Database
 
-Copy data from the old database to the new one using the `clickhouse-helper` tool.
+Use the `clickhouse-helper` tool to copy data from the old database to the new one. Both `CH_SOURCE_URL` and `CH_DESTINATION_URL` can accept multiple nodes separated by a comma (`,`), for example, `localhost:9000,localhost:19000`. It is recommended to include all nodes in the cluster.
 
-```shell
-export CH_SOURCE_URL=<SOURCE_CLICKHOUSE_HOST>:<SOURCE_CLICKHOUSE_PORT>
-export CH_DESTINATION_URL=<DESTINATION_CLICKHOUSE_HOST>:<DESTINATION_CLICKHOUSE_PORT>
-export CH_SOURCE_DATABASE=genestack
-export CH_DESTINATION_DATABASE=genestack_new
-clickhouse-helper ch clone
-```
+Follow these steps:
+
+1. Set the source and destination ClickHouse server URLs:
+
+    ```shell
+    export CH_SOURCE_URL=<SOURCE_CLICKHOUSE_HOST>:<SOURCE_CLICKHOUSE_PORT>
+    export CH_DESTINATION_URL=<DESTINATION_CLICKHOUSE_HOST>:<DESTINATION_CLICKHOUSE_PORT>
+    ```
+
+2. Set the source and destination database names:
+
+    ```shell
+    export CH_SOURCE_DATABASE=genestack
+    export CH_DESTINATION_DATABASE=genestack_new
+    ```
+
+3. Run the `clickhouse-helper` to clone the data:
+
+    ```shell
+    clickhouse-helper ch clone
+    ```
 
 ### 4. Disable ClickHouse Read-Only Mode in ODM
 
