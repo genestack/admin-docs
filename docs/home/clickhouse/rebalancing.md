@@ -10,14 +10,14 @@ Becasuse of this we developed a tool that will help you to make shard rebalancin
 2) Configure ODM to be in clickhouse read-only mode:
 
     ```shell
-    export ODM_CORE_URL=<ODM_CORE_HOST>:<ODM_CORE_PORT>
+    export ODM_CORE_URL=http://<ODM_CORE_HOST>:<ODM_CORE_PORT>
     clickhouse-helper odm readonly --set-value=true
     ```
 
    Note: Read-only mode doesn't affect schema migration.
 
 3) Redeploy `core` and `applications` services with new database in clickhouse.
-   1) Update required values in helm values.
+   1) Update required values in helm values. View the values file patch [example](files/clickhouse-new-database.yaml) using `genestack_new` database name.
    2) Run helm upgrade.
 
 4) Clone data from the previous database to the new one.
