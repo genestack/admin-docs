@@ -1,38 +1,60 @@
-# Clickhouse rebalancing
+# ClickHouse Rebalancing
 
-Clickhouse rebalancing is mostly manual process, due to clickhouse limitations.
-Becasuse of this we developed a tool that will help you to make shard rebalancing easier.
+Rebalancing shards in ClickHouse is primarily a manual process due to inherent [limitations](https://clickhouse.com/docs/en/guides/sre/scaling-clusters) in ClickHouse. To simplify this process, we have developed a tool to assist with shard rebalancing.
 
-## Sequence of actions
+## Prerequisites
 
-1. Make sure there is no ODM tasks in running state, wait until all of them finished. It's an important step to keep data consistent in Clickhouse.
+- Ensure there are no running ODM tasks. Wait for all tasks to complete before proceeding. This step is crucial to maintain data consistency in ClickHouse.
 
-2. Configure ODM to be in clickhouse read-only mode:
+## Steps for Rebalancing
 
-    ```shell
-    export ODM_CORE_URL=http://<ODM_CORE_HOST>:<ODM_CORE_PORT>
-    clickhouse-helper odm readonly --set-value=true
-    ```
+### 1. Enable ClickHouse Read-Only Mode in ODM
 
-   Note: Read-only mode doesn't affect schema migration.
+Set ODM to read-only mode to prevent any write operations during the rebalancing process. This does not affect schema migrations.
 
-3. Redeploy `core` and `applications` services with new database in clickhouse.
-   a) Update required values in helm values. View the values file patch [example](files/clickhouse-new-database.yaml) using `genestack_new` database name.
-   b) Run helm upgrade.
+```shell
+export ODM_CORE_URL=http://<ODM_CORE_HOST>:<ODM_CORE_PORT>
+clickhouse-helper odm readonly --set-value=true
+```
 
-4. Clone data from the previous database to the new one.
+### 2. Redeploy Services with the New ClickHouse Database
 
-    ```shell
-    export CH_SOURCE_URL=<SOURCE_CLICKHOUSE_HOST>:<SOURCE_CLICKHOUSE_PORT>
-    export CH_DESTINATION_URL=<DESTINATION_CLICKHOUSE_HOST>:<DESTINATION_CLICKHOUSE_PORT>
-    export CH_SOURCE_DATABASE=genestack
-    export CH_DESTINATION_DATABASE=genestack_new
-    clickhouse-helper ch clone
-    ```
+Update your Helm values to point to the new ClickHouse database and redeploy the `core` and `applications` services.
 
-5. Configure ODM to be in clickhouse read-write mode:
+#### a) Update Helm Values
 
-    ```shell
-    export ODM_CORE_URL=<ODM_CORE_HOST>:<ODM_CORE_PORT>
-    clickhouse-helper odm readonly --set-value=false
-    ```
+Refer to the example values file patch for guidance: [clickhouse-new-database.yaml](files/clickhouse-new-database.yaml). Use the `genestack_new` database name.
+
+#### b) Perform Helm Upgrade
+
+Run the following command to apply the changes:
+
+```shell
+helm upgrade <release-name> <chart-name> -f values.yaml
+```
+
+### 3. Clone Data to the New Database
+
+Copy data from the old database to the new one using the `clickhouse-helper` tool.
+
+```shell
+export CH_SOURCE_URL=<SOURCE_CLICKHOUSE_HOST>:<SOURCE_CLICKHOUSE_PORT>
+export CH_DESTINATION_URL=<DESTINATION_CLICKHOUSE_HOST>:<DESTINATION_CLICKHOUSE_PORT>
+export CH_SOURCE_DATABASE=genestack
+export CH_DESTINATION_DATABASE=genestack_new
+clickhouse-helper ch clone
+```
+
+### 4. Disable ClickHouse Read-Only Mode in ODM
+
+Once the data cloning is complete, re-enable write operations in ODM.
+
+```shell
+export ODM_CORE_URL=<ODM_CORE_HOST>:<ODM_CORE_PORT>
+clickhouse-helper odm readonly --set-value=false
+```
+
+## Notes
+
+- Ensure all steps are followed in sequence to avoid data inconsistencies.
+- The `clickhouse-helper` tool is essential for simplifying the rebalancing process.
