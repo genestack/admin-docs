@@ -45,7 +45,7 @@ helm upgrade <release-name> <chart-name> -f values.yaml
 
 ### 3. Clone Data to the New Database
 
-Use the `clickhouse-helper` tool to copy data from the old database to the new one. Both `CH_SOURCE_URL` and `CH_DESTINATION_URL` can accept multiple nodes separated by a comma (`,`), for example, `localhost:9000,localhost:19000`. It is recommended to include all nodes in the cluster.
+Use the `clickhouse-helper` tool to copy data from the old database to the new one. Both `CH_SOURCE_URL` and `CH_DESTINATION_URL` can accept multiple nodes separated by a comma (`,`), for example, `localhost:9000,localhost:19000`. **It is recommended to include all nodes in the cluster**.
 
 Follow these steps:
 
