@@ -92,3 +92,7 @@ docker run \
 - Ensure all steps are followed in sequence to avoid data inconsistencies.
 - The `clickhouse-helper` tool is essential for simplifying the rebalancing process.
 - Remember to delete the old database from ClickHouse after the rebalancing process is complete.
+
+    ```shell
+    clickhouse-client --host <SOURCE_CLICKHOUSE_HOST> --port <SOURCE_CLICKHOUSE_PORT> -q "DROP DATABASE genestack"
+    ```
