@@ -5,7 +5,7 @@ Rebalancing shards in ClickHouse is primarily a manual process due to inherent [
 ## Prerequisites
 
 - Ensure there are no running ODM tasks. Wait for all tasks to complete before proceeding. This step is crucial to maintain data consistency in ClickHouse.
-- Make sure that you have enought free space in clickhouse cluster, all rebalanced data should be disctibuted equally between nodes.
+- Ensure that there is enough free space in the ClickHouse cluster. All rebalanced data should be distributed equally across the nodes.
 - Make sure ODM version is 1.60 or higher.
 - Make sure `clickhouse-helper` version is higher than 0.30.0.
 
