@@ -29,7 +29,8 @@ nav:
             - Azure SCIM: home/troubleshooting/azure-scim.md
             - Sanity check: home/troubleshooting/sanity-check.md
         - Release Notes:
-              - v1.50 - v1.59: home/release-notes/v1.50-v1.59.md
+            - v1.60 - v1.69: home/release-notes/v1.60-v1.69.md
+            - v1.50 - v1.59: home/release-notes/v1.50-v1.59.md
 theme:
     name: material
     palette:
