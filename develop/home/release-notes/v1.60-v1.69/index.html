@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://genestack.github.io/documentation/develop/home/clickhouse/rebalancing/">
+        <link rel="canonical" href="https://genestack.github.io/documentation/develop/home/release-notes/v1.60-v1.69/">
       
       
-        <link rel="prev" href="../../helm/how-to-deploy/">
+        <link rel="prev" href="../../troubleshooting/sanity-check/">
       
       
-        <link rel="next" href="../../troubleshooting/aws-s3/">
+        <link rel="next" href="../v1.50-v1.59/">
       
       
       <link rel="icon" href="../../../assets/favicon.ico">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Rebalancing - Open Data Manager Administrator Documentation</title>
+        <title>v1.60 - v1.69 - Open Data Manager Administrator Documentation</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#clickhouse-rebalancing" class="md-skip">
+        <a href="#release-notes" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Rebalancing
+              v1.60 - v1.69
             
           </span>
         </div>
@@ -902,8 +902,6 @@
                 
   
   
-    
-  
   
   
     
@@ -922,11 +920,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6" >
         
           
           <label class="md-nav__link" for="__nav_1_6" id="__nav_1_6_label" tabindex="">
@@ -941,7 +939,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1_6">
             <span class="md-nav__icon md-icon"></span>
             Clickhouse
@@ -952,31 +950,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Rebalancing
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../clickhouse/rebalancing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -986,128 +963,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prerequisites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#just-to-be-sure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Just to be sure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#steps-for-rebalancing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Steps for Rebalancing
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Steps for Rebalancing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-enable-clickhouse-read-only-mode-in-odm" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Enable ClickHouse Read-Only Mode in ODM
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-redeploy-services-with-the-new-clickhouse-database" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Redeploy Services with the New ClickHouse Database
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Redeploy Services with the New ClickHouse Database">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#a-update-helm-values" class="md-nav__link">
-    <span class="md-ellipsis">
-      a) Update Helm Values
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#b-perform-helm-upgrade" class="md-nav__link">
-    <span class="md-ellipsis">
-      b) Perform Helm Upgrade
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-clone-data-to-the-new-database" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Clone Data to the New Database
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-disable-clickhouse-read-only-mode-in-odm" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Disable ClickHouse Read-Only Mode in ODM
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1275,6 +1130,8 @@
                 
   
   
+    
+  
   
   
     
@@ -1295,11 +1152,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_8" checked>
         
           
           <label class="md-nav__link" for="__nav_1_8" id="__nav_1_8_label" tabindex="">
@@ -1314,7 +1171,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1_8">
             <span class="md-nav__icon md-icon"></span>
             Release Notes
@@ -1325,10 +1182,31 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../release-notes/v1.60-v1.69/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    v1.60 - v1.69
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1338,6 +1216,68 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#version-160" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version 1.60
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Version 1.60">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rclone-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rclone Migration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saml-elimitaion" class="md-nav__link">
+    <span class="md-ellipsis">
+      SAML elimitaion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#helm-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Helm configuration changes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1350,7 +1290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../release-notes/v1.50-v1.59/" class="md-nav__link">
+      <a href="../v1.50-v1.59/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1407,65 +1347,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#version-160" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites
+      Version 1.60
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#just-to-be-sure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Just to be sure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#steps-for-rebalancing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Steps for Rebalancing
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Steps for Rebalancing">
+    <nav class="md-nav" aria-label="Version 1.60">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-enable-clickhouse-read-only-mode-in-odm" class="md-nav__link">
+  <a href="#rclone-migration" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Enable ClickHouse Read-Only Mode in ODM
+      Rclone Migration
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-redeploy-services-with-the-new-clickhouse-database" class="md-nav__link">
+  <a href="#saml-elimitaion" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Redeploy Services with the New ClickHouse Database
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Redeploy Services with the New ClickHouse Database">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#a-update-helm-values" class="md-nav__link">
-    <span class="md-ellipsis">
-      a) Update Helm Values
+      SAML elimitaion
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#b-perform-helm-upgrade" class="md-nav__link">
+  <a href="#helm-configuration-changes" class="md-nav__link">
     <span class="md-ellipsis">
-      b) Perform Helm Upgrade
+      Helm configuration changes
     </span>
   </a>
   
@@ -1473,38 +1385,6 @@
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-clone-data-to-the-new-database" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Clone Data to the New Database
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-disable-clickhouse-read-only-mode-in-odm" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Disable ClickHouse Read-Only Mode in ODM
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
-    </span>
-  </a>
   
 </li>
       
@@ -1524,76 +1404,42 @@
 
 
 
-<h1 id="clickhouse-rebalancing">ClickHouse Rebalancing<a class="headerlink" href="#clickhouse-rebalancing" title="Permanent link">&para;</a></h1>
-<p>Rebalancing shards in ClickHouse is primarily a manual process due to inherent <a href="https://clickhouse.com/docs/en/guides/sre/scaling-clusters">limitations</a> in ClickHouse. To simplify this process, we have developed a tool to assist with shard rebalancing.</p>
-<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<h1 id="release-notes">Release notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h1>
+<h2 id="version-160">Version 1.60<a class="headerlink" href="#version-160" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p>Helm chart version 1.60.x</p>
+</div>
+<h3 id="rclone-migration">Rclone Migration<a class="headerlink" href="#rclone-migration" title="Permanent link">&para;</a></h3>
+<p>The following ODM component called <code>funcFile</code> was replaced with <code>rclone</code>.</p>
+<p>As a result of this migration, the configuration of storages was moved from <code>funcFile</code> to <code>application.yaml</code> files in <code>core</code>, <code>applications</code>, and <code>funcJob</code>.
+You can find configuration examples in the "examples" directory within the Helm chart.
+Note that the configuration section <code>genestack.rclone</code> in all three of these services should be identical. For this purpose, we recommend using YAML anchors, which are also included in the examples.</p>
+<p>Also, Rclone allows to use the AWS IAM role instead of the AWS IAM user. If this is relevant fo your environment, then information on deployment can be found <a href="../../clouds/aws/">here</a> in paragraph 4.</p>
+<h3 id="saml-elimitaion">SAML elimitaion<a class="headerlink" href="#saml-elimitaion" title="Permanent link">&para;</a></h3>
+<p>Support of SAML was eliminated.</p>
+<h3 id="helm-configuration-changes">Helm configuration changes<a class="headerlink" href="#helm-configuration-changes" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Ensure there are no running ODM tasks. Wait for all tasks to complete before proceeding. This step is crucial to maintain data consistency in ClickHouse.</li>
-<li>Ensure that there is enough free space in the ClickHouse cluster. All rebalanced data should be distributed equally across the nodes.</li>
-<li>Make sure ODM version is 1.60 or higher.</li>
-<li>Make sure <code>clickhouse-helper</code> version is higher than 0.30.0.</li>
-</ul>
-<h2 id="just-to-be-sure">Just to be sure<a class="headerlink" href="#just-to-be-sure" title="Permanent link">&para;</a></h2>
-<p>You can use <a href="../../troubleshooting/sanity-check/">sanity check</a> just to doublecheck that data is consistent in ODM.</p>
-<h2 id="steps-for-rebalancing">Steps for Rebalancing<a class="headerlink" href="#steps-for-rebalancing" title="Permanent link">&para;</a></h2>
-<h3 id="1-enable-clickhouse-read-only-mode-in-odm">1. Enable ClickHouse Read-Only Mode in ODM<a class="headerlink" href="#1-enable-clickhouse-read-only-mode-in-odm" title="Permanent link">&para;</a></h3>
-<p>Set ODM to read-only mode to prevent any write operations during the rebalancing process. This does not affect schema migrations.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ODM_CORE_URL</span><span class="o">=</span>http://&lt;ODM_CORE_HOST&gt;:&lt;ODM_CORE_PORT&gt;
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>--env<span class="w"> </span><span class="nv">ODM_CORE_URL</span><span class="o">=</span><span class="si">${</span><span class="nv">ODM_CORE_URL</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="m">091468197733</span>.dkr.ecr.us-east-1.amazonaws.com/genestack/clickhouse-helper<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span>odm<span class="w"> </span><span class="nb">readonly</span><span class="w"> </span>--set-value<span class="o">=</span><span class="nb">true</span>
-</span></code></pre></div>
-<h3 id="2-redeploy-services-with-the-new-clickhouse-database">2. Redeploy Services with the New ClickHouse Database<a class="headerlink" href="#2-redeploy-services-with-the-new-clickhouse-database" title="Permanent link">&para;</a></h3>
-<p>Update your Helm values to point to the new ClickHouse database and redeploy the <code>core</code> and <code>applications</code> services.</p>
-<h4 id="a-update-helm-values">a) Update Helm Values<a class="headerlink" href="#a-update-helm-values" title="Permanent link">&para;</a></h4>
-<p>Refer to the example values file patch for guidance: <a href="../files/clickhouse-new-database.yaml">clickhouse-new-database.yaml</a>. Use the <code>genestack_new</code> database name.</p>
-<h4 id="b-perform-helm-upgrade">b) Perform Helm Upgrade<a class="headerlink" href="#b-perform-helm-upgrade" title="Permanent link">&para;</a></h4>
-<p>Run the following command to apply the changes:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>helm<span class="w"> </span>upgrade<span class="w"> </span>&lt;release-name&gt;<span class="w"> </span>&lt;chart-name&gt;<span class="w"> </span>-f<span class="w"> </span>values.yaml
-</span></code></pre></div>
-<h3 id="3-clone-data-to-the-new-database">3. Clone Data to the New Database<a class="headerlink" href="#3-clone-data-to-the-new-database" title="Permanent link">&para;</a></h3>
-<p>Use the <code>clickhouse-helper</code> tool to copy data from the old database to the new one. Both <code>CH_SOURCE_URL</code> and <code>CH_DESTINATION_URL</code> can accept multiple nodes separated by a comma (<code>,</code>), for example, <code>localhost:9000,localhost:19000</code>. <strong>It is recommended to include all nodes in the cluster</strong>.</p>
-<p>Follow these steps:</p>
-<ol>
 <li>
-<p>Set the source and destination ClickHouse server URLs:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CH_SOURCE_URL</span><span class="o">=</span>&lt;SOURCE_CLICKHOUSE_HOST&gt;:&lt;SOURCE_CLICKHOUSE_PORT&gt;
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CH_DESTINATION_URL</span><span class="o">=</span>&lt;DESTINATION_CLICKHOUSE_HOST&gt;:&lt;DESTINATION_CLICKHOUSE_PORT&gt;
+<p>The <code>credentials</code> section has been removed, please use the <code>rclone</code> configuration instead.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">credentials</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">awsS3Region</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">awsS3AccessKey</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">awsS3SecretAccessKey</span><span class="p">:</span>
 </span></code></pre></div>
 </li>
 <li>
-<p>Set the source and destination database names:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CH_SOURCE_DATABASE</span><span class="o">=</span>genestack
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CH_DESTINATION_DATABASE</span><span class="o">=</span>genestack_new
-</span></code></pre></div>
+<p>All configuration related to <code>SAML</code> has been removed.</p>
 </li>
 <li>
-<p>Run the <code>clickhouse-helper</code> to clone the data:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>--env<span class="w"> </span><span class="nv">CH_SOURCE_URL</span><span class="o">=</span><span class="si">${</span><span class="nv">CH_SOURCE_URL</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>--env<span class="w"> </span><span class="nv">CH_DESTINATION_URL</span><span class="o">=</span><span class="si">${</span><span class="nv">CH_DESTINATION_URL</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>--env<span class="w"> </span><span class="nv">CH_SOURCE_DATABASE</span><span class="o">=</span><span class="si">${</span><span class="nv">CH_SOURCE_DATABASE</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>--env<span class="w"> </span><span class="nv">CH_DESTINATION_DATABASE</span><span class="o">=</span><span class="si">${</span><span class="nv">CH_DESTINATION_DATABASE</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="m">091468197733</span>.dkr.ecr.us-east-1.amazonaws.com/genestack/clickhouse-helper<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>ch<span class="w"> </span>clone
+<p>The <code>region</code> parameter has been removed from the <code>applications</code> configuration.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">applications</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">files</span><span class="p">:</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="s">&quot;/var/lib/genestack/properties/application.yaml&quot;</span><span class="p p-Indicator">:</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">      </span><span class="nt">frontend</span><span class="p">:</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="nt">aws</span><span class="p">:</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">          </span><span class="nt">region</span><span class="p">:</span>
 </span></code></pre></div>
 </li>
-</ol>
-<h3 id="4-disable-clickhouse-read-only-mode-in-odm">4. Disable ClickHouse Read-Only Mode in ODM<a class="headerlink" href="#4-disable-clickhouse-read-only-mode-in-odm" title="Permanent link">&para;</a></h3>
-<p>Once the data cloning is complete, re-enable write operations in ODM.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ODM_CORE_URL</span><span class="o">=</span>http://&lt;ODM_CORE_HOST&gt;:&lt;ODM_CORE_PORT&gt;
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>--env<span class="w"> </span><span class="nv">ODM_CORE_URL</span><span class="o">=</span><span class="si">${</span><span class="nv">ODM_CORE_URL</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="m">091468197733</span>.dkr.ecr.us-east-1.amazonaws.com/genestack/clickhouse-helper<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>odm<span class="w"> </span><span class="nb">readonly</span><span class="w"> </span>--set-value<span class="o">=</span><span class="nb">false</span>
-</span></code></pre></div>
-<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Ensure all steps are followed in sequence to avoid data inconsistencies.</li>
-<li>The <code>clickhouse-helper</code> tool is essential for simplifying the rebalancing process.</li>
-<li>Remember to delete the old database from ClickHouse after the rebalancing process is complete.
-  It can be done with <code>clickhouse-client</code> command-line tool.</li>
 </ul>
 
 
@@ -1630,7 +1476,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../helm/how-to-deploy/" class="md-footer__link md-footer__link--prev" aria-label="Previous: How to deploy">
+          <a href="../../troubleshooting/sanity-check/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Sanity check">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1640,20 +1486,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                How to deploy
+                Sanity check
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../troubleshooting/aws-s3/" class="md-footer__link md-footer__link--next" aria-label="Next: AWS S3">
+          <a href="../v1.50-v1.59/" class="md-footer__link md-footer__link--next" aria-label="Next: v1.50 - v1.59">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                AWS S3
+                v1.50 - v1.59
               </div>
             </div>
             <div class="md-footer__button md-icon">
