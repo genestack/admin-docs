@@ -3,7 +3,8 @@
 ## Required types of resources
 
 - [AWS S3 Bucket](https://aws.amazon.com/s3/)
-- [AWS IAM](https://aws.amazon.com/iam/) user with bucket access above (programmatic access)
+- [AWS IAM](https://aws.amazon.com/iam/) user with bucket access above (programmatic access) [_up to ODM version 1.60_]
+- [AWS IAM](https://aws.amazon.com/iam/) role with bucket access above [_after ODM version 1.60_]
 - [AWS EKS](https://aws.amazon.com/eks/)
     - [AWS EBS](https://aws.amazon.com/ebs/)
     - [AWS ALB](https://aws.amazon.com/elasticloadbalancing/)
@@ -20,21 +21,27 @@
 
     - It is recommended to set up a lifecycle rule to clean up unfinished multipart uploads. Example of [AbortIncompleteMultipartUpload rule](#configuration-examples).
 
-2. Create IAM [user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html), [policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html) (it will be listed below) and [attach](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html) the policy to the user.
-
-    - [Programmatic access](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) is required to work ODM with IAM user.
-
-    - You can find the recommended IAM policy here [IAM policy for S3 access](#configuration-examples).
-
-3. Create [VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-getting-started.html).
+2. Create [VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-getting-started.html).
 
     - Must have at least 2 private subnets [[link](https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html)].
 
     - Each subnets must contain at least 100 free IP addresses [recommendation].
 
-4. Create [EKS](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html).
+3. Create [EKS](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html).
 
     - Deploy the addons you need.
+
+4. Create IAM [user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) [_up to ODM version 1.60_], [role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html) [_after ODM version 1.60_], [policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html) (it will be listed below) and [attach](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html) the policy to the user/role.
+
+    - [Programmatic access](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) is required to work ODM with IAM user.
+
+    - You can find the recommended IAM policy here [IAM policy for S3 access](#configuration-examples).
+
+    - Choose between [EKS IRSA](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) and [EKS Pod Identity](https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html) based on your requirements; however, we recommend using EKS Pod Identity.
+
+    - You can find the recommended `Trust Relationships` for EKS IRSA here [IRSA Trust Relationships](#configuration-examples).
+
+    - You can find the recommended `Trust Relationships` for EKS Pod Identity here [Pod Identity Trust Relationships](#configuration-examples).
 
 5. Create Route53 [hosted zone](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-working-with.html).
 
@@ -173,6 +180,49 @@
       "Resource" : ["KMS_KEY_ARN"]
     }
   ]
+}
+```
+</details>
+
+<details><summary>IRSA Trust Relationships</summary>
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "arn:aws:iam::AWS_ACCOUNT_ID:oidc-provider/oidc.eks.AWS_REGION.amazonaws.com/id/AWS_EKS_OIDC_ID"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringLike": {
+                    "oidc.eks.AWS_REGION.amazonaws.com/id/AWS_EKS_OIDC_ID:sub": "system:serviceaccount:odm:odm",
+                    "oidc.eks.AWS_REGION.amazonaws.com/id/AWS_EKS_OIDC_ID:aud": "sts.amazonaws.com"
+                }
+            }
+        }
+    ]
+}
+```
+</details>
+
+<details><summary>Pod Identity Trust Relationships</summary>
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "pods.eks.amazonaws.com"
+            },
+            "Action": [
+                "sts:TagSession",
+                "sts:AssumeRole"
+            ]
+        }
+    ]
 }
 ```
 </details>
