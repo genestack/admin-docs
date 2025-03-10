@@ -8,11 +8,29 @@
 
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) for getting permissions to download Helm chart
 
+## Deployment Requirements
+
+- To deploy ODM `StorageClass` and `IngressClass` have to be configured in Kubernetes Cluster.
+
+- To deploy an `ODM-OPS` helm chart, you must have administrator rights in the Kubernetes cluster.
+
+- `ODM-OPS` must be installed before starting ODM updates every time.
+
+- `ODM-OPS` must be 1 per Kubernetes cluster.
+
+- To deploy ODM, you need administrator rights in the `ODM` namespace; in addition to standard entities, these will be used:
+
+    - `clickhouseinstallations` API group `clickhouse.altinity.com`
+
+    - `clickhouseinstallationtemplates` API  group `clickhouse.altinity.com`
+
+    - `clickhousekeeperinstallations` API group `clickhouse-keeper.altinity.com`
+
+    - `clickhouseoperatorconfigurations` API group `clickhouse.altinity.com`
+
 ## Deployment Information
 
 - All main ODM settings are presented in the Deployment Helm Chart.
-
-- To deploy ODM `StorageClass` and `IngressClass` have to be configured in Kubernetes Cluster.
 
 - To enable automatic metrics collection when using Prometheus Operator, configure the `serviceMonitor` parameter in the Helm Chart.
 
