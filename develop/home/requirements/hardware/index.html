@@ -1283,9 +1283,11 @@
 
 <h1 id="hardware">Hardware<a class="headerlink" href="#hardware" title="Permanent link">&para;</a></h1>
 <ul>
-<li>We recommend allocating 16 cores 128GB of memory for production environments.</li>
+<li>We recommend allocating 16 cores 96GB of memory for production environments.</li>
 <li>It is necessary to provide multiple disks for databases and internal services. You can use any solution that works with Kubernetes (AWS EBS, Azure Disks, etc.). An important note: for optimal performance, we strongly recommend using SSDs.</li>
+<li>It is strongly recommended <strong>not to use</strong> NFS as a database storage.</li>
 <li>The operating system can be any distribution of Linux (Ubuntu, CentOS, RedHat, Amazon Linux, etc). Preferably, use the latest versions.</li>
+<li>Linux kernel must be newer than version 3.15.</li>
 <li>The container runtime processor architecture must be <a href="https://en.wikipedia.org/wiki/X86-64">x86-64</a>.</li>
 </ul>
 
