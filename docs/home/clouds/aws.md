@@ -123,6 +123,16 @@
 
     - Be careful when using it, you should limit the list of zones with which it can work. And if the zone is used for something else, then make sure that it will not delete records from there.
 
+## Cross-account S3 access
+
+The approach is based on the [official documentation](https://repost.aws/knowledge-center/cross-account-access-s3) section `IAM policies and resource-based bucket policies`.
+
+If the S3 bucket uses `SSE-KMS` encryption, then it is necessary to additionally grant access to the KMS key too:
+
+- in the `IAM policy` that is attached to the IAM role/user
+
+- in the `Key policy` of the KMS key that is used to encrypt data in the S3 bucket
+
 ## Configuration examples
 
 <details><summary>AbortIncompleteMultipartUpload rule</summary>
