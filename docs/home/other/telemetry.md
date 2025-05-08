@@ -32,4 +32,4 @@ In addition to technical metrics, we collect anonymized product usage data to be
 
 - `product_rest_api_requests_total` - Number of API calls grouped by application, path and method
 
-- `product_user_session_duration` - Displays quantiles of ODM usage time.
+- `product_user_session_duration` - User session duration
