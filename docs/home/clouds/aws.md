@@ -127,7 +127,7 @@
 
 The approach is based on the [official documentation](https://repost.aws/knowledge-center/cross-account-access-s3) section `IAM policies and resource-based bucket policies`.
 
-If the S3 bucket uses `SSE-KMS` encryption, then it is necessary to additionally grant access to the KMS key too:
+If the S3 bucket uses `SSE-KMS` encryption, then it is necessary to additionally grant access to the KMS key in the items below:
 
 - in the `IAM policy` that is attached to the IAM role/user
 
