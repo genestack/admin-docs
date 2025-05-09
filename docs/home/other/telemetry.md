@@ -14,6 +14,30 @@ More specifically, telemetry helps to:
 
 Genestack doesn't collect any personal information without user consent, complying with data protection regulations; refer to security documents if you need more information in this regard.
 
+Technical metrics includes groups of metrics to control:
+
+- Hardware parameters, such as CPU and memory consumption, etc. For example:
+
+    - `system_cpu_count` - The number of processors available to the Java virtual machine
+
+    - `system_load_average_1m` - The sum of the number of runnable entities queued to available processors and the number of runnable entities running on the available processors averaged over a period of time
+
+    - `process_cpu_usage` - The "recent cpu usage" for the Java Virtual Machine process
+
+    - `process_uptime_seconds` - The uptime of the Java virtual machine
+
+- Programming language-specific metrics to track JVM behaviour controlling heap size and other parameters. For example:
+
+    - `jvm_memory_used_bytes` - The amount of used memory
+
+    - `jvm_memory_max_bytes` - The maximum amount of memory in bytes that can be used for memory management
+
+    - `jvm_threads_states_threads` - The current number of threads
+
+    - `hikaricp_connections` - Total connections
+
+    - `jdbc_connections_active` -  Current number of active connections that have been allocated from the data source.
+
 In addition to technical metrics, anonymized product usage data is being collected. It helps to understand better which features are used and to guide product development decisions. These metrics help us identify what brings value to users and where improvements are needed. The list of collected metrics includes but not limited to:
 
 - `product_number_of_active_users` - Number of registered unique not-disabled users
