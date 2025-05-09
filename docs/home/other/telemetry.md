@@ -16,7 +16,7 @@ Genestack doesn't collect any personal information without user consent, complyi
 
 In addition to technical metrics, anonymized product usage data is being collected. It helps to understand better which features are used and to guide product development decisions. These metrics help us identify what brings value to users and where improvements are needed. The list of collected metrics includes but not limited to:
 
-- `product_number_of_active_users` - Number of registered unique users with “Active” status
+- `product_number_of_active_users` - Number of registered unique not-disabled users
 
 - `product_number_of_attached_files` - Number of attachments by Data class
 
