@@ -2,7 +2,7 @@
 
 Genestack collects telemetry data to improve service quality, ensure stability, and enhance security. Analysis of both technical parameters such as resource utilization, and product metrics like anonymized feature usage data helps to improve ODM trustworthy for the most crucial aspects of it's work.
 
-Telemetry helps us to:
+More specifically, telemetry helps to:
 
 - detect and resolve issues more efficiently
 
