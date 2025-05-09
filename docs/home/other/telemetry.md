@@ -14,7 +14,7 @@ More specifically, telemetry helps to:
 
 Genestack doesn't collect any personal information without user consent, complying with data protection regulations; refer to security documents if you need more information in this regard.
 
-In addition to technical metrics, we collect anonymized product usage data to better understand how our services are used and to guide product development decisions. These metrics help us identify what brings value to users and where improvements are needed.
+In addition to technical metrics, anonymized product usage data is being collected. It helps to understand better which features are used and to guide product development decisions. These metrics help us identify what brings value to users and where improvements are needed. The list of collected metrics includes but not limited to:
 
 - `product_number_of_active_users` - Number of registered unique users with “Active” status
 
