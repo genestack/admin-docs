@@ -20,7 +20,7 @@ In addition to technical metrics, anonymized product usage data is being collect
 
 - `product_number_of_attached_files` - Number of Study File attachments by Data class
 
-- `product_number_of_signal_groups` - Number of signal groups
+- `product_number_of_signal_groups` - Number of Tabular, Variants and Flow Cytometry groups
 
 - `product_number_of_slp` - Number of Samples, Libraries, and Preparations
 
