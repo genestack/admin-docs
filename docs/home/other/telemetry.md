@@ -12,7 +12,7 @@ More specifically, telemetry helps to:
 
 - enhance reliability and user experience.
 
-We do not collect personal information without user consent and fully comply with applicable data protection laws and standards.
+Genestack doesn't collect any personal information without user consent, complying with data protection regulations; refer to security documents if you need more information in this regard.
 
 In addition to technical metrics, we collect anonymized product usage data to better understand how our services are used and to guide product development decisions. These metrics help us identify what brings value to users and where improvements are needed.
 
