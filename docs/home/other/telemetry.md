@@ -18,7 +18,7 @@ In addition to technical metrics, anonymized product usage data is being collect
 
 - `product_number_of_active_users` - Number of registered unique not-disabled users
 
-- `product_number_of_attached_files` - Number of attachments by Data class
+- `product_number_of_attached_files` - Number of Study File attachments by Data class
 
 - `product_number_of_signal_groups` - Number of signal groups
 
