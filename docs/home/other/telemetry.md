@@ -26,7 +26,7 @@ In addition to technical metrics, anonymized product usage data is being collect
 
 - `product_number_of_slp_groups` - Number of Sample, Library, and Preparation groups by Data class
 
-- `product_number_of_studies` - Number of studies
+- `product_number_of_studies` - Number of Studies
 
 - `product_number_of_logged_in_users` - Number of logged in users
 
