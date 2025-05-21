@@ -5,6 +5,8 @@ repos:
   - id: markdownlint
     args:
     - --fix
+    # https://github.com/DavidAnson/markdownlint/blob/main/doc/md059.md
+    - "--disable=MD059"
 
 # Does it work on m1?
 #- repo: https://github.com/gitleaks/gitleaks
