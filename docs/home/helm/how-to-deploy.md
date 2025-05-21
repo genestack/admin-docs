@@ -18,15 +18,21 @@
 
 - `ODM-OPS` must be 1 per Kubernetes cluster.
 
-- To deploy ODM, you need administrator rights in the `ODM` namespace; in addition to standard entities, these will be used:
+- To deploy ODM, you need the following:
 
-    - `clickhouseinstallations` API group `clickhouse.altinity.com`
+    - Administrator rights in the `ODM` namespace
 
-    - `clickhouseinstallationtemplates` API  group `clickhouse.altinity.com`
+    - Permissions to list all Custom Resource Definitions (CRDs)
 
-    - `clickhousekeeperinstallations` API group `clickhouse-keeper.altinity.com`
+    - In addition to standard Kubernetes resources, the following custom resources will be used:
 
-    - `clickhouseoperatorconfigurations` API group `clickhouse.altinity.com`
+        - `clickhouseinstallations` API group `clickhouse.altinity.com`
+
+        - `clickhouseinstallationtemplates` API  group `clickhouse.altinity.com`
+
+        - `clickhousekeeperinstallations` API group `clickhouse-keeper.altinity.com`
+
+        - `clickhouseoperatorconfigurations` API group `clickhouse.altinity.com`
 
 ## Deployment Information
 
