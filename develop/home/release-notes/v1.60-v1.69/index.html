@@ -1368,6 +1368,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#helm-configuration-changes" class="md-nav__link">
     <span class="md-ellipsis">
       Helm configuration changes
@@ -1507,6 +1516,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#helm-configuration-changes" class="md-nav__link">
     <span class="md-ellipsis">
       Helm configuration changes
@@ -1583,6 +1601,12 @@
 <div class="admonition tip">
 <p>Helm chart version 1.61.0</p>
 </div>
+<h3 id="known-issues">Known issues<a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h3>
+<ul>
+<li>If you encounter a <code>Status code: 500</code> error while loading data, especially after an update, manually restart the <code>core</code> and <code>applications</code> pods in Kubernetes.
+This issue is caused by a known bug in the JDBC connector.
+Performing the restart once is sufficient to resolve the problem.</li>
+</ul>
 <h3 id="helm-configuration-changes">Helm configuration changes<a class="headerlink" href="#helm-configuration-changes" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
