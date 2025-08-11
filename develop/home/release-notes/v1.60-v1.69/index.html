@@ -1358,6 +1358,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-162" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version 1.62
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Version 1.62">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#helm-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Helm configuration changes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#version-161" class="md-nav__link">
     <span class="md-ellipsis">
       Version 1.61
@@ -1377,7 +1401,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#helm-configuration-changes" class="md-nav__link">
+  <a href="#helm-configuration-changes_1" class="md-nav__link">
     <span class="md-ellipsis">
       Helm configuration changes
     </span>
@@ -1419,7 +1443,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#helm-configuration-changes_1" class="md-nav__link">
+  <a href="#helm-configuration-changes_2" class="md-nav__link">
     <span class="md-ellipsis">
       Helm configuration changes
     </span>
@@ -1506,6 +1530,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-162" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version 1.62
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Version 1.62">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#helm-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Helm configuration changes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#version-161" class="md-nav__link">
     <span class="md-ellipsis">
       Version 1.61
@@ -1525,7 +1573,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#helm-configuration-changes" class="md-nav__link">
+  <a href="#helm-configuration-changes_1" class="md-nav__link">
     <span class="md-ellipsis">
       Helm configuration changes
     </span>
@@ -1567,7 +1615,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#helm-configuration-changes_1" class="md-nav__link">
+  <a href="#helm-configuration-changes_2" class="md-nav__link">
     <span class="md-ellipsis">
       Helm configuration changes
     </span>
@@ -1597,6 +1645,19 @@
 
 
 <h1 id="release-notes">Release notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h1>
+<h2 id="version-162">Version 1.62<a class="headerlink" href="#version-162" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p>Helm chart version 1.62.0</p>
+</div>
+<h3 id="helm-configuration-changes">Helm configuration changes<a class="headerlink" href="#helm-configuration-changes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added a new service, <code>processors-controller</code>, which manages the lifecycle of <code>transformation</code> pods.<ul>
+<li>To use transformations, configure cross-account ECR access. See <a href="../../clouds/aws/#cross-account-ecr-access">Cross-account ECR access</a>.</li>
+<li>The <code>processors-controller</code> requires RBAC permissions to manage <code>Pods</code>, <code>ConfigMaps</code>, and <code>PersistentVolumeClaims</code>.
+  The required manifests are included in the Helm chart and can be disabled by setting <code>processorsController.rbac.enabled</code> to <code>false</code>.</li>
+</ul>
+</li>
+</ul>
 <h2 id="version-161">Version 1.61<a class="headerlink" href="#version-161" title="Permanent link">&para;</a></h2>
 <div class="admonition tip">
 <p>Helm chart version 1.61.0</p>
@@ -1607,7 +1668,7 @@
 This issue is caused by a known bug in the JDBC connector.
 Performing the restart once is sufficient to resolve the problem.</li>
 </ul>
-<h3 id="helm-configuration-changes">Helm configuration changes<a class="headerlink" href="#helm-configuration-changes" title="Permanent link">&para;</a></h3>
+<h3 id="helm-configuration-changes_1">Helm configuration changes<a class="headerlink" href="#helm-configuration-changes_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
 <p>Mailcatcher was replaced by Mailpit. The <code>mailcatcher</code> section has been removed, please use the <code>mailpit</code> configuration instead.</p>
@@ -1635,7 +1696,7 @@ Note that the configuration section <code>genestack.rclone</code> in all three o
 <p>Also, Rclone allows to use the AWS IAM role instead of the AWS IAM user. If this is relevant fo your environment, then information on deployment can be found <a href="../../clouds/aws/">here</a> in paragraph 4.</p>
 <h3 id="saml-elimitaion">SAML elimitaion<a class="headerlink" href="#saml-elimitaion" title="Permanent link">&para;</a></h3>
 <p>Support of SAML was eliminated.</p>
-<h3 id="helm-configuration-changes_1">Helm configuration changes<a class="headerlink" href="#helm-configuration-changes_1" title="Permanent link">&para;</a></h3>
+<h3 id="helm-configuration-changes_2">Helm configuration changes<a class="headerlink" href="#helm-configuration-changes_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
 <p>The <code>credentials</code> section has been removed, please use the <code>rclone</code> configuration instead.</p>
