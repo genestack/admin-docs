@@ -135,7 +135,7 @@ If the S3 bucket uses `SSE-KMS` encryption, then it is necessary to additionally
 
 ## Cross-account ECR access
 
-⚠️ **Important: Mandatory in case of processors-controller usage**
+⚠️ **Mandatory in case of processors-controller usage**
 
 The approach is based on the [official AWS documentation](https://repost.aws/knowledge-center/secondary-account-access-ecr) for ECR repository policies and cross-account access patterns.
 
