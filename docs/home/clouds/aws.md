@@ -133,9 +133,69 @@ If the S3 bucket uses `SSE-KMS` encryption, then it is necessary to additionally
 
 - in the `Key policy` of the KMS key that is used to encrypt data in the S3 bucket
 
+## Cross-account ECR access
+
+The approach is based on the [official AWS documentation](https://repost.aws/knowledge-center/secondary-account-access-ecr) for ECR repository policies and cross-account access patterns.
+
+ECR cross-account access requires configuring both:
+
+- `IAM policy` attached to the IAM role/user
+
+If the ECR repository uses `KMS encryption` with a customer-managed key, then it is necessary to additionally grant access to the KMS key in:
+
+- The `IAM policy` that is attached to the IAM role/user
+
+- The `Key policy` of the KMS key used to encrypt the ECR repository
+
 ## Configuration examples
 
+<details><summary>IAM policy for ECR access</summary>
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ECRRepositoryAccess",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:GetAuthorizationToken"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "ECRImagePull",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchGetImage",
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:DescribeRepositories",
+        "ecr:DescribeImages",
+        "ecr:ListImages"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid" : "AllowUseOfTheKey",
+      "Effect": "Allow",
+      "Action" : [
+        "kms:Encrypt",
+        "kms:Decrypt",
+        "kms:ReEncrypt*",
+        "kms:GenerateDataKey*",
+        "kms:DescribeKey"
+      ],
+      "Resource" : ["KMS_KEY_ARN"]
+    }
+  ]
+}
+```
+
+</details>
+
 <details><summary>AbortIncompleteMultipartUpload rule</summary>
+
 ```json
 {
     "Rules": [
@@ -149,27 +209,29 @@ If the S3 bucket uses `SSE-KMS` encryption, then it is necessary to additionally
     ]
 }
 ```
+
 </details>
 
 <details><summary>IAM policy for S3 access</summary>
+
 ```json
 {
   "Version" : "2012-10-17",
   "Statement" : [
     {
       "Sid" : "ListObjectsInBucket",
-      "Effect" : "Allow",
+      "Effect": "Allow",
       "Action" : [
         "s3:ListBucket",
         "s3:GetBucketLocation",
         "s3:ListBucketMultipartUploads",
         "s3:ListBucketVersions"
       ],
-      "Resource" : ["S3_BUCKET_ARN"]
+      "Resource": ["S3_BUCKET_ARN"]
     },
     {
       "Sid" : "AllObjectActions",
-      "Effect" : "Allow",
+      "Effect": "Allow",
       "Action" : [
         "s3:*Object*",
         "s3:AbortMultipartUpload",
@@ -179,7 +241,7 @@ If the S3 bucket uses `SSE-KMS` encryption, then it is necessary to additionally
     },
     {
       "Sid" : "AllowUseOfTheKey",
-      "Effect" : "Allow",
+      "Effect": "Allow",
       "Action" : [
         "kms:Encrypt",
         "kms:Decrypt",
@@ -192,9 +254,11 @@ If the S3 bucket uses `SSE-KMS` encryption, then it is necessary to additionally
   ]
 }
 ```
+
 </details>
 
 <details><summary>IRSA Trust Relationships</summary>
+
 ```json
 {
     "Version": "2012-10-17",
@@ -215,9 +279,11 @@ If the S3 bucket uses `SSE-KMS` encryption, then it is necessary to additionally
     ]
 }
 ```
+
 </details>
 
 <details><summary>Pod Identity Trust Relationships</summary>
+
 ```json
 {
     "Version": "2012-10-17",
@@ -235,9 +301,11 @@ If the S3 bucket uses `SSE-KMS` encryption, then it is necessary to additionally
     ]
 }
 ```
+
 </details>
 
 <details><summary>GP3 StorageClass example</summary>
+
 ```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -249,9 +317,11 @@ provisioner: ebs.csi.aws.com
 volumeBindingMode: Immediate
 allowVolumeExpansion: true
 ```
+
 </details>
 
 <details><summary>TargetGroupBinding example</summary>
+
 ```yaml
 apiVersion: elbv2.k8s.aws/v1beta1
 kind: TargetGroupBinding
@@ -265,4 +335,5 @@ spec:
     port: 80
   targetGroupARN: TARGET_GROUP_ARN
 ```
+
 </details>
