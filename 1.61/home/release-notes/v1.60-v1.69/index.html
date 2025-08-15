@@ -1392,6 +1392,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#rclone-migration" class="md-nav__link">
     <span class="md-ellipsis">
       Rclone Migration
@@ -1531,6 +1540,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#rclone-migration" class="md-nav__link">
     <span class="md-ellipsis">
       Rclone Migration
@@ -1603,6 +1621,12 @@
 <div class="admonition tip">
 <p>Helm chart version 1.60.1</p>
 </div>
+<h3 id="known-issues">Known issues<a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h3>
+<ul>
+<li>If you encounter a <code>Status code: 500</code> error while loading data, especially after an update, manually restart the <code>core</code> and <code>applications</code> pods in Kubernetes.
+  This issue is caused by a known bug in the JDBC connector.
+  Performing the restart once is sufficient to resolve the problem.</li>
+</ul>
 <h3 id="rclone-migration">Rclone Migration<a class="headerlink" href="#rclone-migration" title="Permanent link">&para;</a></h3>
 <p>The following ODM component called <code>funcFile</code> was replaced with <code>rclone</code>.</p>
 <p>As a result of this migration, the configuration of storages was moved from <code>funcFile</code> to <code>application.yaml</code> files in <code>core</code>, <code>applications</code>, and <code>funcJob</code>.
