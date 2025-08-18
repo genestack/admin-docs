@@ -29,8 +29,7 @@ nav:
             - Azure SSO: home/troubleshooting/azure-sso.md
             - Azure SCIM: home/troubleshooting/azure-scim.md
             - Sanity check: home/troubleshooting/sanity-check.md
-        - Release Notes:
-              - v1.50 - v1.59: home/release-notes/v1.50-v1.59.md
+        - Release Notes: home/release-notes.md
 theme:
     name: material
     palette:
