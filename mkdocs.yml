@@ -24,7 +24,6 @@ nav:
         - Clickhouse:
             - Rebalancing: home/clickhouse/rebalancing.md
         - Troubleshooting:
-            - AWS S3: home/troubleshooting/aws-s3.md
             - Azure SSO: home/troubleshooting/azure-sso.md
             - Azure SCIM: home/troubleshooting/azure-scim.md
             - Sanity check: home/troubleshooting/sanity-check.md
