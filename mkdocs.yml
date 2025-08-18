@@ -68,8 +68,7 @@ nav:
             - AWS S3: deployment/troubleshooting/aws-s3.md
             - Azure SSO: deployment/troubleshooting/azure-sso.md
             - Azure SCIM: deployment/troubleshooting/azure-scim.md
-        - Release Notes:
-              - v1.50 - v1.59: deployment/release-notes/v1.50-v1.59.md
+        - Release Notes: deployment/release-notes.md
 theme:
     name: material
     palette:
