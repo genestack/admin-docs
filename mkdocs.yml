@@ -30,9 +30,7 @@ nav:
             - Sanity check: home/troubleshooting/sanity-check.md
         - Other:
             - Telemetry: home/other/telemetry.md
-        - Release Notes:
-            - v1.60 - v1.69: home/release-notes/v1.60-v1.69.md
-            - v1.50 - v1.59: home/release-notes/v1.50-v1.59.md
+        - Release Notes: home/release-notes.md
 theme:
     name: material
     palette:
