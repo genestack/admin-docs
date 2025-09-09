@@ -30,7 +30,31 @@ Support of SAML was eliminated.
       awsS3SecretAccessKey:
     ```
 
-- All configuration related to `SAML` has been removed.
+- All configuration related to `SAML` has been removed. Example of configuration that can be safely removed:
+
+    ```yaml
+    core:
+      files:
+        "/var/lib/genestack/properties/application.yaml":
+          saml:
+            entity:
+              id: "<SAML_ENTITY_ID>"
+            identity:
+              provider:
+                url: "<SAML_IDENTITY_PROVIDER_URL>"
+                certificate:
+                  name: "<SAML_IDENTITY_PROVIDER_CERTIFICATE_NAME>"
+        "/var/lib/genestack/properties/authentication/saml/idp-certificates/<SAML_IDENTITY_PROVIDER_CERTIFICATE_NAME>": "<IDP_CERTIFICATE>"
+        "/var/lib/genestack/properties/authentication/saml/sp-credentials/sp_pkcs8_der.key": "<SP_PKCS8_DER_KEY>"
+        "/var/lib/genestack/properties/authentication/saml/sp-credentials/sp_x509_pem.crt": "<SP_X509_PEM_CRT>"
+    
+    applications:
+      files:
+        "/var/lib/genestack/properties/application.yaml":
+          authentication:
+            saml:
+              enabled: "true"
+    ```
 
 - The `region` parameter has been removed from the `applications` configuration.
 
