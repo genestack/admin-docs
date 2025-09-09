@@ -7,7 +7,7 @@
 
 ### Helm configuration changes
 
-- Mailcatcher was replaced by Mailpit. The `mailcatcher` section has been removed, please use the `mailpit` configuration instead.
+- Mailcatcher has been replaced by Mailpit. The `mailcatcher` section has been removed, please use the `mailpit` configuration instead.
 
     From
 
