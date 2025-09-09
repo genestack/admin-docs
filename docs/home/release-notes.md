@@ -30,7 +30,7 @@ Support of SAML was eliminated.
       awsS3SecretAccessKey:
     ```
 
-- All configuration related to `SAML` has been removed. Example of configuration that can be safely removed:
+- `SAML` support has been eliminated, example of configuration that can be safely removed:
 
     ```yaml
     core:
