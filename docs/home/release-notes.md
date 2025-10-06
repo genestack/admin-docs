@@ -18,13 +18,13 @@
       were strings, but now they are objects containing fields for `registry`, `repository`, and `tag`.
 
       The same in YAML format.
-      From:
+      Old image declaration:
 
       ```yaml
       image: docker.io/clickhouse/clickhouse-keeper:25.8.4
       ```
 
-      To:
+      New image declaration:
 
       ```yaml
       image:
