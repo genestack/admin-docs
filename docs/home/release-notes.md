@@ -16,3 +16,19 @@
     - `altinity.clickhouse.installation.spec.templates.podTemplate.spec.mainContainer.image` and
       `altinity.clickhouseKeeper.installation.spec.templates.podTemplate.spec.mainContainer.image`
       were strings, but now they are objects containing fields for `registry`, `repository`, and `tag`.
+
+      The same in YAML format.
+      From:
+
+      ```yaml
+      image: docker.io/clickhouse/clickhouse-keeper:25.8.4
+      ```
+
+      To:
+
+      ```yaml
+      image:
+        registry: docker.io
+        repository: clickhouse/clickhouse-keeper
+        tag: 25.8.4
+      ```
