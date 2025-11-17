@@ -133,6 +133,24 @@ If the S3 bucket uses `SSE-KMS` encryption, then it is necessary to additionally
 
 - in the `Key policy` of the KMS key that is used to encrypt data in the S3 bucket
 
+## Cross-account S3 access by assuming an IAM role in target account
+
+The approach is based on the [official documentation](https://repost.aws/knowledge-center/cross-account-access-iam).
+
+If the S3 bucket uses `SSE-KMS` encryption, then it is necessary to additionally grant access to the KMS key in the items below:
+
+- in the `IAM policy` that is attached to the IAM role
+
+- in the `Key policy` of the KMS key that is used to encrypt data in the S3 bucket
+
+Choose the appropriate `Trust Policy` based on how the ODM accesses AWS resources:
+
+- You can find the recommended `Trust Relationships` for EKS IRSA here [IRSA Trust Relationships](#configuration-examples).
+
+- You can find the recommended `Trust Relationships` for EKS Pod Identity here [Pod Identity Trust Relationships](#configuration-examples).
+
+This is how the `Trust Relationships` for the IAM role in the target account should appear - [IAM role in target account Trust Relationships](#configuration-examples)
+
 ## Cross-account ECR access
 
 ⚠️ **Mandatory in case of processors-controller usage**
@@ -150,51 +168,6 @@ If the ECR repository uses `KMS encryption` with a customer-managed key, then it
 - The `Key policy` of the KMS key used to encrypt the ECR repository
 
 ## Configuration examples
-
-<details><summary>IAM policy for ECR access</summary>
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "ECRRepositoryAccess",
-      "Effect": "Allow",
-      "Action": [
-        "ecr:GetAuthorizationToken"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Sid": "ECRImagePull",
-      "Effect": "Allow",
-      "Action": [
-        "ecr:GetDownloadUrlForLayer",
-        "ecr:BatchGetImage",
-        "ecr:BatchCheckLayerAvailability",
-        "ecr:DescribeRepositories",
-        "ecr:DescribeImages",
-        "ecr:ListImages"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Sid" : "AllowUseOfTheKey",
-      "Effect": "Allow",
-      "Action" : [
-        "kms:Encrypt",
-        "kms:Decrypt",
-        "kms:ReEncrypt*",
-        "kms:GenerateDataKey*",
-        "kms:DescribeKey"
-      ],
-      "Resource" : ["KMS_KEY_ARN"]
-    }
-  ]
-}
-```
-
-</details>
 
 <details><summary>AbortIncompleteMultipartUpload rule</summary>
 
@@ -301,6 +274,73 @@ If the ECR repository uses `KMS encryption` with a customer-managed key, then it
             ]
         }
     ]
+}
+```
+
+</details>
+
+<details><summary>IAM role in target account Trust Relationships</summary>
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "arn:aws:iam::AWS_ACCOUNT_ID:root"
+            },
+            "Action": [
+                "sts:TagSession",
+                "sts:AssumeRole"
+            ]
+        }
+    ]
+}
+```
+
+</details>
+
+<details><summary>IAM policy for ECR access</summary>
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ECRRepositoryAccess",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:GetAuthorizationToken"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "ECRImagePull",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchGetImage",
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:DescribeRepositories",
+        "ecr:DescribeImages",
+        "ecr:ListImages"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid" : "AllowUseOfTheKey",
+      "Effect": "Allow",
+      "Action" : [
+        "kms:Encrypt",
+        "kms:Decrypt",
+        "kms:ReEncrypt*",
+        "kms:GenerateDataKey*",
+        "kms:DescribeKey"
+      ],
+      "Resource" : ["KMS_KEY_ARN"]
+    }
+  ]
 }
 ```
 
