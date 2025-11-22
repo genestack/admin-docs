@@ -9,7 +9,7 @@ jobs:
     deploy:
         runs-on: ubuntu-24.04
         steps:
-            - uses: actions/checkout@v5.0.0
+            - uses: actions/checkout@v5.0.1
             - name: Configure Git Credentials
               run: |
                   git config user.name github-actions[bot]
