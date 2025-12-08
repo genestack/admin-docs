@@ -136,7 +136,7 @@ After that you need to provide AzureAD with necessary information about ODM. Nav
 
 ### Note about access token version
 
-ODM is configured to use version 2 of OpenID Connect protocol implementation in AzureAD, as defined by the discovery document URL: `https://login.microsoftonline.com/{tenant}/v2.0/.well-known/openid-configuration?appId={clientId}`
+ODM is configured to use version 2 of OpenID Connect protocol implementation in AzureAD, as defined by the discovery document URL: `https://login.microsoftonline.com/{tenant}/v2.0/.well-known/openid-configuration`
 
 However, for access tokens AzureAD uses the version 1 format by default, which is incompatible with configuration from v2 OpenID Connect discovery document: `iss` claim in v1 access token format has values like `https://sts.windows.net/{uuid}/` while the expected `iss` claim format in v2 configuration is `https://login.microsoftonline.com/{uuid}/v2.0`.
 
