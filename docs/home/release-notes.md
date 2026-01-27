@@ -32,3 +32,17 @@
         repository: clickhouse/clickhouse-keeper
         tag: 25.8.4
       ```
+
+- Increased memory requirements for loading large cell expression datasets.
+    - When loading datasets with millions of cells, increase memory limits for the `func-job` service to prevent out-of-memory errors.
+
+      Example of configuration:
+
+      ```yaml
+      funcJob:
+        resources:
+          limits:
+            memory: 5Gi
+          requsts:
+            memory: 5Gi
+      ```
