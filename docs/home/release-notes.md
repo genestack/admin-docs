@@ -33,6 +33,30 @@
         tag: 25.8.4
       ```
 
+- Removed an irrelevant parameter `?appId=<OPENID_CLIENT_ID>` in OpenId settings (Azure only).
+
+    Old configuration:
+
+    ```yaml
+    applications:
+      files:
+        "/var/lib/genestack/properties/microsoft.openid.ini": |
+          ...
+          discoveryDocumentUri=https://login.microsoftonline.com/<MICROSOFT_TENANT>/v2.0/.well-known/openid-configuration?appId=<OPENID_CLIENT_ID>
+          ...
+    ```
+
+    New configuration:
+
+    ```yaml
+    applications:
+      files:
+        "/var/lib/genestack/properties/microsoft.openid.ini": |
+          ...
+          discoveryDocumentUri=https://login.microsoftonline.com/<MICROSOFT_TENANT>/v2.0/.well-known/openid-configuration
+          ...
+    ```
+
 - Increased memory requirements for loading large cell expression datasets.
     - When loading datasets with millions of cells, increase memory limits for the `func-job` service to prevent out-of-memory errors.
 
