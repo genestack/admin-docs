@@ -57,6 +57,42 @@
           ...
     ```
 
+- Sensitive SMTP configuration parameters have been moved to a separate secret.
+
+    Old configuration:
+
+    ```yaml
+    core:
+      files:
+        "/var/lib/genestack/properties/application.yaml":
+          mail:
+            smtp:
+              host: "<SMTP_HOST>"
+              port: "<SMTP_PORT>"
+              security: "<SMTP_SECURITY>"
+              username: "<SMTP_USER>"
+              password: "<SMTP_PASSWORD>"
+    ```
+
+    New configuration:
+
+    ```yaml
+    core:
+      files:
+        "/var/lib/genestack/properties/application.yaml":
+          mail:
+            smtp:
+              host: "<SMTP_HOST>"
+              port: "<SMTP_PORT>"
+              security: "<SMTP_SECURITY>"
+      secretFiles:
+        "/var/lib/genestack/properties/secret.yaml":
+          mail:
+            smtp:
+              username: "<SMTP_USER>"
+              password: "<SMTP_PASSWORD>"
+    ```
+
 - Increased memory requirements for loading large cell expression datasets.
     - When loading datasets with millions of cells, increase memory limits for the `func-job` service to prevent out-of-memory errors.
 
