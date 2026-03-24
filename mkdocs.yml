@@ -22,7 +22,7 @@ nav:
         - Helm:
             - How to deploy: home/helm/how-to-deploy.md
         - Clickhouse:
-            - Rebalancing: home/clickhouse/rebalancing.md
+            - Shard Addition: home/clickhouse/shard-addition.md
         - Troubleshooting:
             - AWS S3: home/troubleshooting/aws-s3.md
             - Azure SSO: home/troubleshooting/azure-sso.md

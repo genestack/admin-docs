@@ -1,6 +1,9 @@
-# ClickHouse Rebalancing
+# ClickHouse Shard Addition
 
 Rebalancing shards in ClickHouse is primarily a manual process due to inherent [limitations](https://clickhouse.com/docs/en/guides/sre/scaling-clusters) in ClickHouse. To simplify this process, we have developed a tool to assist with shard rebalancing.
+
+!!! warning
+    Avoid adding shards during an ODM upgrade, as schema migrations may leave the cluster in an inconsistent state.
 
 ## Prerequisites
 
