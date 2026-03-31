@@ -3,7 +3,7 @@
 ## Version 1.62
 
 !!! tip ""
-    Helm chart version 1.62.0
+    Helm chart version 1.62.3
 
 ### Helm configuration changes
 
