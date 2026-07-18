@@ -1,7 +1,7 @@
 repos:
 - repo: https://github.com/igorshubovych/markdownlint-cli
   # https://github.com/igorshubovych/markdownlint-cli/issues/540
-  rev: v0.49.0
+  rev: v0.49.1
   hooks:
   - id: markdownlint
     args:
