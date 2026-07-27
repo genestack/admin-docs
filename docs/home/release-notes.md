@@ -7,7 +7,7 @@
     This version must be installed before proceeding with the next update.
 
 !!! tip ""
-    Helm chart version 1.63.0
+    Helm chart version 1.63.3
 
 ### GenestackRun-related tables migration from MySQL to Clickhouse
 
