@@ -11,6 +11,6 @@
 
 ### GenestackRun-related tables migration from MySQL to Clickhouse
 
-This release migrates MySQL `genestack_audit` schema to ClickHouse `audit.Event` table and 
-removes `genestack_audit` schema from MySQL upon successful completion. Migration component responsible for it 
+This release migrates MySQL `genestack_audit` schema to ClickHouse `audit.Event` table and
+removes `genestack_audit` schema from MySQL upon successful completion. Migration component responsible for it
 is planned for a removal in the next release. As a result, this ODM version cannot be skipped during upgrades.
