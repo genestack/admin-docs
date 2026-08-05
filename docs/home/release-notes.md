@@ -9,7 +9,7 @@
 !!! tip ""
     Helm chart version 1.64.0
 
-### GenestackRun-related tables migration from MySQL to Clickhouse
+### Genestack audit logs migration from MySQL to Clickhouse
 
 This release migrates MySQL `genestack_audit` schema to ClickHouse `audit.Event` table and
 removes `genestack_audit` schema from MySQL upon successful completion. Migration component responsible for it
