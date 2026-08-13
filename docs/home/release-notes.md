@@ -18,6 +18,6 @@ is planned for a removal in the next release. As a result, this ODM version cann
 ### Excluding audit events from tracking
 
 It is now possible to exclude specific audit events from tracking if they are not needed, which saves disk space.
-For example, you can exclude events related to read-only access and data reading.
+For example, you can exclude events related to data reads.
 
 A configuration example is available in the `examples` directory of the Helm chart.
