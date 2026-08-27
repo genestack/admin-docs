@@ -21,3 +21,22 @@ It is now possible to exclude specific audit events from tracking if they are no
 For example, you can exclude events related to data reads.
 
 A configuration example is available in the `examples` directory of the Helm chart.
+
+### Audit log retention period
+
+!!! danger
+
+    The retention period cannot be changed after installation. Set it before you install or upgrade to this version.
+
+ODM keeps audit events in ClickHouse for a limited number of months and deletes older events automatically.
+The default retention period is 12 months. To use a different one, set it in the Helm chart values:
+
+```yaml
+core:
+  files:
+    "/var/lib/genestack/properties/application.yaml":
+      backend:
+        clickhouse:
+          audit:
+            retentionMonths: 24
+```
