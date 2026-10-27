@@ -1,5 +1,39 @@
 # Release notes
 
+## Version 1.65
+
+!!! tip ""
+    Helm chart version 1.65.0
+
+### Solr 10
+
+ODM now runs on Solr 10. Solr 10 opens the search index that Solr 9 wrote, so no reindexing is needed.
+
+!!! danger
+
+    The upgrade to Solr 10 is one-way. Take a snapshot of the Solr volume before you upgrade. Once Solr 10 has
+    written to the index, Solr 9 can no longer open it, so rolling back to an earlier ODM version means restoring
+    that snapshot.
+
+### Solr metrics without solr-exporter
+
+Solr 10 no longer ships a Prometheus exporter, so the `solr-exporter` subchart is removed. Solr now serves its own
+metrics in Prometheus format. To have the Prometheus operator scrape them, replace the `solr-exporter` section of
+your values with:
+
+```yaml
+solr:
+  serviceMonitor:
+    enabled: true
+```
+
+The chart does not render values that still contain a `solr-exporter` section, and its error message points to
+`solr.serviceMonitor`.
+
+The metric names change as well: Solr 10 reports them in the OpenTelemetry style, for example
+`solr_core_indexsearcher_index_num_docs` and `solr_core_index_size_megabytes`, with the core as a label. Update
+dashboards and alerts that use the metric names of the old exporter.
+
 ## Version 1.64
 
 !!! danger
