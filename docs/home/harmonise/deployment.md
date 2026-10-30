@@ -5,14 +5,14 @@ Harmonise lets Curators prepare the raw files of a study for ODM with the help o
 This page covers what a deployment needs for Harmonise: its settings in the Helm chart, the Kubernetes permissions, and the network access of the run Pods.
 
 !!! note
-    Harmonise is always on: there is no flag to enable it. Its settings have defaults in the chart, and only the storage the runs read has to be set for your infrastructure.
+    Harmonise is always on: there is no flag to enable it. Its settings have defaults in the chart, and only the storage the runs read has to be set for your infrastructure, with the StorageClass of their temporary directory where the cluster's default does not fit (see [Temporary directory](#temporary-directory)).
 
 ## Components
 
 | Component | Role |
 | --- | --- |
 | `applications` | Serves the Harmonise REST API at `/api/v1/harmonisation`, through `nginx`; starts and deletes the run Pods through the Kubernetes API; serves the run streams over gRPC, on port 9090. |
-| Run Pods | One per run, named `harmonisation-run-<run id>` and labelled `genestack.com/kind: harmonisation-run`, in the release namespace beside processors-controller's jobs. Image `genestack/harmonisation`. They mount no ServiceAccount token and drop every Linux capability. |
+| Run Pods | One per run, named `harmonisation-run-<run id>` and labelled `genestack.com/kind: harmonisation-run`, in the release namespace beside processors-controller's jobs. Image `genestack/harmonisation`. They mount no ServiceAccount token and drop every Linux capability. Each mounts a volume of its own over `/tmp`, its temporary directory, created and deleted with the Pod. |
 | MySQL, `genestack_applications` | The record of each open run's API token, the LLM providers and models, and each Curator's LLM credentials. |
 | ClickHouse, database `harmonisation` | The history of every run, kept for good. |
 
@@ -50,6 +50,8 @@ Helm merges these values with the chart's own, so set only the keys you change.
 | `pod.memory` | `256Mi` | Memory request and limit of the run container. |
 | `pod.image-pull-policy` | `IfNotPresent` | Pull policy of the run container. |
 | `pod.image-pull-secrets` | the chart's pull secrets, as every Pod of the chart gets | Pull secrets of the run Pods, comma-separated. |
+| `pod.temporary-directory.size` | `10Gi` | Size of each run Pod's temporary directory. |
+| `pod.temporary-directory.storage-class` | empty | StorageClass of the temporary directory. Empty: the cluster's default. |
 | `odm.url` | `http://<fullname>-nginx:<nginx.service.http.port>` | ODM's API gateway, as run Pods call it. |
 | `s3.bucket` | empty | The bucket a run lists when the Curator names none. |
 | `s3.endpoint` | empty | The S3 endpoint, for S3-compatible storage such as MinIO. Empty for AWS S3. |
@@ -94,6 +96,21 @@ When a run imports files into ODM, ODM reads them itself, from the same bucket, 
 ### Active deadline
 
 A run stays open until its Curator finishes it. `pod.active-deadline-seconds` (one hour by default) bounds it: Kubernetes stops a run Pod still running after that long, and the run is `FAILED`. It also ends a step that never does. Raise it if your Curators' runs need longer.
+
+### Temporary directory
+
+Each run Pod gets a temporary directory for its intermediate results: a volume of its own, mounted over `/tmp`, which the pipeline finds in its `TEMPORARY_DIRECTORY` environment variable. It is a [generic ephemeral volume](https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/#generic-ephemeral-volumes): Kubernetes creates its PersistentVolumeClaim, `harmonisation-run-<run id>-tmp`, with the run Pod's labels, when the Pod is created, and deletes it with the Pod. So a run's files go with its Pod, and the claim needs no permission beyond the shared Role: Kubernetes creates it, not `applications`.
+
+The volume holds `pod.temporary-directory.size`, 10Gi by default. A step that fills it fails, with an error that starts `No space left` and says how much the directory holds, and the run stays open for the Curator's next step. Raise the size if your Curators' runs need more.
+
+Set `pod.temporary-directory.storage-class` to a StorageClass, or check that the cluster's default one:
+
+- **provisions volumes dynamically.** Otherwise the claim is never bound, and the run stays `PENDING` with `Unschedulable`. Prefer `volumeBindingMode: WaitForFirstConsumer`: with `Immediate`, on a cluster across zones, a volume can be created in a zone where the Pod cannot run.
+- **deletes a volume with its claim**, with `reclaimPolicy: Delete`. With `Retain`, every run leaves a volume behind. On Amazon EKS, a gp3 class with `reclaimPolicy: Delete` fits.
+- **enforces the size**, as block storage such as Amazon EBS does. With a provisioner that does not, such as a local-path or hostPath one, a run fills the node's disk instead of failing its step.
+- **lets the Pod write to the new volume.** Run Pods run as user and group 999, with `fsGroup: 999`, and the volume must give that group write access, as Amazon EBS does. With a class that leaves the volume owned by root, such as one whose CSI driver ignores `fsGroup`, runs still start, but a write to `/tmp` fails with `Permission denied`, and the run fails with it. Files that libraries create through Python's `tempfile` go to the container's own filesystem instead, outside the size.
+
+Each run Pod holds one volume, which counts towards the node's limit of attached volumes and any storage quota of the namespace; a failed run's claim stays, and counts towards the quota, until the next cleanup.
 
 ### Cleanup
 
@@ -154,7 +171,10 @@ kubectl -n <namespace> logs harmonisation-run-<run id>
 `kubectl logs` works only while the Pod exists: a finished run's Pod is deleted once it has shut down, and a failed run's at the next cleanup, within 15 minutes. After that, the log is only in your cluster's log collection, if it has one.
 
 - **A run stays `PENDING` with `ErrImagePull`:** the image, its tag or the pull secrets (see [Image](#image)).
+- **A run stays `PENDING` with `Unschedulable`, or `SchedulerError`:** Kubernetes cannot schedule its Pod. Most often, its temporary directory's claim cannot be bound: no default StorageClass and no `pod.temporary-directory.storage-class`, a class that cannot provision, or the namespace's storage quota (see [Temporary directory](#temporary-directory)). `kubectl -n <namespace> describe pvc harmonisation-run-<run id>-tmp` and `kubectl -n <namespace> describe pod harmonisation-run-<run id>` say why. Every run is `Unschedulable` for a moment as it starts, while Kubernetes creates the claim.
+- **A run fails with `Permission denied` on `/tmp` in its Pod's log:** check that the temporary directory's StorageClass gives the Pod's group write access to a new volume (see [Temporary directory](#temporary-directory)).
 - **A run stays `PENDING` with no reason while its Pod is `Running`, then becomes `FAILED`:** the run Pod cannot reach the run stream. Check `grpc.target`, and any policy between the run Pods and port 9090. The Pod keeps trying for 5 minutes, then exits with code 2.
 - **The Harmonise API answers 503:** `applications` cannot reach the Kubernetes API or ClickHouse; check its log.
 - **A run's LLM check fails with `LLM_UNREACHABLE`:** the run Pod cannot reach the provider (see [Egress to the LLM providers](#egress-to-the-llm-providers)).
 - **A run cannot list files:** the S3 settings, or the run Pod's egress to the S3 endpoint (see [S3 for run Pods](#s3-for-run-pods)).
+- **A step fails with `No space left`:** the run's temporary directory is full. Raise `pod.temporary-directory.size` (see [Temporary directory](#temporary-directory)).
