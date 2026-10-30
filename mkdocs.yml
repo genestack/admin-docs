@@ -23,6 +23,8 @@ nav:
             - How to deploy: home/helm/how-to-deploy.md
         - Clickhouse:
             - Shard Addition: home/clickhouse/shard-addition.md
+        - Harmonise:
+            - Deployment: home/harmonise/deployment.md
         - Troubleshooting:
             - AWS S3: home/troubleshooting/aws-s3.md
             - Azure SSO: home/troubleshooting/azure-sso.md
