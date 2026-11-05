@@ -25,6 +25,8 @@ nav:
             - Shard Addition: home/clickhouse/shard-addition.md
         - MCP server:
             - Enable the MCP server: home/mcp-server/enable.md
+        - Harmonise:
+            - Deployment: home/harmonise/deployment.md
         - Troubleshooting:
             - AWS S3: home/troubleshooting/aws-s3.md
             - Azure SSO: home/troubleshooting/azure-sso.md
