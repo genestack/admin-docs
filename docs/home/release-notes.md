@@ -57,20 +57,22 @@ core:
 #### While the rebuild runs
 
 ODM starts and is available while the rebuild runs. How long it takes depends on the instance. As an example of
-scale, core indexed 201 dictionaries and 7 reference genomes again in about 45 minutes on one instance: most
-dictionaries took about a second each, and one of 104,486 terms took about 3 minutes.
+scale, on one instance core re-indexed some 2.6 million studies, files and tasks, and search was complete again
+about 1.5 hours after core started. At the same time, core indexed 201 dictionaries and 7 reference genomes again
+in about 45 minutes: most dictionaries took about a second each, and one of 104,486 terms took about 3 minutes.
 
 Until the rebuild finishes, on an instance that needs it:
 
-- Search and the Study Browser show incomplete results, until core has re-indexed every study, file and task.
+- Search and the Study Browser show incomplete results, until core has re-indexed every study, file and task and
+  logged `Harvester stopped`.
 
 - Term lookups and suggestions return nothing for a dictionary that core has not indexed again yet.
 
 - Validation skips a dictionary that core has not indexed again yet: a value that is not in it is not flagged, and
   that result stays until the metadata is validated again.
 
-So hold off curation until core logs `Solr index repair: finished`. Upgrading when curators are not working is the
-simplest way.
+So hold off curation until core has logged both `Harvester stopped` and `Solr index repair: finished`. Upgrading
+when curators are not working is the simplest way.
 
 #### Follow the rebuild in the logs
 
@@ -89,6 +91,12 @@ Core's log shows when the re-index of studies, files and tasks starts and when i
 Harvester started
 Harvester stopped, <n> objects indexed in <hh:mm:ss>
 ```
+
+`Harvester stopped` is the line to wait for: from then on, search is complete again. When nothing goes wrong, core
+logs nothing about the re-index between these two lines. Errors such as
+`Indexing task failed, will be redeemed in …` or `Exception in Crawler, will retry …` do show, and core retries
+both. But if core logged `Exception in Crawler` without "will retry" before `Harvester stopped`, the re-index ended
+early, and search is only partly rebuilt. Restarting core runs the re-index again.
 
 It also shows the dictionaries and reference genomes it indexes again, and the end of that work:
 
