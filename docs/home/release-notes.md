@@ -32,9 +32,9 @@ log says on the first start, as [Follow the rebuild in the logs](#follow-the-reb
 3. Dictionary terms and reference genome features reach Solr only when a dictionary or reference genome is
    initialized, so step 2 does not bring back `dictionary_core` and `datafile_core`. Once it has started, core looks
    in the background for every initialized dictionary and reference genome that has nothing in Solr. It parses each
-   of them again from the copy of its source that initialization stored, and indexes it. Nothing is downloaded, no
-   task runs, nothing is written to the files, and templates do not change: the files stay initialized, as they
-   were.
+   of them again from the copy of its source that initialization stored, and indexes it. Nothing is downloaded,
+   not even the ontologies that an OWL dictionary imports: ODM takes terms only from the dictionary itself. No task
+   runs, nothing is written to the files, and templates do not change: the files stay initialized, as they were.
 
 Core indexes one file at a time. The largest ontology, NCBITaxon, needs about 6.6 GB of heap. If core stops while it
 indexes a file, for example because it runs out of memory, then on its next start it deletes what it had indexed of
@@ -56,7 +56,11 @@ core:
 
 #### While the rebuild runs
 
-ODM starts and is available while the rebuild runs. Until it finishes, on an instance that needs it:
+ODM starts and is available while the rebuild runs. How long it takes depends on the instance. As an example of
+scale, core indexed 201 dictionaries and 7 reference genomes again in about 45 minutes on one instance: most
+dictionaries took about a second each, and one of 104,486 terms took about 3 minutes.
+
+Until the rebuild finishes, on an instance that needs it:
 
 - Search and the Study Browser show incomplete results, until core has re-indexed every study, file and task.
 
@@ -95,6 +99,9 @@ Solr index repair: indexed dictionary <accession> again in <time>
 Solr index repair: indexed reference genome <accession> again in <time>
 Solr index repair: finished in <time>: <n> files indexed again, <k> failed
 ```
+
+For an OWL dictionary that imports other ontologies, core also logs `Not loading import <iri>` for each import. It
+does not need them.
 
 When something goes wrong, it logs:
 
