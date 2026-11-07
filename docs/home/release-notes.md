@@ -34,6 +34,37 @@ The metric names change as well: Solr 10 reports them in the OpenTelemetry style
 `solr_core_indexsearcher_index_num_docs` and `solr_core_index_size_megabytes`, with the core as a label. Update
 dashboards and alerts that use the metric names of the old exporter.
 
+### Link-service merged into applications
+
+The links between objects are now stored and served by `applications` itself, so the `link-service` component is
+removed: its Deployment, Service, ServiceMonitor, ConfigMaps and image are gone. The links stay in the same MySQL
+database, `genestack_link`, and nothing is migrated.
+
+The chart does not render values that still contain a `linkService` section, and its error message points to
+`frontend.mysql.links`. Remove the whole section, including settings such as `affinity`, `resources`, `podLabels`
+and `serviceMonitor`.
+
+With the MySQL that the chart deploys, there is nothing else to set. With an external MySQL, the datasource that
+was set in the `linkService` section moves to `applications`:
+
+```yaml
+applications:
+  files:
+    "/var/lib/genestack/properties/application.yaml":
+      frontend:
+        mysql:
+          links:
+            url: "jdbc:mysql://<EXTERNAL_MYSQL_HOST>/genestack_link?createDatabaseIfNotExist=true&permitMysqlScheme"
+            username: "<EXTERNAL_MYSQL_USER>"
+            password: "<EXTERNAL_MYSQL_PASSWORD>"
+```
+
+The `mysql-external.yaml` example in the `examples` directory of the Helm chart shows it beside the other
+databases.
+
+Dashboards, alerts and log queries that select the `link-service` container or its scrape job no longer find
+anything. The link storage now logs and reports its metrics as part of `applications`.
+
 ### MCP server
 
 The Helm chart can now run the ODM MCP server, which lets AI assistants that support the Model Context Protocol
