@@ -5,12 +5,6 @@
 !!! tip ""
     Helm chart version 1.65.0
 
-### MCP server
-
-The Helm chart can now run the ODM MCP server, which lets AI assistants that support the Model Context Protocol
-search and read ODM for the user signed in to them. It is off by default. To switch it on, see
-[Enable the MCP server](mcp-server/enable.md).
-
 ## Version 1.64
 
 !!! danger
