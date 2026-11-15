@@ -72,8 +72,7 @@ such an address fails too. Serve such files from a host with a routable address.
 
 rclone fetches HTTP links from inside its own Pod. Its rc API listens on `127.0.0.1:5572` in that Pod, with no
 authentication, and serves any file in the rclone container. Before 1.66, a link to the rc API read the service
-account token of rclone's Pod. A link to `169.254.169.254` reached the node's instance metadata service. rclone
-follows HTTP redirects. The storage service checks only the host the link names.
+account token of rclone's Pod. A link to `169.254.169.254` reached the node's instance metadata service.
 
 ### Storage errors answer distinct HTTP statuses
 
