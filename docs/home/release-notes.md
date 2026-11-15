@@ -60,19 +60,12 @@ The storage service also refuses a link with a `..` segment, and a path that goe
 even one that points inside a root. rclone 1.76 follows symbolic links whatever its options say. An import with a
 refused `file://` link answers 400. Replace symbolic links on the volume with the files or directories they point to.
 
-Before 1.66, a `file://` link could read any file in the rclone container, the Pod's service account token included.
-So could an `http://` link to rclone's own rc API, `127.0.0.1:5572`: the next section covers those links.
-
 ### `http(s)://` links to loopback and link-local hosts are refused
 
 The storage service refuses an `http(s)://` link whose host is `localhost`, or is or resolves to a loopback,
 link-local, any-local or multicast address, such as `127.0.0.1`, `::1` or `169.254.169.254`. An import with such a
 link answers 400. The storage service checks the host on every call, so a file whose host name later resolves to
 such an address fails too. Serve such files from a host with a routable address.
-
-rclone fetches HTTP links from inside its own Pod. Its rc API listens on `127.0.0.1:5572` in that Pod, with no
-authentication, and serves any file in the rclone container. Before 1.66, a link to the rc API read the service
-account token of rclone's Pod. A link to `169.254.169.254` reached the node's instance metadata service.
 
 ### Storage errors answer distinct HTTP statuses
 
