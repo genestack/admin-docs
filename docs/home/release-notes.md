@@ -61,6 +61,19 @@ even one that points inside a root. rclone 1.76 follows symbolic links whatever 
 refused `file://` link answers 400. Replace symbolic links on the volume with the files or directories they point to.
 
 Before 1.66, a `file://` link could read any file in the rclone container, the Pod's service account token included.
+So could an `http://` link to rclone's own rc API, `127.0.0.1:5572`: the next section covers those links.
+
+### `http(s)://` links to loopback and link-local hosts are refused
+
+The storage service refuses an `http(s)://` link whose host is `localhost`, or is or resolves to a loopback,
+link-local, any-local or multicast address, such as `127.0.0.1`, `::1` or `169.254.169.254`. An import with such a
+link answers 400. The storage service checks the host on every call, so a file whose host name later resolves to
+such an address fails too. Serve such files from a host with a routable address.
+
+rclone fetches HTTP links from inside its own Pod. Its rc API listens on `127.0.0.1:5572` in that Pod, with no
+authentication, and serves any file in the rclone container. Before 1.66, a link to the rc API read the service
+account token of rclone's Pod. A link to `169.254.169.254` reached the node's instance metadata service. rclone
+follows HTTP redirects. The storage service checks only the host the link names.
 
 ### Storage errors answer distinct HTTP statuses
 
@@ -69,18 +82,19 @@ as follows:
 
 | Cause | HTTP status |
 | --- | --- |
-| The file does not exist, or ODM has no access to it | 404; imports add hint A0003 |
-| The link is malformed, or a `file://` link lies outside the local roots or goes through a symbolic link | 400 |
+| The file does not exist, or the store refuses to read it | 404; imports add hint A0003 |
+| The link is malformed, a `file://` link lies outside the local roots or goes through a symbolic link, or an `http(s)://` link names a loopback or link-local host | 400 |
 | No storage in `genestack.storage.storages` covers the link's bucket or host, or the file's storage was removed from it | 400, naming the bucket or host |
 | The destination path of an upload or a copy already holds a file | 409 |
 | The storage service, rclone or the store is unavailable | 503 |
-| Any other error | 500 |
+| The store refuses a write, such as an upload to ODM's bucket, or any other error | 500 |
 
 These answers changed:
 
 | Request | Before 1.66 | From 1.66 |
 | --- | --- | --- |
 | An import with a link ODM cannot read | A job that fails with A0003 | 404 with hint A0003, and no job |
+| An import with an `http(s)://` link to a loopback or link-local host | A job | 400, and no job |
 | `POST /api/v1/reference-genomes` with an annotation link ODM cannot read | 400 | 404 |
 | `POST /api/v1/reference-genomes` with an annotation source ODM cannot reach | 400 | 503 |
 | `POST /api/v1/xrefsets` with a link ODM cannot read | 400 | 404 |
