@@ -51,6 +51,36 @@ storageService:
             local: {}
 ```
 
+### The storage service is a native image
+
+The storage service's image, `genestack/storage`, runs a GraalVM native binary in place of a JVM. The binary sets its
+own heap, `-Xmx128m`. Under ODM's functional tests it idles at 42 to 50 MiB, peaks at 121 MiB and starts in 0.17 s.
+The chart requests 128Mi of memory for the `storage-service` container and limits it to 256Mi.
+
+The native image differs from ODM's JVM services:
+
+- `storageService.envVars` takes no `JAVA_OPTS`, `JAVA_ARGS`, `JAVA_HEAP_DEPENDS_ON_RAM`, `JAVA_DEBUG_*` or
+  `JAVA_JMX_*`: the image has no `entrypoint.sh` to read them.
+- `storageService.service` has no `debug` or `jmx` key, and the Pod opens no debug or JMX port.
+- The actuator's metrics include no JVM garbage collection metrics.
+- Spring fixes its conditional beans when the image is built. A setting such as `spring.flyway.enabled` in
+  `storageService.files` has no effect.
+- A failure at start prints plain text to the log, in place of one JSON line.
+
+### Uploads never replace a file in ODM's bucket
+
+The storage service writes uploads and imported copies under `genestack.storage.internal.pathInBucket` of
+`genestack.storage.internal.bucket`, and never replaces a file there:
+
+| Upload | Key under `pathInBucket` | A second file of the same name |
+| --- | --- | --- |
+| A file uploaded in the UI, attachments included | `<study>/<timestamp>/<file name>` | Goes to a new folder |
+| A multipart signal, cell or metadata import | `<study>/<timestamp>/<file name>` | Goes to a new folder |
+| `POST /api/v1/jobs/import/file`, the copy from a link, and its `/multipart` upload | `<study>/<file name>` | 409 |
+
+`<timestamp>` is the upload's UTC time in ISO 8601, such as `2026-11-15T10:23:45.123456Z`. Before 1.66, a UI
+attachment went to `<study>/<file name>` and replaced a file of the same name there.
+
 ### `file://` links must lie under `/local_data`
 
 A `file://` link must now lie under one of the directories in `genestack.storage.local-roots` of the storage
