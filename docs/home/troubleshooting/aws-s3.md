@@ -9,7 +9,8 @@ The storage service is the only ODM component that reads and writes S3. It runs 
 kubectl logs -n <namespace> deployment/<release>-odm-storage-service --all-containers
 ```
 
-- S3 denies access to a file in the storage service's log. This indicates an issue with:
+- S3 denies access to a file in the storage service's log. An import or download of a file S3 refuses to read
+  answers 404. An upload S3 refuses to write answers 500. This indicates an issue with:
 
     - Access to S3.
 
@@ -24,6 +25,7 @@ kubectl logs -n <namespace> deployment/<release>-odm-storage-service --all-conta
   that the storage service's Pod is ready, then read its log.
 
 - An import answers 400 with a bucket name in the message. No storage under `genestack.storage.storages.s3` covers
-  that bucket. Add a storage named after the bucket, or a storage named `*`, then restart the storage service: it
-  reads its storages at start. Files registered under a storage that the configuration no longer names also answer
-  400.
+  that bucket. Add a storage named after the bucket, or the storage `*`, which covers every bucket that has no
+  storage of its own. Write its key as `"[*]"`: Spring drops a bare `*` from a map key. Then restart the storage
+  service: it reads its storages at start. Files registered under a storage that the configuration no longer names
+  also answer 400.
