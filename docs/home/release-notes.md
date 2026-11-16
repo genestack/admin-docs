@@ -98,7 +98,10 @@ When the study already has an attached file of the same name:
 
 - An attachment import, `POST /api/v1/jobs/import/file` or `POST /api/v1/jobs/import/file/multipart`, answers 409
   "A file with this name is already attached to the study."
-- A UI upload adds a version.
+- A UI upload adds a version, or replaces the attached file when versioning is off.
+
+Two attachment imports of one name into one study that run at the same time can both pass the 409 check. The second
+then becomes a version of the first, or replaces it when versioning is off.
 
 ### `file://` links must lie under `/local_data`
 
@@ -146,7 +149,7 @@ as follows:
 | The file does not exist, or the store refuses to read it | 404; imports add hint A0003 |
 | The link is malformed, a `file://` link lies outside the local roots or goes through a symbolic link, an `http(s)://` link names a loopback or link-local host, or a link points inside ODM's internal location at an object the storage service did not record | 400 |
 | No storage in `genestack.storage.storages` covers the link's bucket or host, or the file's storage was removed from it | 400, naming the bucket or host |
-| An uploaded file's name is empty, contains `/`, is `.` or `..`, has a control character, or exceeds 255 bytes | 400 |
+| The name of an uploaded file, or the last segment of an attachment import's link, is empty, contains `/`, is `.` or `..`, has a control character, or exceeds 255 bytes | 400, before any job |
 | The storage service, rclone or the store is unavailable | 503 |
 | The store refuses a write, such as an upload to ODM's bucket, or any other error | 500 |
 
