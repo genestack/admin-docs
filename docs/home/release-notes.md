@@ -104,12 +104,22 @@ The storage service also refuses a link with a `..` segment, and a path that goe
 even one that points inside a root. rclone 1.76 follows symbolic links whatever its options say. An import with a
 refused `file://` link answers 400. Replace symbolic links on the volume with the files or directories they point to.
 
-### Links into ODM's bucket import only files the storage service recorded
+### Links into ODM's bucket work only for files the storage service recorded
 
-An import by link may point inside `genestack.storage.internal.location` only at a file the storage service
-recorded there, such as a 1.66 upload. Any other object there answers 400, and the import creates no job. This
-includes objects another tool put there, and files 1.65 and earlier stored there until BIA-280 migrates them. To
-import such an object, copy it to another bucket and import it from there.
+The storage service refuses a link inside `genestack.storage.internal.location` unless it recorded a file at that
+path, such as a 1.66 upload. These fail on such a link:
+
+- An import by link answers 400, and creates no job.
+- An export of the file fails.
+- A download task of the file fails.
+- A metadata replace on an object that holds the link fails, and writes none of its values.
+
+ODM sends a file link stored by 1.65 and earlier to the storage service when it first uses it. With the location
+built from the 1.65 values, as above, every file 1.65 stored in ODM's bucket lies inside it, and the storage service
+has no record of it until BIA-280 migrates it. ODM 1.66 relies on BIA-280's migration shipping with it.
+
+Objects another tool put into ODM's bucket stay refused. To import one, copy it to another bucket and import it from
+there.
 
 The rule keeps one id for each object inside the location. It also keeps every file there a file the storage
 service wrote, which moves with the location, so a move needs no database change.
