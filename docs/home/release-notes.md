@@ -21,7 +21,7 @@ The storage settings move to `storageService`:
 | Before 1.66 | From 1.66 |
 | --- | --- |
 | `genestack.rclone` in the `core`, `applications` and `funcJob` files | `genestack.storage.storages` in `storageService.secretFiles` |
-| `frontend.aws.bucket` and `frontend.aws.pathInBucket` in the `applications` files | `genestack.storage.internal.bucket` and `genestack.storage.internal.pathInBucket` in `storageService.files` |
+| `frontend.aws.bucket` and `frontend.aws.pathInBucket` in the `applications` files | `genestack.storage.internal.location` in `storageService.files`, a URL: `s3://<bucket>` or `s3://<bucket>/<pathInBucket>` |
 
 Remove every `genestack.rclone` block and both `frontend.aws` settings from your values. `storageService.secretFiles`
 is stored in a Kubernetes Secret, so the storages' credentials stay out of ConfigMaps. The `s3-bucket-*.yaml` files
@@ -34,8 +34,7 @@ storageService:
       genestack:
         storage:
           internal:
-            bucket: "<AWS_S3_BUCKET_NAME>"
-            pathInBucket: ""
+            location: "s3://<AWS_S3_BUCKET_NAME>"
   secretFiles:
     "/app/config/storages/application.yaml":
       genestack:
@@ -50,6 +49,16 @@ storageService:
               noEscape: true
             local: {}
 ```
+
+`genestack.storage.internal.location` is required. Build it from your old values: `s3://`, the bucket that
+`frontend.aws.bucket` named, then `/` and `frontend.aws.pathInBucket` if you set one. For example,
+`s3://<AWS_S3_BUCKET_NAME>` for a whole AWS bucket, or `s3://main` for a MinIO bucket named `main`. `s3://` is the
+only scheme the storage service accepts. It does not start when the location is missing, malformed or of another
+scheme, or when `genestack.storage.storages.s3` has neither an entry named after its bucket nor `"[*]"`.
+
+The storage service keeps each file it writes as a path relative to the location. To move ODM's internal storage to
+another bucket or prefix, copy its objects there, change the location and restart the storage service. The database
+needs no change.
 
 ### The storage service is a native image
 
@@ -73,10 +82,10 @@ The native image differs from ODM's JVM services:
 
 ### Uploads never replace a file in ODM's bucket
 
-The storage service writes uploads and imported copies under `genestack.storage.internal.pathInBucket` of
-`genestack.storage.internal.bucket`, and never replaces a file there:
+The storage service writes uploads and imported copies under `genestack.storage.internal.location`, and never
+replaces a file there:
 
-| Upload | Key under `pathInBucket` | A second file of the same name |
+| Upload | Path under the location | A second file of the same name |
 | --- | --- | --- |
 | A file uploaded in the UI, attachments included | `<study>/<timestamp>/<file name>` | Goes to a new folder |
 | A multipart signal, cell or metadata import | `<study>/<timestamp>/<file name>` | Goes to a new folder |
