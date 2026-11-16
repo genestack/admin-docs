@@ -9,8 +9,11 @@
 
 !!! danger
 
-    ODM 1.66 refers to files by the storage service's ids, where earlier versions stored links. This release does
-    not migrate the files of instances installed before 1.66.
+    ODM 1.66 refers to files by the storage service's ids, where earlier versions stored links. The storage service
+    change itself does not migrate the files of instances installed before 1.66. The BIA-280 migration, which ships
+    with 1.66, does. Until it has run, the calls that
+    [Links into ODM's bucket work only for files the storage service recorded](#links-into-odms-bucket-work-only-for-files-the-storage-service-recorded)
+    lists fail for files 1.65 stored in ODM's bucket.
 
 This release adds the storage service, the only ODM component that calls rclone. Core, applications and func-job
 read, write and copy files through it. It runs two containers in one Pod, `storage-service` and `rclone`, under the `storageService` key
