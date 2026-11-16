@@ -58,10 +58,10 @@ Helm merges these values with the chart's own, so set only the keys you change.
 | `pod.metadata.labels` | empty | Labels each run Pod and its temporary directory's claim get besides their own. |
 | `pod.metadata.annotations` | empty | Annotations each run Pod gets besides its own. |
 | `odm.url` | `http://<fullname>-nginx:<nginx.service.http.port>` | ODM's API gateway, as run Pods call it. |
-| `s3.bucket` | empty | The bucket a run lists when the Curator names none. |
+| `s3.bucket` | empty | The bucket every run reads study folders from and writes its exports to. Curators name a folder in it, never a bucket. Required: while it is empty, runs cannot list, extract or export. |
 | `s3.endpoint` | empty | The S3 endpoint, for S3-compatible storage such as MinIO. Empty for AWS S3. |
 | `s3.region` | empty | The bucket's region. |
-| `s3.access-key-id`, `s3.secret-access-key` | empty | The access key run Pods read S3 with. |
+| `s3.access-key-id`, `s3.secret-access-key` | empty | The access key run Pods read and write S3 with. |
 
 `<fullname>` is the chart's full name: `fullnameOverride` if set, otherwise the release name if it contains `odm`, otherwise `<release>-odm`.
 
@@ -82,9 +82,9 @@ The stream is neither authenticated nor encrypted: a run Pod identifies itself o
 
 ### S3 for run Pods
 
-Runs read study files from S3, or from S3-compatible storage. `applications` sends each run Pod the endpoint, region and access key over its stream, never in the Pod's spec, and the Curator names the bucket and path to read, `s3.bucket` by default.
+Runs read study files from S3, or from S3-compatible storage, in one bucket, `s3.bucket`. `applications` sends each run Pod the endpoint, region and access key over its stream, never in the Pod's spec. The Curator names a folder of that bucket, and every step of the run reads it there. An export writes the run's Package to the same bucket, under `harmonisation/runs/<run id>/<step id>/`.
 
-Run Pods mount no ServiceAccount token, so IAM roles for service accounts, or workload identity, do not apply to them: set `s3.access-key-id` and `s3.secret-access-key`. This key is the deployment's, not a run's: every run gets it, and so does anything that reaches the run stream (see [gRPC port 9090](#grpc-port-9090)), and nothing revokes it when a run ends. Curators can name any bucket, so the key's own policy is the only limit on what runs read: make it a read-only key limited to the bucket the runs read.
+Run Pods mount no ServiceAccount token, so IAM roles for service accounts, or workload identity, do not apply to them: set `s3.access-key-id` and `s3.secret-access-key`. This key is the deployment's, not a run's: every run gets it, and so does anything that reaches the run stream (see [gRPC port 9090](#grpc-port-9090)), and nothing revokes it when a run ends. Runs name no other bucket, but the key's own policy is the only limit on what it reaches: limit it to `s3.bucket`, with read access to the study folders and write access under `harmonisation/runs/`.
 
 With either half of the key left empty, the run Pod falls back to the AWS SDK's default credential chain, which on a cloud node may pick up the node's own role from the instance metadata service.
 
