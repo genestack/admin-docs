@@ -84,19 +84,21 @@ The native image differs from ODM's JVM services:
   `storageService.files` has no effect.
 - A failure at start prints plain text to the log, in place of one JSON line.
 
-### Uploads never replace a file in ODM's bucket
+### Each file in ODM's bucket gets a folder of its own
 
-The storage service writes uploads and imported copies under `genestack.storage.internal.location`, and never
-replaces a file there:
+The storage service picks the path of every file it writes into ODM's bucket, uploads and imported copies alike:
+`<file id>/<file name>` under `genestack.storage.internal.location`. `<file id>` is the storage service's id of the
+file, so no write replaces a file.
 
-| Upload | Path under the location | A second file of the same name |
-| --- | --- | --- |
-| A file uploaded in the UI, attachments included | `<study>/<timestamp>/<file name>` | Goes to a new folder |
-| A multipart signal, cell or metadata import | `<study>/<timestamp>/<file name>` | Goes to a new folder |
-| `POST /api/v1/jobs/import/file`, the copy from a link, and its `/multipart` upload | `<study>/<file name>` | 409 |
+Before 1.66, ODM wrote attachments to `<study>/<file name>`, and UI imports and multipart signal, cell and metadata
+imports to `<study>/<timestamp>/<file name>`. A UI attachment replaced a file of the same name. Files that 1.65
+stored keep their paths.
 
-`<timestamp>` is the upload's UTC time in ISO 8601, such as `2026-11-15T10:23:45.123456Z`. Before 1.66, a UI
-attachment went to `<study>/<file name>` and replaced a file of the same name there.
+When the study already has an attached file of the same name:
+
+- An attachment import, `POST /api/v1/jobs/import/file` or `POST /api/v1/jobs/import/file/multipart`, answers 409
+  "A file with this name is already attached to the study."
+- A UI upload adds a version.
 
 ### `file://` links must lie under `/local_data`
 
@@ -144,7 +146,7 @@ as follows:
 | The file does not exist, or the store refuses to read it | 404; imports add hint A0003 |
 | The link is malformed, a `file://` link lies outside the local roots or goes through a symbolic link, an `http(s)://` link names a loopback or link-local host, or a link points inside ODM's internal location at an object the storage service did not record | 400 |
 | No storage in `genestack.storage.storages` covers the link's bucket or host, or the file's storage was removed from it | 400, naming the bucket or host |
-| The destination path of an upload or a copy already holds a file | 409 |
+| An uploaded file's name is empty, contains `/`, is `.` or `..`, has a control character, or exceeds 255 bytes | 400 |
 | The storage service, rclone or the store is unavailable | 503 |
 | The store refuses a write, such as an upload to ODM's bucket, or any other error | 500 |
 
