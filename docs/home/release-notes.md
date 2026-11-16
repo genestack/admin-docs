@@ -12,7 +12,7 @@
     ODM 1.66 refers to files by the storage service's ids, where earlier versions stored links. The storage service
     change itself does not migrate the files of instances installed before 1.66. The BIA-280 migration, which ships
     with 1.66, does. Until it has run, the calls that
-    [Links into ODM's bucket work only for files the storage service recorded](#links-into-odms-bucket-work-only-for-files-the-storage-service-recorded)
+    [`s3://` links into ODM's bucket work only for files the storage service recorded](#s3-links-into-odms-bucket-work-only-for-files-the-storage-service-recorded)
     lists fail for files 1.65 stored in ODM's bucket.
 
 This release adds the storage service, the only ODM component that calls rclone. Core, applications and func-job
@@ -112,10 +112,10 @@ The storage service also refuses a link with a `..` segment, and a path that goe
 even one that points inside a root. rclone 1.76 follows symbolic links whatever its options say. An import with a
 refused `file://` link answers 400. Replace symbolic links on the volume with the files or directories they point to.
 
-### Links into ODM's bucket work only for files the storage service recorded
+### `s3://` links into ODM's bucket work only for files the storage service recorded
 
-The storage service refuses a link inside `genestack.storage.internal.location` unless it recorded a file at that
-path, such as a 1.66 upload. These fail on such a link:
+The storage service refuses an `s3://` link inside `genestack.storage.internal.location` unless it recorded a file at
+that path, such as a 1.66 upload. These fail on such a link:
 
 - An import by link answers 400, and creates no job.
 - An export of the file fails.
@@ -126,11 +126,16 @@ ODM sends a file link stored by 1.65 and earlier to the storage service when it 
 built from the 1.65 values, as above, every file 1.65 stored in ODM's bucket lies inside it, and the storage service
 has no record of it until BIA-280 migrates it. ODM 1.66 relies on BIA-280's migration shipping with it.
 
-Objects another tool put into ODM's bucket stay refused. To import one, copy it to another bucket and import it from
-there.
+`s3://` links to objects another tool put into ODM's bucket stay refused. To import one, copy it to another bucket
+and import it from there.
 
-The rule keeps one id for each object inside the location. It also keeps every file there a file the storage
-service wrote, which moves with the location, so a move needs no database change.
+For `s3://` links, the rule keeps one id for each object inside the location. Every such link names a file the
+storage service wrote, which moves with the location, so a move needs no database change.
+
+The rule does not cover `http(s)://` links. When the store serves an object in the location over HTTP without
+credentials, as a public MinIO or S3 bucket does, the storage service records its `http(s)://` URL as an external
+file, as it records any other HTTP link. That file keeps its URL after a move, and an object the storage service
+wrote then has a second id.
 
 ### `http(s)://` links to loopback and link-local hosts are refused
 
@@ -147,7 +152,7 @@ as follows:
 | Cause | HTTP status |
 | --- | --- |
 | The file does not exist, or the store refuses to read it | 404; imports add hint A0003 |
-| The link is malformed, a `file://` link lies outside the local roots or goes through a symbolic link, an `http(s)://` link names a loopback or link-local host, or a link points inside ODM's internal location at an object the storage service did not record | 400 |
+| The link is malformed, a `file://` link lies outside the local roots or goes through a symbolic link, an `http(s)://` link names a loopback or link-local host, or an `s3://` link points inside ODM's internal location at an object the storage service did not record | 400 |
 | No storage in `genestack.storage.storages` covers the link's bucket or host, or the file's storage was removed from it | 400, naming the bucket or host |
 | The name of an uploaded file, or the last segment of an attachment import's link, is empty, contains `/`, is `.` or `..`, has a control character, or exceeds 255 bytes | 400, before any job |
 | The storage service, rclone or the store is unavailable | 503 |
@@ -159,7 +164,7 @@ These answers changed:
 | --- | --- | --- |
 | An import with a link ODM cannot read | A job that fails with A0003 | 404 with hint A0003, and no job |
 | An import with an `http(s)://` link to a loopback or link-local host | A job | 400, and no job |
-| An import with a link inside `genestack.storage.internal.location` to an object the storage service did not record | A job | 400, and no job |
+| An import with an `s3://` link inside `genestack.storage.internal.location` to an object the storage service did not record | A job | 400, and no job |
 | `POST /api/v1/reference-genomes` with an annotation link ODM cannot read | 400 | 404 |
 | `POST /api/v1/reference-genomes` with an annotation source ODM cannot reach | 400 | 503 |
 | `POST /api/v1/xrefsets` with a link ODM cannot read | 400 | 404 |
