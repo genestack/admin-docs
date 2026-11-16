@@ -58,7 +58,8 @@ scheme, or when `genestack.storage.storages.s3` has neither an entry named after
 
 The storage service keeps each file it writes as a path relative to the location. To move ODM's internal storage to
 another bucket or prefix, copy its objects there, change the location and restart the storage service. The database
-needs no change.
+needs no change for the files the storage service recorded. Files stored by 1.65 and earlier are not recorded yet:
+they join once BIA-280 migrates them.
 
 ### The storage service is a native image
 
@@ -103,6 +104,16 @@ The storage service also refuses a link with a `..` segment, and a path that goe
 even one that points inside a root. rclone 1.76 follows symbolic links whatever its options say. An import with a
 refused `file://` link answers 400. Replace symbolic links on the volume with the files or directories they point to.
 
+### Links into ODM's bucket import only files the storage service recorded
+
+An import by link may point inside `genestack.storage.internal.location` only at a file the storage service
+recorded there, such as a 1.66 upload. Any other object there answers 400, and the import creates no job. This
+includes objects another tool put there, and files 1.65 and earlier stored there until BIA-280 migrates them. To
+import such an object, copy it to another bucket and import it from there.
+
+The rule keeps one id for each object inside the location. It also keeps every file there a file the storage
+service wrote, which moves with the location, so a move needs no database change.
+
 ### `http(s)://` links to loopback and link-local hosts are refused
 
 The storage service refuses an `http(s)://` link whose host is `localhost`, or is or resolves to a loopback,
@@ -118,7 +129,7 @@ as follows:
 | Cause | HTTP status |
 | --- | --- |
 | The file does not exist, or the store refuses to read it | 404; imports add hint A0003 |
-| The link is malformed, a `file://` link lies outside the local roots or goes through a symbolic link, or an `http(s)://` link names a loopback or link-local host | 400 |
+| The link is malformed, a `file://` link lies outside the local roots or goes through a symbolic link, an `http(s)://` link names a loopback or link-local host, or a link points inside ODM's internal location at an object the storage service did not record | 400 |
 | No storage in `genestack.storage.storages` covers the link's bucket or host, or the file's storage was removed from it | 400, naming the bucket or host |
 | The destination path of an upload or a copy already holds a file | 409 |
 | The storage service, rclone or the store is unavailable | 503 |
@@ -130,6 +141,7 @@ These answers changed:
 | --- | --- | --- |
 | An import with a link ODM cannot read | A job that fails with A0003 | 404 with hint A0003, and no job |
 | An import with an `http(s)://` link to a loopback or link-local host | A job | 400, and no job |
+| An import with a link inside `genestack.storage.internal.location` to an object the storage service did not record | A job | 400, and no job |
 | `POST /api/v1/reference-genomes` with an annotation link ODM cannot read | 400 | 404 |
 | `POST /api/v1/reference-genomes` with an annotation source ODM cannot reach | 400 | 503 |
 | `POST /api/v1/xrefsets` with a link ODM cannot read | 400 | 404 |
