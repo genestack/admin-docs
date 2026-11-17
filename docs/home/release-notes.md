@@ -21,17 +21,25 @@ ingress:
     - "{{ .Values.global.hostname }}"
 ```
 
-The redirects to `/ui` and the security headers, which nginx added, are now the Ingress controller's to do, see
+The security headers, which nginx added, are now the Ingress controller's to do, see
 [Kubernetes requirements](requirements/kubernetes.md). The chart's `examples/ingress-alb.yaml` and
-`examples/ingress-nginx.yaml` set them up. The `404` for `/frontend/endpoint/actuator/prometheus` and
-`/frontend/endpoint/proxy`, which nginx also returned, now comes from `applications` itself: it answers `404` to a
-request for these paths that carries `X-Forwarded-Proto` or `X-Forwarded-For`, which the Ingress controller adds.
-Prometheus scrapes the pods directly and still gets the metrics.
+`examples/ingress-nginx.yaml` set them up. The `301` redirects to `/ui`, from `/` and from the pages of the UI before
+`/ui`, now come from `applications`: the Ingress sends these paths to it. The `404` for
+`/frontend/endpoint/actuator/prometheus` and `/frontend/endpoint/proxy`, which nginx also returned, now comes from
+`applications` too: it answers `404` to a request for these paths that carries `X-Forwarded-Proto` or
+`X-Forwarded-For`, which the Ingress controller adds. Prometheus scrapes the pods directly and still gets the metrics.
 
-The sub-pages `/frontend/endpoint/application/run/genestack/signin/<page>` and
-`/frontend/endpoint/application/run/genestack/web/<page>` no longer redirect to `/ui/signin/<page>` and `/ui/<page>`.
-The emails ODM sends for password recovery, email confirmation and API tokens now link to the `/ui` pages directly.
-Links in emails sent before the upgrade stop working.
+`applications` redirects the paths nginx did, with the query string kept:
+
+| Path | Redirect to |
+| --- | --- |
+| `/` | `/ui` |
+| `/frontend/endpoint/application/run/genestack/web` and `.../web/<page>` | `/ui` and `/ui/<page>` |
+| `/frontend/endpoint/application/run/genestack/signin` and `.../signin/<page>` | `/ui/signin` and `/ui/signin/<page>` |
+| `/frontend/endpoint/application/run/genestack/staticpages/privacy-notice.html` | `/ui/privacy-notice` |
+
+Links in emails sent before the upgrade, such as `.../genestack/signin/reset-password?token=...`, keep working. The
+emails ODM sends for password recovery, email confirmation and API tokens now link to the `/ui` pages directly.
 
 `nginx.ingressScim` is gone: a separate host for SCIM is now an Ingress in `extraObjects`, see
 [SCIM with Azure AD](single-sign-on/scim/azure.md). `nginx.developmentSettings` is gone. To serve the metrics through

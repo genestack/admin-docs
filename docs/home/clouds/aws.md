@@ -112,18 +112,9 @@
 
         2. [Add rules](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-update-rules.html) to the HTTPS listener of the ALB. Every rule has the HTTP Host Header `ODM_FQDN`. `ODM_FQDN` - ODM url without `https://` or `http://`. For example: `odm.genestack.com`.
 
-            - Redirect with status code `301` the start page and the pages of the UI before `/ui`, which old links still use:
-
-                | HTTP path pattern | Redirect to path |
-                | --- | --- |
-                | `/` | `/ui` |
-                | `/frontend/endpoint/application/run/genestack/web` | `/ui` |
-                | `/frontend/endpoint/application/run/genestack/signin` | `/ui/signin` |
-                | `/frontend/endpoint/application/run/genestack/staticpages/privacy-notice.html` | `/ui/privacy-notice` |
-
             - Forward the HTTP path patterns of each Service in the table to its target group. An ALB rule takes a limited number of path patterns ([quotas](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-limits.html)), so the paths of `odm-mcp` take several rules.
 
-            - Give the rule of `odm-applications`, with `/*`, the last priority: it takes every path that the other rules do not.
+            - Give the rule of `odm-applications`, with `/*`, the last priority: it takes every path that the other rules do not. `/` and the pages of the UI before `/ui`, which old links still use, are among them: `odm-applications` answers them with a `301` redirect to their `/ui` pages, so the listener needs no redirect rules.
 
         3. Set the security headers in the attributes of the same listener:
 
@@ -143,7 +134,7 @@
 
         - It will be created automatically during ODM deployment by ALB Controller.
 
-        - Start the values from `odm/examples/ingress-alb.yaml` in the Helm chart. Its `ingress.annotations` and `ingress.extraPaths` set up the redirects and the security headers above.
+        - Start the values from `odm/examples/ingress-alb.yaml` in the Helm chart. Its `ingress.annotations` set up the security headers above.
 
         - The controller creates a target group for each Service. Each target group takes its health check path from the `alb.ingress.kubernetes.io/healthcheck-path` annotation of its Service. The chart sets no annotations on the Services. The example sets this one, with the health check path in the table, in `<component>.service.annotations` of `applications`, `ui`, `swagger`, `userDocs`, `mailpit` and `mcp`. Without it the target group checks `/` on the traffic port.
 
