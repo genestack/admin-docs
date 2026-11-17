@@ -147,9 +147,9 @@ A link whose file is gone or unreadable moves to the storage service, which regi
 - `MISSING` when the store answers that there is no such file, such as a 404, or DNS knows no host of an `http(s)://`
   link. An `s3://` link inside `genestack.storage.internal.location` whose object is gone becomes an internal file
   with availability `MISSING`.
-- `UNREACHABLE` when the store refuses the read, with 403 or 401, or fails on the way, such as a timeout or
-  throttling. Inside `genestack.storage.internal.location` such a link fails instead: the storage service reads ODM's
-  bucket with its own credentials.
+- `UNREACHABLE` when the store refuses the read, with 403 or 401, or fails on the way, such as a timeout, a host
+  that gives rclone no answer within 60 s, or throttling. Inside `genestack.storage.internal.location` such a link
+  fails instead: the storage service reads ODM's bucket with its own credentials.
 
 Such a file has size -1 and no other metadata, and the storage service logs one WARN line for it. It stays
 unreadable until the store gives it. The storage service's scheduled availability check reads each external file
@@ -164,7 +164,7 @@ The first check that finds the file records its metadata, and the file becomes `
 internal file, so an internal file stays `MISSING`.
 
 A link fails when no storage covers its bucket or host, the storage service refuses it, such as a `file://` link
-outside `/local_data`, or rclone does not answer or answers another error. A `genestack.location:*` value that holds
+outside `/local_data`, or rclone is down or answers another error. A `genestack.location:*` value that holds
 several URLs, such as a FASTA file and its quality file, fails too: a storage file names one file. A failed link
 keeps its old value, and its row stays in the table with `error` and `attempts`. Core logs one WARN line per failed
 link, then a summary that starts `File links stored before ODM 1.66: <n> migrated, <n> failed, <n> kept as they are`.
