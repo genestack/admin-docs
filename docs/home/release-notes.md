@@ -87,7 +87,8 @@ Then core registers each row's link with the storage service:
 - An `s3://` link inside `genestack.storage.internal.location` becomes an internal file at its own path. Core's
   garbage collector deletes it as it deletes a 1.66 upload: with the object that holds it, when that object is
   marked `File copy stored`.
-- Any other link becomes an external file, as an import by link makes it.
+- Any other link becomes an external file, as an import by link makes it. When the storage service reads its file,
+  the file is `AVAILABLE`, checked when core moved its link.
 - A link whose file is gone or unreadable becomes a file too, with availability `MISSING` or `UNREACHABLE`, so its
   bucket and key stay recorded.
 - A `raw:`, `ftp:`, `storage:` or `localfile:` link stays as it is, and its row goes.
@@ -213,10 +214,11 @@ After the upgrade:
     SELECT path FROM internal_file WHERE availability = 'MISSING';
     ```
 
-    `path` is relative to `genestack.storage.internal.location`. The first query also lists external files that a
-    scheduled check found missing or unreachable since. When a storage's credentials made files `UNREACHABLE`, fix
-    them in `genestack.storage.storages` and restart the storage service. The next check that finds such a file
-    marks it `AVAILABLE`.
+    `path` is relative to `genestack.storage.internal.location`. The other external files the migration made were
+    `AVAILABLE` when core moved their link, and `checked_at` holds that time until a scheduled check reads them. The
+    first query also lists external files that a scheduled check found missing or unreachable since. When a storage's
+    credentials made files `UNREACHABLE`, fix them in `genestack.storage.storages` and restart the storage service.
+    The next check that finds such a file marks it `AVAILABLE`.
 
 The upgrade leaves the parameters of func-job's jobs as they are. Func-job marks every job running at the upgrade
 FAILED, as at any start. `PUT /api/v1/jobs/{jobExecId}/restart` of a job started before 1.66 answers 409 with hint
