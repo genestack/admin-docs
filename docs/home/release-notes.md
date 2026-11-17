@@ -88,6 +88,8 @@ Then core registers each row's link with the storage service:
   garbage collector deletes it as it deletes a 1.66 upload: with the object that holds it, when that object is
   marked `File copy stored`.
 - Any other link becomes an external file, as an import by link makes it.
+- A link whose file is gone or unreadable becomes a file too, with availability `MISSING` or `UNREACHABLE`, so its
+  bucket and key stay recorded.
 - A `raw:`, `ftp:`, `storage:` or `localfile:` link stays as it is, and its row goes.
 
 Core then replaces the link with the file's id, and re-indexes in Solr the objects that held it and their tasks.
@@ -131,8 +133,8 @@ field when core does not answer.
 | `scannedObjectId` | The objectId the scan reached |
 | `maxObjectId` | The largest objectId the scan reads to |
 | `rows` | The rows of `genestack.FileLinkMigration` this run moves, found by the scan or left by an earlier run. 0 while core scans |
-| `migrated` | The rows moved to the storage service in this run |
-| `failed` | The rows that failed in this run |
+| `migrated` | The rows moved to the storage service in this run, those whose file is `MISSING` or `UNREACHABLE` included |
+| `failed` | The rows that failed in this run and stay in `genestack.FileLinkMigration`, such as a link no storage covers. A link whose file is gone or unreadable counts in `migrated`, except a refused or failed read in ODM's bucket |
 | `kept` | The rows whose link stays as it is, such as a `raw:` link, in this run |
 | `startedAt`, `finishedAt` | When this run started, and when it was done. Absent until then |
 | `error` | `waiting for the storage service since <instant>` while core waits for it, with an ISO-8601 UTC time such as `2026-11-17T10:00:00.123Z`. Otherwise the failure of the last run that failed since core started, as `<class>: <message>`, such as `SQLException: Lock wait timeout exceeded`. Absent when there is neither, and once `DONE` |
@@ -140,12 +142,27 @@ field when core does not answer.
 The counts are per run. A run that fails starts again 60 s later, and counts from 0. `error` keeps its failure until
 a run is `DONE`.
 
-A link fails when its object is gone, its bucket is unreadable, no storage covers its bucket or host, or the storage
-service refuses it, such as a `file://` link outside `/local_data`. A `genestack.location:*` value that holds several
-URLs, such as a FASTA file and its quality file, fails too: a storage file names one file. A failed link keeps its
-old value, and its row stays in the table with `error` and `attempts`. Core logs one WARN line per failed link, then
-a summary that starts `File links stored before ODM 1.66: <n> migrated, <n> failed, <n> kept as they are`. An
-attached file whose link failed stays unreadable until its link moves. Every later start of core retries the rows
+A link whose file is gone or unreadable moves to the storage service, which registers the file with an availability:
+
+- `MISSING` when the store answers that there is no such file, such as a 404, or DNS knows no host of an `http(s)://`
+  link. An `s3://` link inside `genestack.storage.internal.location` whose object is gone becomes an internal file
+  with availability `MISSING`.
+- `UNREACHABLE` when the store refuses the read, with 403 or 401, or fails on the way, such as a timeout or
+  throttling. Inside `genestack.storage.internal.location` such a link fails instead: the storage service reads ODM's
+  bucket with its own credentials.
+
+Such a file has size -1 and no other metadata, and the storage service logs one WARN line for it. It stays
+unreadable until the store gives it. The storage service's scheduled availability check reads each external file
+again, daily at 02:00 by default (`genestack.storage.availability-check.cron`), up to 1,000 files a run, the least
+recently checked first. The first check that finds the file records its metadata, and the file becomes `AVAILABLE`.
+The check reads no internal file, so an internal file stays `MISSING`.
+
+A link fails when no storage covers its bucket or host, the storage service refuses it, such as a `file://` link
+outside `/local_data`, or rclone does not answer or answers another error. A `genestack.location:*` value that holds
+several URLs, such as a FASTA file and its quality file, fails too: a storage file names one file. A failed link
+keeps its old value, and its row stays in the table with `error` and `attempts`. Core logs one WARN line per failed
+link, then a summary that starts `File links stored before ODM 1.66: <n> migrated, <n> failed, <n> kept as they are`.
+An attached file whose link failed stays unreadable until its link moves. Every later start of core retries the rows
 left.
 
 Before the upgrade, make `genestack.storage.storages` cover every bucket the old links name, with credentials that
@@ -167,17 +184,33 @@ After the upgrade:
     ```
 
     No rows means every link moved. `error` holds the storage service's status and message, such as
-    `NOT_FOUND No file at s3://<bucket>/<key>`. `objects` counts the values that held the link when the scan found
-    it.
+    `FAILED_PRECONDITION No storage covers bucket <bucket>: genestack.storage.storages names none for it`. `objects`
+    counts the values that held the link when the scan found it.
 
-3. Fix the cause, such as a storage's credentials or a missing storage, then restart core:
+3. Fix the cause, such as a missing storage, then restart core:
 
     ```shell
     kubectl rollout restart -n <namespace> deployment/<release>-odm-core
     ```
 
-    Core retries the rows left in the background, and holds no task meanwhile. A link whose object is gone fails at
-    every start, and keeps its row.
+    Core retries the rows left in the background, and holds no task meanwhile.
+
+4. List the files that moved without their file, in the storage service's database, `storage`. External files:
+
+    ```sql
+    SELECT link, availability, checked_at FROM external_file WHERE availability IN ('MISSING', 'UNREACHABLE');
+    ```
+
+    Internal files, the links into ODM's bucket whose object was gone:
+
+    ```sql
+    SELECT path FROM internal_file WHERE availability = 'MISSING';
+    ```
+
+    `path` is relative to `genestack.storage.internal.location`. The first query also lists external files that a
+    scheduled check found missing or unreachable since. When a storage's credentials made files `UNREACHABLE`, fix
+    them in `genestack.storage.storages` and restart the storage service. The next check that finds such a file
+    marks it `AVAILABLE`.
 
 The upgrade leaves the parameters of func-job's jobs as they are. Func-job marks every job running at the upgrade
 FAILED, as at any start. `PUT /api/v1/jobs/{jobExecId}/restart` of a job started before 1.66 answers 409 with hint
