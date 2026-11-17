@@ -143,9 +143,9 @@
 
         - It will be created automatically during ODM deployment by ALB Controller.
 
-        - Start the `ingress` values from `odm/examples/ingress-alb.yaml` in the Helm chart. Its annotations and `ingress.extraPaths` set up the redirects and the security headers above.
+        - Start the values from `odm/examples/ingress-alb.yaml` in the Helm chart. Its `ingress.annotations` and `ingress.extraPaths` set up the redirects and the security headers above.
 
-        - The controller creates a target group for each Service. Each target group takes its health check path from the `alb.ingress.kubernetes.io/healthcheck-path` annotation of its Service, which the chart sets.
+        - The controller creates a target group for each Service. Each target group takes its health check path from the `alb.ingress.kubernetes.io/healthcheck-path` annotation of its Service. The chart sets no annotations on the Services. The example sets this one, with the health check path in the table, in `<component>.service.annotations` of `applications`, `ui`, `swagger`, `userDocs`, `mailpit` and `mcp`. Without it the target group checks `/` on the traffic port.
 
 3. [Optional] Deploy [External DNS](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/aws.md).
 

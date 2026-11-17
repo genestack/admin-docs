@@ -47,10 +47,14 @@ Values of your own that call `<release>-nginx:8080`, in `envVars` for example, m
 
 On AWS:
 
-- With an ALB the AWS Load Balancer Controller creates, each Service becomes a target group of its own. The Services
-  carry their own `alb.ingress.kubernetes.io/healthcheck-path` annotations, so the Ingress no longer needs one. An
-  Ingress without `alb.ingress.kubernetes.io/group.name` has an ALB of its own, so the controller replaces the ALB
-  of `<release>-nginx` with a new one, under a new DNS name: update the DNS record, unless External DNS does it.
+- With an ALB the AWS Load Balancer Controller creates, each Service becomes a target group of its own. The chart
+  sets no annotations on the Services. Set `alb.ingress.kubernetes.io/healthcheck-path` in
+  `<component>.service.annotations` of `applications`, `ui`, `swagger`, `userDocs`, `mailpit` and `mcp`, as the
+  chart's `examples/ingress-alb.yaml` does. Without it the target group checks `/` on the traffic port. The old
+  example set it in `nginx.ingress.annotations`: leave it out of `ingress.annotations`, where it applies to every
+  Service that sets none. An Ingress without `alb.ingress.kubernetes.io/group.name` has an ALB of its own, so the
+  controller replaces the ALB of `<release>-nginx` with a new one, under a new DNS name: update the DNS record, unless
+  External DNS does it.
 - With an ALB you created yourself, replace the target group and the TargetGroupBinding of `<release>-nginx` with
   one per Service, and add the listener rules and attributes, see [AWS](clouds/aws.md#recommended-steps-for-eks-configuration).
 

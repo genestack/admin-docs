@@ -105,7 +105,7 @@ This tool ensures seamless access to ECR by handling credential rotation.
     cat odm/examples/*.yaml
     ```
 
-    For the `ingress` values, start from `ingress-alb.yaml` or `ingress-nginx.yaml`, see [Kubernetes requirements](../requirements/kubernetes.md).
+    Start the values from `ingress-alb.yaml` or `ingress-nginx.yaml`, see [Kubernetes requirements](../requirements/kubernetes.md). Both set `ingress`. `ingress-alb.yaml` also sets the health check path of each Service in `<component>.service.annotations`: without it each ALB target group checks `/`.
 
     d) Run ODM deployment:
 
