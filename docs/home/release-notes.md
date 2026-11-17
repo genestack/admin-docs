@@ -134,7 +134,7 @@ field when core does not answer.
 | `maxObjectId` | The largest objectId the scan reads to |
 | `rows` | The rows of `genestack.FileLinkMigration` this run moves, found by the scan or left by an earlier run. 0 while core scans |
 | `migrated` | The rows moved to the storage service in this run, those whose file is `MISSING` or `UNREACHABLE` included |
-| `failed` | The rows that failed in this run and stay in `genestack.FileLinkMigration`, such as a link no storage covers. A link whose file is gone or unreadable counts in `migrated`, except a refused or failed read in ODM's bucket |
+| `failed` | The rows that failed in this run and stay in `genestack.FileLinkMigration`, such as a link no storage covers. A link whose file is gone or unreadable counts in `migrated`, except a link inside `genestack.storage.internal.location` whose read is refused or fails |
 | `kept` | The rows whose link stays as it is, such as a `raw:` link, in this run |
 | `startedAt`, `finishedAt` | When this run started, and when it was done. Absent until then |
 | `error` | `waiting for the storage service since <instant>` while core waits for it, with an ISO-8601 UTC time such as `2026-11-17T10:00:00.123Z`. Otherwise the failure of the last run that failed since core started, as `<class>: <message>`, such as `SQLException: Lock wait timeout exceeded`. Absent when there is neither, and once `DONE` |
@@ -153,9 +153,15 @@ A link whose file is gone or unreadable moves to the storage service, which regi
 
 Such a file has size -1 and no other metadata, and the storage service logs one WARN line for it. It stays
 unreadable until the store gives it. The storage service's scheduled availability check reads each external file
-again, daily at 02:00 by default (`genestack.storage.availability-check.cron`), up to 1,000 files a run, the least
-recently checked first. The first check that finds the file records its metadata, and the file becomes `AVAILABLE`.
-The check reads no internal file, so an internal file stays `MISSING`.
+again, the least recently checked first. Two chart keys set it:
+
+- `storageService.files."/app/config/application.yaml".genestack.storage.availabilityCheck.cron`: when the check
+  runs, a Spring cron expression. Default `0 0 2 * * *`, daily at 02:00.
+- `storageService.files."/app/config/application.yaml".genestack.storage.availabilityCheck.batchSize`: how many
+  files one run reads. Default `1000`.
+
+The first check that finds the file records its metadata, and the file becomes `AVAILABLE`. The check reads no
+internal file, so an internal file stays `MISSING`.
 
 A link fails when no storage covers its bucket or host, the storage service refuses it, such as a `file://` link
 outside `/local_data`, or rclone does not answer or answers another error. A `genestack.location:*` value that holds
