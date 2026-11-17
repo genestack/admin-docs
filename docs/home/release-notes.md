@@ -9,10 +9,11 @@
 
 !!! danger
 
-    ODM 1.66 refers to files by the storage service's ids, where earlier versions stored links. At its first start
-    after the upgrade, core moves the links of earlier versions to the storage service, and reports ready only once
-    it has tried each of them. Before you upgrade, make the storage service's storages cover every bucket the old
-    links name, and raise core's startup probe on a large instance. A file whose link fails to move stays
+    ODM 1.66 refers to files by the storage service's ids, where earlier versions stored links. After the upgrade,
+    core moves the links of earlier versions to the storage service in the background, which may take hours on a
+    large instance. Core reports ready at once. Until it has tried each link, core starts no task and skips its
+    garbage collection. Meanwhile, a file whose link has not moved yet may fail to read. Before you upgrade, make
+    the storage service's storages cover every bucket the old links name. A file whose link fails to move stays
     unreadable until a later start of core moves it. See
     [The upgrade moves file links to the storage service](#the-upgrade-moves-file-links-to-the-storage-service).
 
@@ -67,65 +68,116 @@ stored inside the location the same way, so they move with it.
 
 ### The upgrade moves file links to the storage service
 
-At every start, core moves the file links that ODM 1.65 and earlier stored to the storage service. It does so before
-it starts its queued tasks, its garbage collector and its web server, so nothing in core reads a link the migration
-has not reached. Until the migration ends, core answers no HTTP call, its health check included. A fresh installation
-has no such links, and core starts as before.
+After every start, core moves the file links that ODM 1.65 and earlier stored to the storage service. It runs the
+migration on a thread of its own and reports ready at once, so the upgrade's rollout does not wait for it. On a large
+instance the migration may take hours. A fresh installation has no such links, and its scan finds none.
 
-The 1.66 database migration lists the links once, in table `genestack.FileLinkMigration`, one row per distinct
-value:
+First, core scans table `genestack.SimpleMetainfo` in batches of 10,000 objectIds. It lists the links it finds in
+table `genestack.FileLinkMigration`, one row per distinct value:
 
 - the links in `genestack.url:data`, `genestack:metadata$Source` and `genestack.url:annotations`;
 - the `s3://` URLs in `genestack.location:*`.
 
-Template attributes keep their links. So do `raw:`, `ftp:`, `storage:` and `localfile:` links.
+Template attributes keep their links. Each batch is one transaction, and table `genestack.FileLinkMigrationScan`
+keeps the objectId the scan reached. A restart of core resumes the scan there. Once the scan ends, no later start
+scans again.
 
-For each row, core registers the link with the storage service:
+Then core registers each row's link with the storage service:
 
 - An `s3://` link inside `genestack.storage.internal.location` becomes an internal file at its own path. Core's
   garbage collector deletes it as it deletes a 1.66 upload: with the object that holds it, when that object is
   marked `File copy stored`.
 - Any other link becomes an external file, as an import by link makes it.
+- A `raw:`, `ftp:`, `storage:` or `localfile:` link stays as it is, and its row goes.
 
 Core then replaces the link with the file's id, and re-indexes in Solr the objects that held it and their tasks.
-Core waits up to 10 minutes for the storage service, and its start fails if the service never answers. A call that
-finds the storage service unavailable is retried 3 times. Core logs `File links: <done> of <total> rows done` after
-every 500 rows.
+Before the first link, core waits for the storage service as long as it takes. A call that finds the storage service
+unavailable is retried 3 times, then fails its link. When the migration stops on another error, such as a lost
+database connection, core logs `Moving the file links stored before ODM 1.66 failed, starting again in 60 s`. A
+new run of the migration starts 60 s later, where the last one stopped.
+
+Core logs the migration's progress:
+
+- `Core holds its queued tasks and its garbage collector until the file links stored before ODM 1.66 are moved:
+  GET /frontend/endpoint/actuator/filelinkmigration shows the progress`, at start, when core holds them;
+- `File link scan: objectId <n> of <max>, <n> links found in <n> values`, at most every 30 s while it scans;
+- `Waiting for the storage service to move the file links stored before ODM 1.66, for <n> s`, every minute while
+  the storage service does not answer;
+- `File links: <done> of <total> rows done`, after every 500 rows;
+- `The file links stored before ODM 1.66 are moved: core starts its queued tasks and its garbage collector`, when
+  the migration is done.
+
+Until the migration is done:
+
+- Core starts no task. The tasks queued at the upgrade, and the tasks users start meanwhile, such as initialization,
+  export and download tasks, stay queued. Core starts them when the migration is done.
+- Core's garbage collector skips its passes, so the files of removed objects stay in their storage until then.
+- A file whose link has not moved yet may fail to read. An attached file that holds a 1.65 link fails to load. An
+  import by an `s3://` link to a file that 1.65 stored in ODM's bucket answers 400. Creating an initialization task
+  for such a file can fail, since core reads the file to create the task.
+
+The migration is done when the scan has ended and core has tried each row once. A link that failed does not keep it
+from being done. At a later start, core holds no task and no garbage collection when the scan has ended and every
+row left failed at an earlier start. It retries those rows in the background.
+
+`GET /frontend/endpoint/actuator/filelinkmigration` shows the migration's progress. Like the health check, it needs
+no login. It shows counts, and in `error` why the migration is not done yet. A link that fails goes to its row of
+`genestack.FileLinkMigration`, never to `error`. Applications relays core's answer, and answers 503 with an `error`
+field when core does not answer.
+
+| Field | Value |
+| --- | --- |
+| `state` | `NOT_STARTED` until the migration starts, `SCANNING`, `MIGRATING`, then `DONE`. A start after the scan ended skips `SCANNING` |
+| `scannedObjectId` | The objectId the scan reached |
+| `maxObjectId` | The largest objectId the scan reads to |
+| `rows` | The rows of `genestack.FileLinkMigration` this run moves, found by the scan or left by an earlier run. 0 while core scans |
+| `migrated` | The rows moved to the storage service in this run |
+| `failed` | The rows that failed in this run |
+| `kept` | The rows whose link stays as it is, such as a `raw:` link, in this run |
+| `startedAt`, `finishedAt` | When this run started, and when it was done. Absent until then |
+| `error` | `waiting for the storage service since <instant>` while core waits for it, with an ISO-8601 UTC time such as `2026-11-17T10:00:00.123Z`. Otherwise the failure of the last run that failed since core started, as `<class>: <message>`, such as `SQLException: Lock wait timeout exceeded`. Absent when there is neither, and once `DONE` |
+
+The counts are per run. A run that fails starts again 60 s later, and counts from 0. `error` keeps its failure until
+a run is `DONE`.
 
 A link fails when its object is gone, its bucket is unreadable, no storage covers its bucket or host, or the storage
 service refuses it, such as a `file://` link outside `/local_data`. A `genestack.location:*` value that holds several
 URLs, such as a FASTA file and its quality file, fails too: a storage file names one file. A failed link keeps its
 old value, and its row stays in the table with `error` and `attempts`. Core logs one WARN line per failed link, then
-a summary: `File links stored before ODM 1.66: <n> migrated, <n> failed, <n> kept as they are`. An attached file
-whose link failed stays unreadable until its link moves. Every later start of core retries the rows left.
+a summary that starts `File links stored before ODM 1.66: <n> migrated, <n> failed, <n> kept as they are`. An
+attached file whose link failed stays unreadable until its link moves. Every later start of core retries the rows
+left.
 
-Before the upgrade:
-
-1. Make `genestack.storage.storages` cover every bucket the old links name, with credentials that can read it. An
-   `"[*]"` entry covers every bucket that has no entry of its own. Old `file://` links must lie under
-   `genestack.storage.local-roots`.
-2. On a large instance, raise `core.startupProbe.failureThreshold`. The chart's default, 180 checks 10 s apart,
-   gives Liquibase and the link migration about 30 minutes together. If the kubelet kills core earlier, the next
-   start resumes where the last one stopped.
+Before the upgrade, make `genestack.storage.storages` cover every bucket the old links name, with credentials that
+can read it. An `"[*]"` entry covers every bucket that has no entry of its own. Old `file://` links must lie under
+`genestack.storage.local-roots`.
 
 After the upgrade:
 
-1. List the links that failed:
+1. Watch the migration until `state` is `DONE`. `error` shows what it waits for or what failed last:
+
+    ```shell
+    curl https://<odm-host>/frontend/endpoint/actuator/filelinkmigration
+    ```
+
+2. List the links that failed. Once `state` is `DONE`, the rows left in the table are those links:
 
     ```sql
     SELECT value, error, attempts, objects FROM genestack.FileLinkMigration;
     ```
 
     No rows means every link moved. `error` holds the storage service's status and message, such as
-    `NOT_FOUND No file at s3://<bucket>/<key>`. `objects` counts the values that held the link at the upgrade.
+    `NOT_FOUND No file at s3://<bucket>/<key>`. `objects` counts the values that held the link when the scan found
+    it.
 
-2. Fix the cause, such as a storage's credentials or a missing storage, then restart core:
+3. Fix the cause, such as a storage's credentials or a missing storage, then restart core:
 
     ```shell
     kubectl rollout restart -n <namespace> deployment/<release>-odm-core
     ```
 
-    A link whose object is gone fails at every start, and keeps its row.
+    Core retries the rows left in the background, and holds no task meanwhile. A link whose object is gone fails at
+    every start, and keeps its row.
 
 The upgrade leaves the parameters of func-job's jobs as they are. Func-job marks every job running at the upgrade
 FAILED, as at any start. `PUT /api/v1/jobs/{jobExecId}/restart` of a job started before 1.66 answers 409 with hint
@@ -192,8 +244,9 @@ that path, such as a 1.66 upload or a file the upgrade moved. These fail on such
 With the location built from the 1.65 values, as above, every file 1.65 stored in ODM's bucket lies inside it. The
 upgrade records each of them at its own path, as
 [The upgrade moves file links to the storage service](#the-upgrade-moves-file-links-to-the-storage-service) says,
-so they keep working. A file whose link fails to move stays unrecorded, and these calls fail on it until a later
-start of core moves it.
+so they keep working once their links have moved. Until then, an import by link and a metadata replace fail on them.
+Core holds export and download tasks until the migration is done. A file whose link fails to move stays
+unrecorded, and these calls fail on it until a later start of core moves it.
 
 `s3://` links to objects another tool put into ODM's bucket stay refused. To import one, copy it to another bucket
 and import it from there.
