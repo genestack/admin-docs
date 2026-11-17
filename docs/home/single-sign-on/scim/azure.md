@@ -11,6 +11,35 @@ ODM exposes SCIM API endpoints at `https://ODM-HOST/frontend/rs/genestack/scim-i
 
 If your ODM instance is directly accessible from AzureAD servers, you can use the SCIM endpoint above when configuring provisioning in AzureAD. Otherwise, you need to enable access via HTTP protocol from AzureAD servers to the ODM SCIM endpoints, and then use the corresponding external SCIM endpoint URL as configured.
 
+With the ODM Helm chart, a separate host for SCIM, on a load balancer that AzureAD can reach, is an Ingress of its own in `extraObjects`. It routes the SCIM path to the `applications` Service. Set the class name, annotations and TLS your Ingress controller needs:
+
+```yaml
+extraObjects:
+  - apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: "{{ include \"odm.fullname\" $ }}-scim"
+    spec:
+      ingressClassName: INGRESS_CLASS
+      tls:
+        - hosts:
+            - "scim-{{ .Values.global.hostname }}"
+          secretName: "scim-{{ include \"odm.fullname\" $ }}-tls"
+      rules:
+        - host: "scim-{{ .Values.global.hostname }}"
+          http:
+            paths:
+              - path: /frontend/rs/genestack/scim-integration/default-released/scim
+                pathType: Prefix
+                backend:
+                  service:
+                    name: "{{ include \"odm.fullname\" $ }}-applications"
+                    port:
+                      name: http
+```
+
+The SCIM endpoint URL is then `https://scim-ODM-HOST/frontend/rs/genestack/scim-integration/default-released/scim`.
+
 Below are configuration steps for AzureAD portal:
 
 1. Navigate to **Enterprise applications –> All applications –> _{YOUR-APPLICATION}_ –> Provisioning**

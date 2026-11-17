@@ -105,6 +105,8 @@ This tool ensures seamless access to ECR by handling credential rotation.
     cat odm/examples/*.yaml
     ```
 
+    For the `ingress` values, start from `ingress-alb.yaml` or `ingress-nginx.yaml`, see [Kubernetes requirements](../requirements/kubernetes.md).
+
     d) Run ODM deployment:
 
     ```shell
