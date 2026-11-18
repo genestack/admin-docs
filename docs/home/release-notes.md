@@ -152,8 +152,8 @@ extraObjects:
 ```
 
 Such an Ingress serves the health and the metrics to anyone who reaches it. With an ALB, an Ingress to `core` sets
-`alb.ingress.kubernetes.io/healthcheck-path: /actuator/health/readiness` in its own annotations: the chart sets no
-annotations on the `core` Service, and without one the target group checks `/`.
+`alb.ingress.kubernetes.io/healthcheck-path: /actuator/health/readiness` in its own annotations: `core` has no
+`service.annotations` of its own, and without the annotation the target group checks `/`.
 
 With `networkPolicy.enabled`, the NetworkPolicy `<release>-ingress-routes` opens port 8080 of `applications`, its
 actuator included, to any address: it has no `from`. With an ALB of target type `ip`, any host in the VPC that reaches
