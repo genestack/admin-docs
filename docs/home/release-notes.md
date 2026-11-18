@@ -22,12 +22,16 @@ ingress:
 ```
 
 The security headers, which nginx added, are now the Ingress controller's to do, see
-[Kubernetes requirements](requirements/kubernetes.md). The chart's `examples/ingress-alb.yaml` and
-`examples/ingress-nginx.yaml` set them up. The `301` redirects to `/ui`, from `/` and from the pages of the UI before
-`/ui`, now come from `applications`: the Ingress sends these paths to it. The `404` for
-`/frontend/endpoint/actuator/prometheus` and `/frontend/endpoint/proxy`, which nginx also returned, now comes from
-`applications` too: it answers `404` to a request for these paths that carries `X-Forwarded-Proto` or
-`X-Forwarded-For`, which the Ingress controller adds. Prometheus scrapes the pods directly and still gets the metrics.
+[Kubernetes requirements](requirements/kubernetes.md). The chart's `examples/ingress-alb.yaml`, for the AWS Load
+Balancer Controller, and `examples/ingress-nginx.yaml`, for F5's NGINX Ingress Controller 5.5 or later, set them up.
+The nginx example streams uploads with a snippet, so the controller must run with `-enable-snippets`. The example
+does not support the community ingress-nginx controller, which reached its end of life in March 2026.
+
+The `301` redirects to `/ui`, from `/` and from the pages of the UI before `/ui`, now come from `applications`: the
+Ingress sends these paths to it. The `404` for `/frontend/endpoint/actuator/prometheus` and
+`/frontend/endpoint/proxy`, which nginx also returned, now comes from `applications` too: it answers `404` to a
+request for these paths that carries `X-Forwarded-Proto` or `X-Forwarded-For`, which the Ingress controller adds.
+Prometheus scrapes the pods directly and still gets the metrics.
 
 `applications` redirects the paths nginx did, with the query string kept:
 
