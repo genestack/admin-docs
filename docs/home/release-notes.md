@@ -65,14 +65,14 @@ On AWS:
   sets no annotations on the Services. Set `alb.ingress.kubernetes.io/healthcheck-path` in
   `<component>.service.annotations` of `applications`, `ui`, `swagger`, `userDocs`, `mailpit` and `mcp`, as the
   chart's `examples/ingress-alb.yaml` does. Without it the target group checks `/` on the traffic port. For
-  `applications` the example sets `/frontend/endpoint/ping`, on the traffic port, 8080. The old example set the path
-  in `nginx.ingress.annotations`: leave it out of `ingress.annotations`, where it applies to every Service that sets
-  none. An Ingress without `alb.ingress.kubernetes.io/group.name` has an ALB of its own, so the controller replaces
-  the ALB of `<release>-nginx` with a new one, under a new DNS name: update the DNS record, unless External DNS does
-  it.
+  `applications` the example sets `/frontend/endpoint/isAlive`, on the traffic port, 8080. The old example set the
+  path in `nginx.ingress.annotations`: leave it out of `ingress.annotations`, where it applies to every Service that
+  sets none. An Ingress without `alb.ingress.kubernetes.io/group.name` has an ALB of its own, so the controller
+  replaces the ALB of `<release>-nginx` with a new one, under a new DNS name: update the DNS record, unless External
+  DNS does it.
 - With an ALB you created yourself, replace the target group and the TargetGroupBinding of `<release>-nginx` with
   one per Service, and add the listener rules and attributes, see [AWS](clouds/aws.md#recommended-steps-for-eks-configuration).
-  The target group of `applications` checks `/frontend/endpoint/ping` on its traffic port.
+  The target group of `applications` checks `/frontend/endpoint/isAlive` on its traffic port.
 
 ### Health and metrics on port 8081
 
@@ -95,7 +95,8 @@ Move scrape configs of your own to the management port:
 
 With a `basePath`, the path is `<basePath>/actuator/prometheus`. Health checks of your own inside the cluster move the
 same way, to `/actuator/health` on port 8081. Uptime checks from outside the cluster that called
-`/frontend/endpoint/actuator/health` move to `/frontend/endpoint/ping`, which answers `200` without sign-in.
+`/frontend/endpoint/actuator/health` move to `/frontend/endpoint/isAlive`, which answers `200` with the body `true`,
+without sign-in.
 
 `frontend.backend.managementUrl` in the `application.yaml` of `applications` is the management URL of `core`, where
 `applications` checks its health: the chart sets it to `http://<release>-core:8081` with the `basePath` of `core`.
@@ -133,10 +134,10 @@ these paths also need a NetworkPolicy of your own. Pods in the `monitoring` name
 
 ### odm-sdk upgrade
 
-`applications` answers `GET /frontend/endpoint/ping` with `200` and an empty body, without sign-in. odm-sdk 1.66
-calls it to find the server, in place of `/frontend/endpoint/actuator/health`. An older odm-sdk fails to connect with
-`Could not connect to host '<host>'`: upgrade odm-sdk. An older odm-sdk skips that check when you give the host as
-`https://<host>/frontend`.
+odm-sdk 1.66 finds the server with `/frontend/endpoint/isAlive`, in place of `/frontend/endpoint/actuator/health`.
+`applications` answered `/frontend/endpoint/isAlive` before 1.66 too: `200` with the body `true`, to any method,
+without sign-in. An older odm-sdk fails to connect with `Could not connect to host '<host>'`: upgrade odm-sdk. An
+older odm-sdk skips that check when you give the host as `https://<host>/frontend`.
 
 ## Version 1.65
 
