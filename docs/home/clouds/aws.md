@@ -90,7 +90,7 @@
         | `odm-user-docs` | `/user-docs`, `/user-docs/*` | `/user-docs/` |
         | `odm-mcp`, only with `mcp.enabled: true` | `/mcp`, `/mcp/*`, `/.well-known/oauth-authorization-server`, `/.well-known/oauth-protected-resource`, `/.well-known/oauth-protected-resource/*`, `/authorize`, `/token`, `/register`, `/consent`, `/auth/callback` | `/health` |
         | `odm-mailpit`, only with `mailpit.enabled: true` | `/mail`, `/mail/*` | `/mail/readyz` |
-        | `odm-applications` | `/`, `/frontend*`, `/api*`: the redirect to `/ui`, the REST API of the UI, the pages of the UI before `/ui`, and the public API, SCIM among it | `/frontend/endpoint/isAlive` |
+        | `odm-applications` | `/`, `/frontend`, `/frontend/*`, `/api`, `/api/*`: the redirect to `/ui`, the REST API of the UI, the pages of the UI before `/ui`, and the public API, SCIM among it | `/frontend/endpoint/isAlive` |
 
         1. [Create a target group manually](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-target-group.html) for each Service in the table, and specify **any** IP address from the EKS subnet, it will be automatically replaced with the actual address by the ALB controller.
 
