@@ -24,14 +24,17 @@ ingress:
 The security headers, which nginx added, are now the Ingress controller's to do, see
 [Kubernetes requirements](requirements/kubernetes.md). The chart's `examples/ingress-alb.yaml`, for the AWS Load
 Balancer Controller, and `examples/ingress-nginx.yaml`, for F5's NGINX Ingress Controller 5.5 or later, set them up.
-The nginx example streams uploads with a snippet, so the controller must run with `-enable-snippets`. The example
-does not support the community ingress-nginx controller, which reached its end of life in March 2026.
+The nginx example streams uploads with a snippet, so the controller must run with `-enable-snippets`. That flag lets
+any Ingress on the controller, from any namespace, add raw nginx configuration. To stream uploads without it, remove
+`nginx.org/location-snippets` from the example and set `location-snippets: proxy_request_buffering off;` in the
+controller's ConfigMap: the controller then streams uploads for every Ingress it serves. The example does not support
+the community ingress-nginx controller, which reached its end of life in March 2026. If your controller in front of
+1.65 was ingress-nginx, it ignores the example's `nginx.org/*` annotations and gives ODM its defaults, a 1 MB limit on
+request bodies, 60 s timeouts and no security headers: set their equivalents on that controller, or move to F5's
+NGINX Ingress Controller.
 
 The `301` redirects to `/ui`, from `/` and from the pages of the UI before `/ui`, now come from `applications`: the
-Ingress sends these paths to it. The `404` for `/frontend/endpoint/actuator/prometheus` and
-`/frontend/endpoint/proxy`, which nginx also returned, now comes from `applications` too: it answers `404` to a
-request for these paths that carries `X-Forwarded-Proto` or `X-Forwarded-For`, which the Ingress controller adds.
-Prometheus scrapes the pods directly and still gets the metrics.
+Ingress sends these paths to it.
 
 `applications` redirects the paths nginx did, with the query string kept:
 
@@ -47,9 +50,8 @@ emails ODM sends for password recovery, email confirmation and API tokens now li
 
 `nginx.ingressScim` is gone: a separate host for SCIM is now an Ingress in `extraObjects`, see
 [SCIM with Azure AD](single-sign-on/scim/azure.md). `nginx.developmentSettings` is gone. To serve the metrics through
-the Ingress, as it did, set `frontend.metrics.public: "true"` in `applications.files`, in
-`/var/lib/genestack/properties/application.yaml`. The chart sets it to `"false"`. The
-`Access-Control-Allow-Origin: *` header that `nginx.developmentSettings` also added is not needed: `applications`
+the Ingress, as it did, use `ingress.extraPaths`, see [Health and metrics on port 8081](#health-and-metrics-on-port-8081).
+The `Access-Control-Allow-Origin: *` header that `nginx.developmentSettings` also added is not needed: `applications`
 answers CORS itself. It returns each `Origin` that matches `genestack.connections.cORSPatterns`, which is `".*"`, every
 origin, by default.
 
@@ -62,13 +64,73 @@ On AWS:
 - With an ALB the AWS Load Balancer Controller creates, each Service becomes a target group of its own. The chart
   sets no annotations on the Services. Set `alb.ingress.kubernetes.io/healthcheck-path` in
   `<component>.service.annotations` of `applications`, `ui`, `swagger`, `userDocs`, `mailpit` and `mcp`, as the
-  chart's `examples/ingress-alb.yaml` does. Without it the target group checks `/` on the traffic port. The old
-  example set it in `nginx.ingress.annotations`: leave it out of `ingress.annotations`, where it applies to every
-  Service that sets none. An Ingress without `alb.ingress.kubernetes.io/group.name` has an ALB of its own, so the
-  controller replaces the ALB of `<release>-nginx` with a new one, under a new DNS name: update the DNS record, unless
-  External DNS does it.
+  chart's `examples/ingress-alb.yaml` does. Without it the target group checks `/` on the traffic port. For
+  `applications` the example sets the path `/actuator/health/readiness` and
+  `alb.ingress.kubernetes.io/healthcheck-port: "8081"`, the management port. The old example set the path in
+  `nginx.ingress.annotations`: leave it out of `ingress.annotations`, where it applies to every Service that sets
+  none. An Ingress without `alb.ingress.kubernetes.io/group.name` has an ALB of its own, so the controller replaces
+  the ALB of `<release>-nginx` with a new one, under a new DNS name: update the DNS record, unless External DNS does
+  it.
 - With an ALB you created yourself, replace the target group and the TargetGroupBinding of `<release>-nginx` with
   one per Service, and add the listener rules and attributes, see [AWS](clouds/aws.md#recommended-steps-for-eks-configuration).
+  The target group of `applications` checks `/actuator/health/readiness` on port 8081.
+
+### Health and metrics on port 8081
+
+`applications` and `core` serve the actuator, the health checks and the Prometheus metrics, on a management port,
+8081, at `/actuator/*`. Their port 8080 no longer serves `/frontend/endpoint/actuator/*` or
+`/backend/endpoint/actuator/*`. `/frontend/endpoint/proxy`, which returned the metrics of `core` through
+`applications`, is gone.
+
+The chart sets the port in `applications.service.management.port` and `core.service.management.port`, and a path
+before `/actuator` in `.basePath` of each, empty by default. Both Services get a port named `management`. The chart's
+probes, ServiceMonitors and fluent-bit scrape inputs call `<basePath>/actuator/...` on it.
+
+Move scrape configs of your own to the management port:
+
+| Service | Before | After |
+| --- | --- | --- |
+| `<release>-applications` | `/frontend/endpoint/actuator/prometheus` on port 8080 | `/actuator/prometheus` on port 8081 |
+| `<release>-core` | `/backend/endpoint/actuator/prometheus` on port 8080 | `/actuator/prometheus` on port 8081 |
+
+With a `basePath`, the path is `<basePath>/actuator/prometheus`. Health checks of your own move the same way, to
+`/actuator/health` on port 8081.
+
+The Ingress routes to no management port unless `ingress.extraPaths` names one. Each entry adds a path on every host,
+ahead of the chart's `/` path, with `path`, `pathType` (`Prefix` by default), `component`, for the Service
+`<release>-<component>`, and `port`, the name of a port of that Service. The Ingress passes the path on unchanged, so
+a `basePath` gives the actuators of `applications` and `core` paths of their own. To read the metrics through the
+Ingress, as `nginx.developmentSettings` did:
+
+```yaml
+applications:
+  service:
+    management:
+      basePath: /applications
+core:
+  service:
+    management:
+      basePath: /core
+ingress:
+  extraPaths:
+    - path: /applications/actuator
+      component: applications
+      port: management
+    - path: /core/actuator
+      component: core
+      port: management
+```
+
+These paths serve the health and the metrics of both services to anyone who reaches the Ingress. With
+`networkPolicy.enabled`, the chart's network policies keep the management ports closed to the Ingress controller, so
+these paths also need a NetworkPolicy of your own. Pods in the `monitoring` namespace still reach every port.
+
+### odm-sdk upgrade
+
+`applications` answers `GET /frontend/endpoint/ping` with `200` and an empty body, without sign-in. odm-sdk 1.66
+calls it to find the server, in place of `/frontend/endpoint/actuator/health`. An older odm-sdk fails to connect with
+`Could not connect to host '<host>'`: upgrade odm-sdk. An older odm-sdk skips that check when you give the host as
+`https://<host>/frontend`.
 
 ## Version 1.65
 
