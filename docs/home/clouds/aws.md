@@ -90,7 +90,7 @@
         | `odm-user-docs` | `/user-docs`, `/user-docs/*` | `/user-docs/` |
         | `odm-mcp`, only with `mcp.enabled: true` | `/mcp`, `/mcp/*`, `/.well-known/oauth-authorization-server`, `/.well-known/oauth-protected-resource`, `/.well-known/oauth-protected-resource/*`, `/authorize`, `/token`, `/register`, `/consent`, `/auth/callback` | `/health` |
         | `odm-mailpit`, only with `mailpit.enabled: true` | `/mail`, `/mail/*` | `/mail/readyz` |
-        | `odm-applications` | `/*`: every other path, the REST API and SCIM among them | `/frontend/endpoint/isAlive` |
+        | `odm-applications` | `/`, `/frontend*`, `/api*`: the redirect to `/ui`, the REST API of the UI, the pages of the UI before `/ui`, and the public API, SCIM among it | `/frontend/endpoint/isAlive` |
 
         1. [Create a target group manually](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-target-group.html) for each Service in the table, and specify **any** IP address from the EKS subnet, it will be automatically replaced with the actual address by the ALB controller.
 
@@ -114,7 +114,9 @@
 
             - Forward the HTTP path patterns of each Service in the table to its target group. An ALB rule takes a limited number of path patterns ([quotas](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-limits.html)), so the paths of `odm-mcp` take several rules.
 
-            - Give the rule of `odm-applications`, with `/*`, the last priority: it takes every path that the other rules do not. `/` and the pages of the UI before `/ui`, which old links still use, are among them: `odm-applications` answers them with a `301` redirect to their `/ui` pages, so the listener needs no redirect rules.
+            - `/` and the pages of the UI before `/ui`, which old links still use, go to `odm-applications`, which answers them with a `301` redirect to their `/ui` pages, so the listener needs no redirect rules.
+
+            - Every other path gets the default action of the listener, such as a fixed `404` response. The actuator of `odm-applications`, at `/actuator`, stays inside the cluster.
 
         3. Set the security headers in the attributes of the same listener:
 

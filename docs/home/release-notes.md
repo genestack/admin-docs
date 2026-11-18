@@ -9,7 +9,11 @@
 
 The Helm chart no longer deploys nginx in front of ODM. Its Ingress, named after the release, routes each path
 straight to the Service that serves it: `/ui`, `/swagger`, `/user-docs`, `/mail` and `/mcp` to their Services, and
-every other path to `applications`. The upgrade replaces the Ingress `<release>-nginx` with it.
+`/`, `/frontend` and `/api` to `applications`. The upgrade replaces the Ingress `<release>-nginx` with it.
+
+`/frontend` holds the REST API of the UI and the pages of the UI before `/ui`. `/api` holds the public API, SCIM at
+`/api/v1/scim` among it. `/` is an exact path, which `applications` redirects to `/ui`. nginx sent every path it did
+not route elsewhere to `applications`. The Ingress routes no other path: the Ingress controller answers `404` to it.
 
 Move your `nginx.ingress` values to `ingress`. Its `hosts` is a list of host names, without paths:
 
@@ -50,7 +54,7 @@ emails ODM sends for password recovery, email confirmation and API tokens now li
 
 `nginx.ingressScim` is gone: a separate host for SCIM is now an Ingress in `extraObjects`, see
 [SCIM with Azure AD](single-sign-on/scim/azure.md). `nginx.developmentSettings` is gone. To serve the metrics through
-the Ingress, as it did, use `ingress.extraPaths`, see [Health and metrics on port 8081](#health-and-metrics-on-port-8081).
+the Ingress, as it did, use `ingress.extraPaths`, see [Health and metrics](#health-and-metrics).
 The `Access-Control-Allow-Origin: *` header that `nginx.developmentSettings` also added is not needed: `applications`
 answers CORS itself. It returns each `Origin` that matches `genestack.connections.cORSPatterns`, which is `".*"`, every
 origin, by default.
@@ -74,70 +78,51 @@ On AWS:
   one per Service, and add the listener rules and attributes, see [AWS](clouds/aws.md#recommended-steps-for-eks-configuration).
   The target group of `applications` checks `/frontend/endpoint/isAlive` on its traffic port.
 
-### Health and metrics on port 8081
+### Health and metrics
 
-`applications` and `core` serve the actuator, the health checks and the Prometheus metrics, on a management port,
-8081, at `/actuator/*`. Their port 8080 no longer serves `/frontend/endpoint/actuator/*` or
-`/backend/endpoint/actuator/*`. `/frontend/endpoint/proxy`, which returned the metrics of `core` through
-`applications`, is gone.
+`applications` serves the actuator, its health checks and Prometheus metrics, at Spring Boot's `/actuator` on port
+8080. Before 1.66 it served them at `/frontend/endpoint/actuator`. `core` serves its own at
+`/backend/endpoint/actuator` on port 8080, as before. `/frontend/endpoint/proxy`, which returned the metrics of `core`
+through `applications`, is gone. The chart's probes, ServiceMonitors and fluent-bit scrape inputs use the new paths.
 
-The chart sets the port in `applications.service.management.port` and `core.service.management.port`, and a path
-before `/actuator` in `.basePath` of each, empty by default. Both Services get a port named `management`. The chart's
-probes and ServiceMonitors call `<basePath>/actuator/...` on it. Its fluent-bit scrape inputs call
-`/actuator/prometheus` on port 8081: with a `basePath`, add it to their `metrics_path` in `fluent-bit.config.inputs`.
+Move scrape configs and checks of your own that call `applications`:
 
-Move scrape configs of your own to the management port:
+| Before | Now |
+| --- | --- |
+| `/frontend/endpoint/actuator/prometheus` | `/actuator/prometheus`, on port 8080 |
+| `/frontend/endpoint/actuator/health`, from inside the cluster | `/actuator/health`, on port 8080 |
+| `/frontend/endpoint/actuator/health`, from outside the cluster | `/frontend/endpoint/isAlive`, through the Ingress |
 
-| Service | Before | After |
-| --- | --- | --- |
-| `<release>-applications` | `/frontend/endpoint/actuator/prometheus` on port 8080 | `/actuator/prometheus` on port 8081 |
-| `<release>-core` | `/backend/endpoint/actuator/prometheus` on port 8080 | `/actuator/prometheus` on port 8081 |
+The scrape path of `core`, `/backend/endpoint/actuator/prometheus`, is unchanged. `/frontend/endpoint/isAlive`
+answers `200` with the body `true`, to any method, without sign-in. `applications` answered it before 1.66 too.
 
-With a `basePath`, the path is `<basePath>/actuator/prometheus`. Health checks of your own inside the cluster move the
-same way, to `/actuator/health` on port 8081. Uptime checks from outside the cluster that called
-`/frontend/endpoint/actuator/health` move to `/frontend/endpoint/isAlive`, which answers `200` with the body `true`,
-without sign-in.
-
-`frontend.backend.managementUrl` in the `application.yaml` of `applications` is the management URL of `core`, where
-`applications` checks its health: the chart sets it to `http://<release>-core:8081` with the `basePath` of `core`.
-Values of your own that override `frontend.backend.url` must set `frontend.backend.managementUrl` too.
-`core.service.annotations` is new: annotations for the `core` Service, as the other components have.
-
-The Ingress routes to no management port unless `ingress.extraPaths` names one. Each entry adds a path on every host,
-ahead of the chart's `/` path, with `path`, `pathType` (`Prefix` by default), `component`, for the Service
-`<release>-<component>`, and `port`, the name of a port of that Service. The Ingress passes the path on unchanged, so
-a `basePath` gives the actuators of `applications` and `core` paths of their own. To read the metrics through the
-Ingress, as `nginx.developmentSettings` did:
+The Ingress does not route `/actuator`, so the actuator of `applications` answers only inside the cluster.
+`ingress.extraPaths` adds paths to the Ingress, on every host. Each entry has `path`, `pathType` (`Prefix` by
+default), `component`, for the Service `<release>-<component>`, and `port`, the name of its port (`http` by default).
+To read the metrics through the Ingress, as `nginx.developmentSettings` did:
 
 ```yaml
-applications:
-  service:
-    management:
-      basePath: /applications
-core:
-  service:
-    management:
-      basePath: /core
 ingress:
   extraPaths:
-    - path: /applications/actuator
+    - path: /actuator
       component: applications
-      port: management
-    - path: /core/actuator
+    - path: /backend/endpoint/actuator
       component: core
-      port: management
 ```
 
-These paths serve the health and the metrics of both services to anyone who reaches the Ingress. With
-`networkPolicy.enabled`, the chart's network policies keep the management ports closed to the Ingress controller, so
-these paths also need a NetworkPolicy of your own. Pods in the `monitoring` namespace still reach every port.
+These paths serve the health and the metrics to anyone who reaches the Ingress. `core.service.annotations` is new, as
+the other components have: with an ALB, it sets the health check of the target group that an `ingress.extraPaths`
+entry gives `core`.
+
+With `networkPolicy.enabled`, the NetworkPolicy `<release>-ingress-routes` opens port 8080 of `applications`, its
+actuator included, to any pod and to the Ingress controller. Port 8080 of `core` stays closed to the Ingress
+controller, so an `ingress.extraPaths` entry to `core` needs a NetworkPolicy of your own.
 
 ### odm-sdk upgrade
 
-odm-sdk 1.66 finds the server with `/frontend/endpoint/isAlive`, in place of `/frontend/endpoint/actuator/health`.
-`applications` answered `/frontend/endpoint/isAlive` before 1.66 too: `200` with the body `true`, to any method,
-without sign-in. An older odm-sdk fails to connect with `Could not connect to host '<host>'`: upgrade odm-sdk. An
-older odm-sdk skips that check when you give the host as `https://<host>/frontend`.
+odm-sdk 1.66 finds the server with `/frontend/endpoint/isAlive`, in place of `/frontend/endpoint/actuator/health`,
+which `applications` no longer serves. An older odm-sdk fails to connect with `Could not connect to host '<host>'`:
+upgrade odm-sdk. An older odm-sdk skips that check when you give the host as `https://<host>/frontend`.
 
 ## Version 1.65
 
