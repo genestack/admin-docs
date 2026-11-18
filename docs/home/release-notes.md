@@ -14,8 +14,10 @@
     large instance. Core reports ready at once. Until it has tried each link, core starts no task and skips its
     garbage collection. Meanwhile, a file whose link has not moved yet may fail to read. Before you upgrade, make
     the storage service's storages cover every bucket the old links name. A file whose link fails to move stays
-    unreadable until a later start of core moves it. See
-    [The upgrade moves file links to the storage service](#the-upgrade-moves-file-links-to-the-storage-service).
+    unreadable until a later start of core moves it. When the files 1.65 stored in ODM's bucket lie outside
+    `genestack.storage.internal.location`, in another bucket or outside the location's prefix, the upgrade copies
+    them into the location, which needs room there and time.
+    See [The upgrade moves file links to the storage service](#the-upgrade-moves-file-links-to-the-storage-service).
 
 This release adds the storage service, the only ODM component that calls rclone. Core, applications and func-job
 read, write and copy files through it. It runs two containers in one Pod, `storage-service` and `rclone`, under the `storage` key
@@ -64,7 +66,10 @@ scheme, or when `genestack.storage.storages.s3` has neither an entry named after
 The storage service keeps each file it writes as a path relative to the location. To move ODM's internal storage to
 another bucket or prefix, copy its objects there, change the location and restart the storage service. The database
 needs no change for the files the storage service recorded. The upgrade records the files that 1.65 and earlier
-stored inside the location the same way, so they move with it.
+stored inside the location the same way, so they move with it. The upgrade copies the files 1.65 stored outside
+the location into it first, as
+[The upgrade copies ODM's files into a new internal location](#the-upgrade-copies-odms-files-into-a-new-internal-location)
+says.
 
 ### The upgrade moves file links to the storage service
 
@@ -87,6 +92,9 @@ Then core registers each row's link with the storage service:
 - An `s3://` link inside `genestack.storage.internal.location` becomes an internal file at its own path. Core's
   garbage collector deletes it as it deletes a 1.66 upload: with the object that holds it, when that object is
   marked `File copy stored`.
+- An `s3://` link into the bucket where 1.65 stored ODM's files, outside the location, is copied into the location
+  as a new internal file, at `<file id>/<file name>`. See
+  [The upgrade copies ODM's files into a new internal location](#the-upgrade-copies-odms-files-into-a-new-internal-location).
 - Any other link becomes an external file, as an import by link makes it. When the storage service reads its file,
   the file is `AVAILABLE`, checked when core moved its link.
 - A link whose file is gone or unreadable becomes a file too, with availability `MISSING` or `UNREACHABLE`, so its
@@ -133,9 +141,10 @@ field when core does not answer.
 | `state` | `NOT_STARTED` until the migration starts, `SCANNING`, `MIGRATING`, then `DONE`. A start after the scan ended skips `SCANNING` |
 | `scannedObjectId` | The objectId the scan reached |
 | `maxObjectId` | The largest objectId the scan reads to |
+| `odmBuckets` | The buckets where the scan found the files 1.65 stored, those marked `File copy stored`. Empty when no object is marked: then core copies nothing |
 | `rows` | The rows of `genestack.FileLinkMigration` this run moves, found by the scan or left by an earlier run. 0 while core scans |
 | `migrated` | The rows moved to the storage service in this run, those whose file is `MISSING` or `UNREACHABLE` included |
-| `failed` | The rows that failed in this run and stay in `genestack.FileLinkMigration`, such as a link no storage covers. A link whose file is gone or unreadable counts in `migrated`, except a link inside `genestack.storage.internal.location` whose read is refused or fails |
+| `failed` | The rows that failed in this run and stay in `genestack.FileLinkMigration`, such as a link no storage covers. A link whose file is gone or unreadable counts in `migrated`, except a link inside `genestack.storage.internal.location` whose read is refused or fails, and a link whose copy into it is refused or fails |
 | `kept` | The rows whose link stays as it is, such as a `raw:` link, in this run |
 | `startedAt`, `finishedAt` | When this run started, and when it was done. Absent until then |
 | `error` | `waiting for the storage service since <instant>` while core waits for it, with an ISO-8601 UTC time such as `2026-11-17T10:00:00.123Z`. Otherwise the failure of the last run that failed since core started, as `<class>: <message>`, such as `SQLException: Lock wait timeout exceeded`. Absent when there is neither, and once `DONE` |
@@ -147,10 +156,11 @@ A link whose file is gone or unreadable moves to the storage service, which regi
 
 - `MISSING` when the store answers that there is no such file, such as a 404, or DNS knows no host of an `http(s)://`
   link. An `s3://` link inside `genestack.storage.internal.location` whose object is gone becomes an internal file
-  with availability `MISSING`.
+  with availability `MISSING`, and so does a link the upgrade copies whose object is gone from the old bucket.
 - `UNREACHABLE` when the store refuses the read, with 403 or 401, or fails on the way, such as a timeout, a host
   that gives rclone no answer within 60 s, or throttling. Inside `genestack.storage.internal.location` such a link
-  fails instead: the storage service reads ODM's bucket with its own credentials.
+  fails instead: the storage service reads ODM's bucket with its own credentials. A link the upgrade copies fails
+  too.
 
 Such a file has size -1 and no other metadata, and the storage service logs one WARN line for it. It stays
 unreadable until the store gives it. The storage service's scheduled availability check reads each external file
@@ -174,7 +184,8 @@ left.
 
 Before the upgrade, make `genestack.storage.storages` cover every bucket the old links name, with credentials that
 can read it. An `"[*]"` entry covers every bucket that has no entry of its own. Old `file://` links must lie under
-`genestack.storage.local-roots`.
+`genestack.storage.local-roots`. When the files 1.65 stored lie outside the internal location, give it room for
+their copies too.
 
 After the upgrade:
 
@@ -208,13 +219,14 @@ After the upgrade:
     SELECT link, availability, checked_at FROM external_file WHERE availability IN ('MISSING', 'UNREACHABLE');
     ```
 
-    Internal files, the links into ODM's bucket whose object was gone:
+    Internal files, the links into ODM's bucket, or the old bucket the upgrade copies from, whose object was gone:
 
     ```sql
-    SELECT path FROM internal_file WHERE availability = 'MISSING';
+    SELECT path, legacy_link FROM internal_file WHERE availability = 'MISSING';
     ```
 
-    `path` is relative to `genestack.storage.internal.location`. The other external files the migration made were
+    `path` is relative to `genestack.storage.internal.location`. `legacy_link` holds the old link of a file the
+    upgrade was to copy, and is `NULL` for a link inside the location. The other external files the migration made were
     `AVAILABLE` when core moved their link, and `checked_at` holds that time until a scheduled check reads them. The
     first query also lists external files that a scheduled check found missing or unreachable since. When a storage's
     credentials made files `UNREACHABLE`, fix them in `genestack.storage.storages` and restart the storage service.
@@ -223,6 +235,64 @@ After the upgrade:
 The upgrade leaves the parameters of func-job's jobs as they are. Func-job marks every job running at the upgrade
 FAILED, as at any start. `PUT /api/v1/jobs/{jobExecId}/restart` of a job started before 1.66 answers 409 with hint
 A0010, `Job <id> started before ODM 1.66 and holds file links: start a new import`. Start a new import instead.
+
+### The upgrade copies ODM's files into a new internal location
+
+When the files ODM 1.65 stored in its own bucket lie outside `genestack.storage.internal.location`, in another bucket
+or outside the location's prefix, the upgrade copies them into the location. Each becomes a new internal file there,
+at `<file id>/<file name>`, as a 1.66 upload does. `<file name>` is the last segment of the old link. For example,
+`s3://<old bucket>/GSF1/a.tsv` becomes `s3://<new bucket>/<file id>/a.tsv`, or
+`s3://<new bucket>/<prefix>/<file id>/a.tsv` when the location has a prefix. API responses show the new link. With
+the location built from your 1.65 values, as above, every such file lies inside it and keeps its path, and the
+upgrade copies nothing.
+
+Nothing is configured for the copy. Core finds the old bucket in its database. 1.65 marks the files it writes into
+its bucket, such as uploads, with the metadata `File copy stored`. The scan collects the buckets of those files'
+`s3://` links in `genestack.url:data` and `genestack:metadata$Source`. Core then copies the file of every `s3://`
+link into those buckets, the links of objects without the mark included, such as matrix copies in
+`genestack.location:data`. When no object is marked, core finds no bucket and copies nothing.
+
+To see the buckets core found:
+
+- read `odmBuckets` in `GET /frontend/endpoint/actuator/filelinkmigration`;
+- read core's log line `File link scan done: ODM 1.65 stored its own files in buckets [<bucket>]`, logged when the
+  scan ends.
+
+For each such link outside the location:
+
+- The storage service copies the object, then records the internal file with the old link. The call lasts as long
+  as the copy, at most 1 hour.
+- A link is copied once. A restart of core, or a second value with the same link, gets the same file.
+- An object that is gone from the old bucket becomes an internal file with availability `MISSING`, and nothing is
+  copied.
+- A link whose last segment is not a valid file name, by the rule for uploads in
+  [Storage errors answer distinct HTTP statuses](#storage-errors-answer-distinct-http-statuses), fails before any
+  copy. It keeps its old value.
+- A copy that the store refuses, or that fails, fails the link and leaves nothing in the location. Core first
+  retries it 3 times when the storage service is unavailable. The link keeps its old value, its row stays in
+  `genestack.FileLinkMigration` with its error, and the next start of core retries it.
+- A copy that outlasts the hour is stopped, and core does not start it again until its next start. Each start copies
+  from the beginning, so a file whose copy takes longer than an hour never moves.
+- When rclone does not report that a stopped or failed copy has ended, the link fails, and the partial copy stays in
+  the location until a later start of the storage service removes it.
+
+Core's garbage collector deletes the copy as it deletes a 1.66 upload. The old bucket keeps every object: the
+upgrade deletes nothing there. These stay in the old bucket:
+
+- the files of `https://` links into the old bucket, which stay external files and still read it there;
+- objects that no link points to;
+- data files that gui-importer listed as free text in the sample attribute `Data Files / Raw`, since the scan reads
+  only file links;
+- on an instance whose uploads all predate 1.62, every file: no object is marked, so core finds no bucket. Its
+  `s3://` links into the old bucket become external files that read it there.
+
+Before the upgrade:
+
+- Make the storage that covers the old bucket in `genestack.storage.storages` able to read it: the entry named after
+  the bucket, else `"[*]"`.
+- Give the internal location room for the copies, up to the size of the old bucket.
+- Expect the migration to last longer by the time of the copies. Core holds its queued tasks and its garbage
+  collector until it has tried every link once.
 
 ### The storage service is a native image
 
@@ -252,7 +322,8 @@ file, so no write replaces a file.
 
 Before 1.66, ODM wrote attachments to `<study>/<file name>`, and UI imports and multipart signal, cell and metadata
 imports to `<study>/<timestamp>/<file name>`. A UI attachment replaced a file of the same name. Files that 1.65
-stored keep their paths.
+stored inside the location keep their paths. Files the upgrade copies into the location from outside it get
+`<file id>/<file name>`.
 
 When the study already has an attached file of the same name:
 
@@ -287,7 +358,10 @@ upgrade records each of them at its own path, as
 [The upgrade moves file links to the storage service](#the-upgrade-moves-file-links-to-the-storage-service) says,
 so they keep working once their links have moved. Until then, an import by link and a metadata replace fail on them.
 Core holds export and download tasks until the migration is done. A file whose link fails to move stays
-unrecorded, and these calls fail on it until a later start of core moves it.
+unrecorded, and these calls fail on it until a later start of core moves it. When the files 1.65 stored lie
+outside the location, the upgrade copies them into it, as
+[The upgrade copies ODM's files into a new internal location](#the-upgrade-copies-odms-files-into-a-new-internal-location)
+says.
 
 `s3://` links to objects another tool put into ODM's bucket stay refused. To import one, copy it to another bucket
 and import it from there.
