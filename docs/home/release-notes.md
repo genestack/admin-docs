@@ -54,7 +54,7 @@ emails ODM sends for password recovery, email confirmation and API tokens now li
 
 `nginx.ingressScim` is gone: a separate host for SCIM is now an Ingress in `extraObjects`, see
 [SCIM with Azure AD](single-sign-on/scim/azure.md). `nginx.developmentSettings` is gone. To serve the metrics through
-the Ingress, as it did, use `ingress.extraPaths`, see [Health and metrics](#health-and-metrics).
+an Ingress, as it did, add an Ingress of your own in `extraObjects`, see [Health and metrics](#health-and-metrics).
 The `Access-Control-Allow-Origin: *` header that `nginx.developmentSettings` also added is not needed: `applications`
 answers CORS itself. It returns each `Origin` that matches `genestack.connections.cORSPatterns`, which is `".*"`, every
 origin, by default.
@@ -92,15 +92,14 @@ one fails, for the minutes of the rollout.
 
 ### Health and metrics
 
-`applications` and `core` serve the actuator, its health checks and Prometheus metrics, under `actuatorPath` on port
-8080. The chart's `applications.actuatorPath` and `core.actuatorPath`, `/actuator` by default, set Spring Boot's
-`management.endpoints.web.base-path`. Before 1.66 the actuator of `applications` was at `/frontend/endpoint/actuator`,
-and that of `core` at `/backend/endpoint/actuator`. `/frontend/endpoint/proxy`, which returned the metrics of `core`
-through `applications`, is gone.
+`applications` and `core` serve the Spring Boot actuator, its health checks and Prometheus metrics, at `/actuator` on
+port 8080. Before 1.66 the actuator of `applications` was at `/frontend/endpoint/actuator`, and that of `core` at
+`/backend/endpoint/actuator`. `/frontend/endpoint/proxy`, which returned the metrics of `core` through `applications`,
+is gone.
 
-The chart's probes and ServiceMonitors follow `actuatorPath`. `applications` checks the health of `core` under
-`frontend.backend.actuatorPath`, which the chart sets from `core.actuatorPath`. The chart's fluent-bit inputs call
-`/actuator/prometheus`: with another `actuatorPath`, change their `metrics_path` in `fluent-bit.config.inputs` too.
+The chart's probes call `/actuator/health`, `/actuator/health/readiness` and `/actuator/health/liveness`. Its
+ServiceMonitors and fluent-bit inputs call `/actuator/prometheus`. `applications` checks the health of `core` at
+`/actuator/health` under `frontend.backend.url`.
 
 Move scrape configs and checks of your own:
 
@@ -116,33 +115,50 @@ Move scrape configs and checks of your own:
 answered it before 1.66 too.
 
 The Ingress routes neither actuator. Whatever reaches port 8080 of an `applications` or `core` pod reaches its
-actuator, `/actuator/prometheus` and the full health details among it. `ingress.extraPaths` adds paths to the Ingress,
-on every host. Each entry has `path`, `pathType` (`Prefix` by default), `component`, for the Service
-`<release>-<component>`, and `port`, the name of its port (`http` by default). The Ingress passes the path on
-unchanged, and both actuators are at `/actuator` by default, so each needs an `actuatorPath` of its own. To read the
-metrics through the Ingress, as `nginx.developmentSettings` did:
+actuator, `/actuator/prometheus` and the full health details among it.
 
-```yaml
-applications:
-  actuatorPath: /applications/actuator
-core:
-  actuatorPath: /core/actuator
-ingress:
-  extraPaths:
-    - path: /applications/actuator
-      component: applications
-    - path: /core/actuator
-      component: core
+`nginx.developmentSettings` served the metrics of `applications` and `core` through the Ingress. To read them now,
+call port 8080 of the pod or its Service from inside the cluster, or forward it to your machine:
+
+```bash
+kubectl port-forward -n <namespace> service/<release>-core 8080:8080
+curl http://localhost:8080/actuator/prometheus
 ```
 
-These paths serve the health and the metrics to anyone who reaches the Ingress. `core.service.annotations` is new, as
-the other components have: with an ALB, it sets the health check of the target group that an `ingress.extraPaths`
-entry gives `core`.
+To serve an actuator through an Ingress, add an Ingress of your own in `extraObjects`. An Ingress passes the path on
+unchanged, and both actuators are at `/actuator`, so one host routes `/actuator` to one Service only. This Ingress
+serves the actuator of `applications` on a host of its own. Set the class name, annotations and TLS your Ingress
+controller needs:
+
+```yaml
+extraObjects:
+  - apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: "{{ include \"odm.fullname\" $ }}-actuator"
+    spec:
+      ingressClassName: INGRESS_CLASS
+      rules:
+        - host: "actuator-{{ .Values.global.hostname }}"
+          http:
+            paths:
+              - path: /actuator
+                pathType: Prefix
+                backend:
+                  service:
+                    name: "{{ include \"odm.fullname\" $ }}-applications"
+                    port:
+                      name: http
+```
+
+Such an Ingress serves the health and the metrics to anyone who reaches it. With an ALB, an Ingress to `core` sets
+`alb.ingress.kubernetes.io/healthcheck-path: /actuator/health/readiness` in its own annotations: the chart sets no
+annotations on the `core` Service, and without one the target group checks `/`.
 
 With `networkPolicy.enabled`, the NetworkPolicy `<release>-ingress-routes` opens port 8080 of `applications`, its
 actuator included, to any address: it has no `from`. With an ALB of target type `ip`, any host in the VPC that reaches
-the pod's IP address reaches the actuator. Port 8080 of `core` stays closed to the Ingress controller, so an
-`ingress.extraPaths` entry to `core` needs a NetworkPolicy of your own.
+the pod's IP address reaches the actuator. Port 8080 of `core` stays closed to the Ingress controller, so an Ingress of
+your own to `core` needs a NetworkPolicy of your own too.
 
 ### odm-sdk upgrade
 
