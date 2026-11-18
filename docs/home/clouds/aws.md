@@ -116,7 +116,7 @@
 
             - `/` and the pages of the UI before `/ui`, which old links still use, go to `odm-applications`, which answers them with a `301` redirect to their `/ui` pages, so the listener needs no redirect rules.
 
-            - Every other path gets the default action of the listener, such as a fixed `404` response. The actuator of `odm-applications`, at `/actuator`, stays inside the cluster.
+            - Every other path gets the default action of the listener, such as a fixed `404` response. The actuator of `odm-applications`, at `/actuator` by default, stays inside the cluster.
 
         3. Set the security headers in the attributes of the same listener:
 

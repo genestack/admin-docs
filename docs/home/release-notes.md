@@ -78,35 +78,59 @@ On AWS:
   one per Service, and add the listener rules and attributes, see [AWS](clouds/aws.md#recommended-steps-for-eks-configuration).
   The target group of `applications` checks `/frontend/endpoint/isAlive` on its traffic port.
 
+### core at the root of its port
+
+`core` drops its context path `/backend` and its servlet path `/endpoint`: its API moves from `/backend/endpoint/...`
+to `/...` on port 8080. Only `applications` calls `core`. Values of your own that override `frontend.backend.url` in
+the `application.yaml` of `applications` keep `http://<release>-core:8080`: `applications` no longer appends
+`/backend`. Other calls of your own to `core` drop `/backend/endpoint`, so
+`POST <release>-core:8080/backend/endpoint/clickhouse-flags?read-only=true` becomes
+`POST <release>-core:8080/clickhouse-flags?read-only=true`.
+
+While Kubernetes replaces the `applications` and `core` pods during the upgrade, a call between an old pod and a new
+one fails, for the minutes of the rollout.
+
 ### Health and metrics
 
-`applications` serves the actuator, its health checks and Prometheus metrics, at Spring Boot's `/actuator` on port
-8080. Before 1.66 it served them at `/frontend/endpoint/actuator`. `core` serves its own at
-`/backend/endpoint/actuator` on port 8080, as before. `/frontend/endpoint/proxy`, which returned the metrics of `core`
-through `applications`, is gone. The chart's probes, ServiceMonitors and fluent-bit scrape inputs use the new paths.
+`applications` and `core` serve the actuator, its health checks and Prometheus metrics, under `actuatorPath` on port
+8080. The chart's `applications.actuatorPath` and `core.actuatorPath`, `/actuator` by default, set Spring Boot's
+`management.endpoints.web.base-path`. Before 1.66 the actuator of `applications` was at `/frontend/endpoint/actuator`,
+and that of `core` at `/backend/endpoint/actuator`. `/frontend/endpoint/proxy`, which returned the metrics of `core`
+through `applications`, is gone.
 
-Move scrape configs and checks of your own that call `applications`:
+The chart's probes and ServiceMonitors follow `actuatorPath`. `applications` checks the health of `core` under
+`frontend.backend.actuatorPath`, which the chart sets from `core.actuatorPath`. The chart's fluent-bit inputs call
+`/actuator/prometheus`: with another `actuatorPath`, change their `metrics_path` in `fluent-bit.config.inputs` too.
+
+Move scrape configs and checks of your own:
 
 | Before | Now |
 | --- | --- |
-| `/frontend/endpoint/actuator/prometheus` | `/actuator/prometheus`, on port 8080 |
-| `/frontend/endpoint/actuator/health`, from inside the cluster | `/actuator/health`, on port 8080 |
+| `/frontend/endpoint/actuator/prometheus` on `applications` | `/actuator/prometheus` on port 8080 |
+| `/backend/endpoint/actuator/prometheus` on `core` | `/actuator/prometheus` on port 8080 |
+| `/frontend/endpoint/actuator/health` on `applications`, from inside the cluster | `/actuator/health` on port 8080 |
+| `/backend/endpoint/actuator/health` on `core` | `/actuator/health` on port 8080 |
 | `/frontend/endpoint/actuator/health`, from outside the cluster | `/frontend/endpoint/isAlive`, through the Ingress |
 
-The scrape path of `core`, `/backend/endpoint/actuator/prometheus`, is unchanged. `/frontend/endpoint/isAlive`
-answers `200` with the body `true`, to any method, without sign-in. `applications` answered it before 1.66 too.
+`/frontend/endpoint/isAlive` answers `200` with the body `true`, to any method, without sign-in. `applications`
+answered it before 1.66 too.
 
-The Ingress does not route `/actuator`, so the actuator of `applications` answers only inside the cluster.
-`ingress.extraPaths` adds paths to the Ingress, on every host. Each entry has `path`, `pathType` (`Prefix` by
-default), `component`, for the Service `<release>-<component>`, and `port`, the name of its port (`http` by default).
-To read the metrics through the Ingress, as `nginx.developmentSettings` did:
+The Ingress routes neither actuator, so both answer only inside the cluster. `ingress.extraPaths` adds paths to the
+Ingress, on every host. Each entry has `path`, `pathType` (`Prefix` by default), `component`, for the Service
+`<release>-<component>`, and `port`, the name of its port (`http` by default). The Ingress passes the path on
+unchanged, and both actuators are at `/actuator` by default, so each needs an `actuatorPath` of its own. To read the
+metrics through the Ingress, as `nginx.developmentSettings` did:
 
 ```yaml
+applications:
+  actuatorPath: /applications/actuator
+core:
+  actuatorPath: /core/actuator
 ingress:
   extraPaths:
-    - path: /actuator
+    - path: /applications/actuator
       component: applications
-    - path: /backend/endpoint/actuator
+    - path: /core/actuator
       component: core
 ```
 
