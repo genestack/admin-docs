@@ -115,8 +115,9 @@ Move scrape configs and checks of your own:
 `/frontend/endpoint/isAlive` answers `200` with the body `true`, to any method, without sign-in. `applications`
 answered it before 1.66 too.
 
-The Ingress routes neither actuator, so both answer only inside the cluster. `ingress.extraPaths` adds paths to the
-Ingress, on every host. Each entry has `path`, `pathType` (`Prefix` by default), `component`, for the Service
+The Ingress routes neither actuator. Whatever reaches port 8080 of an `applications` or `core` pod reaches its
+actuator, `/actuator/prometheus` and the full health details among it. `ingress.extraPaths` adds paths to the Ingress,
+on every host. Each entry has `path`, `pathType` (`Prefix` by default), `component`, for the Service
 `<release>-<component>`, and `port`, the name of its port (`http` by default). The Ingress passes the path on
 unchanged, and both actuators are at `/actuator` by default, so each needs an `actuatorPath` of its own. To read the
 metrics through the Ingress, as `nginx.developmentSettings` did:
@@ -139,8 +140,9 @@ the other components have: with an ALB, it sets the health check of the target g
 entry gives `core`.
 
 With `networkPolicy.enabled`, the NetworkPolicy `<release>-ingress-routes` opens port 8080 of `applications`, its
-actuator included, to any pod and to the Ingress controller. Port 8080 of `core` stays closed to the Ingress
-controller, so an `ingress.extraPaths` entry to `core` needs a NetworkPolicy of your own.
+actuator included, to any address: it has no `from`. With an ALB of target type `ip`, any host in the VPC that reaches
+the pod's IP address reaches the actuator. Port 8080 of `core` stays closed to the Ingress controller, so an
+`ingress.extraPaths` entry to `core` needs a NetworkPolicy of your own.
 
 ### odm-sdk upgrade
 
