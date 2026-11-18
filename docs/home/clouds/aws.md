@@ -90,7 +90,7 @@
         | `odm-user-docs` | `/user-docs`, `/user-docs/*` | `/user-docs/` |
         | `odm-mcp`, only with `mcp.enabled: true` | `/mcp`, `/mcp/*`, `/.well-known/oauth-authorization-server`, `/.well-known/oauth-protected-resource`, `/.well-known/oauth-protected-resource/*`, `/authorize`, `/token`, `/register`, `/consent`, `/auth/callback` | `/health` |
         | `odm-mailpit`, only with `mailpit.enabled: true` | `/mail`, `/mail/*` | `/mail/readyz` |
-        | `odm-applications` | `/*`: every other path, the REST API and SCIM among them | `/actuator/health/readiness`, on port `8081` |
+        | `odm-applications` | `/*`: every other path, the REST API and SCIM among them | `/frontend/endpoint/ping` |
 
         1. [Create a target group manually](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-target-group.html) for each Service in the table, and specify **any** IP address from the EKS subnet, it will be automatically replaced with the actual address by the ALB controller.
 
@@ -110,8 +110,6 @@
 
             - Health check path is the Service's one in the table.
 
-            - Health check port is the traffic port, except for `odm-applications`: override it with `8081`, the management port, where `odm-applications` serves its health.
-
         2. [Add rules](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-update-rules.html) to the HTTPS listener of the ALB. Every rule has the HTTP Host Header `ODM_FQDN`. `ODM_FQDN` - ODM url without `https://` or `http://`. For example: `odm.genestack.com`.
 
             - Forward the HTTP path patterns of each Service in the table to its target group. An ALB rule takes a limited number of path patterns ([quotas](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-limits.html)), so the paths of `odm-mcp` take several rules.
@@ -130,7 +128,7 @@
 
         5. Create and deploy a [TargetGroupBinding](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.6/guide/use_cases/self_managed_lb/#create-targetgroupbinding-crd) for each target group ([example](#configuration-examples)) in Kubernetes.
 
-        6. Ensure that health checks in each target group have passed (after ODM deployment). You may need to allow access for the ALB subnet in the EC2 Security Group, to port `8081` too for the health check of `odm-applications`.
+        6. Ensure that health checks in each target group have passed (after ODM deployment). You may need to allow access for the ALB subnet in the EC2 Security Group.
 
     - If you don't have an ALB.
 
@@ -138,7 +136,7 @@
 
         - Start the values from `odm/examples/ingress-alb.yaml` in the Helm chart. Its `ingress.annotations` set up the security headers above.
 
-        - The controller creates a target group for each Service. Each target group takes its health check path from the `alb.ingress.kubernetes.io/healthcheck-path` annotation of its Service. The chart sets no annotations on the Services. The example sets this one, with the health check path in the table, in `<component>.service.annotations` of `applications`, `ui`, `swagger`, `userDocs`, `mailpit` and `mcp`. Without it the target group checks `/` on the traffic port. For `applications` the example also sets `alb.ingress.kubernetes.io/healthcheck-port: "8081"`, the management port.
+        - The controller creates a target group for each Service. Each target group takes its health check path from the `alb.ingress.kubernetes.io/healthcheck-path` annotation of its Service. The chart sets no annotations on the Services. The example sets this one, with the health check path in the table, in `<component>.service.annotations` of `applications`, `ui`, `swagger`, `userDocs`, `mailpit` and `mcp`. Without it the target group checks `/` on the traffic port.
 
 3. [Optional] Deploy [External DNS](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/aws.md).
 

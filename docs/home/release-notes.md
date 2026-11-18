@@ -65,15 +65,14 @@ On AWS:
   sets no annotations on the Services. Set `alb.ingress.kubernetes.io/healthcheck-path` in
   `<component>.service.annotations` of `applications`, `ui`, `swagger`, `userDocs`, `mailpit` and `mcp`, as the
   chart's `examples/ingress-alb.yaml` does. Without it the target group checks `/` on the traffic port. For
-  `applications` the example sets the path `/actuator/health/readiness` and
-  `alb.ingress.kubernetes.io/healthcheck-port: "8081"`, the management port. The old example set the path in
-  `nginx.ingress.annotations`: leave it out of `ingress.annotations`, where it applies to every Service that sets
+  `applications` the example sets `/frontend/endpoint/ping`, on the traffic port, 8080. The old example set the path
+  in `nginx.ingress.annotations`: leave it out of `ingress.annotations`, where it applies to every Service that sets
   none. An Ingress without `alb.ingress.kubernetes.io/group.name` has an ALB of its own, so the controller replaces
   the ALB of `<release>-nginx` with a new one, under a new DNS name: update the DNS record, unless External DNS does
   it.
 - With an ALB you created yourself, replace the target group and the TargetGroupBinding of `<release>-nginx` with
   one per Service, and add the listener rules and attributes, see [AWS](clouds/aws.md#recommended-steps-for-eks-configuration).
-  The target group of `applications` checks `/actuator/health/readiness` on port 8081.
+  The target group of `applications` checks `/frontend/endpoint/ping` on its traffic port.
 
 ### Health and metrics on port 8081
 
@@ -84,7 +83,8 @@ On AWS:
 
 The chart sets the port in `applications.service.management.port` and `core.service.management.port`, and a path
 before `/actuator` in `.basePath` of each, empty by default. Both Services get a port named `management`. The chart's
-probes, ServiceMonitors and fluent-bit scrape inputs call `<basePath>/actuator/...` on it.
+probes and ServiceMonitors call `<basePath>/actuator/...` on it. Its fluent-bit scrape inputs call
+`/actuator/prometheus` on port 8081: with a `basePath`, add it to their `metrics_path` in `fluent-bit.config.inputs`.
 
 Move scrape configs of your own to the management port:
 
@@ -93,8 +93,14 @@ Move scrape configs of your own to the management port:
 | `<release>-applications` | `/frontend/endpoint/actuator/prometheus` on port 8080 | `/actuator/prometheus` on port 8081 |
 | `<release>-core` | `/backend/endpoint/actuator/prometheus` on port 8080 | `/actuator/prometheus` on port 8081 |
 
-With a `basePath`, the path is `<basePath>/actuator/prometheus`. Health checks of your own move the same way, to
-`/actuator/health` on port 8081.
+With a `basePath`, the path is `<basePath>/actuator/prometheus`. Health checks of your own inside the cluster move the
+same way, to `/actuator/health` on port 8081. Uptime checks from outside the cluster that called
+`/frontend/endpoint/actuator/health` move to `/frontend/endpoint/ping`, which answers `200` without sign-in.
+
+`frontend.backend.managementUrl` in the `application.yaml` of `applications` is the management URL of `core`, where
+`applications` checks its health: the chart sets it to `http://<release>-core:8081` with the `basePath` of `core`.
+Values of your own that override `frontend.backend.url` must set `frontend.backend.managementUrl` too.
+`core.service.annotations` is new: annotations for the `core` Service, as the other components have.
 
 The Ingress routes to no management port unless `ingress.extraPaths` names one. Each entry adds a path on every host,
 ahead of the chart's `/` path, with `path`, `pathType` (`Prefix` by default), `component`, for the Service
