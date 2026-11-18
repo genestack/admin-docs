@@ -16,22 +16,22 @@
     lists fail for files 1.65 stored in ODM's bucket.
 
 This release adds the storage service, the only ODM component that calls rclone. Core, applications and func-job
-read, write and copy files through it. It runs two containers in one Pod, `storage-service` and `rclone`, under the `storageService` key
+read, write and copy files through it. It runs two containers in one Pod, `storage-service` and `rclone`, under the `storage` key
 of the Helm chart. The standalone `rclone` Deployment and Service, and the `rclone` key, are removed.
 
-The storage settings move to `storageService`:
+The storage settings move to the `storage` key:
 
 | Before 1.66 | From 1.66 |
 | --- | --- |
-| `genestack.rclone` in the `core`, `applications` and `funcJob` files | `genestack.storage.storages` in `storageService.secretFiles` |
-| `frontend.aws.bucket` and `frontend.aws.pathInBucket` in the `applications` files | `genestack.storage.internal.location` in `storageService.files`, a URL: `s3://<bucket>` or `s3://<bucket>/<pathInBucket>` |
+| `genestack.rclone` in the `core`, `applications` and `funcJob` files | `genestack.storage.storages` in `storage.secretFiles` |
+| `frontend.aws.bucket` and `frontend.aws.pathInBucket` in the `applications` files | `genestack.storage.internal.location` in `storage.files`, a URL: `s3://<bucket>` or `s3://<bucket>/<pathInBucket>` |
 
-Remove every `genestack.rclone` block and both `frontend.aws` settings from your values. `storageService.secretFiles`
+Remove every `genestack.rclone` block and both `frontend.aws` settings from your values. `storage.secretFiles`
 is stored in a Kubernetes Secret, so the storages' credentials stay out of ConfigMaps. The `s3-bucket-*.yaml` files
 in the chart's `examples` directory show the new shape. For example:
 
 ```yaml
-storageService:
+storage:
   files:
     "/app/config/application.yaml":
       genestack:
@@ -76,12 +76,12 @@ requests 128Mi of memory for the `storage-service` container and limits it to 38
 
 The native image differs from ODM's JVM services:
 
-- `storageService.envVars` takes no `JAVA_OPTS`, `JAVA_ARGS`, `JAVA_HEAP_DEPENDS_ON_RAM`, `JAVA_DEBUG_*` or
+- `storage.envVars` takes no `JAVA_OPTS`, `JAVA_ARGS`, `JAVA_HEAP_DEPENDS_ON_RAM`, `JAVA_DEBUG_*` or
   `JAVA_JMX_*`: the image has no `entrypoint.sh` to read them.
-- `storageService.service` has no `debug` or `jmx` key, and the Pod opens no debug or JMX port.
+- `storage.service` has no `debug` or `jmx` key, and the Pod opens no debug or JMX port.
 - The actuator's metrics include no JVM garbage collection metrics.
 - Spring fixes its conditional beans when the image is built. A setting such as `spring.flyway.enabled` in
-  `storageService.files` has no effect.
+  `storage.files` has no effect.
 - A failure at start prints plain text to the log, in place of one JSON line.
 
 ### Each file in ODM's bucket gets a folder of its own

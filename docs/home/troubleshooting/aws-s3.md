@@ -17,7 +17,7 @@ kubectl logs -n <namespace> deployment/<release>-odm-storage-service --all-conta
     - Access to the KMS key (if the KMS key is used for encrypting data in the s3 bucket).
 
     - KMS key is not specified in the bucket's storage, under `genestack.storage.storages.s3` in the storage
-      service's configuration (`storageService.secretFiles` in the Helm chart), if the KMS key is used for
+      service's configuration (`storage.secretFiles` in the Helm chart), if the KMS key is used for
       encrypting data in the s3 bucket. The `s3-bucket-sse-kms.yaml` file in the chart's `examples` directory
       shows the settings.
 
