@@ -112,7 +112,7 @@
 
         2. [Add rules](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-update-rules.html) to the HTTPS listener of the ALB. Every rule has the HTTP Host Header `ODM_FQDN`. `ODM_FQDN` - ODM url without `https://` or `http://`. For example: `odm.genestack.com`.
 
-            - Forward the HTTP path patterns of each Service in the table to its target group. An ALB rule takes a limited number of path patterns ([quotas](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-limits.html)), so the paths of `odm-mcp` take several rules.
+            - Forward the HTTP path patterns of each Service in the table to its target group. An ALB rule holds 5 condition values ([quotas](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-limits.html)), and the host header takes 1 of them, so a rule takes at most 4 path patterns. The 10 paths of `odm-mcp` take 3 rules. The 5 paths of `odm-applications` take 2 rules: `/`, `/frontend` and `/frontend/*` in one, `/api` and `/api/*` in the other.
 
             - `/` and the pages of the UI before `/ui`, which old links still use, go to `odm-applications`, which answers them with a `301` redirect to their `/ui` pages, so the listener needs no redirect rules.
 
