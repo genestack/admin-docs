@@ -16,7 +16,8 @@
     the storage service's storages cover every bucket the old links name. A file whose link fails to move stays
     unreadable until a later start of core moves it. When the files 1.65 stored in ODM's bucket lie outside
     `genestack.storage.internal.location`, in another bucket or outside the location's prefix, the upgrade copies
-    them into the location, which needs room there and time.
+    the files ODM wrote there into the location, which needs room there and time. The other links into that bucket
+    stay external files, read through the storage that covers the bucket: keep its credentials after the upgrade.
     See [The upgrade moves file links to the storage service](#the-upgrade-moves-file-links-to-the-storage-service).
 
 This release adds the storage service, the only ODM component that calls rclone. Core, applications and func-job
@@ -66,8 +67,8 @@ scheme, or when `genestack.storage.storages.s3` has neither an entry named after
 The storage service keeps each file it writes as a path relative to the location. To move ODM's internal storage to
 another bucket or prefix, copy its objects there, change the location and restart the storage service. The database
 needs no change for the files the storage service recorded. The upgrade records the files that 1.65 and earlier
-stored inside the location the same way, so they move with it. The upgrade copies the files 1.65 stored outside
-the location into it first, as
+stored inside the location the same way, so they move with it. The upgrade first copies into the location the files
+ODM 1.65 wrote outside it, as
 [The upgrade copies ODM's files into a new internal location](#the-upgrade-copies-odms-files-into-a-new-internal-location)
 says.
 
@@ -92,11 +93,13 @@ Then core registers each row's link with the storage service:
 - An `s3://` link inside `genestack.storage.internal.location` becomes an internal file at its own path. Core's
   garbage collector deletes it as it deletes a 1.66 upload: with the object that holds it, when that object is
   marked `File copy stored`.
-- An `s3://` link into the bucket where 1.65 stored ODM's files, outside the location, is copied into the location
-  as a new internal file, at `<file id>/<file name>`. See
+- An `s3://` link to a file ODM 1.65 wrote into its own bucket, at `<study accession>/<file name>` or
+  `<study accession>/<instant>/<file name>`, outside the location, is copied into the location as a new internal
+  file, at `<file id>/<file name>`. See
   [The upgrade copies ODM's files into a new internal location](#the-upgrade-copies-odms-files-into-a-new-internal-location).
-- Any other link becomes an external file, as an import by link makes it. When the storage service reads its file,
-  the file is `AVAILABLE`, checked when core moved its link.
+- Any other link becomes an external file, as an import by link makes it, the other `s3://` links into ODM's 1.65
+  bucket included. When the storage service reads its file, the file is `AVAILABLE`, checked when core moved its
+  link.
 - A link whose file is gone or unreadable becomes a file too, with availability `MISSING` or `UNREACHABLE`, so its
   bucket and key stay recorded.
 - A `raw:`, `ftp:`, `storage:` or `localfile:` link stays as it is, and its row goes.
@@ -141,7 +144,7 @@ field when core does not answer.
 | `state` | `NOT_STARTED` until the migration starts, `SCANNING`, `MIGRATING`, then `DONE`. A start after the scan ended skips `SCANNING` |
 | `scannedObjectId` | The objectId the scan reached |
 | `maxObjectId` | The largest objectId the scan reads to |
-| `odmBuckets` | The buckets where the scan found the files 1.65 stored, those marked `File copy stored`. Empty when no object is marked: then core copies nothing |
+| `odmBuckets` | The buckets where the scan found the files 1.65 stored, those marked `File copy stored`. Core copies the files in them at a study's key. Empty when no object is marked: then core copies nothing |
 | `rows` | The rows of `genestack.FileLinkMigration` this run moves, found by the scan or left by an earlier run. 0 while core scans |
 | `migrated` | The rows moved to the storage service in this run, those whose file is `MISSING` or `UNREACHABLE` included |
 | `failed` | The rows that failed in this run and stay in `genestack.FileLinkMigration`, such as a link no storage covers. A link whose file is gone or unreadable counts in `migrated`, except a link inside `genestack.storage.internal.location` whose read is refused or fails, and a link whose copy into it is refused or fails |
@@ -248,9 +251,25 @@ upgrade copies nothing.
 
 No setting names the old bucket. Core finds it in its database. 1.65 marks the files it writes into
 its bucket, such as uploads, with the metadata `File copy stored`. The scan collects the buckets of those files'
-`s3://` links in `genestack.url:data` and `genestack:metadata$Source`. Core then copies the file of every `s3://`
-link into those buckets, the links of objects without the mark included, such as matrix copies in
-`genestack.location:data`. When no object is marked, core finds no bucket and copies nothing.
+`s3://` links in `genestack.url:data` and `genestack:metadata$Source`. When no object is marked, core finds no
+bucket and copies nothing.
+
+Core copies only the files ODM wrote into those buckets. Anyone with a bucket's credentials could write other keys
+there. A link is ODM's own file when:
+
+- it is an `s3://` link into one of those buckets;
+- its key is `<study accession>/<file name>`, where 1.65 put an attachment, or
+  `<study accession>/<instant>/<file name>`, where 1.65 put the files of an import. `<instant>` is an ISO-8601 UTC
+  time such as `2026-05-26T16:39:07.123Z`;
+- a study of this instance has that accession, in the same case.
+
+The links of objects without the mark are copied too when they meet these conditions, such as files uploaded before
+1.62. Every other `s3://` link into those buckets becomes an external file in the old bucket, as any other link
+does. These include files imported by link from the bucket, and files in the folder of a deleted study.
+
+When set, 1.65's `frontend.aws.pathInBucket` put a folder before the study's accession. With the location built
+from it, as above, those files lie inside the location and keep their paths. When the location leaves that folder,
+their links stay external files in the old bucket.
 
 To see the buckets core found:
 
@@ -258,7 +277,7 @@ To see the buckets core found:
 - read core's log line `File link scan done: ODM 1.65 stored its own files in buckets [<bucket>]`, logged when the
   scan ends.
 
-For each such link outside the location:
+For each link that core copies:
 
 - The storage service copies the object, then records the internal file with the old link. The call lasts as long
   as its wait for a copy slot and the copy, at most 1 hour together. A call can get its slot with just over 10
@@ -289,6 +308,8 @@ Core's garbage collector deletes the copy as it deletes a 1.66 upload. The old b
 upgrade deletes nothing there. These stay in the old bucket:
 
 - the files of `https://` links into the old bucket, which stay external files and still read it there;
+- the files of the other `s3://` links into the old bucket, at a key ODM did not write or in the folder of no study
+  of this instance, which stay external files and still read it there;
 - objects that no link points to;
 - data files that gui-importer listed as free text in the sample attribute `Data Files / Raw`, since the scan reads
   only file links;
@@ -298,7 +319,8 @@ upgrade deletes nothing there. These stay in the old bucket:
 Before the upgrade:
 
 - Make the storage that covers the old bucket in `genestack.storage.storages` able to read it: the entry named after
-  the bucket, else `"[*]"`.
+  the bucket, else `"[*]"`. Keep its credentials after the upgrade: the links core does not copy read the old bucket
+  through it.
 - Give the internal location room for the copies, up to the size of the old bucket.
 - Expect the migration to last longer by the time of the copies. Core holds its queued tasks and its garbage
   collector until it has tried every link once.
