@@ -166,9 +166,9 @@ Such a file has size -1 and no other metadata, and the storage service logs one 
 unreadable until the store gives it. The storage service's scheduled availability check reads each external file
 again, the least recently checked first. Two chart keys set it:
 
-- `storageService.files."/app/config/application.yaml".genestack.storage.availabilityCheck.cron`: when the check
+- `storage.files."/app/config/application.yaml".genestack.storage.availabilityCheck.cron`: when the check
   runs, a Spring cron expression. Default `0 0 2 * * *`, daily at 02:00.
-- `storageService.files."/app/config/application.yaml".genestack.storage.availabilityCheck.batchSize`: how many
+- `storage.files."/app/config/application.yaml".genestack.storage.availabilityCheck.batchSize`: how many
   files one run reads. Default `1000`.
 
 The first check that finds the file records its metadata, and the file becomes `AVAILABLE`. The check reads no
@@ -246,7 +246,7 @@ at `<file id>/<file name>`, as a 1.66 upload does. `<file name>` is the last seg
 the location built from your 1.65 values, as above, every such file lies inside it and keeps its path, and the
 upgrade copies nothing.
 
-Nothing is configured for the copy. Core finds the old bucket in its database. 1.65 marks the files it writes into
+No setting names the old bucket. Core finds it in its database. 1.65 marks the files it writes into
 its bucket, such as uploads, with the metadata `File copy stored`. The scan collects the buckets of those files'
 `s3://` links in `genestack.url:data` and `genestack:metadata$Source`. Core then copies the file of every `s3://`
 link into those buckets, the links of objects without the mark included, such as matrix copies in
@@ -261,8 +261,17 @@ To see the buckets core found:
 For each such link outside the location:
 
 - The storage service copies the object, then records the internal file with the old link. The call lasts as long
-  as the copy, at most 1 hour.
-- A link is copied once. A restart of core, or a second value with the same link, gets the same file.
+  as its wait for a copy slot and the copy, at most 1 hour together. A call can get its slot with just over 10
+  minutes left, so a long copy can run out of time. The longest copy seen, 14,225,900,189 bytes, took 272 s.
+- rclone copies in one stream, with about 20 MiB of part buffers per copy. Its real memory use per copy is not
+  measured. A file stored with Content-Type `multipart/form-data` is copied as `application/octet-stream` when the
+  copy streams it.
+- The migration copies at most 2 files at once, so a large bucket takes longer. The key
+  `storage.files."/app/config/application.yaml".genestack.storage.rclone.maxCopies` sets the number, default `2`.
+  Raising it needs more memory for rclone, `storage.rclone.resources.limits.memory`, default `500Mi`: 8 copies at
+  once OOMKilled rclone at `500Mi` on a dev restore.
+- A link gets one file. A restart of core, or a second value with the same link, gets the same file. When core moves
+  2 values with the same link at once, both copy the object, and the storage service deletes the second copy.
 - An object that is gone from the old bucket becomes an internal file with availability `MISSING`, and nothing is
   copied.
 - A link whose last segment is not a valid file name, by the rule for uploads in
@@ -271,8 +280,8 @@ For each such link outside the location:
 - A copy that the store refuses, or that fails, fails the link and leaves nothing in the location. Core first
   retries it 3 times when the storage service is unavailable. The link keeps its old value, its row stays in
   `genestack.FileLinkMigration` with its error, and the next start of core retries it.
-- A copy that outlasts the hour is stopped, and core does not start it again until its next start. Each start copies
-  from the beginning, so a file whose copy takes longer than an hour never moves.
+- A copy that outlasts the hour, its wait for a slot included, is stopped, and core does not start it again until
+  its next start. Each start copies from the beginning, so a file whose copy takes longer than an hour never moves.
 - When rclone does not report that a stopped or failed copy has ended, the link fails, and the partial copy stays in
   the location until a later start of the storage service removes it.
 
