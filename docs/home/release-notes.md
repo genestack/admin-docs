@@ -98,8 +98,9 @@ Then core registers each row's link with the storage service:
   file, at `<file id>/<file name>`. See
   [The upgrade copies ODM's files into a new internal location](#the-upgrade-copies-odms-files-into-a-new-internal-location).
 - Any other link becomes an external file, as an import by link makes it, the other `s3://` links into ODM's 1.65
-  bucket included. When the storage service reads its file, the file is `AVAILABLE`, checked when core moved its
-  link.
+  bucket included.
+- When the storage service reads or copies the file, internal or external, the file is `AVAILABLE`, checked when
+  core moved its link.
 - A link whose file is gone or unreadable becomes a file too, with availability `MISSING` or `UNREACHABLE`, so its
   bucket and key stay recorded.
 - A `raw:`, `ftp:`, `storage:` or `localfile:` link stays as it is, and its row goes.
@@ -166,16 +167,18 @@ A link whose file is gone or unreadable moves to the storage service, which regi
   too.
 
 Such a file has size -1 and no other metadata, and the storage service logs one WARN line for it. It stays
-unreadable until the store gives it. The storage service's scheduled availability check reads each external file
-again, the least recently checked first. Two chart keys set it:
+unreadable until the store gives it. The storage service's scheduled availability check reads each file again,
+internal and external together, the least recently checked first. It reads an internal file at its path in
+`genestack.storage.internal.location`. Two chart keys set it:
 
 - `storage.files."/app/config/application.yaml".genestack.storage.availabilityCheck.cron`: when the check
   runs, a Spring cron expression. Default `0 0 2 * * *`, daily at 02:00.
 - `storage.files."/app/config/application.yaml".genestack.storage.availabilityCheck.batchSize`: how many
-  files one run reads. Default `1000`.
+  files one run reads, internal and external together. Default `1000`.
 
-The first check that finds the file records its metadata, and the file becomes `AVAILABLE`. The check reads no
-internal file, so an internal file stays `MISSING`.
+A pass over every file takes as many runs as the storage service has files, internal and external, divided by
+`batchSize`. The first check that finds such a file records its metadata, and the file becomes `AVAILABLE`. That
+includes an internal file whose object is put back at its path.
 
 A link fails when no storage covers its bucket or host, the storage service refuses it, such as a `file://` link
 outside `/local_data`, or rclone is down or answers another error. A `genestack.location:*` value that holds
@@ -225,15 +228,15 @@ After the upgrade:
     Internal files, the links into ODM's bucket, or the old bucket the upgrade copies from, whose object was gone:
 
     ```sql
-    SELECT path, legacy_link FROM internal_file WHERE availability = 'MISSING';
+    SELECT path, legacy_link, availability, checked_at FROM internal_file WHERE availability IN ('MISSING', 'UNREACHABLE');
     ```
 
     `path` is relative to `genestack.storage.internal.location`. `legacy_link` holds the old link of a file the
-    upgrade was to copy, and is `NULL` for a link inside the location. The other external files the migration made were
-    `AVAILABLE` when core moved their link, and `checked_at` holds that time until a scheduled check reads them. The
-    first query also lists external files that a scheduled check found missing or unreachable since. When a storage's
-    credentials made files `UNREACHABLE`, fix them in `genestack.storage.storages` and restart the storage service.
-    The next check that finds such a file marks it `AVAILABLE`.
+    upgrade was to copy, and is `NULL` for a link inside the location. The other files the migration made, internal
+    and external, were `AVAILABLE` when core moved their link, and `checked_at` holds that time until a scheduled
+    check reads them. Both queries also list the files that a scheduled check found missing or unreachable since. When
+    a storage's credentials made files `UNREACHABLE`, fix them in `genestack.storage.storages` and restart the storage
+    service. The next check that finds such a file marks it `AVAILABLE`.
 
 The upgrade leaves the parameters of func-job's jobs as they are. Func-job marks every job running at the upgrade
 FAILED, as at any start. `PUT /api/v1/jobs/{jobExecId}/restart` of a job started before 1.66 answers 409 with hint
@@ -279,9 +282,9 @@ To see the buckets core found:
 
 For each link that core copies:
 
-- The storage service copies the object, then records the internal file with the old link. The call lasts as long
-  as its wait for a copy slot and the copy, at most 1 hour together. A call can get its slot with just over 10
-  minutes left, so a long copy can run out of time. The longest copy seen, 14,225,900,189 bytes, took 272 s.
+- The storage service copies the object, then records the internal file, `AVAILABLE`, with the old link. The call
+  lasts as long as its wait for a copy slot and the copy, at most 1 hour together. A call can get its slot with just
+  over 10 minutes left, so a long copy can run out of time. The longest copy seen, 14,225,900,189 bytes, took 272 s.
 - rclone copies in one stream, with about 20 MiB of part buffers per copy. Its real memory use per copy is not
   measured. A file stored with Content-Type `multipart/form-data` is copied as `application/octet-stream` when the
   copy streams it.
