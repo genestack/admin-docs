@@ -298,13 +298,14 @@ For each link that core copies:
 - The storage service copies the object, then records the internal file, `AVAILABLE`, with the old link. The call
   lasts as long as its wait for a copy slot and the copy, at most 1 hour together. A call can get its slot with just
   over 10 minutes left, so a long copy can run out of time. The longest copy seen, 14,225,900,189 bytes, took 272 s.
-- rclone copies in one stream, with about 20 MiB of part buffers per copy. Its real memory use per copy is not
-  measured. A file stored with Content-Type `multipart/form-data` is copied as `application/octet-stream` when the
-  copy streams it.
-- The migration copies at most 2 files at once, so a large bucket takes longer. The key
-  `storage.files."/app/config/application.yaml".genestack.storage.rclone.maxCopies` sets the number, default `2`.
-  Raising it needs more memory for rclone, `storage.rclone.resources.limits.memory`, default `500Mi`: 8 copies at
-  once OOMKilled rclone at `500Mi` on a dev restore.
+- rclone copies with its default settings. To S3 a copy holds 4 upload parts of 5 MiB, about 20 MiB, plus a 16 MiB
+  read-ahead buffer. A dev restore measured more than 62 MiB per copy, with no read-ahead buffer. A file stored with
+  Content-Type `multipart/form-data` is copied as `application/octet-stream` when the copy streams it.
+- The storage service runs at most 4 copies at once, the migration's and those of attachment imports together, so a
+  large bucket takes longer. The key
+  `storage.files."/app/config/application.yaml".genestack.storage.rclone.maxCopies` sets the number, default `4`.
+  Raising it needs more memory for rclone, `storage.rclone.resources.limits.memory`, default `1536Mi`, which
+  covers 4 copies with room.
 - A link gets one file. A restart of core, or a second value with the same link, gets the same file. When core moves
   2 values with the same link at once, both copy the object, and the storage service deletes the second copy.
 - An object that is gone from the old bucket becomes an internal file with availability `MISSING`, and nothing is
