@@ -299,8 +299,9 @@ For each link that core copies:
   lasts as long as its wait for a copy slot and the copy, at most 1 hour together. A call can get its slot with just
   over 10 minutes left, so a long copy can run out of time. The longest copy seen, 14,225,900,189 bytes, took 272 s.
 - rclone copies with its default settings. To S3 a copy holds 4 upload parts of 5 MiB, about 20 MiB, plus a 16 MiB
-  read-ahead buffer. A dev restore measured more than 62 MiB per copy, with no read-ahead buffer. A file stored with
-  Content-Type `multipart/form-data` is copied as `application/octet-stream` when the copy streams it.
+  read-ahead buffer. On a dev restore, 8 copies at once, each in one stream with no read-ahead buffer, outgrew
+  rclone's `500Mi` limit. A file stored with Content-Type `multipart/form-data` is copied as
+  `application/octet-stream` when the copy streams it.
 - The storage service runs at most 4 copies at once, the migration's and those of attachment imports together, so a
   large bucket takes longer. The key
   `storage.files."/app/config/application.yaml".genestack.storage.rclone.maxCopies` sets the number, default `4`.
