@@ -3,10 +3,10 @@
 ## Storage service
 
 The storage service is the only ODM component that reads and writes S3. It runs in one Pod with two containers,
-`storage-service` and `rclone`. To read the storage service's log, replace `<namespace>` and `<release>`:
+`storage` and `rclone`. To read the storage service's log, replace `<namespace>` and `<release>`:
 
 ```shell
-kubectl logs -n <namespace> deployment/<release>-odm-storage-service --all-containers
+kubectl logs -n <namespace> deployment/<release>-odm-storage --all-containers
 ```
 
 - S3 denies access to a file in the storage service's log. An import or download of a file S3 refuses to read

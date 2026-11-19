@@ -20,9 +20,9 @@
     stay external files, read through the storage that covers the bucket: keep its credentials after the upgrade.
     See [The upgrade moves file links to the storage service](#the-upgrade-moves-file-links-to-the-storage-service).
 
-This release adds the storage service, the only ODM component that calls rclone. Core, applications and func-job
-read, write and copy files through it. It runs two containers in one Pod, `storage-service` and `rclone`, under the `storage` key
-of the Helm chart. The standalone `rclone` Deployment and Service, and the `rclone` key, are removed.
+This release adds the storage service, the only ODM component that calls rclone. Core, applications and func-job read,
+write and copy files through it. It runs two containers in one Pod, `storage` and `rclone`, under the `storage` key of
+the Helm chart. The standalone `rclone` Deployment and Service, and the `rclone` key, are removed.
 
 The storage settings move to the `storage` key:
 
@@ -349,7 +349,7 @@ and direct memory take at most 256 MiB together. The binary exits at its first h
 services do, and Kubernetes restarts it.
 
 Under ODM's functional tests the binary idles at 42 to 50 MiB, peaks at 121 MiB and starts in 0.17 s. The chart
-requests 128Mi of memory for the `storage-service` container and limits it to 384Mi.
+requests 128Mi of memory for the `storage` container and limits it to 384Mi.
 
 The native image differs from ODM's JVM services:
 
