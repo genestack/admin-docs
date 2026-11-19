@@ -228,15 +228,28 @@ After the upgrade:
     Internal files, the links into ODM's bucket, or the old bucket the upgrade copies from, whose object was gone:
 
     ```sql
-    SELECT path, legacy_link, availability, checked_at FROM internal_file WHERE availability IN ('MISSING', 'UNREACHABLE');
+    SELECT i.path, l.legacy_link, l.migrated, i.availability, i.checked_at
+    FROM internal_file i LEFT JOIN legacy_internal_file l ON l.file_id = i.file_id
+    WHERE i.availability IN ('MISSING', 'UNREACHABLE');
     ```
 
-    `path` is relative to `genestack.storage.internal.location`. `legacy_link` holds the old link of a file the
-    upgrade was to copy, and is `NULL` for a link inside the location. The other files the migration made, internal
-    and external, were `AVAILABLE` when core moved their link, and `checked_at` holds that time until a scheduled
-    check reads them. Both queries also list the files that a scheduled check found missing or unreachable since. When
-    a storage's credentials made files `UNREACHABLE`, fix them in `genestack.storage.storages` and restart the storage
-    service. The next check that finds such a file marks it `AVAILABLE`.
+    `path` is relative to `genestack.storage.internal.location`. `legacy_link` holds the 1.65 link the file was made
+    from. `migrated` is `TRUE` when the upgrade copied the file into the location, and `FALSE` for a link inside the
+    location or an object gone from the old bucket. Both are `NULL` for a file uploaded or copied since 1.66. The
+    other files the migration made, internal and external, were `AVAILABLE` when core moved their link, and
+    `checked_at` holds that time until a scheduled check reads them. Both queries also list the files that a
+    scheduled check found missing or unreachable since. When a storage's credentials made files `UNREACHABLE`, fix
+    them in `genestack.storage.storages` and restart the storage service. The next check that finds such a file marks
+    it `AVAILABLE`.
+
+    The table `legacy_internal_file` keeps what the upgrade found for each 1.65 link that became an internal file:
+    `legacy_link`, `migrated`, and `availability`, `AVAILABLE` or `MISSING` when core moved the link. A scheduled
+    check updates `internal_file.availability` only. To list them all:
+
+    ```sql
+    SELECT i.path, l.legacy_link, l.migrated, l.availability AS upgrade_availability, i.availability
+    FROM legacy_internal_file l JOIN internal_file i ON i.file_id = l.file_id;
+    ```
 
 The upgrade leaves the parameters of func-job's jobs as they are. Func-job marks every job running at the upgrade
 FAILED, as at any start. `PUT /api/v1/jobs/{jobExecId}/restart` of a job started before 1.66 answers 409 with hint
