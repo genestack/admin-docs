@@ -25,17 +25,31 @@ ingress:
     - "{{ .Values.global.hostname }}"
 ```
 
-The security headers, which nginx added, are now the Ingress controller's to do, see
-[Kubernetes requirements](requirements/kubernetes.md). The chart's `examples/ingress-alb.yaml`, for the AWS Load
-Balancer Controller, and `examples/ingress-nginx.yaml`, for F5's NGINX Ingress Controller 5.5 or later, set them up.
+In 1.65 nginx set four security headers: `Strict-Transport-Security: max-age=31536000` on every response, and
+`X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN` and `X-XSS-Protection: 1; mode=block` on `2xx` and
+`3xx` responses. nginx drops these headers in a location that adds a header of its own, so they reached only `ui`,
+the redirects to `/ui`, the SCIM path of `applications`, `mailpit`, the helper page of `swagger` at `/swagger` and
+`/swagger/helper`, and the `302` redirect from `/user-docs` to `/user-docs/`. They did not reach the other paths of
+`applications` and `swagger`, the pages of `user-docs`, nor `mcp` and its OAuth paths.
+
+In 1.66 each Service the Ingress routes to sets the security headers on its own responses. `ui`, `user-docs`,
+`applications` and `mcp` send `Strict-Transport-Security: max-age=31536000`, `X-Content-Type-Options: nosniff` and
+`X-Frame-Options: SAMEORIGIN` on every response. The OAuth consent and error pages of `mcp` keep their own
+`X-Frame-Options: DENY`. `swagger` sends the first two. Its base image, `swaggerapi/swagger-ui`, sends
+`X-Frame-Options: DENY` and `Content-Security-Policy: frame-ancestors 'none'`, as in 1.65. `mailpit`, a development
+tool, sends none. No Service sends `X-XSS-Protection`. A page of `applications`, `user-docs` or `mcp` in a frame of
+another origin no longer loads: these Services now send `X-Frame-Options: SAMEORIGIN`, which they did not in 1.65.
+The Ingress controller needs no configuration for the security headers.
+
+The chart's `examples/ingress-alb.yaml`, for the AWS Load Balancer Controller, and `examples/ingress-nginx.yaml`, for
+F5's NGINX Ingress Controller, set up the Ingress, see [Kubernetes requirements](requirements/kubernetes.md).
 The nginx example streams uploads with a snippet, so the controller must run with `-enable-snippets`. That flag lets
 any Ingress on the controller, from any namespace, add raw nginx configuration. To stream uploads without it, remove
 `nginx.org/location-snippets` from the example and set `location-snippets: proxy_request_buffering off;` in the
 controller's ConfigMap: the controller then streams uploads for every Ingress it serves. The example does not support
 the community ingress-nginx controller, which reached its end of life in March 2026. If your controller in front of
 1.65 was ingress-nginx, it ignores the example's `nginx.org/*` annotations and gives ODM its defaults, a 1 MB limit on
-request bodies, 60 s timeouts and no security headers: set their equivalents on that controller, or move to F5's
-NGINX Ingress Controller.
+request bodies and 60 s timeouts: set their equivalents on that controller, or move to F5's NGINX Ingress Controller.
 
 The `301` redirects to `/ui`, from `/` and from the pages of the UI before `/ui`, now come from `applications`: the
 Ingress sends these paths to it.
@@ -75,7 +89,7 @@ On AWS:
   replaces the ALB of `<release>-nginx` with a new one, under a new DNS name: update the DNS record, unless External
   DNS does it.
 - With an ALB you created yourself, replace the target group and the TargetGroupBinding of `<release>-nginx` with
-  one per Service, and add the listener rules and attributes, see [AWS](clouds/aws.md#recommended-steps-for-eks-configuration).
+  one per Service, and add the listener rules, see [AWS](clouds/aws.md#recommended-steps-for-eks-configuration).
   The target group of `applications` checks `/frontend/endpoint/isAlive` on its traffic port.
 
 ### core at the root of its port

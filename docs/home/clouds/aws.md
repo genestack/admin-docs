@@ -118,25 +118,17 @@
 
             - Every other path gets the default action of the listener, such as a fixed `404` response. The ALB does not route the actuator of `odm-applications`, at `/actuator`. Any host that reaches port 8080 of the pod's IP address in the VPC reaches it, `/actuator/prometheus` and the full health details among it.
 
-        3. Set the security headers in the attributes of the same listener:
+        3. Set `ingress.enabled` parameter to `false` in ODM helm chart.
 
-            | Listener attribute | Value |
-            | --- | --- |
-            | `routing.http.response.strict_transport_security.header_value` | `max-age=31536000` |
-            | `routing.http.response.x_content_type_options.header_value` | `nosniff` |
-            | `routing.http.response.x_frame_options.header_value` | `SAMEORIGIN` |
+        4. Create and deploy a [TargetGroupBinding](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.6/guide/use_cases/self_managed_lb/#create-targetgroupbinding-crd) for each target group ([example](#configuration-examples)) in Kubernetes.
 
-        4. Set `ingress.enabled` parameter to `false` in ODM helm chart.
-
-        5. Create and deploy a [TargetGroupBinding](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.6/guide/use_cases/self_managed_lb/#create-targetgroupbinding-crd) for each target group ([example](#configuration-examples)) in Kubernetes.
-
-        6. Ensure that health checks in each target group have passed (after ODM deployment). You may need to allow access for the ALB subnet in the EC2 Security Group.
+        5. Ensure that health checks in each target group have passed (after ODM deployment). You may need to allow access for the ALB subnet in the EC2 Security Group.
 
     - If you don't have an ALB.
 
         - It will be created automatically during ODM deployment by ALB Controller.
 
-        - Start the values from `odm/examples/ingress-alb.yaml` in the Helm chart. Its `ingress.annotations` set up the security headers above.
+        - Start the values from `odm/examples/ingress-alb.yaml` in the Helm chart.
 
         - The controller creates a target group for each Service. Each target group takes its health check path from the `alb.ingress.kubernetes.io/healthcheck-path` annotation of its Service. The chart sets no annotations on the Services. The example sets this one, with the health check path in the table, in `<component>.service.annotations` of `applications`, `ui`, `swagger`, `userDocs`, `mailpit` and `mcp`. Without it the target group checks `/` on the traffic port.
 
