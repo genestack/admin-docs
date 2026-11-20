@@ -1,11 +1,11 @@
 # Harmonise deployment
 
-Harmonise lets Curators prepare the raw files of a study for ODM with the help of a large language model (LLM). Each Harmonise run is a Pod that the `applications` service starts through the Kubernetes API, in the release namespace, and steers over a gRPC stream. The run Pod reads the study's files from S3, calls ODM's REST API with a token of the Curator who started it, and calls the LLM provider the Curator chose, with the Curator's own API key.
+Harmonise lets Curators prepare the raw files of a study for ODM with the help of a large language model (LLM). Each Harmonise run is a Pod that the `applications` service starts through the Kubernetes API, in the release namespace, and steers over a gRPC stream. The run Pod reads the study's files from S3, writes the harmonised study it exports back to S3, as a package of files, calls ODM's REST API with a token of the Curator who started it, and calls the LLM provider the Curator chose, with the Curator's own API key.
 
 This page covers what a deployment needs for Harmonise: its settings in the Helm chart, the Kubernetes permissions, and the network access of the run Pods.
 
 !!! note
-    Harmonise is always on: there is no flag to enable it. Its settings have defaults in the chart, and only the storage the runs read has to be set for your infrastructure, with the StorageClass of their temporary directory where the cluster's default does not fit (see [Temporary directory](#temporary-directory)).
+    Harmonise is always on: there is no flag to enable it. Its settings have defaults in the chart, and only the storage the runs read and write has to be set for your infrastructure, with the StorageClass of their temporary directory where the cluster's default does not fit (see [Temporary directory](#temporary-directory)).
 
 ## Components
 
@@ -58,10 +58,10 @@ Helm merges these values with the chart's own, so set only the keys you change.
 | `pod.metadata.labels` | empty | Labels each run Pod and its temporary directory's claim get besides their own. |
 | `pod.metadata.annotations` | empty | Annotations each run Pod gets besides its own. |
 | `odm.url` | `http://<fullname>-nginx:<nginx.service.http.port>` | ODM's API gateway, as run Pods call it. |
-| `s3.bucket` | empty | The bucket a run lists when the Curator names none. |
+| `s3.bucket` | empty | The bucket a run lists and extracts when the Curator names none, and the one its export writes the package to. Empty: no run can export. |
 | `s3.endpoint` | empty | The S3 endpoint, for S3-compatible storage such as MinIO. Empty for AWS S3. |
 | `s3.region` | empty | The bucket's region. |
-| `s3.access-key-id`, `s3.secret-access-key` | empty | The access key run Pods read S3 with. |
+| `s3.access-key-id`, `s3.secret-access-key` | empty | The access key run Pods read and write S3 with. |
 
 `<fullname>` is the chart's full name: `fullnameOverride` if set, otherwise the release name if it contains `odm`, otherwise `<release>-odm`.
 
@@ -82,15 +82,19 @@ The stream is neither authenticated nor encrypted: a run Pod identifies itself o
 
 ### S3 for run Pods
 
-Runs read study files from S3, or from S3-compatible storage. `applications` sends each run Pod the endpoint, region and access key over its stream, never in the Pod's spec, and the Curator names the bucket and path to read, `s3.bucket` by default.
+Runs read study files from S3, or from S3-compatible storage. `applications` sends each run Pod the endpoint, region and access key over its stream, never in the Pod's spec, and the Curator names the bucket and path to read, `s3.bucket` by default. An export writes the run's package to `s3.bucket`, under `harmonisation/runs/<run id>/<step id>/`.
 
-Run Pods mount no ServiceAccount token, so IAM roles for service accounts, or workload identity, do not apply to them: set `s3.access-key-id` and `s3.secret-access-key`. This key is the deployment's, not a run's: every run gets it, and so does anything that reaches the run stream (see [gRPC port 9090](#grpc-port-9090)), and nothing revokes it when a run ends. Curators can name any bucket, so the key's own policy is the only limit on what runs read: make it a read-only key limited to the bucket the runs read.
+Run Pods mount no ServiceAccount token, so IAM roles for service accounts, or workload identity, do not apply to them: set `s3.access-key-id` and `s3.secret-access-key`. This key is the deployment's, not a run's: every run gets it, and so does anything that reaches the run stream (see [gRPC port 9090](#grpc-port-9090)), and nothing revokes it when a run ends. The key's own policy is the only limit on what runs read and write: Curators can name any bucket to read, and the run Pod holds the key itself, so it can write anywhere the key allows.
+
+Allow the key to list and read the buckets the runs read (`s3:ListBucket`, `s3:GetObject`), and to write to `s3.bucket` under `harmonisation/runs/` (`s3:PutObject`, `s3:AbortMultipartUpload`), and nothing more. Without `s3:PutObject` there, every export fails with `AccessDenied`. Without `s3:AbortMultipartUpload`, a failed export can leave incomplete parts in the bucket. A run Pod stopped during an upload, by `pod.active-deadline-seconds` or for exceeding `pod.memory`, leaves incomplete parts that nothing aborts: a lifecycle rule on `s3.bucket` with `AbortIncompleteMultipartUpload` on the prefix `harmonisation/runs/` removes them.
+
+On a bucket encrypted with SSE-KMS under a customer-managed KMS key, the key also needs `kms:Decrypt` on that KMS key to read, and `kms:GenerateDataKey` and `kms:Decrypt` to write, a multipart upload included (see [Cross-account S3 access](../clouds/aws.md#cross-account-s3-access)).
 
 With either half of the key left empty, the run Pod falls back to the AWS SDK's default credential chain, which on a cloud node may pick up the node's own role from the instance metadata service.
 
 These settings are in `application.yaml`, which the chart renders into a ConfigMap, the secret access key included. Restrict who may read ConfigMaps in the release namespace accordingly.
 
-When a run imports files into ODM, ODM reads them itself, from the same bucket, so the bucket must also be one ODM can import from.
+When a run imports files into ODM, ODM reads them itself: an upload's files from the bucket they were listed in, an export's package from `s3.bucket`. Each of these buckets must also be one ODM can import from.
 
 ### ClickHouse database `harmonisation`
 
@@ -200,7 +204,7 @@ Run Pods connect to:
 | kube-dns, in `kube-system`, port 53 (UDP and TCP) | Name resolution for every destination below. |
 | `applications`, port 9090 (`grpc.target`) | The run stream. |
 | `nginx` (`odm.url`) | ODM's REST API, with the Curator's token. |
-| The S3 endpoint (`s3.endpoint`, or AWS S3's regional endpoint) | The study files. |
+| The S3 endpoint (`s3.endpoint`, or AWS S3's regional endpoint) | The study files, and the package an export writes. |
 | Each LLM provider's base URL, over HTTPS | The LLM calls, with the Curator's API key. |
 
 The chart's NetworkPolicies select Pods by `app.kubernetes.io/instance`, which run Pods do not carry unless `pod.metadata.labels` adds it, so the chart does not restrict their egress. If your cluster does (a default-deny NetworkPolicy, an egress firewall), allow traffic from Pods labelled `genestack.com/kind: harmonisation-run` to these destinations.
@@ -215,7 +219,7 @@ These requests leave your network. Offer only providers your organisation accept
 
 - **LLM keys are stored in plaintext** in ClickHouse, in `harmonisation.UserLlmCredentials`. Anyone who can read the database or its backups can read every Curator's key. Deleting or replacing credentials writes a new version of the row, without the old key. Earlier versions keep that key until ClickHouse merges the rows, in the background, at a time it chooses. ODM never returns a key through its API or user interface.
 - **The run stream is not authenticated or encrypted.** A Pod that reaches port 9090 and names the id of a run started since `applications` last restarted gets the run's token, which acts as its Curator in ODM, the S3 access key, and the Curator's LLM key. For a run resumed after a restart, it gets the S3 access key. With `networkPolicy.enabled: false`, the chart's default, any Pod in the cluster can reach the port. See [gRPC port 9090](#grpc-port-9090).
-- **The S3 access key is the deployment's**: every run gets the same one. See [S3 for run Pods](#s3-for-run-pods).
+- **The S3 access key is the deployment's**: every run gets the same one. With its write on `harmonisation/runs/`, any run Pod, and whoever opens a run stream, can overwrite another run's package, even between that run's export writing a file and ODM importing it. See [S3 for run Pods](#s3-for-run-pods).
 
 ## Troubleshooting
 
@@ -236,4 +240,5 @@ kubectl -n <namespace> logs harmonisation-run-<run id>
 - **The Harmonise API answers 503:** `applications` cannot reach the Kubernetes API or ClickHouse; check its log.
 - **A run's LLM check fails with `LLM_UNREACHABLE`:** the run Pod cannot reach the provider (see [Egress to the LLM providers](#egress-to-the-llm-providers)).
 - **A run cannot list files:** the S3 settings, or the run Pod's egress to the S3 endpoint (see [S3 for run Pods](#s3-for-run-pods)).
+- **An export fails with `Failed to write the package to s3://...` and `AccessDenied`:** the S3 key lacks `s3:PutObject` on `s3.bucket` under `harmonisation/runs/`, or, on an SSE-KMS bucket, `kms:GenerateDataKey` (see [S3 for run Pods](#s3-for-run-pods)).
 - **A step fails with `No space left`:** the run's temporary directory is full. Raise `pod.temporary-directory.size` (see [Temporary directory](#temporary-directory)).
