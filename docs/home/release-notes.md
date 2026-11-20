@@ -34,7 +34,7 @@ the redirects to `/ui`, the SCIM path of `applications`, `mailpit`, the helper p
 
 In 1.66 each Service the Ingress routes to sets the security headers on its own responses. `ui`, `user-docs`,
 `applications` and `mcp` send `Strict-Transport-Security: max-age=31536000`, `X-Content-Type-Options: nosniff` and
-`X-Frame-Options: SAMEORIGIN` on every response. The OAuth consent and error pages of `mcp` keep their own
+`X-Frame-Options: SAMEORIGIN` on every response. The OAuth consent page of `mcp`, `/consent`, keeps its own
 `X-Frame-Options: DENY`. `swagger` sends the first two. Its base image, `swaggerapi/swagger-ui`, sends
 `X-Frame-Options: DENY` and `Content-Security-Policy: frame-ancestors 'none'`, as in 1.65. `mailpit`, a development
 tool, sends none. No Service sends `X-XSS-Protection`. A page of `applications`, `user-docs` or `mcp` in a frame of
