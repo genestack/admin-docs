@@ -81,11 +81,22 @@
 
     - If you need to use already created ALB, please review [this documentation](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.6/guide/use_cases/self_managed_lb/) and follow the steps below.
 
-        1. [Create a target group manually](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-target-group.html) and specify **any** IP address from the EKS subnet, it will be automatically replaced with the actual address by the ALB controller.
+        The ALB routes each path of ODM straight to the Kubernetes Service that serves it, so each Service has a target group of its own. The Service names below are for the Helm release `odm`.
+
+        | Service | HTTP path patterns | Health check path |
+        | --- | --- | --- |
+        | `odm-ui` | `/ui`, `/ui/*` | `/ui/` |
+        | `odm-swagger` | `/swagger`, `/swagger/*` | `/swagger/helper/` |
+        | `odm-user-docs` | `/user-docs`, `/user-docs/*` | `/user-docs/` |
+        | `odm-mcp`, only with `mcp.enabled: true` | `/mcp`, `/mcp/*`, `/.well-known/oauth-authorization-server`, `/.well-known/oauth-protected-resource`, `/.well-known/oauth-protected-resource/*`, `/authorize`, `/token`, `/register`, `/consent`, `/auth/callback` | `/health` |
+        | `odm-mailpit`, only with `mailpit.enabled: true` | `/mail`, `/mail/*` | `/mail/readyz` |
+        | `odm-applications` | `/`, `/frontend`, `/frontend/*`, `/api`, `/api/*`: the redirect to `/ui`, the REST API of the UI, the pages of the UI before `/ui`, and the public API, SCIM among it | `/frontend/endpoint/isAlive` |
+
+        1. [Create a target group manually](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-target-group.html) for each Service in the table, and specify **any** IP address from the EKS subnet, it will be automatically replaced with the actual address by the ALB controller.
 
             - Target type is `IP addresses`.
 
-            - Target group name is any name. For example: `Genestack-ODM`.
+            - Target group name is any name. For example: `Genestack-ODM-ui`.
 
             - `Protocol : Port` is `HTTP : 80`
 
@@ -97,25 +108,29 @@
 
             - Health check protocol is `HTTP`
 
-            - Health check path is `/frontend/health`
+            - Health check path is the Service's one in the table.
 
-        2. [Create a listener](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-update-rules.html) in ALB and attach the target group.
+        2. [Add rules](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-update-rules.html) to the HTTPS listener of the ALB. Every rule has the HTTP Host Header `ODM_FQDN`. `ODM_FQDN` - ODM url without `https://` or `http://`. For example: `odm.genestack.com`.
 
-            - HTTP Path Pattern is `/*`.
+            - Forward the HTTP path patterns of each Service in the table to its target group. An ALB rule holds 5 condition values ([quotas](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-limits.html)), and the host header takes 1 of them, so a rule takes at most 4 path patterns. The 10 paths of `odm-mcp` take 3 rules. The 5 paths of `odm-applications` take 2 rules: `/`, `/frontend` and `/frontend/*` in one, `/api` and `/api/*` in the other.
 
-            - HTTP Host Header is `ODM_FQDN`. `ODM_FQDN` - ODM url without `https://` or `http://`. For example: `odm.genestack.com`.
+            - `/` and the pages of the UI before `/ui`, which old links still use, go to `odm-applications`, which answers them with a `301` redirect to their `/ui` pages, so the listener needs no redirect rules.
 
-        3. Forward to target group above
+            - Every other path gets the default action of the listener, such as a fixed `404` response. The ALB does not route the actuator of `odm-applications`, at `/actuator`. Any host that reaches port 8080 of the pod's IP address in the VPC reaches it, `/actuator/prometheus` and the full health details among it.
 
-        4. Set `nginx.ingress.enabled` parameter to `false` in ODM helm chart.
+        3. Set `ingress.enabled` parameter to `false` in ODM helm chart.
 
-        5. Create and deploy [TargetGroupBinding](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.6/guide/use_cases/self_managed_lb/#create-targetgroupbinding-crd) ([example](#configuration-examples)) in Kubernetes.
+        4. Create and deploy a [TargetGroupBinding](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.6/guide/use_cases/self_managed_lb/#create-targetgroupbinding-crd) for each target group ([example](#configuration-examples)) in Kubernetes.
 
-        6. Ensure that health checks in the target group have passed (after ODM deployment). You may need to allow access for the ALB subnet in the EC2 Security Group.
+        5. Ensure that health checks in each target group have passed (after ODM deployment). You may need to allow access for the ALB subnet in the EC2 Security Group.
 
     - If you don't have an ALB.
 
         - It will be created automatically during ODM deployment by ALB Controller.
+
+        - Start the values from `odm/examples/ingress-alb.yaml` in the Helm chart.
+
+        - The controller creates a target group for each Service. Each target group takes its health check path from the `alb.ingress.kubernetes.io/healthcheck-path` annotation of its Service. The chart sets no annotations on the Services. The example sets this one, with the health check path in the table, in `<component>.service.annotations` of `applications`, `ui`, `swagger`, `userDocs`, `mailpit` and `mcp`. Without it the target group checks `/` on the traffic port.
 
 3. [Optional] Deploy [External DNS](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/aws.md).
 
@@ -364,17 +379,20 @@ allowVolumeExpansion: true
 
 <details><summary>TargetGroupBinding example</summary>
 
+One TargetGroupBinding per target group. This one binds `odm-applications`; repeat it for each Service in the table, with the Service's name and the ARN of its target group.
+
 ```yaml
 apiVersion: elbv2.k8s.aws/v1beta1
 kind: TargetGroupBinding
 metadata:
-  name: odm
+  name: odm-applications
   namespace: odm
 spec:
   ipAddressType: ipv4
   serviceRef:
-    name: odm-nginx
-    port: 80
+    name: odm-applications
+    # Every Service the ALB routes to names its port http
+    port: http
   targetGroupARN: TARGET_GROUP_ARN
 ```
 
