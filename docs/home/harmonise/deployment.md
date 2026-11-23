@@ -48,7 +48,7 @@ Helm merges these values with the chart's own, so set only the keys you change.
 | `clickhouse.username`, `clickhouse.password` | `default`, empty | ClickHouse credentials for the run history. |
 | `pod.active-deadline-seconds` | `3600` | How long a run Pod may run before Kubernetes stops it. |
 | `pod.memory` | `4Gi` | Memory request and limit of the run container. |
-| `pod.recorded-cases` | `false` | Test only: a folder named `test-rq-...` gets recorded results instead of a real run. Set it only in development environments. |
+| `pod.recorded-cases` | `false` | Test only: a folder named `test-rq-...` gets recorded results instead of a real run. Set it only in development environments. Temporary: remove before the release. |
 | `pod.image-pull-policy` | `IfNotPresent` | Pull policy of the run container. |
 | `pod.image-pull-secrets` | the chart's pull secrets, as every Pod of the chart gets | Pull secrets of the run Pods, comma-separated. |
 | `pod.temporary-directory.size` | `10Gi` | Size of each run Pod's temporary directory. |
