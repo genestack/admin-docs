@@ -346,12 +346,12 @@ Before the upgrade:
 ### The storage service is a native image
 
 The storage service's image, `genestack/storage`, runs a GraalVM native binary in place of a JVM. The image's
-entrypoint passes it `-Xmx128m -XX:+ExitOnOutOfMemoryError`. Direct memory may grow to the heap's size, so the heap
-and direct memory take at most 256 MiB together. The binary exits at its first heap `OutOfMemoryError`, as the JVM
+entrypoint passes it `-XX:+ExitOnOutOfMemoryError`. The heap's default maximum is 80% of the container's memory, and
+direct memory may grow to the heap's maximum. The binary exits at its first heap `OutOfMemoryError`, as the JVM
 services do, and Kubernetes restarts it.
 
-Under ODM's functional tests the binary idles at 42 to 50 MiB, peaks at 121 MiB and starts in 0.17 s. The chart
-requests 128Mi of memory for the `storage` container and limits it to 384Mi.
+Under ODM's functional tests, with a 128 MiB heap, the binary idled at 42 to 50 MiB, peaked at 121 MiB and started in
+0.17 s. The chart requests 128Mi of memory for the `storage` container and limits it to 384Mi.
 
 The native image differs from ODM's JVM services:
 
